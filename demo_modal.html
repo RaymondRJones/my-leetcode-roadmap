@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learn Button Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .demo-box { border: 2px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 10px; }
+        .feature { margin: 10px 0; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Learn Button Demo - Fixed!</h1>
+    
+    <div class="demo-box">
+        <h2>✅ What's Been Fixed</h2>
+        <div class="feature">
+            <strong>🔄 Learn Button Now Works:</strong> 
+            Changed from <code>&lt;a href="/problem/{{ loop.index0 }}"&gt;</code> 
+            to <code>&lt;button onclick="showSimplifiedProblem({{ loop.index0 }})"&gt;</code>
+        </div>
+        
+        <div class="feature">
+            <strong>📱 Beautiful Modal Popup:</strong> 
+            Shows simplified problem statement in an elegant Bootstrap modal
+        </div>
+        
+        <div class="feature">
+            <strong>🎓 Perfect for Beginners:</strong> 
+            Clean, simple explanation without overwhelming details
+        </div>
+    </div>
+    
+    <div class="demo-box">
+        <h2>🌟 Modal Features</h2>
+        <ul>
+            <li><strong>Simplified Problem:</strong> Plain English explanation</li>
+            <li><strong>Key Concepts:</strong> Programming concepts as badges (if-statements, loops, etc.)</li>
+            <li><strong>Difficulty Stars:</strong> 1-5 rating for beginners</li>
+            <li><strong>Example Cases:</strong> Sample input/output when available</li>
+            <li><strong>Action Buttons:</strong> Solve on AtCoder, Mark Complete, Close</li>
+            <li><strong>Encouragement:</strong> Motivational text to get beginners excited</li>
+        </ul>
+    </div>
+    
+    <div class="demo-box">
+        <h2>🚀 How to Test</h2>
+        <ol>
+            <li>Make sure you have some problems: <code>cd scripts && python atcoder_scraper.py</code></li>
+            <li>Start the web app: <code>./run.sh</code></li>
+            <li>Go to the "Beginner Training" tab</li>
+            <li>Click any <strong>"Learn"</strong> button</li>
+            <li>Enjoy the beautiful modal with simplified explanations! 🎉</li>
+        </ol>
+    </div>
+    
+    <div class="demo-box">
+        <h2>💡 Example Modal Content</h2>
+        <p><strong>Problem:</strong> Unsupported Type</p>
+        <p><strong>Simplified:</strong> "You are given a list of numbers and a single number. Your task is to check if the single number is present in the list. If it is, you should say 'Yes'; if not, say 'No'."</p>
+        <p><strong>Concepts:</strong> if-statements, lists, input/output</p>
+        <p><strong>Difficulty:</strong> ⭐⭐☆☆☆ (2/5)</p>
+    </div>
+</body>
+</html>

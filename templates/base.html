@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ray's LeetCode Roadmap{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Material Design Colors */
+        :root {
+            --md-primary: #1976d2;
+            --md-primary-dark: #1565c0;
+            --md-secondary: #03dac6;
+            --md-surface: #ffffff;
+            --md-background: #fafafa;
+            --md-error: #b00020;
+            --md-success: #4caf50;
+            --md-warning: #ff9800;
+            --md-on-surface: #212121;
+            --md-on-surface-variant: #757575;
+            --md-outline: #e0e0e0;
+            
+            /* Elevation shadows */
+            --md-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --md-elevation-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            --md-elevation-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            --md-elevation-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            --md-elevation-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+
+        /* Material Design Typography */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-background);
+            color: var(--md-on-surface);
+            line-height: 1.5;
+        }
+
+        .display-4 { font-weight: 300; letter-spacing: -0.5px; }
+        .lead { font-weight: 400; line-height: 1.6; }
+        h1, h2, h3, h4, h5, h6 { font-weight: 500; }
+
+        /* Material Design Cards */
+        .md-card {
+            background: var(--md-surface);
+            border-radius: 12px;
+            box-shadow: var(--md-elevation-1);
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .md-card:hover {
+            box-shadow: var(--md-elevation-3);
+            transform: translateY(-2px);
+        }
+
+        .md-card-elevated {
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .md-card-elevated:hover {
+            box-shadow: var(--md-elevation-4);
+        }
+
+        /* Problem Cards */
+        .problem-card {
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: 1px solid var(--md-outline);
+            border-radius: 12px;
+            background: var(--md-surface);
+            box-shadow: var(--md-elevation-1);
+        }
+
+        .problem-card:hover {
+            box-shadow: var(--md-elevation-2);
+            transform: translateY(-1px);
+        }
+
+        .problem-card.completed {
+            background-color: #e8f5e8;
+            border-color: var(--md-success);
+            box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Month Cards - Material Design Surfaces */
+        .month-card {
+            background: var(--md-surface);
+            border-radius: 16px;
+            box-shadow: var(--md-elevation-2);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .month-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--md-primary), var(--md-secondary));
+        }
+
+        .month-card:hover {
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-4px);
+        }
+
+        .month-card .card-body {
+            padding: 24px;
+        }
+
+        .month-card h3 {
+            color: var(--md-primary);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            background: var(--md-surface);
+            border-radius: 16px;
+            box-shadow: var(--md-elevation-1);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--md-primary);
+        }
+
+        .stats-card:hover {
+            box-shadow: var(--md-elevation-2);
+        }
+
+        /* Material Design Progress Bars */
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e3f2fd;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--md-primary), var(--md-secondary));
+            border-radius: 4px;
+            transition: width 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        /* Navigation - Material Design */
+        .navbar {
+            background: var(--md-surface) !important;
+            box-shadow: var(--md-elevation-2);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--md-outline);
+        }
+
+        .navbar-brand {
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: var(--md-primary) !important;
+        }
+
+        .nav-link {
+            color: var(--md-on-surface) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            border-radius: 20px;
+            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            margin: 0 4px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(25, 118, 210, 0.08);
+            color: var(--md-primary) !important;
+        }
+
+        .nav-link.active {
+            background-color: var(--md-primary);
+            color: white !important;
+        }
+
+        /* Buttons - Material Design */
+        .btn-primary {
+            background: var(--md-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: var(--md-elevation-1);
+        }
+
+        .btn-primary:hover {
+            background: var(--md-primary-dark);
+            box-shadow: var(--md-elevation-2);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-weight: 500;
+            transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        /* Bonus Cards */
+        .bonus-card {
+            border-left: 4px solid var(--md-warning);
+            background-color: #fff8e1;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .bonus-card.completed {
+            background-color: #e8f5e8;
+            border-left-color: var(--md-success);
+        }
+
+        /* Accordion - Material Design */
+        .accordion-button {
+            background: var(--md-surface);
+            border: none;
+            border-radius: 12px !important;
+            padding: 20px 24px;
+            font-weight: 500;
+            box-shadow: var(--md-elevation-1);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--md-primary);
+            color: white;
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .accordion-button:focus {
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .accordion-item {
+            border: none;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .accordion-body {
+            background: var(--md-surface);
+            padding: 24px;
+        }
+
+        /* Form Controls - Material Design */
+        .form-check-input:checked {
+            background-color: var(--md-primary);
+            border-color: var(--md-primary);
+        }
+
+        /* Spacing - Material Design 8dp grid */
+        .container {
+            padding: 24px 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--md-surface) !important;
+            border-top: 1px solid var(--md-outline);
+            color: var(--md-on-surface-variant) !important;
+            margin-top: 48px;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--md-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: var(--md-elevation-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .fab:hover {
+            background: var(--md-primary-dark);
+            box-shadow: var(--md-elevation-5);
+            transform: scale(1.1);
+        }
+
+        .fab .material-icons {
+            font-size: 24px;
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--md-success);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: var(--md-elevation-3);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            animation: slideInRight 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll to top button styles */
+        .scroll-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">code</span>Ray's LeetCode Roadmap
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">rocket_launch</span>Intermediate Roadmap
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/advanced">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">star</span>Advanced Roadmap
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/beginner">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">school</span>Complete Beginner Roadmap
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <button class="btn btn-outline-primary btn-sm" onclick="refreshData()">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">refresh</span>Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
+        <span class="material-icons">keyboard_arrow_up</span>
+    </button>
+
+    <footer class="bg-dark text-light mt-5 py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 LeetCode Roadmap Generator. Built with Flask & Bootstrap.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function refreshData() {
+            fetch('/api/refresh', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        location.reload();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to refresh data');
+                });
+        }
+
+        function copyUrl(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('URL copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Failed to copy URL', 'error');
+            });
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            
+            const icon = type === 'success' ? 'check_circle' : 'error';
+            const bgColor = type === 'success' ? 'var(--md-success)' : 'var(--md-error)';
+            
+            toast.innerHTML = `
+                <span class="material-icons" style="margin-right: 8px; font-size: 20px;">${icon}</span>
+                ${message}
+            `;
+            toast.style.background = bgColor;
+            
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) reverse';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 2000);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.getElementById('scrollToTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>

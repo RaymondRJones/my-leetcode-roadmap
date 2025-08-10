@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 text-center mb-4">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 12px; font-size: 3rem; color: var(--md-primary);">star</span>Advanced LeetCode Roadmap
+        </h1>
+        <div class="md-card md-card-elevated mb-4 fade-in-up">
+            <div class="card-body" style="padding: 32px;">
+                <h3 class="card-title text-center mb-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-warning);">emoji_events</span>Advanced Journey to Top 2% on LeetCode
+                </h3>
+                <p class="lead text-center">
+                    This is Raymond's advanced roadmap and the exact problems he solved to reach the top 2% on LeetCode. 
+                    He spent all of 2024 practicing to jump from top 60% to top 2%, which eventually led to a job offer from Walmart in the SF Bay Area. 
+                </p>
+                <p class="text-center text-muted">
+                    <strong>Complete the Intermediate Roadmap first</strong> before starting this advanced track. 
+                    These problems are designed for experienced programmers targeting top-tier companies and competitive programming.
+
+                    <br><small>Note: There may be bugs in some links - manually search the problem on LeetCode's site if needed.</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if roadmap %}
+<!-- Statistics Row -->
+<div class="row mb-4">
+    <div class="col-md-6 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">calendar_month</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">{{ roadmap.keys() | length }}</h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Months</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">assignment</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">
+                    {% set total_problems = [] %}
+                    {% for month, days in roadmap.items() %}
+                        {% for day in days %}
+                            {% for problem in day.problems %}
+                                {% set _ = total_problems.append(problem) %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    {{ total_problems|length }}
+                </h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Problems</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Months Grid -->
+<div class="row">
+    {% for month, days in roadmap.items() %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="month-card md-card h-100 fade-in-up" style="animation-delay: {{ loop.index0 * 0.1 + 0.3 }}s;">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">schedule</span>{{ month }}
+                </h3>
+                {% set month_problems = [] %}
+                {% for day in days %}
+                    {% for problem in day.problems %}
+                        {% set _ = month_problems.append(problem) %}
+                    {% endfor %}
+                {% endfor %}
+                
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons" style="font-size: 18px; margin-right: 8px; color: var(--md-on-surface-variant);">event</span>
+                        <span style="color: var(--md-on-surface-variant);">{{ days|length }} days of practice</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 18px; margin-right: 8px; color: var(--md-on-surface-variant);">assignment</span>
+                        <span style="color: var(--md-on-surface-variant);">{{ month_problems|length }} problems to solve</span>
+                    </div>
+                </div>
+                
+                <!-- Material Design Progress Indicator -->
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <small style="color: var(--md-on-surface-variant); font-weight: 500;">Progress</small>
+                        <small id="monthProgressText-{{ month.replace(' ', '') }}" style="color: var(--md-primary); font-weight: 500;">0 / {{ month_problems|length }}</small>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" 
+                             style="width: 0%" id="monthProgress-{{ month.replace(' ', '') }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="/advanced/month/{{ month }}" class="btn btn-primary w-100">
+                    Start {{ month }}
+                    <span class="material-icons" style="vertical-align: middle; margin-left: 8px; font-size: 18px;">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+// Update progress bars for all months on page load
+document.addEventListener('DOMContentLoaded', function() {
+    {% for month, days in roadmap.items() %}
+    {% set month_problems = [] %}
+    {% for day in days %}
+        {% for problem in day.problems %}
+            {% set _ = month_problems.append(problem) %}
+        {% endfor %}
+    {% endfor %}
+    const saved{{ month.replace(' ', '') }} = localStorage.getItem('progress_{{ month }}');
+    if (saved{{ month.replace(' ', '') }}) {
+        const completed{{ month.replace(' ', '') }} = JSON.parse(saved{{ month.replace(' ', '') }}).length;
+        const total{{ month.replace(' ', '') }} = {{ month_problems|length }};
+        const percentage{{ month.replace(' ', '') }} = (completed{{ month.replace(' ', '') }} / total{{ month.replace(' ', '') }}) * 100;
+        
+        document.getElementById('monthProgress-{{ month.replace(' ', '') }}').style.width = percentage{{ month.replace(' ', '') }} + '%';
+        document.getElementById('monthProgressText-{{ month.replace(' ', '') }}').textContent = `${completed{{ month.replace(' ', '') }}} / ${total{{ month.replace(' ', '') }}}`;
+    }
+    {% endfor %}
+});
+</script>
+{% else %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <h4><i class="fas fa-exclamation-triangle"></i> No Roadmap Data Found</h4>
+            <p>Please make sure your PDF files are in the current directory and click the "Refresh" button to analyze them.</p>
+            <button class="btn btn-primary" onclick="refreshData()">
+                <i class="fas fa-sync-alt"></i> Analyze PDFs
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

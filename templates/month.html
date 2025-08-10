@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}{{ month }} - LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">{{ month }}</li>
+            </ol>
+        </nav>
+        
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="fade-in-up">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 12px; color: var(--md-primary);">calendar_month</span>{{ month }} Roadmap
+            </h1>
+            <div class="md-card" style="padding: 12px 16px; background: var(--md-primary); color: white; border-radius: 16px;">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons" style="margin-right: 8px; font-size: 18px;">event</span>
+                    <span>{{ days|length }} days</span>
+                    <span style="margin: 0 8px;">•</span>
+                    <span class="material-icons" style="margin-right: 8px; font-size: 18px;">assignment</span>
+                    <span>
+                        {% set total_problems = 0 %}
+                        {% for day in days %}
+                            {% set total_problems = total_problems + day.problems|length %}
+                        {% endfor %}
+                        {{ total_problems }} problems
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if days %}
+<div class="accordion" id="daysAccordion">
+    {% for day in days %}
+    <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="heading{{ day.day }}">
+            <button class="accordion-button day-header {% if loop.index0 > 0 or day.day == 'bonus' %}collapsed{% endif %}" type="button" 
+                    data-bs-toggle="collapse" data-bs-target="#collapse{{ day.day }}" 
+                    aria-expanded="{% if loop.index0 == 0 and day.day != 'bonus' %}true{% else %}false{% endif %}" 
+                    aria-controls="collapse{{ day.day }}">
+                <div class="d-flex justify-content-between w-100 me-3">
+                    {% if day.day == 'bonus' %}
+                        <span><i class="fas fa-star text-warning"></i> Bonus Problems</span>
+                        <span class="badge bg-warning text-dark">{{ day.problems|length }} problems</span>
+                    {% else %}
+                        <span><i class="fas fa-calendar-day"></i> Day {{ day.day }}</span>
+                        <span class="badge bg-light text-dark">{{ day.problems|length }} problems</span>
+                    {% endif %}
+                </div>
+            </button>
+        </h2>
+        <div id="collapse{{ day.day }}" class="accordion-collapse collapse {% if loop.index0 == 0 and day.day != 'bonus' %}show{% endif %}" 
+             aria-labelledby="heading{{ day.day }}" data-bs-parent="#daysAccordion">
+            <div class="accordion-body">
+                {% if day.day == 'bonus' %}
+                <div class="md-card" style="background-color: rgba(255, 152, 0, 0.08); padding: 16px; border-radius: 8px; border-left: 4px solid var(--md-warning); margin-bottom: 24px;">
+                    <div class="d-flex align-items-start">
+                        <span class="material-icons" style="margin-right: 12px; color: var(--md-warning); margin-top: 2px;">star</span>
+                        <div>
+                            <strong style="color: var(--md-warning);">Bonus Problems:</strong>
+                            <span style="color: var(--md-on-surface-variant);"> These are additional challenges from days that had more than 3 problems, plus all problems from day 30. Complete these after finishing the regular daily problems!</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="row">
+                    {% for problem in day.problems %}
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="problem-card md-card h-100 {% if day.day == 'bonus' %}bonus-card{% endif %} fade-in-up" 
+                             id="problem-day{{ day.day }}-{{ loop.index0 }}"
+                             style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+                            <div class="card-body" style="padding: 20px;">
+                                <div class="d-flex align-items-start mb-3">
+                                    <input type="checkbox" class="form-check-input me-3 problem-checkbox" 
+                                           id="checkbox-day{{ day.day }}-{{ loop.index0 }}"
+                                           data-problem="{{ problem.name }}" 
+                                           onchange="toggleProblem('{{ problem.name }}', this.parentElement.parentElement.parentElement)"
+                                           style="transform: scale(1.2); margin-top: 3px;">
+                                    <div class="flex-grow-1">
+                                        <h6 class="card-title mb-2" style="font-weight: 500; line-height: 1.4;">
+                                            <span class="material-icons" style="vertical-align: middle; margin-right: 6px; font-size: 18px; color: var(--md-success);">code</span>
+                                            {{ problem.name }}
+                                        </h6>
+                                        <div class="mb-3">
+                                            <span class="badge" style="background-color: var(--md-success); color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem;">
+                                                <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">check_circle</span>
+                                                {{ problem.status }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <a href="{{ problem.url }}" target="_blank" 
+                                       class="btn btn-primary btn-sm">
+                                        <span class="material-icons" style="vertical-align: middle; margin-right: 6px; font-size: 16px;">open_in_new</span>
+                                        Solve Problem
+                                    </a>
+                                    <button class="btn btn-outline-primary btn-sm" 
+                                            onclick="copyUrl('{{ problem.url }}')"
+                                            title="Copy URL">
+                                        <span class="material-icons" style="vertical-align: middle; margin-right: 6px; font-size: 16px;">content_copy</span>
+                                        Copy URL
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Progress tracking section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="md-card md-card-elevated fade-in-up">
+            <div class="card-body" style="padding: 32px;">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 28px; margin-right: 12px; color: var(--md-primary);">trending_up</span>
+                    <h5 class="mb-0" style="color: var(--md-primary); font-weight: 500;">Progress Tracking</h5>
+                </div>
+                <p style="color: var(--md-on-surface-variant); margin-bottom: 24px;">Track your progress as you complete problems:</p>
+                
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span style="color: var(--md-on-surface); font-weight: 500;">Overall Progress</span>
+                        <span id="progressText" style="color: var(--md-primary); font-weight: 500;">0 / {{ total_problems }} completed</span>
+                    </div>
+                    <div class="progress" style="height: 12px;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-start" style="background-color: rgba(25, 118, 210, 0.08); padding: 16px; border-radius: 8px; border-left: 4px solid var(--md-primary);">
+                    <span class="material-icons" style="margin-right: 12px; color: var(--md-primary); margin-top: 2px;">info</span>
+                    <span style="color: var(--md-on-surface-variant);">Check off problems as you complete them to track your progress through {{ month }}.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let completedProblems = new Set();
+
+function toggleProblem(problemName, element) {
+    const checkbox = element.querySelector(`input[data-problem="${problemName}"]`);
+    
+    if (completedProblems.has(problemName)) {
+        completedProblems.delete(problemName);
+        element.classList.remove('completed');
+        if (checkbox) checkbox.checked = false;
+    } else {
+        completedProblems.add(problemName);
+        element.classList.add('completed');
+        if (checkbox) checkbox.checked = true;
+    }
+    updateProgress();
+}
+
+function updateProgress() {
+    const total = {{ total_problems }};
+    const completed = completedProblems.size;
+    const percentage = (completed / total) * 100;
+    
+    document.getElementById('progressBar').style.width = percentage + '%';
+    document.getElementById('progressText').textContent = `${completed} / ${total} completed`;
+    
+    // Store progress in localStorage
+    localStorage.setItem('progress_{{ month }}', JSON.stringify([...completedProblems]));
+}
+
+function copyUrl(url) {
+    navigator.clipboard.writeText(url).then(() => {
+        // Optional: show a temporary success message
+        console.log('URL copied to clipboard');
+    });
+}
+
+// Load progress from localStorage
+document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('progress_{{ month }}');
+    if (saved) {
+        completedProblems = new Set(JSON.parse(saved));
+        
+        // Restore checkbox states and card appearances
+        completedProblems.forEach(problemName => {
+            const checkbox = document.querySelector(`input[data-problem="${problemName}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+                checkbox.parentElement.parentElement.parentElement.classList.add('completed');
+            }
+        });
+        
+        updateProgress();
+    }
+});
+</script>
+
+<style>
+.problem-card.completed {
+    opacity: 0.7;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.bonus-card {
+    border-left: 4px solid #ffc107;
+    background-color: #fff3cd;
+}
+
+.bonus-card.completed {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+}
+</style>
+
+{% else %}
+<div class="alert alert-info">
+    <h5><i class="fas fa-info-circle"></i> No data found for {{ month }}</h5>
+    <p>This month doesn't have any problems in the roadmap yet.</p>
+    <a href="/" class="btn btn-primary">Return to Overview</a>
+</div>
+{% endif %}
+{% endblock %}

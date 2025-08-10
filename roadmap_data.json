@@ -1,0 +1,5660 @@
+{
+  "July": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Find The First Player to win K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-first-player-to-win-k/"
+        },
+        {
+          "name": "Clear Digits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/clear-digits/"
+        },
+        {
+          "name": "Partition Labels",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/partition-labels/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Number of Ways Where Square",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-ways-where-square/"
+        },
+        {
+          "name": "Replace Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/replace-words/"
+        },
+        {
+          "name": "Hand of Straights",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/hand-of-straights/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Maximum Number of Groups",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-number-of-groups/"
+        },
+        {
+          "name": "Sliding Subarray Beauty",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sliding-subarray-beauty/"
+        },
+        {
+          "name": "Height Checker",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/height-checker/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Minimum Cost to Move Chips to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-to-move-chips-to/"
+        },
+        {
+          "name": "Subarray Sums Divisible by K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subarray-sums-divisible-by-k/"
+        },
+        {
+          "name": "Maximum Total Reward Using",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-total-reward-using/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Find the N-th Value After K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-n-th-value-after-k/"
+        },
+        {
+          "name": "Find the Child Who Has the Ball",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-child-who-has-the-ball/"
+        },
+        {
+          "name": "Continuous Subarray Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/continuous-subarray-sum/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Contains Duplicate",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/contains-duplicate/"
+        },
+        {
+          "name": "Minimum Increment to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-increment-to-make/"
+        },
+        {
+          "name": "Two Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-sum/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Minimum Number of Moves to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-moves-to/"
+        },
+        {
+          "name": "Minimum Operations to Make a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-operations-to-make-a/"
+        },
+        {
+          "name": "Longest Alternating Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-alternating-subarray/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Sort Colors",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-colors/"
+        },
+        {
+          "name": "Relative Sort Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/relative-sort-array/"
+        },
+        {
+          "name": "Search in a Binary Search Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "Longest Substring Without",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-substring-without/"
+        },
+        {
+          "name": "Patching Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/patching-array/"
+        },
+        {
+          "name": "Maximum Total Damage With",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-total-damage-with/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Count Pairs That Form a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-pairs-that-form-a/"
+        },
+        {
+          "name": "Longest Increasing Subsequence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+        },
+        {
+          "name": "Longest Word in Dictionary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-word-in-dictionary/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Maximum 69 Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-69-number/"
+        },
+        {
+          "name": "Group Anagrams",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/group-anagrams/"
+        },
+        {
+          "name": "Valid Anagram",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-anagram/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Find Minimum Operations to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-minimum-operations-to/"
+        },
+        {
+          "name": "Evaluate Reverse Polish Notation",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+        },
+        {
+          "name": "Count Number of Nice Subarrays",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-number-of-nice-subarrays/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Grumpy Bookstore Owner",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/grumpy-bookstore-owner/"
+        },
+        {
+          "name": "Magnetic Force Between Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/magnetic-force-between-two/"
+        },
+        {
+          "name": "Minimum Number of Days to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-days-to/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Most Profit Assigning Work",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/most-profit-assigning-work/"
+        },
+        {
+          "name": "Longest Substring Of All Vowels",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-substring-of-all-vowels/"
+        },
+        {
+          "name": "Valid Parentheses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-parentheses/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "Longest Consecutive Sequence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+        },
+        {
+          "name": "Valid Sudoku",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-sudoku/"
+        },
+        {
+          "name": "Product of Array Except Self",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/product-of-array-except-self/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Sum of Square Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-square-numbers/"
+        },
+        {
+          "name": "Count Beautiful Substrings I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-beautiful-substrings-i/"
+        },
+        {
+          "name": "Find Center of Star Graph",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-center-of-star-graph/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "Balance a Binary Search Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/balance-a-binary-search-tree/"
+        },
+        {
+          "name": "Binary Search Tree to Greater",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-search-tree-to-greater/"
+        },
+        {
+          "name": "Minimum Average of Smallest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-average-of-smallest/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Generate Parentheses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/generate-parentheses/"
+        },
+        {
+          "name": "Minimum Number of K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-k/"
+        },
+        {
+          "name": "Min Stack",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/min-stack/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Find the Minimum Area to Cover",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-minimum-area-to-cover/"
+        },
+        {
+          "name": "Longest Continuous Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-continuous-subarray/"
+        },
+        {
+          "name": "Minimum Operations to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-operations-to-make/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Word Pattern",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-pattern/"
+        },
+        {
+          "name": "Maximum Number of Balloons",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-number-of-balloons/"
+        },
+        {
+          "name": "Car Fleet",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/car-fleet/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Daily Temperatures",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/daily-temperatures/"
+        },
+        {
+          "name": "Remove Element",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-element/"
+        },
+        {
+          "name": "Longest Common Prefix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-common-prefix/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Length of Last Word",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-last-word/"
+        },
+        {
+          "name": "Unique Morse Code Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/unique-morse-code-words/"
+        },
+        {
+          "name": "Find the Peaks",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-peaks/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Maximum Height of a Triangle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-height-of-a-triangle/"
+        },
+        {
+          "name": "Cousins in Binary Tree II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/cousins-in-binary-tree-ii/"
+        },
+        {
+          "name": "Can Place Flowers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/can-place-flowers/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "Binary Search",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-search/"
+        },
+        {
+          "name": "All Ancestors of a Node in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/all-ancestors-of-a-node-in-a/"
+        },
+        {
+          "name": "Maximum Total Importance of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-total-importance-of/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Two Sum II - Input Array Is Sorted",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+        },
+        {
+          "name": "Valid Palindrome",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-palindrome/"
+        },
+        {
+          "name": "Permutation in String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/permutation-in-string/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "Separate Black and White Balls",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/separate-black-and-white-balls/"
+        },
+        {
+          "name": "Custom Sort String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/custom-sort-string/"
+        },
+        {
+          "name": "Convert an Array Into a 2D Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/convert-an-array-into-a-2d-array/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Intersection of Two Arrays II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/intersection-of-two-arrays-ii/"
+        },
+        {
+          "name": "Number of Sub-arrays of Size K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-sub-arrays-of-size-k/"
+        },
+        {
+          "name": "Minimum Remove to Make Valid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-remove-to-make-valid/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Count Collisions on a Road",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-collisions-on-a-road/"
+        },
+        {
+          "name": "Count Square Submatrices with",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-square-submatrices-with/"
+        },
+        {
+          "name": "Three Consecutive Odds",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/three-consecutive-odds/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Remove Max Number of Edges to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-max-number-of-edges-to/"
+        },
+        {
+          "name": "Second Largest Digit in a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/second-largest-digit-in-a-string/"
+        },
+        {
+          "name": "Minimum Difference Between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-difference-between/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "Find the Longest Semi-Repetitive",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-longest-semi-repetitive/"
+        },
+        {
+          "name": "Vertical Order Traversal of a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/vertical-order-traversal-of-a/"
+        },
+        {
+          "name": "Maximum Sum of Distinct",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-sum-of-distinct/"
+        },
+        {
+          "name": "Binary Tree Level Order Traversal",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+        },
+        {
+          "name": "House Robber II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/house-robber-ii/"
+        },
+        {
+          "name": "House Robber",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/house-robber/"
+        },
+        {
+          "name": "Matrix Cells in Distance Order",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/matrix-cells-in-distance-order/"
+        },
+        {
+          "name": "Maximum Score From Removing",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-score-from-removing/"
+        },
+        {
+          "name": "Sort an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-an-array/"
+        },
+        {
+          "name": "Smallest Subtree with all the",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/smallest-subtree-with-all-the/"
+        },
+        {
+          "name": "Lowest Common Ancestor of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lowest-common-ancestor-of/"
+        },
+        {
+          "name": "Find the Minimum and Maximum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-minimum-and-maximum/"
+        },
+        {
+          "name": "Merge Nodes in Between Zeros",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/merge-nodes-in-between-zeros/"
+        },
+        {
+          "name": "Maximum Split of Positive Even",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-split-of-positive-even/"
+        },
+        {
+          "name": "Defuse the Bomb",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/defuse-the-bomb/"
+        }
+      ]
+    }
+  ],
+  "May": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Top K Frequent Elements",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/top-k-frequent-elements/"
+        },
+        {
+          "name": "Count Vowels Permutation",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-vowels-permutation/"
+        },
+        {
+          "name": "Maximum Element After",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-element-after/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Length of the Longest Valid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-the-longest-valid/"
+        },
+        {
+          "name": "Minimum Remove to Make Valid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-remove-to-make-valid/"
+        },
+        {
+          "name": "Time Needed to Buy Tickets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/time-needed-to-buy-tickets/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Analyze User Website Visit Pattern",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/analyze-user-website-visit-pattern/"
+        },
+        {
+          "name": "Smallest Range Covering",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/smallest-range-covering/"
+        },
+        {
+          "name": "Palindrome Pairs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindrome-pairs/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Verify Preorder Sequence in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/verify-preorder-sequence-in/"
+        },
+        {
+          "name": "Number of Students Unable to Eat",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-students-unable-to-eat/"
+        },
+        {
+          "name": "Valid Parenthesis String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-parenthesis-string/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Encode and Decode Strings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/encode-and-decode-strings/"
+        },
+        {
+          "name": "Lexicographically Smallest String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lexicographically-smallest-string/"
+        },
+        {
+          "name": "Longest Strictly Increasing or",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-strictly-increasing-or/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Open the Lock",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/open-the-lock/"
+        },
+        {
+          "name": "Remove K Digits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-k-digits/"
+        },
+        {
+          "name": "Vowels of All Substrings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/vowels-of-all-substrings/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Previous Permutation With One",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/previous-permutation-with-one/"
+        },
+        {
+          "name": "Minimum Lines to Represent a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-lines-to-represent-a/"
+        },
+        {
+          "name": "Largest Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-number/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Longest Repeating Character",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-repeating-character/"
+        },
+        {
+          "name": "Maximum Subarray Sum with One",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-subarray-sum-with-one/"
+        },
+        {
+          "name": "Number of Nodes in the Sub-Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-nodes-in-the-sub-tree/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "Maximum Product After K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-product-after-k/"
+        },
+        {
+          "name": "Find Median from Data Stream",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+        },
+        {
+          "name": "Sudoku Solver",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sudoku-solver/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Reveal Cards In Increasing Order",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reveal-cards-in-increasing-order/"
+        },
+        {
+          "name": "Grid Illumination",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/grid-illumination/"
+        },
+        {
+          "name": "Maximal Rectangle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximal-rectangle/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Minimum Time to Visit",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-time-to-visit/"
+        },
+        {
+          "name": "Minimum Rectangles to Cover",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-rectangles-to-cover/"
+        },
+        {
+          "name": "Score of a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/score-of-a-string/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Minimum Number of Increments",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-increments/"
+        },
+        {
+          "name": "Max Consecutive Ones III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/max-consecutive-ones-iii/"
+        },
+        {
+          "name": "Find Duplicate Subtrees",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-duplicate-subtrees/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Number of Good Ways to Split a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-good-ways-to-split-a/"
+        },
+        {
+          "name": "Trapping Rain Water",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/trapping-rain-water/"
+        },
+        {
+          "name": "Making File Names Unique",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/making-file-names-unique/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Closest Nodes Queries in a Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/closest-nodes-queries-in-a-binary/"
+        },
+        {
+          "name": "Pow(x, n)",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/powx-n/"
+        },
+        {
+          "name": "Smallest String Starting From Leaf",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/smallest-string-starting-from-leaf/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "Determine Whether Matrix Can Be",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/determine-whether-matrix-can-be/"
+        },
+        {
+          "name": "Split a String Into the Max Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/split-a-string-into-the-max-number/"
+        },
+        {
+          "name": "Summary Ranges",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/summary-ranges/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Add One Row to Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/add-one-row-to-tree/"
+        },
+        {
+          "name": "Minimum Impossible OR",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-impossible-or/"
+        },
+        {
+          "name": "Sum Root to Leaf Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-root-to-leaf-numbers/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "Kth Smallest Amount With Single",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/kth-smallest-amount-with-single/"
+        },
+        {
+          "name": "Maximum Prime Difference",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-prime-difference/"
+        },
+        {
+          "name": "Latest Time You Can Obtain After",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/latest-time-you-can-obtain-after/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Check Whether Two Strings are",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/check-whether-two-strings-are/"
+        },
+        {
+          "name": "Sum of Left Leaves",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-left-leaves/"
+        },
+        {
+          "name": "Find if Path Exists in Graph",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-if-path-exists-in-graph/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Find All Groups of Farmland",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-all-groups-of-farmland/"
+        },
+        {
+          "name": "Stone Game",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/stone-game/"
+        },
+        {
+          "name": "Number of Islands",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-islands/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Maximum Points You Can Obtain",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-points-you-can-obtain/"
+        },
+        {
+          "name": "Length of the Longest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-the-longest/"
+        },
+        {
+          "name": "Partition Array into Disjoint",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/partition-array-into-disjoint/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Sum of Square Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-square-numbers/"
+        },
+        {
+          "name": "Number of Zero-Filled Subarrays",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-zero-filled-subarrays/"
+        },
+        {
+          "name": "Island Perimeter",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/island-perimeter/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Maximum Square Area by",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-square-area-by/"
+        },
+        {
+          "name": "Minimum Cost to Convert String I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-to-convert-string-i/"
+        },
+        {
+          "name": "Minimum Number Game",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-game/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Minimum Number of Operations to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-operations-to/"
+        },
+        {
+          "name": "Count the Number of Special",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-the-number-of-special/"
+        },
+        {
+          "name": "Second Minimum Node In a Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/second-minimum-node-in-a-binary/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "Right Triangles",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/right-triangles/"
+        },
+        {
+          "name": "Make a Square with the Same",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/make-a-square-with-the-same/"
+        },
+        {
+          "name": "Minimum Falling Path Sum II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-falling-path-sum-ii/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Repeated DNA Sequences",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/repeated-dna-sequences/"
+        },
+        {
+          "name": "Longest Ideal Subsequence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-ideal-subsequence/"
+        },
+        {
+          "name": "Fruit Into Baskets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/fruit-into-baskets/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "N-th Tribonacci Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/n-th-tribonacci-number/"
+        },
+        {
+          "name": "Minimum Height Trees",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-height-trees/"
+        },
+        {
+          "name": "Find Beautiful Indices in the Given",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-beautiful-indices-in-the-given/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Longest Happy Prefix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-happy-prefix/"
+        },
+        {
+          "name": "Number of Subarrays That Match",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-subarrays-that-match/"
+        },
+        {
+          "name": "XOR Queries of a Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/xor-queries-of-a-subarray/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Binary Prefix Divisible By 5",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-prefix-divisible-by-5/"
+        },
+        {
+          "name": "Sum of Distances in Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-distances-in-tree/"
+        },
+        {
+          "name": "Find the Integer Added to Array II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-integer-added-to-array-ii/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Find the Integer Added to Array I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-integer-added-to-array-i/"
+        },
+        {
+          "name": "Freedom Trail",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/freedom-trail/"
+        },
+        {
+          "name": "Number of Steps to Reduce a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "Hamming Distance",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/hamming-distance/"
+        },
+        {
+          "name": "Minimum Array End",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-array-end/"
+        },
+        {
+          "name": "Merge Two 2D Arrays by Summing",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/merge-two-2d-arrays-by-summing/"
+        },
+        {
+          "name": "Reverse Prefix of Word",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-prefix-of-word/"
+        },
+        {
+          "name": "Reverse Integer",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-integer/"
+        },
+        {
+          "name": "Number of Wonderful Substrings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-wonderful-substrings/"
+        },
+        {
+          "name": "Find Substring With Given Hash",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-substring-with-given-hash/"
+        },
+        {
+          "name": "Delete Node in a Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/delete-node-in-a-linked-list/"
+        },
+        {
+          "name": "Boats to Save People",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/boats-to-save-people/"
+        },
+        {
+          "name": "Shifting Letters",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shifting-letters/"
+        },
+        {
+          "name": "Find Polygon With the Largest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-polygon-with-the-largest/"
+        },
+        {
+          "name": "Compare Version Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/compare-version-numbers/"
+        },
+        {
+          "name": "Greatest Common Divisor of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/greatest-common-divisor-of/"
+        },
+        {
+          "name": "Largest Positive Integer That",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-positive-integer-that/"
+        },
+        {
+          "name": "Relocate Marbles",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/relocate-marbles/"
+        },
+        {
+          "name": "Cinema Seat Allocation",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/cinema-seat-allocation/"
+        },
+        {
+          "name": "Minimum Length of Anagram",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-length-of-anagram/"
+        },
+        {
+          "name": "Valid Word",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-word/"
+        }
+      ]
+    }
+  ],
+  "My Leetcode Roadmap": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Course Schedule",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/course-schedule/"
+        },
+        {
+          "name": "Minimum Processing Time",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-processing-time/"
+        },
+        {
+          "name": "Divisible and Non-divisible",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/divisible-and-non-divisible/"
+        },
+        {
+          "name": "Word Search",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-search/"
+        },
+        {
+          "name": "Backspace String Compare",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/backspace-string-compare/"
+        },
+        {
+          "name": "Validate Binary Tree Nodes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/validate-binary-tree-nodes/"
+        },
+        {
+          "name": "Valid Parentheses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-parentheses/"
+        },
+        {
+          "name": "Two Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-sum/"
+        },
+        {
+          "name": "Buildings With an Ocean View",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/buildings-with-an-ocean-view/"
+        },
+        {
+          "name": "Meeting Rooms II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/meeting-rooms-ii/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Number of Flowers in Full Bloom",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/"
+        },
+        {
+          "name": "Climbing Stairs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/climbing-stairs/"
+        },
+        {
+          "name": "Binary Tree Vertical Order",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-vertical-order/"
+        },
+        {
+          "name": "Range Sum of BST",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/range-sum-of-bst/"
+        },
+        {
+          "name": "The Maze II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/the-maze-ii/"
+        },
+        {
+          "name": "Word Ladder",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-ladder/"
+        },
+        {
+          "name": "Simplify Path",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/simplify-path/"
+        },
+        {
+          "name": "Find First and Last Position of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-first-and-last-position-of/"
+        },
+        {
+          "name": "Course Schedule II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/course-schedule-ii/"
+        },
+        {
+          "name": "Contains Duplicate",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/contains-duplicate/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Balanced Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/balanced-binary-tree/"
+        },
+        {
+          "name": "Binary Search",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-search/"
+        },
+        {
+          "name": "Valid Anagram",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-anagram/"
+        },
+        {
+          "name": "Invert Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/invert-binary-tree/"
+        },
+        {
+          "name": "Maximum Depth of Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+        },
+        {
+          "name": "Reverse Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-linked-list/"
+        },
+        {
+          "name": "Middle of the Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
+        },
+        {
+          "name": "Diameter of Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/diameter-of-binary-tree/"
+        },
+        {
+          "name": "Product of Array Except Self",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/product-of-array-except-self/"
+        },
+        {
+          "name": "Reverse Words in a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-words-in-a-string/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Permutations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/permutations/"
+        },
+        {
+          "name": "Implement Trie (Prefix Tree)",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/implement-trie-prefix-tree/"
+        },
+        {
+          "name": "Evaluate Reverse Polish",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/evaluate-reverse-polish/"
+        },
+        {
+          "name": "Longest Substring Without",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-substring-without/"
+        },
+        {
+          "name": "Moving Average from Data",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/moving-average-from-data/"
+        },
+        {
+          "name": "Minimize Maximum Pair Sum in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimize-maximum-pair-sum-in/"
+        },
+        {
+          "name": "Meeting Rooms",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/meeting-rooms/"
+        },
+        {
+          "name": "Binary Tree Level Order",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-level-order/"
+        },
+        {
+          "name": "K Closest Points to Origin",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+        },
+        {
+          "name": "Find Unique Binary String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-unique-binary-string/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Create Hello World Function",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/create-hello-world-function/"
+        },
+        {
+          "name": "Minimum Time Visiting All Points",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/"
+        },
+        {
+          "name": "Find Words That Can Be",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-words-that-can-be/"
+        },
+        {
+          "name": "Check If Two String Arrays are",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/check-if-two-string-arrays-are/"
+        },
+        {
+          "name": "Decrease Elements To Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/decrease-elements-to-make/"
+        },
+        {
+          "name": "01 Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/01-matrix/"
+        },
+        {
+          "name": "Rotting Oranges",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/rotting-oranges/"
+        },
+        {
+          "name": "Validate Binary Search Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+        },
+        {
+          "name": "Search in Rotated Sorted Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+        },
+        {
+          "name": "Number of Islands",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-islands/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Sort Colors",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-colors/"
+        },
+        {
+          "name": "Transpose Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/transpose-matrix/"
+        },
+        {
+          "name": "Binary Tree Inorder Traversal",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+        },
+        {
+          "name": "Construct String from Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/construct-string-from-binary/"
+        },
+        {
+          "name": "Largest Odd Number in String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-odd-number-in-string/"
+        },
+        {
+          "name": "Insert Interval",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/insert-interval/"
+        },
+        {
+          "name": "Design Add and Search Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-add-and-search-words/"
+        },
+        {
+          "name": "Daily Temperatures",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/daily-temperatures/"
+        },
+        {
+          "name": "Calculate Money in Leetcode",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/calculate-money-in-leetcode/"
+        },
+        {
+          "name": "Count of Matches in Tournament",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-of-matches-in-tournament/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Merge Intervals",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/merge-intervals/"
+        },
+        {
+          "name": "Two Sum Less Than K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-sum-less-than-k/"
+        },
+        {
+          "name": "Largest 3-Same-Digit Number in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-3-same-digit-number-in/"
+        },
+        {
+          "name": "Minimum Changes To Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-changes-to-make/"
+        },
+        {
+          "name": "Maximum Score After Splitting a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-score-after-splitting-a/"
+        },
+        {
+          "name": "Widest Vertical Area Between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/widest-vertical-area-between/"
+        },
+        {
+          "name": "Buy Two Chocolates",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/buy-two-chocolates/"
+        },
+        {
+          "name": "Image Smoother",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/image-smoother/"
+        },
+        {
+          "name": "Maximum Product Difference",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-product-difference/"
+        },
+        {
+          "name": "Destination City",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/destination-city/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Difference Between Ones and",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/difference-between-ones-and/"
+        },
+        {
+          "name": "Maximum Product of Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-product-of-two/"
+        },
+        {
+          "name": "Search a 2D Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/search-a-2d-matrix/"
+        },
+        {
+          "name": "Element Appearing More Than",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/element-appearing-more-than/"
+        },
+        {
+          "name": "Non-overlapping Intervals",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+        },
+        {
+          "name": "Maximum Average Subtree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-average-subtree/"
+        },
+        {
+          "name": "Prison Cells After N Days",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/prison-cells-after-n-days/"
+        },
+        {
+          "name": "Leaf-Similar Trees",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/leaf-similar-trees/"
+        },
+        {
+          "name": "Minimum Number of Operations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-operations/"
+        },
+        {
+          "name": "Longest Increasing",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-increasing/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "Valid Word Abbreviation",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-word-abbreviation/"
+        },
+        {
+          "name": "Minimum Remove to Make Valid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-remove-to-make-valid/"
+        },
+        {
+          "name": "Number of Laser Beams in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-laser-beams-in-a/"
+        },
+        {
+          "name": "Convert an Array Into a 2D Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/convert-an-array-into-a-2d-array/"
+        },
+        {
+          "name": "Assign Cookies",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/assign-cookies/"
+        },
+        {
+          "name": "Largest Substring Between Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-substring-between-two/"
+        },
+        {
+          "name": "Insert Delete GetRandom O(1)",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/"
+        },
+        {
+          "name": "Find Players With Zero or One",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-players-with-zero-or-one/"
+        },
+        {
+          "name": "Minimum Moves to Capture The",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-moves-to-capture-the/"
+        },
+        {
+          "name": "Leftmost Column with at Least a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/leftmost-column-with-at-least-a/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Determine if Two Strings Are",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/determine-if-two-strings-are/"
+        },
+        {
+          "name": "Generate Parentheses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/generate-parentheses/"
+        },
+        {
+          "name": "Group Anagrams",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/group-anagrams/"
+        },
+        {
+          "name": "House Robber",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/house-robber/"
+        },
+        {
+          "name": "Basic Calculator",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/basic-calculator/"
+        },
+        {
+          "name": "Unique Number of Occurrences",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/unique-number-of-occurrences/"
+        },
+        {
+          "name": "Letter Combinations of a Phone",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/letter-combinations-of-a-phone/"
+        },
+        {
+          "name": "Subsets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subsets/"
+        },
+        {
+          "name": "Ransom Note",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/ransom-note/"
+        },
+        {
+          "name": "Single-Row Keyboard",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/single-row-keyboard/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Trapping Rain Water",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/trapping-rain-water/"
+        },
+        {
+          "name": "Min Stack",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/min-stack/"
+        },
+        {
+          "name": "Lowest Common Ancestor of a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a/"
+        },
+        {
+          "name": "Coin Change",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/coin-change/"
+        },
+        {
+          "name": "Maximum Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-subarray/"
+        },
+        {
+          "name": "Sum of Subarray Minimums",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-subarray-minimums/"
+        },
+        {
+          "name": "Design File System",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-file-system/"
+        },
+        {
+          "name": "Find All Anagrams in a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/"
+        },
+        {
+          "name": "Minimum Falling Path Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-falling-path-sum/"
+        },
+        {
+          "name": "Majority Element",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/majority-element/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Best Time to Buy and Sell Stock",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+        },
+        {
+          "name": "3Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/3sum/"
+        },
+        {
+          "name": "Valid Sudoku",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-sudoku/"
+        },
+        {
+          "name": "Spiral Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/spiral-matrix/"
+        },
+        {
+          "name": "Combination Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/combination-sum/"
+        },
+        {
+          "name": "Gas Station",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/gas-station/"
+        },
+        {
+          "name": "Container With Most Water",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/container-with-most-water/"
+        },
+        {
+          "name": "String to Integer (atoi)",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/string-to-integer-atoi/"
+        },
+        {
+          "name": "Minimum Number of Pushes to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-pushes-to/"
+        },
+        {
+          "name": "Count the Number of Houses at",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-the-number-of-houses-at/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Time Based Key-Value Store",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/time-based-key-value-store/"
+        },
+        {
+          "name": "Maximum Length of a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-length-of-a/"
+        },
+        {
+          "name": "Accounts Merge",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/accounts-merge/"
+        },
+        {
+          "name": "Set Mismatch",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/set-mismatch/"
+        },
+        {
+          "name": "Binary Tree Right Side View",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-right-side-view/"
+        },
+        {
+          "name": "Graph Valid Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/graph-valid-tree/"
+        },
+        {
+          "name": "Minimum Cost to Connect Sticks",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-to-connect-sticks/"
+        },
+        {
+          "name": "Longest Common Subsequence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-common-subsequence/"
+        },
+        {
+          "name": "Top K Frequent Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/top-k-frequent-words/"
+        },
+        {
+          "name": "Shortest Path to Get Food",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shortest-path-to-get-food/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Remove Nth Node From End of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-nth-node-from-end-of/"
+        },
+        {
+          "name": "Pseudo-Palindromic Paths in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/pseudo-palindromic-paths-in-a/"
+        },
+        {
+          "name": "Pacific Atlantic Water Flow",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+        },
+        {
+          "name": "Construct Binary Tree from",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/construct-binary-tree-from/"
+        },
+        {
+          "name": "Kth Smallest Element in a BST",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+        },
+        {
+          "name": "Minimum Height Trees",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-height-trees/"
+        },
+        {
+          "name": "Longest Palindromic Substring",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-palindromic-substring/"
+        },
+        {
+          "name": "Maximum Product Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-product-subarray/"
+        },
+        {
+          "name": "Partition Equal Subset Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/partition-equal-subset-sum/"
+        },
+        {
+          "name": "Out of Boundary Paths",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/out-of-boundary-paths/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "Word Break",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-break/"
+        },
+        {
+          "name": "Swap Nodes in Pairs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/swap-nodes-in-pairs/"
+        },
+        {
+          "name": "Find the Maximum Number of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-maximum-number-of/"
+        },
+        {
+          "name": "Alice and Bob Playing Flower",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/alice-and-bob-playing-flower/"
+        },
+        {
+          "name": "Number of Changing Keys",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-changing-keys/"
+        },
+        {
+          "name": "Next Permutation",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/next-permutation/"
+        },
+        {
+          "name": "K Inverse Pairs Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-inverse-pairs-array/"
+        },
+        {
+          "name": "Find the Duplicate Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-duplicate-number/"
+        },
+        {
+          "name": "Task Scheduler",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/task-scheduler/"
+        },
+        {
+          "name": "Contiguous Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/contiguous-array/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Decode String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/decode-string/"
+        },
+        {
+          "name": "Odd Even Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/odd-even-linked-list/"
+        },
+        {
+          "name": "Rotate Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/rotate-array/"
+        },
+        {
+          "name": "Longest Consecutive Sequence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+        },
+        {
+          "name": "Path Sum II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/path-sum-ii/"
+        },
+        {
+          "name": "Implement Queue using Stacks",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/implement-queue-using-stacks/"
+        },
+        {
+          "name": "Number of Submatrices That",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-submatrices-that/"
+        },
+        {
+          "name": "Roman to Integer",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/roman-to-integer/"
+        },
+        {
+          "name": "Add Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/add-binary/"
+        },
+        {
+          "name": "Longest Palindrome",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-palindrome/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "First Bad Version",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/first-bad-version/"
+        },
+        {
+          "name": "Linked List Cycle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/linked-list-cycle/"
+        },
+        {
+          "name": "Valid Palindrome",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-palindrome/"
+        },
+        {
+          "name": "Merge Two Sorted Lists",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+        },
+        {
+          "name": "Find K Closest Elements",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-k-closest-elements/"
+        },
+        {
+          "name": "Maximum Width of Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-width-of-binary-tree/"
+        },
+        {
+          "name": "Paint House",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/paint-house/"
+        },
+        {
+          "name": "Inorder Successor in BST",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/inorder-successor-in-bst/"
+        },
+        {
+          "name": "Jump Game",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/jump-game/"
+        },
+        {
+          "name": "Missing Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/missing-number/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Symmetric Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/symmetric-tree/"
+        },
+        {
+          "name": "Move Zeroes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/move-zeroes/"
+        },
+        {
+          "name": "Palindrome Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindrome-linked-list/"
+        },
+        {
+          "name": "Single Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/single-number/"
+        },
+        {
+          "name": "Longest Common Prefix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-common-prefix/"
+        },
+        {
+          "name": "Number of 1 Bits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-1-bits/"
+        },
+        {
+          "name": "Same Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/same-tree/"
+        },
+        {
+          "name": "Counting Bits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/counting-bits/"
+        },
+        {
+          "name": "Partition Array for Maximum Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/partition-array-for-maximum-sum/"
+        },
+        {
+          "name": "Find the Number of Ways to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-number-of-ways-to/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Type of Triangle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/type-of-triangle/"
+        },
+        {
+          "name": "Flip Game",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/flip-game/"
+        },
+        {
+          "name": "Minimum Knight Moves",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-knight-moves/"
+        },
+        {
+          "name": "Number of Connected",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-connected/"
+        },
+        {
+          "name": "Divide Array Into Arrays With",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/divide-array-into-arrays-with/"
+        },
+        {
+          "name": "Sequential Digits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sequential-digits/"
+        },
+        {
+          "name": "Sort List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-list/"
+        },
+        {
+          "name": "Add Two Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/add-two-numbers/"
+        },
+        {
+          "name": "First Unique Character in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/first-unique-character-in-a/"
+        },
+        {
+          "name": "Kth Largest Element in an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Random Pick with Weight",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/random-pick-with-weight/"
+        },
+        {
+          "name": "Subarray Sum Equals K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subarray-sum-equals-k/"
+        },
+        {
+          "name": "Minimum Window Substring",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-window-substring/"
+        },
+        {
+          "name": "Ant on the Boundary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/ant-on-the-boundary/"
+        },
+        {
+          "name": "Binary Tree Zigzag Level Order",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order/"
+        },
+        {
+          "name": "Sort Characters By Frequency",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-characters-by-frequency/"
+        },
+        {
+          "name": "Maximal Square",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximal-square/"
+        },
+        {
+          "name": "Decode Ways",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/decode-ways/"
+        },
+        {
+          "name": "Palindrome Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindrome-number/"
+        },
+        {
+          "name": "Largest Divisible Subset",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-divisible-subset/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Paint Fence",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/paint-fence/"
+        },
+        {
+          "name": "Perfect Squares",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/perfect-squares/"
+        },
+        {
+          "name": "Pow(x, n)",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/powx-n/"
+        },
+        {
+          "name": "Design Hit Counter",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-hit-counter/"
+        },
+        {
+          "name": "Cherry Pickup II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/cherry-pickup-ii/"
+        },
+        {
+          "name": "Max Area of Island",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/max-area-of-island/"
+        },
+        {
+          "name": "Immediate Food Delivery I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/immediate-food-delivery-i/"
+        },
+        {
+          "name": "Number of Subarrays That",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-subarrays-that/"
+        },
+        {
+          "name": "Modify the Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/modify-the-matrix/"
+        },
+        {
+          "name": "Design Browser History",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-browser-history/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Jump Game II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/jump-game-ii/"
+        },
+        {
+          "name": "Walls and Gates",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/walls-and-gates/"
+        },
+        {
+          "name": "Palindromic Substrings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindromic-substrings/"
+        },
+        {
+          "name": "Capacity To Ship Packages",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/capacity-to-ship-packages/"
+        },
+        {
+          "name": "Find First Palindromic String in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-first-palindromic-string-in/"
+        },
+        {
+          "name": "Find Nearest Point That Has",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-nearest-point-that-has/"
+        },
+        {
+          "name": "Counting Words With a Given",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/counting-words-with-a-given/"
+        },
+        {
+          "name": "Check if One String Swap Can",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/check-if-one-string-swap-can/"
+        },
+        {
+          "name": "Reverse Integer",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-integer/"
+        },
+        {
+          "name": "Reorder List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reorder-list/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Set Matrix Zeroes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/set-matrix-zeroes/"
+        },
+        {
+          "name": "Path Sum III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/path-sum-iii/"
+        },
+        {
+          "name": "Mice and Cheese",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/mice-and-cheese/"
+        },
+        {
+          "name": "Possible Bipartition",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/possible-bipartition/"
+        },
+        {
+          "name": "Minimum Number of Steps to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-steps-to/"
+        },
+        {
+          "name": "Island Perimeter",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/island-perimeter/"
+        },
+        {
+          "name": "Interval List Intersections",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/interval-list-intersections/"
+        },
+        {
+          "name": "Number of Provinces",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-provinces/"
+        },
+        {
+          "name": "Swim in Rising Water",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/swim-in-rising-water/"
+        },
+        {
+          "name": "Rotate List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/rotate-list/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "3Sum Closest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/3sum-closest/"
+        },
+        {
+          "name": "Least Number of Unique",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/least-number-of-unique/"
+        },
+        {
+          "name": "Longest Increasing Path in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-increasing-path-in-a/"
+        },
+        {
+          "name": "Find Polygon With the Largest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-polygon-with-the-largest/"
+        },
+        {
+          "name": "Two City Scheduling",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-city-scheduling/"
+        },
+        {
+          "name": "Count Sub Islands",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-sub-islands/"
+        },
+        {
+          "name": "Game of Life",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/game-of-life/"
+        },
+        {
+          "name": "Number of Visible People in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-visible-people-in-a/"
+        },
+        {
+          "name": "All Nodes Distance K in Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/all-nodes-distance-k-in-binary/"
+        },
+        {
+          "name": "Rearrange Array Elements by",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/rearrange-array-elements-by/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Cheapest Flights Within K Stops",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/"
+        },
+        {
+          "name": "Meeting Rooms III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/meeting-rooms-iii/"
+        },
+        {
+          "name": "Remove Interval",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-interval/"
+        },
+        {
+          "name": "Furthest Building You Can",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/furthest-building-you-can/"
+        },
+        {
+          "name": "Maximum Number of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-number-of/"
+        },
+        {
+          "name": "Apply Operations to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/apply-operations-to-make/"
+        },
+        {
+          "name": "Basic Calculator II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/basic-calculator-ii/"
+        },
+        {
+          "name": "Combination Sum IV",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/combination-sum-iv/"
+        },
+        {
+          "name": "Find Minimum in Rotated",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-minimum-in-rotated/"
+        },
+        {
+          "name": "Car Pooling",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/car-pooling/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "Maximum Gap",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-gap/"
+        },
+        {
+          "name": "Shortest Path in a Grid with",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shortest-path-in-a-grid-with/"
+        },
+        {
+          "name": "Shortest Distance from All",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shortest-distance-from-all/"
+        },
+        {
+          "name": "Binary Tree Maximum Path Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+        },
+        {
+          "name": "Number of Distinct Islands",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-distinct-islands/"
+        },
+        {
+          "name": "Power of Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/power-of-two/"
+        },
+        {
+          "name": "Most Profit Assigning Work",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/most-profit-assigning-work/"
+        },
+        {
+          "name": "Best Meeting Point",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/best-meeting-point/"
+        },
+        {
+          "name": "Largest Rectangle in Histogram",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+        },
+        {
+          "name": "Count Nodes With the Highest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-nodes-with-the-highest/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Maximum Path Quality of a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-path-quality-of-a/"
+        },
+        {
+          "name": "Making A Large Island",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/making-a-large-island/"
+        },
+        {
+          "name": "Buddy Strings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/buddy-strings/"
+        },
+        {
+          "name": "Koko Eating Bananas",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/koko-eating-bananas/"
+        },
+        {
+          "name": "Integer to English Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/integer-to-english-words/"
+        },
+        {
+          "name": "Next Greater Element III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/next-greater-element-iii/"
+        },
+        {
+          "name": "Maximum Profit in Job",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-profit-in-job/"
+        },
+        {
+          "name": "Search Suggestions System",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/search-suggestions-system/"
+        },
+        {
+          "name": "Basic Calculator III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/basic-calculator-iii/"
+        },
+        {
+          "name": "Bitwise AND of Numbers Range",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/bitwise-and-of-numbers-range/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Squares of a Sorted Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/squares-of-a-sorted-array/"
+        },
+        {
+          "name": "Subtree of Another Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subtree-of-another-tree/"
+        },
+        {
+          "name": "Reverse Bits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-bits/"
+        },
+        {
+          "name": "Convert Sorted Array to Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/convert-sorted-array-to-binary/"
+        },
+        {
+          "name": "Find the Town Judge",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-town-judge/"
+        },
+        {
+          "name": "Serialize and Deserialize Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/serialize-and-deserialize-binary/"
+        },
+        {
+          "name": "Most Stones Removed with",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/most-stones-removed-with/"
+        },
+        {
+          "name": "Find All People With Secret",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-all-people-with-secret/"
+        },
+        {
+          "name": "Employee Free Time",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/employee-free-time/"
+        },
+        {
+          "name": "Tree Diameter",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/tree-diameter/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Greatest Common Divisor",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/greatest-common-divisor/"
+        },
+        {
+          "name": "Closest Prime Numbers in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/closest-prime-numbers-in/"
+        },
+        {
+          "name": "Linked List in Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/linked-list-in-binary-tree/"
+        },
+        {
+          "name": "Count Prefix and Suffix Pairs I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/"
+        },
+        {
+          "name": "Find the Largest Area of Square",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-largest-area-of-square/"
+        },
+        {
+          "name": "Split the Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/split-the-array/"
+        },
+        {
+          "name": "Clone Graph",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/clone-graph/"
+        },
+        {
+          "name": "Network Delay Time",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/network-delay-time/"
+        },
+        {
+          "name": "Maximum Candies Allocated to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-candies-allocated-to/"
+        },
+        {
+          "name": "Number of Substrings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-substrings/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "Advantage Shuffle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/advantage-shuffle/"
+        },
+        {
+          "name": "Shuffle an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shuffle-an-array/"
+        },
+        {
+          "name": "Cousins in Binary Tree II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/cousins-in-binary-tree-ii/"
+        },
+        {
+          "name": "Maximum Spending After",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-spending-after/"
+        },
+        {
+          "name": "Count Nodes Equal to Sum of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-nodes-equal-to-sum-of/"
+        },
+        {
+          "name": "Even Odd Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/even-odd-tree/"
+        },
+        {
+          "name": "Plates Between Candles",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/plates-between-candles/"
+        },
+        {
+          "name": "Pour Water",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/pour-water/"
+        },
+        {
+          "name": "Find Bottom Left Tree Value",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-bottom-left-tree-value/"
+        },
+        {
+          "name": "Count the Number of Fair Pairs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-the-number-of-fair-pairs/"
+        },
+        {
+          "name": "Sum of Prefix Scores of Strings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-prefix-scores-of-strings/"
+        },
+        {
+          "name": "Maximum Difference Between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-difference-between/"
+        },
+        {
+          "name": "Reorder Routes to Make All",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reorder-routes-to-make-all/"
+        },
+        {
+          "name": "Winner of the Linked List Game",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/winner-of-the-linked-list-game/"
+        },
+        {
+          "name": "Maximum Odd Binary Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-odd-binary-number/"
+        },
+        {
+          "name": "K Divisible Elements Subarrays",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-divisible-elements-subarrays/"
+        },
+        {
+          "name": "Bag of Tokens",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/bag-of-tokens/"
+        },
+        {
+          "name": "Minimum Operations to Exceed",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-operations-to-exceed/"
+        },
+        {
+          "name": "Count Pairs of Connectable",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-pairs-of-connectable/"
+        },
+        {
+          "name": "Maximize the Topmost Element",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximize-the-topmost-element/"
+        },
+        {
+          "name": "Distribute Elements Into Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/distribute-elements-into-two/"
+        },
+        {
+          "name": "Coordinate With Maximum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/coordinate-with-maximum/"
+        },
+        {
+          "name": "As Far from Land as Possible",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/as-far-from-land-as-possible/"
+        },
+        {
+          "name": "Minimum Length of String After",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-length-of-string-after/"
+        }
+      ]
+    }
+  ],
+  "August": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Count Submatrices With Equal",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-submatrices-with-equal/"
+        },
+        {
+          "name": "Generate Binary Strings Without",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/generate-binary-strings-without/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Find the Encrypted String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-encrypted-string/"
+        },
+        {
+          "name": "Water Bottles",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/water-bottles/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Minimum Amount of Time to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-amount-of-time-to/"
+        },
+        {
+          "name": "Count Subarrays With Median K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-subarrays-with-median-k/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Alternating Groups II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/alternating-groups-ii/"
+        },
+        {
+          "name": "Maximum Points After Enemy",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-points-after-enemy/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Alternating Groups I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/alternating-groups-i/"
+        },
+        {
+          "name": "Pass the Pillow",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/pass-the-pillow/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Remove Letter To Equalize",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-letter-to-equalize/"
+        },
+        {
+          "name": "K Items With the Maximum Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-items-with-the-maximum-sum/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Number of Times Binary String Is",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-times-binary-string-is/"
+        },
+        {
+          "name": "Crawler Log Folder",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/crawler-log-folder/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Average Waiting Time",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/average-waiting-time/"
+        },
+        {
+          "name": "Edit Distance",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/edit-distance/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "The k-th Lexicographical String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/the-k-th-lexicographical-string/"
+        },
+        {
+          "name": "Longest Square Streak in an",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-square-streak-in-an/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Maximum Enemy Forts That Can",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-enemy-forts-that-can/"
+        },
+        {
+          "name": "Check Knight Tour Configuration",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/check-knight-tour-configuration/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Find the Winner of the Circular",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-winner-of-the-circular/"
+        },
+        {
+          "name": "K-th Symbol in Grammar",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-th-symbol-in-grammar/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Construct String with Minimum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/construct-string-with-minimum/"
+        },
+        {
+          "name": "Minimum Cost for Cutting Cake I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-for-cutting-cake-i/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Delete Nodes From Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/delete-nodes-from-linked-list/"
+        },
+        {
+          "name": "Lexicographically Smallest String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lexicographically-smallest-string/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Design Twitter",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-twitter/"
+        },
+        {
+          "name": "Robot Collisions",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/robot-collisions/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "LFU Cache",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lfu-cache/"
+        },
+        {
+          "name": "Maximum Score From Removing",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-score-from-removing/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Reverse Substrings Between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-substrings-between/"
+        },
+        {
+          "name": "Remove One Element to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-one-element-to-make/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "Validate Stack Sequences",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/validate-stack-sequences/"
+        },
+        {
+          "name": "Find the Winner of an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-winner-of-an-array/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Number of Good Leaf Nodes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-good-leaf-nodes/"
+        },
+        {
+          "name": "Lucky Numbers in a Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lucky-numbers-in-a-matrix/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Find K Pairs with Smallest Sums",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-k-pairs-with-smallest-sums/"
+        },
+        {
+          "name": "Delete Nodes And Return Forest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/delete-nodes-and-return-forest/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Step-By-Step Directions From a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/step-by-step-directions-from-a/"
+        },
+        {
+          "name": "Design an ATM Machine",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-an-atm-machine/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Design Underground System",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-underground-system/"
+        },
+        {
+          "name": "Design Parking System",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-parking-system/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Create Binary Tree From",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/create-binary-tree-from/"
+        },
+        {
+          "name": "Number of Atoms",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-atoms/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Minimum Cost for Cutting Cake II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-for-cutting-cake-ii/"
+        },
+        {
+          "name": "Sort the People",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-the-people/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "Implement Magic Dictionary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/implement-magic-dictionary/"
+        },
+        {
+          "name": "Longest Word in Dictionary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-word-in-dictionary/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Lexicographical Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lexicographical-numbers/"
+        },
+        {
+          "name": "Find Valid Matrix Given Row and",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-valid-matrix-given-row-and/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "Build a Matrix With Conditions",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/build-a-matrix-with-conditions/"
+        },
+        {
+          "name": "Minimum Length of String After",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-length-of-string-after/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Find the Winning Player in Coin",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-winning-player-in-coin/"
+        },
+        {
+          "name": "Minimum Cost For Tickets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-for-tickets/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Time Based Key-Value Store",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/time-based-key-value-store/"
+        },
+        {
+          "name": "String Without AAA or BBB",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/string-without-aaa-or-bbb/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Sort an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-an-array/"
+        },
+        {
+          "name": "Reverse Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-linked-list/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "Sort the Jumbled Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-the-jumbled-numbers/"
+        },
+        {
+          "name": "Minimum Operations to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-operations-to-make/"
+        },
+        {
+          "name": "Maximum Number of Operations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-number-of-operations/"
+        },
+        {
+          "name": "Vowels Game in a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/vowels-game-in-a-string/"
+        },
+        {
+          "name": "Number of Bit Changes to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-bit-changes-to-make/"
+        },
+        {
+          "name": "Design Authentication Manager",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/design-authentication-manager/"
+        },
+        {
+          "name": "Sort Array by Increasing",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-array-by-increasing/"
+        },
+        {
+          "name": "Count Number of Teams",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-number-of-teams/"
+        },
+        {
+          "name": "Second Minimum Time to Reach",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/second-minimum-time-to-reach/"
+        },
+        {
+          "name": "Maximize the Profit as the",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximize-the-profit-as-the/"
+        },
+        {
+          "name": "Minimum Cost to Convert String I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-to-convert-string-i/"
+        },
+        {
+          "name": "Add Digits",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/add-digits/"
+        },
+        {
+          "name": "Find the City With the Smallest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-city-with-the-smallest/"
+        },
+        {
+          "name": "Apply Discount Every n Orders",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/apply-discount-every-n-orders/"
+        },
+        {
+          "name": "N-Queens II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/n-queens-ii/"
+        },
+        {
+          "name": "Maximum Product of Word",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-product-of-word/"
+        },
+        {
+          "name": "H-Index II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/h-index-ii/"
+        },
+        {
+          "name": "H-Index",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/h-index/"
+        },
+        {
+          "name": "Minimum Number of Flips to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-flips-to/"
+        },
+        {
+          "name": "Find the Number of Winning",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-number-of-winning/"
+        },
+        {
+          "name": "Make Two Arrays Equal by",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/make-two-arrays-equal-by/"
+        },
+        {
+          "name": "Longest ZigZag Path in a Binary",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-zigzag-path-in-a-binary/"
+        },
+        {
+          "name": "Minimum Swaps to Group All 1's",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-swaps-to-group-all-1s/"
+        },
+        {
+          "name": "Number of Senior Citizens",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-senior-citizens/"
+        },
+        {
+          "name": "Filling Bookcase Shelves",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/filling-bookcase-shelves/"
+        },
+        {
+          "name": "Minimum Deletions to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-deletions-to-make/"
+        }
+      ]
+    }
+  ],
+  "June": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Display Table of Food Orders in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a/"
+        },
+        {
+          "name": "K-th Smallest Prime Fraction",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/k-th-smallest-prime-fraction/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Maximize Happiness of Selected",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximize-happiness-of-selected/"
+        },
+        {
+          "name": "Relative Ranks",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/relative-ranks/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Minimum Number of Operations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-operations/"
+        },
+        {
+          "name": "Calculate Money in Leetcode",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/calculate-money-in-leetcode/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Max Consecutive Ones",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/max-consecutive-ones/"
+        },
+        {
+          "name": "Double a Number Represented",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/double-a-number-represented/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Remove Nodes From Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-nodes-from-linked-list/"
+        },
+        {
+          "name": "Maximum Difference Score in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-difference-score-in-a/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Taking Maximum Energy From",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/taking-maximum-energy-from/"
+        },
+        {
+          "name": "Permutation Difference between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/permutation-difference-between/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Largest Local Values in a Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/largest-local-values-in-a-matrix/"
+        },
+        {
+          "name": "Minimum Cost to Hire K Workers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-cost-to-hire-k-workers/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Minimum Substring Partition of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-substring-partition-of/"
+        },
+        {
+          "name": "Maximum Points Inside the",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-points-inside-the/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "Check if Grid Satisfies Conditions",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/check-if-grid-satisfies-conditions/"
+        },
+        {
+          "name": "Length of Longest Subarray With",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-longest-subarray-with/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Remove Adjacent Almost-Equal",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-adjacent-almost-equal/"
+        },
+        {
+          "name": "Find Common Elements Between",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-common-elements-between/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Evaluate Boolean Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/evaluate-boolean-binary-tree/"
+        },
+        {
+          "name": "Find the Safest Path in a Grid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-safest-path-in-a-grid/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Minimum Number of Coins for",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-coins-for/"
+        },
+        {
+          "name": "Path with Maximum Gold",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/path-with-maximum-gold/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Reverse String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-string/"
+        },
+        {
+          "name": "Score After Flipping Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/score-after-flipping-matrix/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Destroy Sequential Targets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/destroy-sequential-targets/"
+        },
+        {
+          "name": "Last Moment Before All Ants Fall",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/last-moment-before-all-ants-fall/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "Frequency Tracker",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/frequency-tracker/"
+        },
+        {
+          "name": "First Completely Painted Row or",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/first-completely-painted-row-or/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Special Array II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/special-array-ii/"
+        },
+        {
+          "name": "Palindrome Partitioning",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindrome-partitioning/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "Subsets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subsets/"
+        },
+        {
+          "name": "Sum of All Subset XOR Totals",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sum-of-all-subset-xor-totals/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Special Array I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/special-array-i/"
+        },
+        {
+          "name": "Find the Maximum Sum of Node",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-maximum-sum-of-node/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Distribute Coins in Binary Tree",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/distribute-coins-in-binary-tree/"
+        },
+        {
+          "name": "Delete Leaves With a Given Value",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/delete-leaves-with-a-given-value/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Shopping Offers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shopping-offers/"
+        },
+        {
+          "name": "Knight Dialer",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/knight-dialer/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Count Complete Tree Nodes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-complete-tree-nodes/"
+        },
+        {
+          "name": "Remove Linked List Elements",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-linked-list-elements/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Word Break II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-break-ii/"
+        },
+        {
+          "name": "Find Occurrences of an Element",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-occurrences-of-an-element/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Find the Number of Distinct",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-number-of-distinct/"
+        },
+        {
+          "name": "Find the XOR of Numbers Which",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-xor-of-numbers-which/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "Maximum Score Words Formed",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-score-words-formed/"
+        },
+        {
+          "name": "Search Insert Position",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/search-insert-position/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Remove Element",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-element/"
+        },
+        {
+          "name": "Construct K Palindrome Strings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/construct-k-palindrome-strings/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "The Number of Beautiful Subsets",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/the-number-of-beautiful-subsets/"
+        },
+        {
+          "name": "Rank Teams by Votes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/rank-teams-by-votes/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Word Pattern",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-pattern/"
+        },
+        {
+          "name": "Student Attendance Record II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/student-attendance-record-ii/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Contains Duplicate II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/contains-duplicate-ii/"
+        },
+        {
+          "name": "Arranging Coins",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/arranging-coins/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Pascal's Triangle II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/pascals-triangle-ii/"
+        },
+        {
+          "name": "Find the Number of Good Pairs I",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-number-of-good-pairs-i/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "String Compression III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/string-compression-iii/"
+        },
+        {
+          "name": "Minimum Number of Chairs in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-chairs-in-a/"
+        },
+        {
+          "name": "Maximal Network Rank",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximal-network-rank/"
+        },
+        {
+          "name": "Score of a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/score-of-a-string/"
+        },
+        {
+          "name": "Single Number III",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/single-number-iii/"
+        },
+        {
+          "name": "Binary Tree Postorder Traversal",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-tree-postorder-traversal/"
+        },
+        {
+          "name": "Count Triplets That Can Form",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-triplets-that-can-form/"
+        },
+        {
+          "name": "Number of Steps to Reduce a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a/"
+        },
+        {
+          "name": "Get Equal Substrings Within",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/get-equal-substrings-within/"
+        },
+        {
+          "name": "Special Array With X Elements",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/special-array-with-x-elements/"
+        },
+        {
+          "name": "Sign of the Product of an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sign-of-the-product-of-an-array/"
+        },
+        {
+          "name": "Longest Palindrome",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-palindrome/"
+        },
+        {
+          "name": "Find Common Characters",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-common-characters/"
+        },
+        {
+          "name": "Minimum Index of a Valid Split",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-index-of-a-valid-split/"
+        },
+        {
+          "name": "Append Characters to String to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/append-characters-to-string-to/"
+        },
+        {
+          "name": "Lexicographically Minimum String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/lexicographically-minimum-string/"
+        },
+        {
+          "name": "Count Days Without Meetings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-days-without-meetings/"
+        }
+      ]
+    }
+  ],
+  "April": [
+    {
+      "day": 1,
+      "problems": [
+        {
+          "name": "Minimum Falling Path Sum II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-falling-path-sum-ii/"
+        },
+        {
+          "name": "Linked List Frequency",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/linked-list-frequency/"
+        },
+        {
+          "name": "Two Best Non-Overlapping",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-best-non-overlapping/"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "problems": [
+        {
+          "name": "Count Elements With Maximum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-elements-with-maximum/"
+        },
+        {
+          "name": "Maximum Beauty of an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-beauty-of-an-array/"
+        },
+        {
+          "name": "Permutations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/permutations/"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "problems": [
+        {
+          "name": "Distribute Elements Into Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/distribute-elements-into-two/"
+        },
+        {
+          "name": "Detect Cycles in 2D Grid",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/detect-cycles-in-2d-grid/"
+        },
+        {
+          "name": "Shortest Uncommon Substring in",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shortest-uncommon-substring-in/"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "problems": [
+        {
+          "name": "Maximize Happiness of Selected",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximize-happiness-of-selected/"
+        },
+        {
+          "name": "Apple Redistribution into Boxes",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/apple-redistribution-into-boxes/"
+        },
+        {
+          "name": "Intersection of Two Arrays",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/intersection-of-two-arrays/"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "problems": [
+        {
+          "name": "Decode Ways",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/decode-ways/"
+        },
+        {
+          "name": "House Robber",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/house-robber/"
+        },
+        {
+          "name": "Combination Sum IV",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/combination-sum-iv/"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "problems": [
+        {
+          "name": "Minimum Time to Make Rope",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-time-to-make-rope/"
+        },
+        {
+          "name": "Minimum Common Value",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-common-value/"
+        },
+        {
+          "name": "Find the Pivot Integer",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-pivot-integer/"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "problems": [
+        {
+          "name": "Remove Zero Sum Consecutive",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-zero-sum-consecutive/"
+        },
+        {
+          "name": "Maximum Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-subarray/"
+        },
+        {
+          "name": "Score After Flipping Matrix",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/score-after-flipping-matrix/"
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "problems": [
+        {
+          "name": "Count Nice Pairs in an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-nice-pairs-in-an-array/"
+        },
+        {
+          "name": "Custom Sort String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/custom-sort-string/"
+        },
+        {
+          "name": "Minimum Absolute Difference",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-absolute-difference/"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "problems": [
+        {
+          "name": "Distinct Echo Substrings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/distinct-echo-substrings/"
+        },
+        {
+          "name": "Insert Interval",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/insert-interval/"
+        },
+        {
+          "name": "Mark Elements on Array by",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/mark-elements-on-array-by/"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "problems": [
+        {
+          "name": "Find the Sum of Encrypted",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-sum-of-encrypted/"
+        },
+        {
+          "name": "Escape The Ghosts",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/escape-the-ghosts/"
+        },
+        {
+          "name": "Contiguous Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/contiguous-array/"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "problems": [
+        {
+          "name": "Meeting Rooms II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/meeting-rooms-ii/"
+        },
+        {
+          "name": "Product of Array Except Self",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/product-of-array-except-self/"
+        },
+        {
+          "name": "Valid Parentheses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-parentheses/"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "problems": [
+        {
+          "name": "Two Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/two-sum/"
+        },
+        {
+          "name": "Binary Subarrays With Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/binary-subarrays-with-sum/"
+        },
+        {
+          "name": "Most Frequent Prime",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/most-frequent-prime/"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "problems": [
+        {
+          "name": "Maximum Candies You Can Get",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-candies-you-can-get/"
+        },
+        {
+          "name": "Merge In Between Linked Lists",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/merge-in-between-linked-lists/"
+        },
+        {
+          "name": "All Ancestors of a Node in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/all-ancestors-of-a-node-in-a/"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "problems": [
+        {
+          "name": "Where Will the Ball Fall",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/where-will-the-ball-fall/"
+        },
+        {
+          "name": "Find Closest Node to Given Two",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-closest-node-to-given-two/"
+        },
+        {
+          "name": "Task Scheduler",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/task-scheduler/"
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "problems": [
+        {
+          "name": "Minimum Number of Arrows to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-arrows-to/"
+        },
+        {
+          "name": "Minimum Deletions to Make",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-deletions-to-make/"
+        },
+        {
+          "name": "Count Substrings Starting and",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-substrings-starting-and/"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "problems": [
+        {
+          "name": "Existence of a Substring in a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/existence-of-a-substring-in-a/"
+        },
+        {
+          "name": "Climbing Stairs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/climbing-stairs/"
+        },
+        {
+          "name": "Longest Happy String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-happy-string/"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "problems": [
+        {
+          "name": "Maximize Number of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximize-number-of/"
+        },
+        {
+          "name": "Minimum Operations to Halve",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-operations-to-halve/"
+        },
+        {
+          "name": "Reverse Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reverse-linked-list/"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "problems": [
+        {
+          "name": "Insufficient Nodes in Root to Leaf",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf/"
+        },
+        {
+          "name": "Letter Tile Possibilities",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/letter-tile-possibilities/"
+        },
+        {
+          "name": "Valid Palindrome",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/valid-palindrome/"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "problems": [
+        {
+          "name": "Squares of a Sorted Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/squares-of-a-sorted-array/"
+        },
+        {
+          "name": "Reorder List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reorder-list/"
+        },
+        {
+          "name": "Find the City With the Smallest",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-city-with-the-smallest/"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "problems": [
+        {
+          "name": "Sliding Puzzle",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sliding-puzzle/"
+        },
+        {
+          "name": "Remove Vowels from a String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/remove-vowels-from-a-string/"
+        },
+        {
+          "name": "Palindrome Linked List",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/palindrome-linked-list/"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "problems": [
+        {
+          "name": "Minimum Number of Operations",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-operations/"
+        },
+        {
+          "name": "Minimum Number of Keypresses",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-number-of-keypresses/"
+        },
+        {
+          "name": "Find All Duplicates in an Array",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-all-duplicates-in-an-array/"
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "problems": [
+        {
+          "name": "Most Frequent IDs",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/most-frequent-ids/"
+        },
+        {
+          "name": "Apply Operations to Make Sum of",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/apply-operations-to-make-sum-of/"
+        },
+        {
+          "name": "Maximum Length Substring With",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-length-substring-with/"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "problems": [
+        {
+          "name": "Find the Duplicate Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-the-duplicate-number/"
+        },
+        {
+          "name": "Fair Distribution of Cookies",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/fair-distribution-of-cookies/"
+        },
+        {
+          "name": "Reorganize String",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/reorganize-string/"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "problems": [
+        {
+          "name": "Integer Break",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/integer-break/"
+        },
+        {
+          "name": "Subarray Product Less Than K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subarray-product-less-than-k/"
+        },
+        {
+          "name": "Concatenated Words",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/concatenated-words/"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "problems": [
+        {
+          "name": "Best Sightseeing Pair",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/best-sightseeing-pair/"
+        },
+        {
+          "name": "Longest Common Suffix Queries",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-common-suffix-queries/"
+        },
+        {
+          "name": "First Missing Positive",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/first-missing-positive/"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "problems": [
+        {
+          "name": "Word Break II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-break-ii/"
+        },
+        {
+          "name": "Minimum Adjacent Swaps to",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to/"
+        },
+        {
+          "name": "Zigzag Conversion",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/zigzag-conversion/"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "problems": [
+        {
+          "name": "Longest Substring with At Most K",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-substring-with-at-most-k/"
+        },
+        {
+          "name": "Find Missing and Repeated",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/find-missing-and-repeated/"
+        },
+        {
+          "name": "Stream of Characters",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/stream-of-characters/"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "problems": [
+        {
+          "name": "Number of Ways to Stay in the",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/number-of-ways-to-stay-in-the/"
+        },
+        {
+          "name": "Max Increase to Keep City Skyline",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/max-increase-to-keep-city-skyline/"
+        },
+        {
+          "name": "Sort Array By Parity II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-array-by-parity-ii/"
+        }
+      ]
+    },
+    {
+      "day": 29,
+      "problems": [
+        {
+          "name": "Sort Array By Parity",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sort-array-by-parity/"
+        },
+        {
+          "name": "Length of Longest Subarray With",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-longest-subarray-with/"
+        },
+        {
+          "name": "Longest Continuous Subarray",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-continuous-subarray/"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "problems": [
+        {
+          "name": "Count Subarrays With Score",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-subarrays-with-score/"
+        },
+        {
+          "name": "Apply Discount to Prices",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/apply-discount-to-prices/"
+        },
+        {
+          "name": "Maximum Erasure Value",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-erasure-value/"
+        },
+        {
+          "name": "Minimum Levels to Gain More",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/minimum-levels-to-gain-more/"
+        },
+        {
+          "name": "Shortest Subarray With OR at",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/shortest-subarray-with-or-at/"
+        },
+        {
+          "name": "Subarrays with K Different",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/subarrays-with-k-different/"
+        },
+        {
+          "name": "Maximum Frequency Stack",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-frequency-stack/"
+        },
+        {
+          "name": "Count Subarrays Where Max",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-subarrays-where-max/"
+        },
+        {
+          "name": "Count Submatrices with Top-Left",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-submatrices-with-top-left/"
+        },
+        {
+          "name": "Maximum Good Subarray Sum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-good-subarray-sum/"
+        },
+        {
+          "name": "Isomorphic Strings",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/isomorphic-strings/"
+        },
+        {
+          "name": "Add Two Numbers",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/add-two-numbers/"
+        },
+        {
+          "name": "Longest Substring with At Most",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/longest-substring-with-at-most/"
+        },
+        {
+          "name": "Length of Last Word",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/length-of-last-word/"
+        },
+        {
+          "name": "Count Subarrays With Fixed",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-subarrays-with-fixed/"
+        },
+        {
+          "name": "Count Alternating Subarrays",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-alternating-subarrays/"
+        },
+        {
+          "name": "Water Bottles II",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/water-bottles-ii/"
+        },
+        {
+          "name": "Harshad Number",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/harshad-number/"
+        },
+        {
+          "name": "Count Collisions of Monkeys on a",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/count-collisions-of-monkeys-on-a/"
+        },
+        {
+          "name": "Sliding Window Maximum",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/sliding-window-maximum/"
+        },
+        {
+          "name": "Make The String Great",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/make-the-string-great/"
+        },
+        {
+          "name": "N-Queens",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/n-queens/"
+        },
+        {
+          "name": "Maximum Nesting Depth of the",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/maximum-nesting-depth-of-the/"
+        },
+        {
+          "name": "Word Search",
+          "status": "Accepted",
+          "solved": true,
+          "url": "https://leetcode.com/problems/word-search/"
+        }
+      ]
+    }
+  ]
+}

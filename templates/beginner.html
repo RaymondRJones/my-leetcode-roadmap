@@ -1,0 +1,618 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Beginner Roadmap - Programming Fundamentals{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 text-center mb-4">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 12px; font-size: 3rem; color: var(--md-primary);">school</span>Complete Beginner Roadmap
+        </h1>
+        
+        <div class="md-card md-card-elevated mb-4 fade-in-up">
+            <div class="card-body" style="padding: 32px;">
+                <h3 class="card-title text-center mb-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">foundation</span>Programming Fundamentals for College & Side Projects
+                </h3>
+                <p class="lead text-center">
+                    Master the core programming skills needed for success in college coursework and personal projects.
+                    Focus on <strong>for-loops, arrays, and conditional logic</strong> - the building blocks of all programming.
+                </p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="material-icons" style="margin-right: 12px; color: var(--md-primary); margin-top: 2px;">code</span>
+                            <div>
+                                <h6 style="color: var(--md-primary); margin-bottom: 4px;">Practice Environment</h6>
+                                <p class="mb-0" style="color: var(--md-on-surface-variant); font-size: 0.9rem;">
+                                    Use <strong>LeetCode Playground</strong> or your local IDE to write functions that accept parameters and test your solutions.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="material-icons" style="margin-right: 12px; color: var(--md-primary); margin-top: 2px;">smart_toy</span>
+                            <div>
+                                <h6 style="color: var(--md-primary); margin-bottom: 4px;">Get Help When Stuck</h6>
+                                <p class="mb-0" style="color: var(--md-on-surface-variant); font-size: 0.9rem;">
+                                    Use an LLM (like ChatGPT/Claude) to help with input parsing if needed, but focus on the core logic.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start mb-3">
+                            <span class="material-icons" style="margin-right: 12px; color: var(--md-success); margin-top: 2px;">target</span>
+                            <div>
+                                <h6 style="color: var(--md-success); margin-bottom: 4px;">Core Skills Focus</h6>
+                                <p class="mb-0" style="color: var(--md-on-surface-variant); font-size: 0.9rem;">
+                                    <strong>For-loops, arrays, conditionals</strong> - the most important skills for college and side projects.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start">
+                            <span class="material-icons" style="margin-right: 12px; color: var(--md-warning); margin-top: 2px;">lightbulb</span>
+                            <div>
+                                <h6 style="color: var(--md-warning); margin-bottom: 4px;">What Matters Most</h6>
+                                <p class="mb-0" style="color: var(--md-on-surface-variant); font-size: 0.9rem;">
+                                    Input parsing is less important - focus on problem-solving logic and algorithm thinking.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if atcoder_data and atcoder_data.problems %}
+<!-- Statistics Row -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">assignment</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">{{ atcoder_data.problems|length }}</h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Fundamental Problems</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">psychology</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">
+                    {% set avg_difficulty = 0 %}
+                    {% set count = 0 %}
+                    {% for problem in atcoder_data.problems %}
+                        {% if problem.simplified and problem.simplified.estimated_difficulty %}
+                            {% set avg_difficulty = avg_difficulty + problem.simplified.estimated_difficulty %}
+                            {% set count = count + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ "%.1f"|format(avg_difficulty/count if count > 0 else 3) }}/5
+                </h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Avg Difficulty</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.3s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">foundation</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">Complete</h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Beginner Level</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter and Sort Controls -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6><i class="fas fa-filter"></i> Filter by Difficulty</h6>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-outline-primary btn-sm active" onclick="filterByDifficulty('all')">All</button>
+                    <button class="btn btn-outline-success btn-sm" onclick="filterByDifficulty('1')">Level 1-2</button>
+                    <button class="btn btn-outline-warning btn-sm" onclick="filterByDifficulty('3')">Level 3</button>
+                    <button class="btn btn-outline-danger btn-sm" onclick="filterByDifficulty('4')">Level 4-5</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6><i class="fas fa-sort"></i> Key Concepts</h6>
+                <div class="d-flex flex-wrap gap-1">
+                    {% set all_concepts = [] %}
+                    {% for problem in atcoder_data.problems %}
+                        {% if problem.simplified and problem.simplified.key_concepts %}
+                            {% for concept in problem.simplified.key_concepts %}
+                                {% if concept not in all_concepts %}
+                                    {% set _ = all_concepts.append(concept) %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for concept in all_concepts[:6] %}
+                        <span class="badge bg-secondary">{{ concept }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Problems Grid -->
+<div class="row" id="problemsGrid">
+    {% for problem in atcoder_data.problems %}
+    <div class="col-lg-6 col-xl-4 mb-4 problem-item" 
+         data-difficulty="{{ problem.simplified.estimated_difficulty if problem.simplified else 3 }}"
+         data-problem-id="{{ loop.index0 }}">
+        <div class="card problem-card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">
+                    <i class="fas fa-code text-primary"></i> {{ problem.contest }}
+                </h6>
+                <div class="difficulty-badge">
+                    {% set diff = problem.simplified.estimated_difficulty if problem.simplified else 3 %}
+                    {% if diff <= 2 %}
+                        <span class="badge bg-success">Easy</span>
+                    {% elif diff == 3 %}
+                        <span class="badge bg-warning">Medium</span>
+                    {% else %}
+                        <span class="badge bg-danger">Hard</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ problem.title }}</h5>
+                
+                {% if problem.simplified %}
+                <p class="card-text text-muted small">
+                    {{ problem.simplified.simplified_explanation }}
+                </p>
+                
+                <div class="mb-3">
+                    <strong class="text-primary">🎯 Concepts:</strong>
+                    {% if problem.simplified.key_concepts is string %}
+                        {% set concepts = problem.simplified.key_concepts.split(', ') %}
+                    {% else %}
+                        {% set concepts = problem.simplified.key_concepts %}
+                    {% endif %}
+                    {% for concept in concepts[:3] %}
+                        <span class="badge bg-light text-dark me-1">{{ concept }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="btn-group w-100" role="group">
+                    <button class="btn btn-primary btn-sm" 
+                            onclick="showSimplifiedProblem({{ loop.index0 }})" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#problemModal">
+                        <i class="fas fa-book-open"></i> Learn
+                    </button>
+                    <a href="{{ problem.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-external-link-alt"></i> Solve
+                    </a>
+                    <button class="btn btn-outline-secondary btn-sm" 
+                            onclick="markAsCompleted({{ loop.index0 }})" 
+                            id="complete-btn-{{ loop.index0 }}">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Progress Tracking -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line"></i> Your Learning Progress</h5>
+            </div>
+            <div class="card-body">
+                <div class="progress mb-3" style="height: 25px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" style="width: 0%" id="overallProgress">
+                        <span id="progressText">0 / {{ atcoder_data.problems|length }} completed</span>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="progress-stat">
+                            <h4 id="easyCount">0</h4>
+                            <small class="text-success">Easy Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="progress-stat">
+                            <h4 id="mediumCount">0</h4>
+                            <small class="text-warning">Medium Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="progress-stat">
+                            <h4 id="hardCount">0</h4>
+                            <small class="text-danger">Hard Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="progress-stat">
+                            <h4 id="streakCount">0</h4>
+                            <small class="text-info">Day Streak</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let completedProblems = new Set();
+let currentFilter = 'all';
+let problemsData = {{ atcoder_data.problems|tojson|safe }};
+
+// Show simplified problem in modal
+function showSimplifiedProblem(problemIndex) {
+    const problem = problemsData[problemIndex];
+    if (!problem) return;
+    
+    // Set modal title
+    document.getElementById('modalTitle').textContent = problem.title;
+    
+    // Set simplified explanation
+    const explanation = problem.simplified ? problem.simplified.simplified_explanation : 'Problem explanation not available.';
+    document.getElementById('modalSimplifiedExplanation').textContent = explanation;
+    
+    // Set key concepts
+    const conceptsContainer = document.getElementById('modalKeyConcepts');
+    conceptsContainer.innerHTML = '';
+    if (problem.simplified && problem.simplified.key_concepts) {
+        let concepts = problem.simplified.key_concepts;
+        if (typeof concepts === 'string') {
+            concepts = concepts.split(', ');
+        }
+        concepts.forEach(concept => {
+            const badge = document.createElement('span');
+            badge.className = 'badge bg-primary me-1 mb-1';
+            badge.textContent = concept;
+            conceptsContainer.appendChild(badge);
+        });
+    }
+    
+    // Set difficulty stars
+    const difficultyContainer = document.getElementById('modalDifficulty');
+    difficultyContainer.innerHTML = '';
+    const difficulty = problem.simplified ? problem.simplified.estimated_difficulty : 3;
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = i <= difficulty ? 'fas fa-star text-warning' : 'far fa-star text-muted';
+        difficultyContainer.appendChild(star);
+    }
+    const diffText = document.createElement('span');
+    diffText.className = 'ms-2 text-muted';
+    diffText.textContent = `(${difficulty}/5)`;
+    difficultyContainer.appendChild(diffText);
+    
+    // Set sample case (show first one if available)
+    const sampleSection = document.getElementById('modalSampleSection');
+    if (problem.sample_cases && problem.sample_cases.length > 0) {
+        const firstSample = problem.sample_cases[0];
+        document.getElementById('modalSampleInput').textContent = firstSample.input || 'No input example';
+        document.getElementById('modalSampleOutput').textContent = firstSample.output || 'No output example';
+        sampleSection.style.display = 'block';
+    } else {
+        sampleSection.style.display = 'none';
+    }
+    
+    // Set up action buttons
+    const solveButton = document.getElementById('modalSolveButton');
+    const completeButton = document.getElementById('modalCompleteButton');
+    
+    solveButton.onclick = () => window.open(problem.url, '_blank');
+    completeButton.onclick = () => {
+        markAsCompleted(problemIndex);
+        // Update button appearance in modal if needed
+        if (completedProblems.has(problemIndex)) {
+            completeButton.innerHTML = '<i class="fas fa-check-circle"></i> Completed!';
+            completeButton.classList.remove('btn-success');
+            completeButton.classList.add('btn-outline-success');
+        }
+    };
+    
+    // Update complete button appearance
+    if (completedProblems.has(problemIndex)) {
+        completeButton.innerHTML = '<i class="fas fa-check-circle"></i> Completed!';
+        completeButton.classList.remove('btn-success');
+        completeButton.classList.add('btn-outline-success');
+    } else {
+        completeButton.innerHTML = '<i class="fas fa-check"></i> Mark Complete';
+        completeButton.classList.remove('btn-outline-success');
+        completeButton.classList.add('btn-success');
+    }
+}
+
+// Load progress from localStorage
+function loadProgress() {
+    const saved = localStorage.getItem('atcoder_progress');
+    if (saved) {
+        completedProblems = new Set(JSON.parse(saved));
+        completedProblems.forEach(problemId => {
+            const btn = document.getElementById(`complete-btn-${problemId}`);
+            if (btn) {
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-outline-secondary');
+                btn.innerHTML = '<i class="fas fa-check-circle"></i>';
+            }
+        });
+    }
+    updateProgress();
+}
+
+// Save progress to localStorage
+function saveProgress() {
+    localStorage.setItem('atcoder_progress', JSON.stringify([...completedProblems]));
+    
+    // Update last activity date for streak calculation
+    localStorage.setItem('atcoder_last_activity', new Date().toDateString());
+}
+
+// Mark problem as completed
+function markAsCompleted(problemId) {
+    const btn = document.getElementById(`complete-btn-${problemId}`);
+    
+    if (completedProblems.has(problemId)) {
+        // Uncomplete
+        completedProblems.delete(problemId);
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-outline-secondary');
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+    } else {
+        // Complete
+        completedProblems.add(problemId);
+        btn.classList.add('btn-success');
+        btn.classList.remove('btn-outline-secondary');
+        btn.innerHTML = '<i class="fas fa-check-circle"></i>';
+        
+        // Show celebration
+        showCelebration(problemId);
+    }
+    
+    saveProgress();
+    updateProgress();
+}
+
+// Show celebration animation
+function showCelebration(problemId) {
+    const celebration = document.createElement('div');
+    celebration.innerHTML = '🎉 Great job! Keep it up! 🎉';
+    celebration.style.cssText = `
+        position: fixed; top: 20px; right: 20px; 
+        background: linear-gradient(135deg, #28a745, #20c997); 
+        color: white; padding: 15px 20px; 
+        border-radius: 10px; z-index: 1000;
+        font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    `;
+    document.body.appendChild(celebration);
+    setTimeout(() => document.body.removeChild(celebration), 3000);
+}
+
+// Update progress display
+function updateProgress() {
+    const total = {{ atcoder_data.problems|length }};
+    const completed = completedProblems.size;
+    const percentage = (completed / total) * 100;
+    
+    document.getElementById('overallProgress').style.width = percentage + '%';
+    document.getElementById('progressText').textContent = `${completed} / ${total} completed`;
+    
+    // Count by difficulty
+    let easyCount = 0, mediumCount = 0, hardCount = 0;
+    completedProblems.forEach(id => {
+        const difficulty = parseInt(document.querySelector(`[data-problem-id="${id}"]`)?.dataset.difficulty || '3');
+        if (difficulty <= 2) easyCount++;
+        else if (difficulty === 3) mediumCount++;
+        else hardCount++;
+    });
+    
+    document.getElementById('easyCount').textContent = easyCount;
+    document.getElementById('mediumCount').textContent = mediumCount;
+    document.getElementById('hardCount').textContent = hardCount;
+    
+    // Calculate streak
+    updateStreak();
+}
+
+// Update streak calculation
+function updateStreak() {
+    const lastActivity = localStorage.getItem('atcoder_last_activity');
+    const today = new Date().toDateString();
+    
+    let streak = parseInt(localStorage.getItem('atcoder_streak') || '0');
+    
+    if (lastActivity === today) {
+        // Same day, keep current streak
+    } else if (lastActivity) {
+        const lastDate = new Date(lastActivity);
+        const todayDate = new Date(today);
+        const diffDays = (todayDate - lastDate) / (1000 * 60 * 60 * 24);
+        
+        if (diffDays === 1) {
+            // Consecutive day
+            streak++;
+            localStorage.setItem('atcoder_streak', streak.toString());
+        } else if (diffDays > 1) {
+            // Streak broken
+            streak = completedProblems.size > 0 ? 1 : 0;
+            localStorage.setItem('atcoder_streak', streak.toString());
+        }
+    }
+    
+    document.getElementById('streakCount').textContent = streak;
+}
+
+// Filter problems by difficulty
+function filterByDifficulty(level) {
+    currentFilter = level;
+    const problems = document.querySelectorAll('.problem-item');
+    
+    // Update button states
+    document.querySelectorAll('.btn-group .btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    problems.forEach(problem => {
+        const difficulty = parseInt(problem.dataset.difficulty);
+        let show = false;
+        
+        switch(level) {
+            case 'all':
+                show = true;
+                break;
+            case '1':
+                show = difficulty <= 2;
+                break;
+            case '3':
+                show = difficulty === 3;
+                break;
+            case '4':
+                show = difficulty >= 4;
+                break;
+        }
+        
+        problem.style.display = show ? 'block' : 'none';
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadProgress);
+</script>
+
+<style>
+.problem-card.completed {
+    border-color: #28a745;
+    background-color: #f8fff9;
+}
+
+.progress-stat h4 {
+    margin-bottom: 5px;
+}
+
+.difficulty-badge .badge {
+    font-size: 0.75rem;
+}
+
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.btn-success {
+    animation: celebrate 0.3s ease;
+}
+</style>
+
+{% else %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4><i class="fas fa-info-circle"></i> No Beginner Problems Found</h4>
+            <p>Run the AtCoder scraper to generate beginner-friendly problems:</p>
+            <code>cd scripts && python atcoder_scraper.py</code>
+            <br><br>
+            <button class="btn btn-primary" onclick="window.location.href='/'" >
+                <i class="fas fa-arrow-left"></i> Back to Advanced Roadmap
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Problem Learning Modal -->
+<div class="modal fade" id="problemModal" tabindex="-1" aria-labelledby="problemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="problemModalLabel">
+                    <i class="fas fa-graduation-cap text-primary"></i> 
+                    <span id="modalTitle">Problem Title</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Simplified Problem Statement -->
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-lightbulb"></i> Simplified Problem</h6>
+                    <p id="modalSimplifiedExplanation" class="mb-0">Problem explanation will appear here...</p>
+                </div>
+                
+                <!-- Key Concepts -->
+                <div class="mb-3">
+                    <h6><i class="fas fa-code text-primary"></i> What You'll Practice</h6>
+                    <div id="modalKeyConcepts" class="d-flex flex-wrap gap-1">
+                        <!-- Concept badges will be added here -->
+                    </div>
+                </div>
+                
+                <!-- Difficulty -->
+                <div class="mb-3">
+                    <h6><i class="fas fa-star text-warning"></i> Difficulty</h6>
+                    <div class="d-flex align-items-center">
+                        <div id="modalDifficulty" class="me-2">
+                            <!-- Stars will be added here -->
+                        </div>
+                        <small class="text-muted">Perfect for beginners!</small>
+                    </div>
+                </div>
+                
+                <!-- Sample Cases (if available) -->
+                <div class="mb-3" id="modalSampleSection" style="display: none;">
+                    <h6><i class="fas fa-vial text-success"></i> Example</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Input:</strong>
+                            <pre class="bg-light p-2 rounded small" id="modalSampleInput"></pre>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Output:</strong>
+                            <pre class="bg-light p-2 rounded small" id="modalSampleOutput"></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Encouragement -->
+                <div class="alert alert-success">
+                    <h6><i class="fas fa-rocket"></i> Ready to Code?</h6>
+                    <p class="mb-0">Take your time to understand the problem, then click "Solve on AtCoder" to start coding!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Close
+                </button>
+                <button type="button" class="btn btn-primary" id="modalSolveButton">
+                    <i class="fas fa-external-link-alt"></i> Solve on AtCoder
+                </button>
+                <button type="button" class="btn btn-success" id="modalCompleteButton">
+                    <i class="fas fa-check"></i> Mark Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

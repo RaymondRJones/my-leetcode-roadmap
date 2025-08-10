@@ -1,0 +1,453 @@
+{% extends "base.html" %}
+
+{% block title %}{{ problem.title }} - Problem Detail{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/beginner">Beginner Training</a></li>
+                <li class="breadcrumb-item active">{{ problem.title }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Main Content -->
+    <div class="col-lg-8">
+        <!-- Problem Header -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-puzzle-piece text-primary"></i>
+                        {{ problem.title }}
+                    </h3>
+                    <div class="problem-badges">
+                        <span class="badge bg-primary">{{ problem.contest }}</span>
+                        {% if problem.simplified %}
+                            {% set diff = problem.simplified.estimated_difficulty %}
+                            {% if diff <= 2 %}
+                                <span class="badge bg-success">Easy</span>
+                            {% elif diff == 3 %}
+                                <span class="badge bg-warning">Medium</span>
+                            {% else %}
+                                <span class="badge bg-danger">Hard</span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if problem.simplified %}
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-lightbulb"></i> Simplified Problem</h5>
+                    <p class="mb-0">{{ problem.simplified.simplified_explanation or problem.simplified.simple_explanation }}</p>
+                </div>
+                {% endif %}
+                
+                <div class="btn-group mb-3" role="group">
+                    <a href="{{ problem.url }}" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Solve on AtCoder
+                    </a>
+                    <button class="btn btn-outline-success" onclick="markAsCompleted({{ problem_id }})">
+                        <i class="fas fa-check"></i> Mark Complete
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="copyUrl('{{ problem.url }}')">
+                        <i class="fas fa-copy"></i> Copy URL
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Section -->
+        {% if problem.simplified %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><i class="fas fa-graduation-cap text-success"></i> Learning Guide</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6><i class="fas fa-code text-primary"></i> Key Concepts</h6>
+                        <div class="mb-3">
+                            {% if problem.simplified.key_concepts is string %}
+                                {% set concepts = problem.simplified.key_concepts.split(', ') %}
+                            {% else %}
+                                {% set concepts = problem.simplified.key_concepts %}
+                            {% endif %}
+                            {% for concept in concepts %}
+                                <span class="badge bg-light text-dark me-1 mb-1">{{ concept }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><i class="fas fa-star text-warning"></i> Difficulty Level</h6>
+                        <div class="mb-3">
+                            {% for i in range(1, 6) %}
+                                {% if i <= problem.simplified.estimated_difficulty %}
+                                    <i class="fas fa-star text-warning"></i>
+                                {% else %}
+                                    <i class="far fa-star text-muted"></i>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="ms-2 text-muted">({{ problem.simplified.estimated_difficulty }}/5)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Original Problem Statement -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><i class="fas fa-file-alt text-info"></i> Original Problem Statement</h4>
+            </div>
+            <div class="card-body">
+                <div class="problem-statement">
+                    {{ problem.problem_statement | replace('\n', '<br>') | safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Input/Output Format -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-arrow-right text-primary"></i> Input Format</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code>{{ problem.input_format }}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-arrow-left text-success"></i> Output Format</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code>{{ problem.output_format }}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Cases -->
+        {% if problem.sample_cases %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><i class="fas fa-vial text-warning"></i> Sample Test Cases</h4>
+            </div>
+            <div class="card-body">
+                {% for sample in problem.sample_cases %}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h6>Sample Input {{ loop.index }}</h6>
+                        <pre class="bg-light p-3 rounded"><code>{{ sample.input }}</code></pre>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Sample Output {{ loop.index }}</h6>
+                        <pre class="bg-light p-3 rounded"><code>{{ sample.output }}</code></pre>
+                    </div>
+                </div>
+                {% if not loop.last %}
+                    <hr>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Constraints -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4><i class="fas fa-exclamation-triangle text-danger"></i> Constraints</h4>
+            </div>
+            <div class="card-body">
+                <pre class="bg-light p-3 rounded"><code>{{ problem.constraints }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <!-- Progress Card -->
+        <div class="card mb-4 sticky-top">
+            <div class="card-header">
+                <h5><i class="fas fa-trophy text-warning"></i> Your Progress</h5>
+            </div>
+            <div class="card-body text-center">
+                <div class="progress mb-3" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" style="width: 0%" id="personalProgress">
+                        <span id="progressText">Not Started</span>
+                    </div>
+                </div>
+                
+                <div class="btn-group-vertical d-grid gap-2">
+                    <button class="btn btn-outline-primary" id="startBtn" onclick="startProblem()">
+                        <i class="fas fa-play"></i> Start Problem
+                    </button>
+                    <button class="btn btn-outline-warning" id="reviewBtn" onclick="markForReview()" style="display:none;">
+                        <i class="fas fa-bookmark"></i> Need Review
+                    </button>
+                    <button class="btn btn-outline-success" id="completeBtn" onclick="completeProblem()" style="display:none;">
+                        <i class="fas fa-check-circle"></i> Mark Complete
+                    </button>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">
+                        <i class="fas fa-clock"></i> 
+                        <span id="timeSpent">Time: 0 min</span>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar Problems -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5><i class="fas fa-link text-info"></i> Related Problems</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">Coming soon: Problems with similar concepts</p>
+                <div class="d-flex flex-wrap gap-1">
+                    {% if problem.simplified %}
+                        {% if problem.simplified.key_concepts is string %}
+                            {% set concepts = problem.simplified.key_concepts.split(', ') %}
+                        {% else %}
+                            {% set concepts = problem.simplified.key_concepts %}
+                        {% endif %}
+                        {% for concept in concepts %}
+                            <span class="badge bg-light text-dark">{{ concept }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-navigation text-secondary"></i> Navigation</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    {% if problem_id > 0 %}
+                        <a href="/problem/{{ problem_id - 1 }}" class="btn btn-outline-primary">
+                            <i class="fas fa-chevron-left"></i> Previous Problem
+                        </a>
+                    {% endif %}
+                    
+                    <a href="/beginner" class="btn btn-outline-secondary">
+                        <i class="fas fa-list"></i> All Problems
+                    </a>
+                    
+                    <!-- Note: We'd need to pass total count to enable next button properly -->
+                    <a href="/problem/{{ problem_id + 1 }}" class="btn btn-outline-primary">
+                        <i class="fas fa-chevron-right"></i> Next Problem
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let startTime = null;
+let problemStatus = 'not_started'; // not_started, in_progress, needs_review, completed
+
+// Load problem state
+function loadProblemState() {
+    const savedState = localStorage.getItem(`problem_${{{ problem_id }}}_state`);
+    const savedTime = localStorage.getItem(`problem_${{{ problem_id }}}_time`);
+    
+    if (savedState) {
+        problemStatus = savedState;
+        updateUI();
+    }
+    
+    if (savedTime) {
+        startTime = new Date(savedTime);
+        updateTimeDisplay();
+        setInterval(updateTimeDisplay, 60000); // Update every minute
+    }
+}
+
+// Save problem state
+function saveProblemState() {
+    localStorage.setItem(`problem_${{{ problem_id }}}_state`, problemStatus);
+    if (startTime) {
+        localStorage.setItem(`problem_${{{ problem_id }}}_time`, startTime.toISOString());
+    }
+}
+
+// Start problem
+function startProblem() {
+    problemStatus = 'in_progress';
+    startTime = new Date();
+    updateUI();
+    saveProblemState();
+    
+    // Start time tracking
+    setInterval(updateTimeDisplay, 60000);
+}
+
+// Mark for review
+function markForReview() {
+    problemStatus = 'needs_review';
+    updateUI();
+    saveProblemState();
+}
+
+// Complete problem
+function completeProblem() {
+    problemStatus = 'completed';
+    updateUI();
+    saveProblemState();
+    
+    // Add to global completed list
+    markAsCompleted({{ problem_id }});
+    
+    showCompletionCelebration();
+}
+
+// Update UI based on status
+function updateUI() {
+    const startBtn = document.getElementById('startBtn');
+    const reviewBtn = document.getElementById('reviewBtn');
+    const completeBtn = document.getElementById('completeBtn');
+    const progress = document.getElementById('personalProgress');
+    const progressText = document.getElementById('progressText');
+    
+    // Hide all buttons first
+    [startBtn, reviewBtn, completeBtn].forEach(btn => btn.style.display = 'none');
+    
+    switch(problemStatus) {
+        case 'not_started':
+            startBtn.style.display = 'block';
+            progress.style.width = '0%';
+            progressText.textContent = 'Not Started';
+            progress.className = 'progress-bar';
+            break;
+        case 'in_progress':
+            reviewBtn.style.display = 'block';
+            completeBtn.style.display = 'block';
+            progress.style.width = '50%';
+            progressText.textContent = 'In Progress';
+            progress.className = 'progress-bar bg-warning';
+            break;
+        case 'needs_review':
+            completeBtn.style.display = 'block';
+            progress.style.width = '75%';
+            progressText.textContent = 'Needs Review';
+            progress.className = 'progress-bar bg-info';
+            break;
+        case 'completed':
+            progress.style.width = '100%';
+            progressText.textContent = 'Completed';
+            progress.className = 'progress-bar bg-success';
+            break;
+    }
+}
+
+// Update time display
+function updateTimeDisplay() {
+    if (!startTime) return;
+    
+    const now = new Date();
+    const diffMinutes = Math.floor((now - startTime) / (1000 * 60));
+    document.getElementById('timeSpent').textContent = `Time: ${diffMinutes} min`;
+}
+
+// Show completion celebration
+function showCompletionCelebration() {
+    const celebration = document.createElement('div');
+    celebration.innerHTML = '🎉 Problem Completed! Great work! 🎉';
+    celebration.style.cssText = `
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #28a745, #20c997); 
+        color: white; padding: 20px 40px; 
+        border-radius: 15px; z-index: 1000;
+        font-weight: bold; font-size: 1.2em; 
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        animation: celebration 0.5s ease;
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes celebration {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(celebration);
+    setTimeout(() => {
+        document.body.removeChild(celebration);
+        document.head.removeChild(style);
+    }, 3000);
+}
+
+// Global function for marking as completed (from beginner.html)
+function markAsCompleted(problemId) {
+    // This would typically sync with the main beginner page
+    console.log(`Problem ${problemId} marked as completed`);
+}
+
+// Copy URL function
+function copyUrl(url) {
+    navigator.clipboard.writeText(url).then(() => {
+        const toast = document.createElement('div');
+        toast.textContent = 'URL copied to clipboard!';
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px; 
+            background: #28a745; color: white; padding: 10px 20px; 
+            border-radius: 4px; z-index: 1000;
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => document.body.removeChild(toast), 2000);
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadProblemState);
+</script>
+
+<style>
+.problem-statement {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.sticky-top {
+    top: 20px;
+}
+
+pre code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.card-header h3, .card-header h4, .card-header h5 {
+    margin-bottom: 0;
+}
+
+.problem-badges .badge {
+    font-size: 0.8em;
+}
+
+@media (max-width: 768px) {
+    .sticky-top {
+        position: static !important;
+    }
+}
+</style>
+{% endblock %}

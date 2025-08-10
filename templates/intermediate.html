@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 text-center mb-4">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 12px; font-size: 3rem; color: var(--md-primary);">rocket_launch</span>Ray's LeetCode Roadmap
+        </h1>
+        <div class="md-card md-card-elevated mb-4 fade-in-up">
+            <div class="card-body" style="padding: 32px;">
+                <h3 class="card-title text-center mb-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">business</span>Intermediate: Preparation for Mid-Tier Companies 2025
+                </h3>
+                <p class="lead text-center">
+                    This intermediate roadmap is designed for preparation for any mid-tier company in the USA for 2025.
+                    Start here if you have basic programming experience, or complete the Complete Beginner Roadmap first if you're new to programming.
+                </p>
+                <p class="text-center text-muted">
+                    <strong>Next Step:</strong> For FAANG and top-tier companies, advance to the Advanced roadmap after mastering these problems.
+                    This intermediate level bridges the gap between beginner and advanced problem-solving.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if roadmap %}
+<!-- Statistics Row -->
+<div class="row mb-4">
+    <div class="col-md-6 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">calendar_month</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">{{ roadmap.keys() | length }}</h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Months</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card-body text-center" style="padding: 24px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">assignment</span>
+                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">
+                    {% set total_problems = [] %}
+                    {% for month, days in roadmap.items() %}
+                        {% for day in days %}
+                            {% for problem in day.problems %}
+                                {% set _ = total_problems.append(problem) %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    {{ total_problems|length }}
+                </h4>
+                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Problems</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Months Grid -->
+<div class="row">
+    {% for month, days in roadmap.items() %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="month-card md-card h-100 fade-in-up" style="animation-delay: {{ loop.index0 * 0.1 + 0.3 }}s;">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">rocket_launch</span>Intermediate {{ month }}
+                </h3>
+                {% set month_problems = [] %}
+                {% for day in days %}
+                    {% for problem in day.problems %}
+                        {% set _ = month_problems.append(problem) %}
+                    {% endfor %}
+                {% endfor %}
+                
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons" style="font-size: 18px; margin-right: 8px; color: var(--md-on-surface-variant);">event</span>
+                        <span style="color: var(--md-on-surface-variant);">{{ days|length }} days of practice</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons" style="font-size: 18px; margin-right: 8px; color: var(--md-on-surface-variant);">assignment</span>
+                        <span style="color: var(--md-on-surface-variant);">{{ month_problems|length }} problems to solve</span>
+                    </div>
+                </div>
+                
+                <!-- Material Design Progress Indicator -->
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <small style="color: var(--md-on-surface-variant); font-weight: 500;">Progress</small>
+                        <small id="intermediateMonthProgressText-{{ month.replace(' ', '') }}" style="color: var(--md-primary); font-weight: 500;">0 / {{ month_problems|length }}</small>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" 
+                             style="width: 0%" id="intermediateMonthProgress-{{ month.replace(' ', '') }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="/intermediate/month/{{ month }}" class="btn btn-primary w-100">
+                    Start Intermediate {{ month }}
+                    <span class="material-icons" style="vertical-align: middle; margin-left: 8px; font-size: 18px;">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+// Update progress bars for all intermediate months on page load
+document.addEventListener('DOMContentLoaded', function() {
+    {% for month, days in roadmap.items() %}
+    {% set month_problems = [] %}
+    {% for day in days %}
+        {% for problem in day.problems %}
+            {% set _ = month_problems.append(problem) %}
+        {% endfor %}
+    {% endfor %}
+    const savedIntermediate{{ month.replace(' ', '') }} = localStorage.getItem('progress_Intermediate {{ month }}');
+    if (savedIntermediate{{ month.replace(' ', '') }}) {
+        const completedIntermediate{{ month.replace(' ', '') }} = JSON.parse(savedIntermediate{{ month.replace(' ', '') }}).length;
+        const totalIntermediate{{ month.replace(' ', '') }} = {{ month_problems|length }};
+        const percentageIntermediate{{ month.replace(' ', '') }} = (completedIntermediate{{ month.replace(' ', '') }} / totalIntermediate{{ month.replace(' ', '') }}) * 100;
+        
+        document.getElementById('intermediateMonthProgress-{{ month.replace(' ', '') }}').style.width = percentageIntermediate{{ month.replace(' ', '') }} + '%';
+        document.getElementById('intermediateMonthProgressText-{{ month.replace(' ', '') }}').textContent = `${completedIntermediate{{ month.replace(' ', '') }}} / ${totalIntermediate{{ month.replace(' ', '') }}}`;
+    }
+    {% endfor %}
+});
+</script>
+{% else %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <h4><i class="fas fa-exclamation-triangle"></i> No Intermediate Roadmap Data Found</h4>
+            <p>Please make sure your intermediate PDF files are in the intermediate_roadmap_pdfs directory and click the "Refresh" button to analyze them.</p>
+            <button class="btn btn-primary" onclick="refreshData()">
+                <i class="fas fa-sync-alt"></i> Analyze Intermediate PDFs
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
