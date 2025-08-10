@@ -222,20 +222,9 @@ if __name__ == '__main__':
     os.makedirs('templates', exist_ok=True)
     os.makedirs('static', exist_ok=True)
     
-    # Try different ports if 5000 is in use
-    import socket
+    # Get port from environment variable for Heroku, or use 5000 for local dev
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') != 'production'
     
-    def find_free_port():
-        ports_to_try = [5000, 5001, 5002, 8000, 8080, 3000]
-        for port in ports_to_try:
-            try:
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                    s.bind(('', port))
-                    return port
-            except OSError:
-                continue
-        return 5000  # fallback
-    
-    port = find_free_port()
-    print(f"🌐 Starting server on http://localhost:{port}")
-    app.run(debug=True, host='0.0.0.0', port=port)
+    print(f"🌐 Starting server on port {port}")
+    app.run(debug=debug, host='0.0.0.0', port=port)
