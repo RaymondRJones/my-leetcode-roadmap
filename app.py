@@ -222,6 +222,11 @@ def software_roadmap():
     """Raymond's Path to Software Engineer at Fortune 1"""
     return render_template('roadmap.html')
 
+@app.route('/about')
+def about():
+    """About Raymond and his journey"""
+    return render_template('about.html')
+
 if __name__ == '__main__':
     # Create templates directory
     os.makedirs('templates', exist_ok=True)

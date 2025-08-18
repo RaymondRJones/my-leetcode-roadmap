@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}About Raymond - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 mb-3">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 16px; font-size: 3rem; color: var(--md-primary);">person</span>
+                About Raymond
+            </h1>
+            <p class="lead text-muted">My journey from college student to Fortune 1 software engineer</p>
+        </div>
+    </div>
+
+    <!-- YouTube Video Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="md-card-elevated p-4">
+                <h2 class="text-primary mb-4 text-center">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_circle</span>
+                    Watch My Software Engineering Roadmap
+                </h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="ratio ratio-16x9">
+                            <iframe 
+                                src="https://www.youtube.com/embed/R1HAJFF3p1Q" 
+                                title="Software Engineering Roadmap" 
+                                allowfullscreen
+                                style="border-radius: 12px;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Story Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="md-card p-5">
+                <h2 class="text-primary mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">timeline</span>
+                    My Journey
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-success">College Student</h4>
+                            <p class="text-muted">Started my programming journey from zero, just like everyone else. Struggled with the basics, watched countless tutorials, and slowly built my foundation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-success">TA of Data Structures and Algorithms</h4>
+                            <p class="text-muted">Became a teaching assistant, helping other students navigate the same challenges I once faced. This deepened my understanding and communication skills.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-success">Internship at Citibank</h4>
+                            <p class="text-muted">Landed my first real-world software engineering experience at a major financial institution. Learned about production systems and enterprise-level development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-success">Software Engineer at Citibank</h4>
+                            <p class="text-muted">Converted to full-time and gained valuable experience building scalable financial systems and working with diverse teams.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item mb-4">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-primary">Software Engineer at Fortune 1 Company</h4>
+                            <p class="text-muted">Achieved my goal of working at a Fortune 1 company, applying everything I learned along the way. Now I want to help others follow a similar path.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5 p-4 bg-light rounded">
+                    <h3 class="text-primary mb-3">Why I Built This Site</h3>
+                    <p class="mb-3">I spent <strong>6 hours</strong> creating this website and condensing all the information from my decade of experience because <strong>I want to help</strong>. I've been exactly where you are - confused about what to learn, overwhelmed by the options, and unsure about the path forward.</p>
+                    <p class="mb-0">This roadmap represents the exact journey I wish I had when I started. Every level, every requirement, every piece of advice comes from real experience and real mistakes I made along the way.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="md-card-elevated p-5">
+                <h2 class="text-primary mb-4 text-center">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">school</span>
+                    Want Personal Help?
+                </h2>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card h-100 p-4 border rounded">
+                            <h4 class="text-success mb-3">
+                                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">interview_questions</span>
+                                Mock Interviews
+                            </h4>
+                            <p class="mb-3">Get personalized feedback on your coding, behavioral, or system design interviews. I'll help you identify and fix the mistakes that are holding you back.</p>
+                            <ul class="list-unstyled mb-3">
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>100% Private sessions</li>
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>45 minutes fixing mistakes</li>
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>15 minutes feedback & study plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card h-100 p-4 border rounded">
+                            <h4 class="text-success mb-3">
+                                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">lightbulb</span>
+                                Advice Sessions
+                            </h4>
+                            <p class="mb-3">One-hour sessions where we discuss your career goals, review your approach, and create a personalized roadmap for your success.</p>
+                            <ul class="list-unstyled mb-3">
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>100% Private sessions</li>
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>45 minutes problem-solving</li>
+                                <li><span class="material-icons text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 8px;">check_circle</span>15 minutes personalized study plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="https://calendar.app.google/wgtomKmhYMpZgwtw9" 
+                       target="_blank" 
+                       class="btn btn-primary btn-lg">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">calendar_today</span>
+                        Book Your Call Now
+                    </a>
+                    <p class="text-muted mt-3 mb-0">
+                        <small>Ready to accelerate your software engineering journey? Let's work together to get you to the next level.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--md-outline);
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -37px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 3px solid var(--md-surface);
+}
+
+.timeline-content {
+    padding-left: 0;
+}
+
+.timeline-content h4 {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.service-card {
+    background: var(--md-surface);
+    border: 1px solid var(--md-outline) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.service-card:hover {
+    box-shadow: var(--md-elevation-2);
+    transform: translateY(-2px);
+}
+
+.ratio {
+    box-shadow: var(--md-elevation-1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 20px;
+    }
+    
+    .timeline-marker {
+        left: -27px;
+    }
+}
+</style>
+
+{% endblock %}
