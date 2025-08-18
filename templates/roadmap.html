@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+
+{% block title %}Raymond's Path to Software Engineer at Fortune 1 - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 mb-3">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 16px; font-size: 3rem; color: var(--md-primary);">trending_up</span>
+                Raymond's Path to Software Engineer at Fortune 1
+            </h1>
+            <p class="lead text-muted">An interactive roadmap from complete beginner to software engineer</p>
+        </div>
+    </div>
+
+    <!-- Roadmap Visualization -->
+    <div class="row">
+        <div class="col-12">
+            <div class="roadmap-container">
+                <svg id="roadmapSvg" viewBox="0 0 800 600" class="roadmap-svg">
+                    <!-- Background decorative elements -->
+                    <defs>
+                        <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1976d2;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#03dac6;stop-opacity:0.3" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/> 
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Connecting path -->
+                    <path id="roadmapPath" d="M 100 500 Q 200 400 250 350 Q 350 250 450 300 Q 550 350 600 250 Q 650 150 700 100" 
+                          stroke="url(#pathGradient)" stroke-width="8" fill="none" stroke-dasharray="10,5" opacity="0.6"/>
+                    
+                    <!-- Level circles -->
+                    <circle id="level-0" class="level-circle" cx="100" cy="500" r="40" data-level="0" />
+                    <circle id="level-1" class="level-circle" cx="250" cy="350" r="40" data-level="1" />
+                    <circle id="level-2" class="level-circle" cx="450" cy="300" r="40" data-level="2" />
+                    <circle id="level-3" class="level-circle" cx="600" cy="250" r="40" data-level="3" />
+                    <circle id="level-4" class="level-circle" cx="650" cy="150" r="40" data-level="4" />
+                    <circle id="level-5" class="level-circle" cx="700" cy="100" r="40" data-level="5" />
+                    
+                    <!-- Level labels -->
+                    <text x="100" y="508" class="level-label" text-anchor="middle">0</text>
+                    <text x="250" y="358" class="level-label" text-anchor="middle">1</text>
+                    <text x="450" y="308" class="level-label" text-anchor="middle">2</text>
+                    <text x="600" y="258" class="level-label" text-anchor="middle">3</text>
+                    <text x="650" y="158" class="level-label" text-anchor="middle">4</text>
+                    <text x="700" y="108" class="level-label" text-anchor="middle">5</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Card -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons" style="font-size: 3rem; color: var(--md-primary); opacity: 0.7;">touch_app</span>
+                <h4 class="mt-3 text-primary">Hover over any level to see details</h4>
+                <p class="text-muted mb-0">Discover what each level entails and how to progress to the next stage in your software engineering journey</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.roadmap-container {
+    background: var(--md-surface);
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: var(--md-elevation-2);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.roadmap-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--md-primary), var(--md-secondary));
+}
+
+.roadmap-svg {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+}
+
+.level-circle {
+    fill: #e3f2fd;
+    stroke: var(--md-primary);
+    stroke-width: 3;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.level-circle:hover {
+    fill: var(--md-primary);
+    stroke-width: 4;
+    stroke: var(--md-secondary);
+}
+
+.level-circle.completed {
+    fill: var(--md-success);
+    stroke: #2e7d2e;
+}
+
+.level-label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    fill: var(--md-primary);
+    pointer-events: none;
+    user-select: none;
+}
+
+.level-circle:hover + .level-label {
+    fill: white;
+}
+
+.level-circle.completed + .level-label {
+    fill: white;
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+}
+
+.requirements-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--md-outline);
+    display: flex;
+    align-items: center;
+}
+
+.requirements-list li:last-child {
+    border-bottom: none;
+}
+
+.requirements-list .material-icons {
+    color: var(--md-primary);
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.difficulty-easy { color: var(--md-success); }
+.difficulty-medium { color: var(--md-warning); }
+.difficulty-hard { color: var(--md-error); }
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    background: var(--md-surface);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--md-elevation-4);
+    max-width: 400px;
+    z-index: 1000;
+    border: 1px solid var(--md-outline);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+}
+
+.tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip h4 {
+    color: var(--md-primary);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.tooltip p {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.tooltip .requirements {
+    font-size: 0.85rem;
+    color: var(--md-on-surface-variant);
+}
+
+.tooltip .stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.tooltip .stat {
+    text-align: center;
+}
+
+.tooltip .stat-label {
+    color: var(--md-on-surface-variant);
+    font-weight: 500;
+}
+
+.tooltip .stat-value {
+    color: var(--md-primary);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .roadmap-svg {
+        height: 400px;
+    }
+    
+    .level-circle {
+        r: 30;
+    }
+    
+    .level-label {
+        font-size: 14px;
+    }
+    
+    .tooltip {
+        max-width: 280px;
+        padding: 15px;
+    }
+}
+</style>
+
+<script>
+// Level data based on the transcript
+const levelData = {
+    0: {
+        title: "Zero Code",
+        description: "You've never programmed before and want to learn but don't know how. You haven't touched any code or built anything.",
+        requirements: [
+            "Watch tutorials on YouTube",
+            "Use LLMs like Claude Code, Lovable, or ChatGPT",
+            "Build simple projects with assistance",
+            "Connect and experiment with code"
+        ],
+        timeToComplete: "Days to weeks",
+        difficulty: "Easy",
+        difficultyClass: "difficulty-easy",
+        focusArea: "Getting started",
+        nextLevel: "Once you can build basic projects with tutorials/LLMs"
+    },
+    1: {
+        title: "Vibe Coder", 
+        description: "You can build projects but only with tutorials or LLM assistance. You cannot code anything without help, which is problematic for interviews.",
+        requirements: [
+            "Code without assistance for 20 minutes daily",
+            "Build projects without LLM help",
+            "Do coding exercises (LeetCode, etc.)",
+            "Let your brain work without AI assistance"
+        ],
+        timeToComplete: "1-6 months",
+        difficulty: "Medium",
+        difficultyClass: "difficulty-medium", 
+        focusArea: "Independence",
+        nextLevel: "When you can code projects by yourself"
+    },
+    2: {
+        title: "Official Programmer",
+        description: "You can build projects by yourself and code things like tic-tac-toe without help, but you're unsure what to focus on and are still slow.",
+        requirements: [
+            "Pick a specialization (React, Python, Java, etc.)",
+            "Get deeper knowledge in your chosen area", 
+            "Build projects faster",
+            "Focus on one thing, not jack-of-all-trades"
+        ],
+        timeToComplete: "Varies",
+        difficulty: "Medium",
+        difficultyClass: "difficulty-medium",
+        focusArea: "Specialization",
+        nextLevel: "When you can code fast and talk deeply about your projects"
+    },
+    3: {
+        title: "Job Ready Engineer",
+        description: "You can build projects and code fast enough to impress in interviews, but you lack communication skills needed for job hunting.",
+        requirements: [
+            "Stop coding, focus on talking to people",
+            "Get resume reviews from peers",
+            "Practice behavioral stories",
+            "Network in communities (Discord, school, etc.)",
+            "Ask for referrals"
+        ],
+        timeToComplete: "1-6 months", 
+        difficulty: "Hard",
+        difficultyClass: "difficulty-hard",
+        focusArea: "Communication",
+        nextLevel: "When you're getting interviews consistently"
+    },
+    4: {
+        title: "Leetcode Grinder",
+        description: "You have a great resume and are getting interviews, but you keep failing the coding interviews.",
+        requirements: [
+            "Practice more LeetCode problems",
+            "Study language trivia", 
+            "Learn to connect to APIs",
+            "Solve problems faster",
+            "Practice coding under pressure"
+        ],
+        timeToComplete: "1-2 months",
+        difficulty: "Medium",
+        difficultyClass: "difficulty-medium", 
+        focusArea: "Technical Interview Skills",
+        nextLevel: "When you can consistently pass coding interviews"
+    },
+    5: {
+        title: "Mid-Level SWE",
+        description: "You're passing coding interviews but now face system design questions. This is typically for senior roles but increasingly asked for juniors.",
+        requirements: [
+            "Study system design patterns",
+            "Learn about scalability",
+            "Understand distributed systems", 
+            "Practice design questions",
+            "Study real-world architectures"
+        ],
+        timeToComplete: "1-2 months",
+        difficulty: "Hard", 
+        difficultyClass: "difficulty-hard",
+        focusArea: "System Architecture", 
+        nextLevel: "You've reached Fortune 1 software engineer level!"
+    }
+};
+
+let tooltip = null;
+let tooltipTimeout = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Create tooltip element
+    tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    document.body.appendChild(tooltip);
+    
+    // Add hover handlers to level circles
+    document.querySelectorAll('.level-circle').forEach(circle => {
+        circle.addEventListener('mouseenter', function(e) {
+            const level = parseInt(this.dataset.level);
+            showTooltip(e, level);
+        });
+        
+        circle.addEventListener('mouseleave', function() {
+            hideTooltip();
+        });
+        
+        circle.addEventListener('mousemove', function(e) {
+            updateTooltipPosition(e);
+        });
+    });
+});
+
+function showTooltip(event, level) {
+    clearTimeout(tooltipTimeout);
+    
+    const data = levelData[level];
+    
+    // Create requirements list
+    const requirementsList = data.requirements.slice(0, 3).map(req => 
+        `• ${req}`
+    ).join('<br>');
+    
+    tooltip.innerHTML = `
+        <h4>${data.title}</h4>
+        <p>${data.description}</p>
+        <div class="requirements">
+            <strong>Key Requirements:</strong><br>
+            ${requirementsList}
+            ${data.requirements.length > 3 ? '<br>+ more...' : ''}
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">Time</div>
+                <div class="stat-value">${data.timeToComplete}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Difficulty</div>
+                <div class="stat-value ${data.difficultyClass}">${data.difficulty}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Focus</div>
+                <div class="stat-value">${data.focusArea}</div>
+            </div>
+        </div>
+    `;
+    
+    updateTooltipPosition(event);
+    tooltip.classList.add('show');
+}
+
+function hideTooltip() {
+    tooltipTimeout = setTimeout(() => {
+        tooltip.classList.remove('show');
+    }, 100);
+}
+
+function updateTooltipPosition(event) {
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    let left = event.clientX + 15;
+    let top = event.clientY - 10;
+    
+    // Adjust if tooltip goes off screen
+    if (left + tooltipRect.width > viewportWidth) {
+        left = event.clientX - tooltipRect.width - 15;
+    }
+    
+    if (top + tooltipRect.height > viewportHeight) {
+        top = event.clientY - tooltipRect.height - 10;
+    }
+    
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+}
+</script>
+
+{% endblock %}
