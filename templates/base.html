@@ -204,6 +204,88 @@
             color: white !important;
         }
 
+        /* Navbar Toggler Responsive Design */
+        .navbar-toggler {
+            border: 2px solid var(--md-primary);
+            border-radius: 8px;
+            padding: 6px 12px;
+            background: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-toggler:hover {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.25);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive Navigation Styles */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--md-surface);
+                margin-top: 16px;
+                padding: 16px;
+                border-radius: 12px;
+                box-shadow: var(--md-elevation-2);
+                border: 1px solid var(--md-outline);
+            }
+
+            .navbar-nav {
+                gap: 8px;
+            }
+
+            .nav-link {
+                padding: 12px 16px !important;
+                margin: 0;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+            }
+
+            .nav-link .material-icons {
+                margin-right: 12px !important;
+                font-size: 20px !important;
+            }
+
+            .navbar-nav .nav-item:last-child {
+                border-top: 1px solid var(--md-outline);
+                padding-top: 16px;
+                margin-top: 16px;
+            }
+
+            .btn-outline-primary {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+
+            .navbar-brand .material-icons {
+                font-size: 20px !important;
+            }
+
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+
         /* Buttons - Material Design */
         .btn-primary {
             background: var(--md-primary);
@@ -394,7 +476,7 @@
             <a class="navbar-brand" href="/">
                 <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">code</span>Ray's LeetCode Roadmap
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -426,9 +508,11 @@
                     </li>
                 </ul>
                 <div class="navbar-nav">
-                    <button class="btn btn-outline-primary btn-sm" onclick="refreshData()">
-                        <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">refresh</span>Refresh
-                    </button>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary btn-sm" onclick="refreshData()">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">refresh</span>Refresh
+                        </button>
+                    </li>
                 </div>
             </div>
         </div>
