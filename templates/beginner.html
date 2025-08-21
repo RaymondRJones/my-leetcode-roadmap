@@ -72,7 +72,7 @@
 {% if atcoder_data and atcoder_data.problems %}
 <!-- Statistics Row -->
 <div class="row mb-4">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-6 mb-3">
         <div class="stats-card md-card fade-in-up" style="animation-delay: 0.1s;">
             <div class="card-body text-center" style="padding: 24px;">
                 <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">assignment</span>
@@ -81,26 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="stats-card md-card fade-in-up" style="animation-delay: 0.2s;">
-            <div class="card-body text-center" style="padding: 24px;">
-                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">psychology</span>
-                <h4 style="color: var(--md-primary); font-weight: 500; margin-bottom: 8px;">
-                    {% set avg_difficulty = 0 %}
-                    {% set count = 0 %}
-                    {% for problem in atcoder_data.problems %}
-                        {% if problem.simplified and problem.simplified.estimated_difficulty %}
-                            {% set avg_difficulty = avg_difficulty + problem.simplified.estimated_difficulty %}
-                            {% set count = count + 1 %}
-                        {% endif %}
-                    {% endfor %}
-                    {{ "%.1f"|format(avg_difficulty/count if count > 0 else 3) }}/5
-                </h4>
-                <p class="mb-0" style="color: var(--md-on-surface-variant); font-weight: 500;">Avg Difficulty</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-6 mb-3">
         <div class="stats-card md-card fade-in-up" style="animation-delay: 0.3s;">
             <div class="card-body text-center" style="padding: 24px;">
                 <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">foundation</span>
@@ -200,9 +181,6 @@
                             data-bs-target="#problemModal">
                         <i class="fas fa-book-open"></i> Learn
                     </button>
-                    <a href="{{ problem.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
-                        <i class="fas fa-external-link-alt"></i> Solve
-                    </a>
                     <button class="btn btn-outline-secondary btn-sm" 
                             onclick="markAsCompleted({{ loop.index0 }})" 
                             id="complete-btn-{{ loop.index0 }}">
@@ -319,10 +297,8 @@ function showSimplifiedProblem(problemIndex) {
     }
     
     // Set up action buttons
-    const solveButton = document.getElementById('modalSolveButton');
     const completeButton = document.getElementById('modalCompleteButton');
     
-    solveButton.onclick = () => window.open(problem.url, '_blank');
     completeButton.onclick = () => {
         markAsCompleted(problemIndex);
         // Update button appearance in modal if needed
@@ -604,9 +580,6 @@ document.addEventListener('DOMContentLoaded', loadProgress);
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     <i class="fas fa-times"></i> Close
-                </button>
-                <button type="button" class="btn btn-primary" id="modalSolveButton">
-                    <i class="fas fa-external-link-alt"></i> Solve on AtCoder
                 </button>
                 <button type="button" class="btn btn-success" id="modalCompleteButton">
                     <i class="fas fa-check"></i> Mark Complete
