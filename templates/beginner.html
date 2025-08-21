@@ -377,7 +377,7 @@ function showCelebration(problemId) {
     celebration.innerHTML = '🎉 Great job! Keep it up! 🎉';
     celebration.style.cssText = `
         position: fixed; top: 20px; right: 20px; 
-        background: linear-gradient(135deg, #28a745, #20c997); 
+        background: linear-gradient(135deg, #a3be8c, #88c0d0); 
         color: white; padding: 15px 20px; 
         border-radius: 10px; z-index: 1000;
         font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -480,8 +480,8 @@ document.addEventListener('DOMContentLoaded', loadProgress);
 
 <style>
 .problem-card.completed {
-    border-color: #28a745;
-    background-color: #f8fff9;
+    border-color: var(--md-success);
+    background-color: rgba(163, 190, 140, 0.15);
 }
 
 .progress-stat h4 {

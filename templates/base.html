@@ -19,26 +19,45 @@
       gtag('config', 'G-3XZL13RZZD');
     </script>
     <style>
-        /* Material Design Colors */
+        /* Nord Theme Colors */
         :root {
-            --md-primary: #1976d2;
-            --md-primary-dark: #1565c0;
-            --md-secondary: #03dac6;
-            --md-surface: #ffffff;
-            --md-background: #fafafa;
-            --md-error: #b00020;
-            --md-success: #4caf50;
-            --md-warning: #ff9800;
-            --md-on-surface: #212121;
-            --md-on-surface-variant: #757575;
-            --md-outline: #e0e0e0;
+            /* Nord Color Palette */
+            --nord0: #2e3440;   /* Polar Night - darkest */
+            --nord1: #3b4252;   /* Polar Night */
+            --nord2: #434c5e;   /* Polar Night */
+            --nord3: #4c566a;   /* Polar Night - brightest */
+            --nord4: #d8dee9;   /* Snow Storm - darkest */
+            --nord5: #e5e9f0;   /* Snow Storm */
+            --nord6: #eceff4;   /* Snow Storm - brightest */
+            --nord7: #8fbcbb;   /* Frost */
+            --nord8: #88c0d0;   /* Frost */
+            --nord9: #81a1c1;   /* Frost */
+            --nord10: #5e81ac;  /* Frost */
+            --nord11: #bf616a;  /* Aurora - red */
+            --nord12: #d08770;  /* Aurora - orange */
+            --nord13: #ebcb8b;  /* Aurora - yellow */
+            --nord14: #a3be8c;  /* Aurora - green */
+            --nord15: #b48ead;  /* Aurora - purple */
             
-            /* Elevation shadows */
-            --md-elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            --md-elevation-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-            --md-elevation-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            --md-elevation-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-            --md-elevation-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            /* Semantic Color Mapping */
+            --md-primary: var(--nord10);        /* Frost blue */
+            --md-primary-dark: var(--nord9);    /* Darker frost blue */
+            --md-secondary: var(--nord8);       /* Light frost blue */
+            --md-surface: var(--nord6);         /* Snow storm brightest */
+            --md-background: var(--nord5);      /* Snow storm */
+            --md-error: var(--nord11);          /* Aurora red */
+            --md-success: var(--nord14);        /* Aurora green */
+            --md-warning: var(--nord13);        /* Aurora yellow */
+            --md-on-surface: var(--nord0);      /* Polar night darkest */
+            --md-on-surface-variant: var(--nord3); /* Polar night brightest */
+            --md-outline: var(--nord4);         /* Snow storm darkest */
+            
+            /* Nord-themed elevation shadows */
+            --md-elevation-1: 0 1px 3px rgba(46, 52, 64, 0.12), 0 1px 2px rgba(46, 52, 64, 0.24);
+            --md-elevation-2: 0 3px 6px rgba(46, 52, 64, 0.16), 0 3px 6px rgba(46, 52, 64, 0.23);
+            --md-elevation-3: 0 10px 20px rgba(46, 52, 64, 0.19), 0 6px 6px rgba(46, 52, 64, 0.23);
+            --md-elevation-4: 0 14px 28px rgba(46, 52, 64, 0.25), 0 10px 10px rgba(46, 52, 64, 0.22);
+            --md-elevation-5: 0 19px 38px rgba(46, 52, 64, 0.30), 0 15px 12px rgba(46, 52, 64, 0.22);
         }
 
         /* Material Design Typography */
@@ -91,9 +110,9 @@
         }
 
         .problem-card.completed {
-            background-color: #e8f5e8;
+            background-color: rgba(163, 190, 140, 0.15);
             border-color: var(--md-success);
-            box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 2px 4px rgba(163, 190, 140, 0.3);
         }
 
         /* Month Cards - Material Design Surfaces */
@@ -157,11 +176,11 @@
             box-shadow: var(--md-elevation-2);
         }
 
-        /* Material Design Progress Bars */
+        /* Nord-themed Progress Bars */
         .progress {
             height: 8px;
             border-radius: 4px;
-            background-color: #e3f2fd;
+            background-color: var(--nord4);
             overflow: hidden;
         }
 
@@ -195,7 +214,7 @@
         }
 
         .nav-link:hover {
-            background-color: rgba(25, 118, 210, 0.08);
+            background-color: rgba(94, 129, 172, 0.08);
             color: var(--md-primary) !important;
         }
 
@@ -214,15 +233,15 @@
         }
 
         .navbar-toggler:hover {
-            background-color: rgba(25, 118, 210, 0.08);
+            background-color: rgba(94, 129, 172, 0.08);
         }
 
         .navbar-toggler:focus {
-            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.25);
+            box-shadow: 0 0 0 3px rgba(94, 129, 172, 0.25);
         }
 
         .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%235e81ac' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
             width: 20px;
             height: 20px;
         }
@@ -315,12 +334,12 @@
         /* Bonus Cards */
         .bonus-card {
             border-left: 4px solid var(--md-warning);
-            background-color: #fff8e1;
+            background-color: rgba(235, 203, 139, 0.15);
             transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
         .bonus-card.completed {
-            background-color: #e8f5e8;
+            background-color: rgba(163, 190, 140, 0.15);
             border-left-color: var(--md-success);
         }
 
