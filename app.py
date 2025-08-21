@@ -227,6 +227,159 @@ def about():
     """About Raymond and his journey"""
     return render_template('about.html')
 
+def estimate_difficulty_and_topics(problem_name):
+    """Estimate difficulty and topics based on problem name"""
+    name_lower = problem_name.lower()
+    
+    # Difficulty estimation based on common patterns
+    difficulty = 'Medium'
+    if any(keyword in name_lower for keyword in ['two sum', 'valid', 'merge', 'reverse', 'palindrome', 'anagram', 'binary search']):
+        difficulty = 'Easy'
+    elif any(keyword in name_lower for keyword in ['median', 'serialize', 'sliding window', 'minimum window', 'trapping', 'word ladder']):
+        difficulty = 'Hard'
+    
+    # Topic estimation based on problem name patterns
+    topics = []
+    if any(keyword in name_lower for keyword in ['array', 'sum', 'product', 'subarray', 'rotate']):
+        topics.append('Array')
+    if any(keyword in name_lower for keyword in ['string', 'palindrome', 'anagram', 'word', 'character']):
+        topics.append('String')
+    if any(keyword in name_lower for keyword in ['tree', 'binary tree', 'bst', 'node']):
+        topics.append('Binary Tree')
+    if any(keyword in name_lower for keyword in ['linked list', 'list cycle', 'merge']):
+        topics.append('Linked List')
+    if any(keyword in name_lower for keyword in ['graph', 'dfs', 'bfs', 'island', 'clone']):
+        topics.append('Graph')
+    if any(keyword in name_lower for keyword in ['dynamic programming', 'dp', 'coin', 'climb', 'house robber']):
+        topics.append('Dynamic Programming')
+    if any(keyword in name_lower for keyword in ['binary search', 'search', 'find']):
+        topics.append('Binary Search')
+    if any(keyword in name_lower for keyword in ['stack', 'queue', 'parentheses', 'calculator']):
+        topics.append('Stack')
+    if any(keyword in name_lower for keyword in ['heap', 'priority', 'kth', 'median']):
+        topics.append('Heap')
+    if any(keyword in name_lower for keyword in ['hash', 'map', 'set']):
+        topics.append('Hash Table')
+    if any(keyword in name_lower for keyword in ['sort', 'merge']):
+        topics.append('Sorting')
+    if any(keyword in name_lower for keyword in ['matrix', 'grid', '2d']):
+        topics.append('Matrix')
+    if any(keyword in name_lower for keyword in ['backtrack', 'permutation', 'combination']):
+        topics.append('Backtracking')
+    if any(keyword in name_lower for keyword in ['trie', 'prefix']):
+        topics.append('Trie')
+    if any(keyword in name_lower for keyword in ['bit', 'xor', 'and', 'or']):
+        topics.append('Bit Manipulation')
+    
+    # Default topics if none detected
+    if not topics:
+        topics = ['Algorithm']
+    
+    # Time estimation based on difficulty
+    time_estimates = {'Easy': 20, 'Medium': 30, 'Hard': 45}
+    time = time_estimates.get(difficulty, 30)
+    
+    return difficulty, topics, time
+
+@app.route('/complete-list')
+def complete_list():
+    """Complete question list with customizable time sliders"""
+    all_questions = []
+    seen_urls = set()  # To avoid duplicates
+    
+    # Add questions from regular roadmap
+    for month_name, month_data in web_app.roadmap_data.items():
+        for day_data in month_data:
+            for problem in day_data.get('problems', []):
+                url = problem.get('url', '')
+                if url and url not in seen_urls:
+                    seen_urls.add(url)
+                    problem_name = problem.get('name', 'Unknown Problem')
+                    difficulty, topics, time = estimate_difficulty_and_topics(problem_name)
+                    
+                    all_questions.append({
+                        'id': len(all_questions) + 1,
+                        'title': problem_name,
+                        'url': url,
+                        'difficulty': difficulty,
+                        'time': time,
+                        'topics': topics,
+                        'source': f'advanced-{month_name}'
+                    })
+    
+    # Add questions from intermediate roadmap
+    for month_name, month_data in web_app.intermediate_roadmap_data.items():
+        for day_data in month_data:
+            for problem in day_data.get('problems', []):
+                url = problem.get('url', '')
+                if url and url not in seen_urls:
+                    seen_urls.add(url)
+                    problem_name = problem.get('name', 'Unknown Problem')
+                    difficulty, topics, time = estimate_difficulty_and_topics(problem_name)
+                    
+                    all_questions.append({
+                        'id': len(all_questions) + 1,
+                        'title': problem_name,
+                        'url': url,
+                        'difficulty': difficulty,
+                        'time': time,
+                        'topics': topics,
+                        'source': f'intermediate-{month_name}'
+                    })
+    
+    # Add questions from AtCoder beginner problems
+    for problem in web_app.atcoder_problems.get('problems', []):
+        url = problem.get('url', '')
+        if url and url not in seen_urls:
+            seen_urls.add(url)
+            problem_name = problem.get('title', 'Unknown Problem')
+            
+            # AtCoder problems are generally easier
+            all_questions.append({
+                'id': len(all_questions) + 1,
+                'title': problem_name,
+                'url': url,
+                'difficulty': 'Easy',
+                'time': 15,
+                'topics': ['Algorithm', 'Implementation'],
+                'source': 'atcoder-beginner'
+            })
+    
+    # Add some additional popular LeetCode problems to reach a comprehensive set
+    additional_problems = [
+        {'title': 'Two Sum', 'url': 'https://leetcode.com/problems/two-sum/', 'difficulty': 'Easy', 'time': 15, 'topics': ['Array', 'Hash Table']},
+        {'title': 'Add Two Numbers', 'url': 'https://leetcode.com/problems/add-two-numbers/', 'difficulty': 'Medium', 'time': 25, 'topics': ['Linked List', 'Math']},
+        {'title': 'Longest Substring Without Repeating Characters', 'url': 'https://leetcode.com/problems/longest-substring-without-repeating-characters/', 'difficulty': 'Medium', 'time': 30, 'topics': ['String', 'Sliding Window']},
+        {'title': 'Median of Two Sorted Arrays', 'url': 'https://leetcode.com/problems/median-of-two-sorted-arrays/', 'difficulty': 'Hard', 'time': 45, 'topics': ['Array', 'Binary Search']},
+        {'title': 'Valid Parentheses', 'url': 'https://leetcode.com/problems/valid-parentheses/', 'difficulty': 'Easy', 'time': 20, 'topics': ['String', 'Stack']},
+        {'title': 'Merge Two Sorted Lists', 'url': 'https://leetcode.com/problems/merge-two-sorted-lists/', 'difficulty': 'Easy', 'time': 20, 'topics': ['Linked List', 'Recursion']},
+        {'title': 'Remove Duplicates from Sorted Array', 'url': 'https://leetcode.com/problems/remove-duplicates-from-sorted-array/', 'difficulty': 'Easy', 'time': 15, 'topics': ['Array', 'Two Pointers']},
+        {'title': 'Best Time to Buy and Sell Stock', 'url': 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/', 'difficulty': 'Easy', 'time': 20, 'topics': ['Array', 'Dynamic Programming']},
+        {'title': 'Valid Palindrome', 'url': 'https://leetcode.com/problems/valid-palindrome/', 'difficulty': 'Easy', 'time': 15, 'topics': ['String', 'Two Pointers']},
+        {'title': 'Invert Binary Tree', 'url': 'https://leetcode.com/problems/invert-binary-tree/', 'difficulty': 'Easy', 'time': 15, 'topics': ['Binary Tree', 'DFS']},
+        {'title': 'Maximum Subarray', 'url': 'https://leetcode.com/problems/maximum-subarray/', 'difficulty': 'Medium', 'time': 20, 'topics': ['Array', 'Dynamic Programming']},
+        {'title': 'Climbing Stairs', 'url': 'https://leetcode.com/problems/climbing-stairs/', 'difficulty': 'Easy', 'time': 20, 'topics': ['Math', 'Dynamic Programming']},
+        {'title': 'Binary Search', 'url': 'https://leetcode.com/problems/binary-search/', 'difficulty': 'Easy', 'time': 15, 'topics': ['Array', 'Binary Search']},
+        {'title': 'Flood Fill', 'url': 'https://leetcode.com/problems/flood-fill/', 'difficulty': 'Easy', 'time': 20, 'topics': ['Array', 'DFS', 'BFS']},
+        {'title': 'Number of Islands', 'url': 'https://leetcode.com/problems/number-of-islands/', 'difficulty': 'Medium', 'time': 25, 'topics': ['Array', 'DFS', 'BFS']},
+    ]
+    
+    # Add additional problems if they're not already included
+    for problem in additional_problems:
+        if problem['url'] not in seen_urls:
+            seen_urls.add(problem['url'])
+            all_questions.append({
+                'id': len(all_questions) + 1,
+                'title': problem['title'],
+                'url': problem['url'],
+                'difficulty': problem['difficulty'],
+                'time': problem['time'],
+                'topics': problem['topics'],
+                'source': 'popular'
+            })
+    
+    return render_template('complete_list.html', questions_data=all_questions)
+
 if __name__ == '__main__':
     # Create templates directory
     os.makedirs('templates', exist_ok=True)
