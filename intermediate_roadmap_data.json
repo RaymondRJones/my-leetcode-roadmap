@@ -26,10 +26,10 @@
       "day": 3,
       "problems": [
         {
-          "name": "Divisible and Non-divisible Sums",
+          "name": "Divisible and Non-divisible Sums Difference",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/divisible-and-non-divisible-sums/"
+          "url": "https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/description/"
         }
       ]
     },
@@ -136,10 +136,10 @@
       "day": 13,
       "problems": [
         {
-          "name": "Binary Tree Vertical Order",
+          "name": "Vertical Order Traversal of a Binary Tree",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/binary-tree-vertical-order/"
+          "url": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/description/"
         }
       ]
     },
@@ -191,10 +191,10 @@
       "day": 18,
       "problems": [
         {
-          "name": "Find First and Last Position of",
+          "name": "Find First and Last Position of Element in Sorted Array",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-first-and-last-position-of/"
+          "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/"
         }
       ]
     },
@@ -215,10 +215,10 @@
       "day": 1,
       "problems": [
         {
-          "name": "Minimum Changes To Make",
+          "name": "Minimum Changes To Make Alternating Binary String",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-changes-to-make/"
+          "url": "https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/description/"
         }
       ]
     },
@@ -226,10 +226,10 @@
       "day": 2,
       "problems": [
         {
-          "name": "Maximum Score After Splitting a",
+          "name": "Maximum Score After Splitting a String",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-score-after-splitting-a/"
+          "url": "https://leetcode.com/problems/maximum-score-after-splitting-a-string/description/"
         }
       ]
     },
@@ -237,10 +237,10 @@
       "day": 3,
       "problems": [
         {
-          "name": "Widest Vertical Area Between Two",
+          "name": "Widest Vertical Area Between Two Points Containing No Points",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/widest-vertical-area-between-two/"
+          "url": "https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/description/"
         }
       ]
     },
@@ -270,10 +270,10 @@
       "day": 6,
       "problems": [
         {
-          "name": "Maximum Product Difference",
+          "name": "Maximum Product Difference Between Two Pairs",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-product-difference/"
+          "url": "https://leetcode.com/problems/maximum-product-difference-between-two-pairs/description/"
         }
       ]
     },
@@ -303,10 +303,10 @@
       "day": 9,
       "problems": [
         {
-          "name": "Difference Between Ones and",
+          "name": "Difference Between Ones and Zeros in Row and Column",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/difference-between-ones-and/"
+          "url": "https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/description/"
         }
       ]
     },
@@ -314,10 +314,10 @@
       "day": 10,
       "problems": [
         {
-          "name": "Maximum Product of Two",
+          "name": "Maximum Product of Two Digits",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-product-of-two/"
+          "url": "https://leetcode.com/problems/maximum-product-of-two-digits/description/"
         }
       ]
     },
@@ -336,10 +336,10 @@
       "day": 12,
       "problems": [
         {
-          "name": "Element Appearing More Than",
+          "name": "Element Appearing More Than 25 in Sorted Array",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/element-appearing-more-than/"
+          "url": "https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/description/"
         }
       ]
     },
@@ -558,10 +558,10 @@
       "day": 18,
       "problems": [
         {
-          "name": "Evaluate Reverse Polish",
+          "name": "Evaluate Reverse Polish Notation",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/evaluate-reverse-polish/"
+          "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/description/"
         }
       ]
     },
@@ -569,10 +569,10 @@
       "day": 19,
       "problems": [
         {
-          "name": "Longest Substring Without",
+          "name": "Longest Substring Without Repeating Characters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/longest-substring-without/"
+          "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/description/"
         }
       ]
     },
@@ -580,10 +580,10 @@
       "day": 20,
       "problems": [
         {
-          "name": "Moving Average from Data",
+          "name": "Moving Average from Data Stream",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/moving-average-from-data/"
+          "url": "https://leetcode.com/problems/moving-average-from-data-stream/description/"
         }
       ]
     },
@@ -591,10 +591,10 @@
       "day": 21,
       "problems": [
         {
-          "name": "Minimize Maximum Pair Sum",
+          "name": "Minimize Maximum Pair Sum in Array",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimize-maximum-pair-sum/"
+          "url": "https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/description/"
         }
       ]
     },
@@ -613,10 +613,10 @@
       "day": 23,
       "problems": [
         {
-          "name": "Binary Tree Level Order",
+          "name": "Binary Tree Level Order Traversal",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/binary-tree-level-order/"
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/description/"
         }
       ]
     },
@@ -657,10 +657,10 @@
       "day": 27,
       "problems": [
         {
-          "name": "Minimum Time Visiting All",
+          "name": "Minimum Time Visiting All Points",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-time-visiting-all/"
+          "url": "https://leetcode.com/problems/minimum-time-visiting-all-points/description/"
         }
       ]
     },
@@ -668,10 +668,10 @@
       "day": 28,
       "problems": [
         {
-          "name": "Find Words That Can Be",
+          "name": "Find Words That Can Be Formed by Characters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-words-that-can-be/"
+          "url": "https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/description/"
         }
       ]
     },
@@ -679,10 +679,10 @@
       "day": 29,
       "problems": [
         {
-          "name": "Check If Two String Arrays are",
+          "name": "Check If Two String Arrays are Equivalent",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/check-if-two-string-arrays-are/"
+          "url": "https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/description/"
         }
       ]
     },
@@ -690,10 +690,10 @@
       "day": 30,
       "problems": [
         {
-          "name": "Decrease Elements To Make",
+          "name": "Decrease Elements To Make Array Zigzag",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/decrease-elements-to-make/"
+          "url": "https://leetcode.com/problems/decrease-elements-to-make-array-zigzag/description/"
         },
         {
           "name": "01 Matrix",
