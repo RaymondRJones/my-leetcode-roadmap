@@ -1,0 +1,1030 @@
+{% extends 'base.html' %}
+
+{% block title %}System Design - Trivia & Knowledge Checks{% endblock %}
+
+{% block content %}
+<div class="container mt-4 fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center mb-4">
+                <a href="/system-design" class="btn btn-outline-primary me-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">arrow_back</span>
+                    Back to Roadmap
+                </a>
+                <h1 class="display-5 mb-0">Trivia & Knowledge Checks</h1>
+            </div>
+            
+            <p class="lead mb-5">Master these fundamental concepts to ace the knowledge portion of your system design interview. These topics frequently appear in technical discussions.</p>
+
+            <!-- System Design Interview Process -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">quiz</span>
+                    System Design Interview Process
+                </h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="md-card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">The 4-Step Interview Framework</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-primary me-3" style="font-size: 1.2rem;">1</span>
+                                            <div>
+                                                <h6 class="mb-2">Ask Clarifying Questions (5 mins)</h6>
+                                                <p class="text-muted small">Gather requirements, understand scope, identify edge cases</p>
+                                                <ul class="small text-muted">
+                                                    <li>Who's using it? What are they doing?</li>
+                                                    <li>How many users? What's the scale?</li>
+                                                    <li>What are the core features?</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-success me-3" style="font-size: 1.2rem;">2</span>
+                                            <div>
+                                                <h6 class="mb-2">High-Level Design (5 mins)</h6>
+                                                <p class="text-muted small">Draw basic architecture with major components</p>
+                                                <ul class="small text-muted">
+                                                    <li>Client → Load Balancer → Servers → Database</li>
+                                                    <li>Keep it simple at first</li>
+                                                    <li>Show data flow</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-warning me-3" style="font-size: 1.2rem;">3</span>
+                                            <div>
+                                                <h6 class="mb-2">Deep Dive Components (35 mins)</h6>
+                                                <p class="text-muted small">Focus on specific parts - ask interviewer what they want to explore</p>
+                                                <ul class="small text-muted">
+                                                    <li>Database schema design</li>
+                                                    <li>Caching strategies</li>
+                                                    <li>API design</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-danger me-3" style="font-size: 1.2rem;">4</span>
+                                            <div>
+                                                <h6 class="mb-2">Scale the Design (10 mins)</h6>
+                                                <p class="text-muted small">Address bottlenecks and scaling issues</p>
+                                                <ul class="small text-muted">
+                                                    <li>Load balancers, horizontal scaling</li>
+                                                    <li>Caching, database sharding</li>
+                                                    <li>Back-of-envelope calculations</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info mt-3">
+                                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">lightbulb</span>
+                                    <strong>Pro Tip:</strong> Ask "What would you like me to focus on?" to guide the conversation toward the interviewer's interests.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three Pillars of Good Systems -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">foundation</span>
+                    Three Pillars of Good Systems (DDIA)
+                </h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body text-center">
+                                <span class="material-icons text-success mb-3" style="font-size: 48px;">verified</span>
+                                <h5 class="card-title text-success">Reliability</h5>
+                                <p class="card-text text-muted">System continues to work correctly even when things go wrong (hardware failures, software bugs, human errors).</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Goal:</strong> Consistent behavior, fault tolerance, predictable error handling</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body text-center">
+                                <span class="material-icons text-primary mb-3" style="font-size: 48px;">trending_up</span>
+                                <h5 class="card-title text-primary">Scalability</h5>
+                                <p class="card-text text-muted">System can handle increased load gracefully. Works for 1 user? Great! What about 1 million users?</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Challenge:</strong> The hardest part of system design - handling millions/billions of users</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body text-center">
+                                <span class="material-icons text-warning mb-3" style="font-size: 48px;">build</span>
+                                <h5 class="card-title text-warning">Maintainability</h5>
+                                <p class="card-text text-muted">System can evolve over time without becoming a spaghetti code nightmare. Easy to understand, modify, and extend.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Goal:</strong> Clean code, good documentation, modular design</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Performance Concepts -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">speed</span>
+                    Core Performance Concepts
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">compare_arrows</span>
+                                    Performance vs Scalability
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>Performance:</strong> How fast a system responds to a single request.<br>
+                                    <strong>Scalability:</strong> How well a system handles increased load.
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Key Point:</strong> A system can be performant but not scalable, or scalable but not performant.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">schedule</span>
+                                    Latency vs Throughput
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>Latency:</strong> Time to process a single request.<br>
+                                    <strong>Throughput:</strong> Number of requests processed per unit time.
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> Highway analogy - latency is travel time, throughput is cars per hour.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scaling Concepts -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">trending_up</span>
+                    Scaling Your System
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">arrow_upward</span>
+                                    Vertical Scaling (Scale Up)
+                                </h5>
+                                <p class="card-text text-muted mb-3">Get a bigger, more powerful server - like upgrading your PC with better CPU, RAM, SSD.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-success me-2">Pros</span>
+                                    <span class="badge bg-outline-success me-2">Simple</span>
+                                    <span class="badge bg-outline-success me-2">No complexity</span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="badge bg-danger me-2">Cons</span>
+                                    <span class="badge bg-outline-danger me-2">Hardware limits</span>
+                                    <span class="badge bg-outline-danger me-2">Single point of failure</span>
+                                </div>
+                                <div class="alert alert-light">
+                                    <small><strong>Analogy:</strong> One big armored dog vs many small dogs with armor</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">arrow_forward</span>
+                                    Horizontal Scaling (Scale Out)
+                                </h5>
+                                <p class="card-text text-muted mb-3">Add more servers - like having many smaller computers working together.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-success me-2">Pros</span>
+                                    <span class="badge bg-outline-success me-2">No hardware limits</span>
+                                    <span class="badge bg-outline-success me-2">Fault tolerant</span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="badge bg-danger me-2">Cons</span>
+                                    <span class="badge bg-outline-danger me-2">More complex</span>
+                                    <span class="badge bg-outline-danger me-2">Distributed system challenges</span>
+                                </div>
+                                <div class="alert alert-light">
+                                    <small><strong>Key:</strong> This is what allows scaling to billions of users (Facebook, Google)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caching Deep Dive -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">memory</span>
+                    Caching Strategies
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">flash_on</span>
+                                    What is Caching?
+                                </h5>
+                                <p class="card-text text-muted mb-3">Store frequently accessed data in fast storage (usually memory) for O(1) retrieval.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> Instead of loading Beyoncé's profile from database every time, store it in cache after first request</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">speed</span>
+                                    Performance Impact
+                                </h5>
+                                <p class="card-text text-muted mb-3">Transform O(n) database searches into O(1) hash table lookups.</p>
+                                <div class="alert alert-success">
+                                    <small><strong>Result:</strong> 10,000 requests for popular data → 1 database hit + 9,999 cache hits</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load Balancing -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">balance</span>
+                    Load Balancing & Traffic Management
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">traffic</span>
+                                    Highway Analogy
+                                </h5>
+                                <p class="card-text text-muted mb-3">Like highway lanes - when traffic gets heavy, you need multiple lanes (servers) to handle the load.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Problem:</strong> Billions of users hitting one server = traffic jam</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">route</span>
+                                    Load Balancing Algorithms
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><strong>Round Robin:</strong> Take turns - server1, server2, server3...</li>
+                                    <li class="mb-2"><strong>Least Loaded:</strong> Send to server with least traffic</li>
+                                    <li class="mb-2"><strong>Random:</strong> Randomly distribute requests</li>
+                                    <li class="mb-2"><strong>Weighted:</strong> More powerful servers get more traffic</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DNS and CDN -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">public</span>
+                    DNS & Content Delivery Networks
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">dns</span>
+                                    How DNS Works
+                                </h5>
+                                <p class="card-text text-muted mb-3">Domain Name System translates human-readable names to IP addresses.</p>
+                                <div class="small text-muted mb-3">
+                                    <strong>Flow:</strong><br>
+                                    1. You type "google.com"<br>
+                                    2. ISP DNS server checks root DNS<br>
+                                    3. Returns IP address (e.g., 142.250.191.14)<br>
+                                    4. Your browser connects to that IP
+                                </div>
+                                <div class="alert alert-warning">
+                                    <small><strong>Fun fact:</strong> This is why seeing someone's IP in Call of Duty chat is scary - they know your location!</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">cloud_download</span>
+                                    Content Delivery Networks (CDN)
+                                </h5>
+                                <p class="card-text text-muted mb-3">Store static content (images, CSS, JS) closer to users geographically.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Why?</strong> Instead of sending data from Europe to Australia, have a CDN server in Australia with cached content</small>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="badge bg-secondary me-2">Push CDN</span>
+                                    <span class="badge bg-secondary me-2">Pull CDN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Availability & Consistency -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">balance</span>
+                    Availability vs. Consistency
+                </h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="md-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">warning</span>
+                                    CAP Theorem (Pick 2 of 3)
+                                </h5>
+                                <p class="card-text mb-4">In any distributed system, you can only guarantee 2 out of 3:</p>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded">
+                                            <span class="material-icons text-success" style="font-size: 36px;">consistency</span>
+                                            <h6 class="mt-2">Consistency</h6>
+                                            <small class="text-muted">All nodes see the same data simultaneously</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded">
+                                            <span class="material-icons text-primary" style="font-size: 36px;">check_circle</span>
+                                            <h6 class="mt-2">Availability</h6>
+                                            <small class="text-muted">System remains operational and responds</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded bg-light">
+                                            <span class="material-icons text-warning" style="font-size: 36px;">network_check</span>
+                                            <h6 class="mt-2">Partition Tolerance</h6>
+                                            <small class="text-muted">Works despite network failures</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-warning mt-4">
+                                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">info</span>
+                                    <strong>Reality Check:</strong> In distributed systems, partition tolerance is mandatory (networks always fail). So you really choose between Consistency vs Availability.
+                                </div>
+                                <div class="mt-4">
+                                    <div class="row text-center">
+                                        <div class="col-md-6">
+                                            <span class="badge bg-success">CP Systems (Choose Consistency)</span>
+                                            <p class="small mt-2">Banks, RDBMS - Better to be unavailable than wrong</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="badge bg-primary">AP Systems (Choose Availability)</span>
+                                            <p class="small mt-2">DNS, Social Media - Better to show stale data than nothing</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Infrastructure -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">settings_ethernet</span>
+                    Advanced Infrastructure Concepts
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">security</span>
+                                    Reverse Proxy
+                                </h5>
+                                <p class="card-text text-muted mb-3">Like a supercharged load balancer with extra features.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-success me-2">Benefits</span>
+                                    <div class="small mt-2">
+                                        • Better security & unified interfaces<br>
+                                        • Compression & caching<br>
+                                        • SSL termination<br>
+                                        • Static content delivery
+                                    </div>
+                                </div>
+                                <div class="alert alert-light">
+                                    <small><strong>Trade-off:</strong> More features but harder to implement than basic load balancer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">trending_down</span>
+                                    Performance vs Scalability Trade-offs
+                                </h5>
+                                <p class="card-text text-muted mb-3">As you increase scalability, you generally increase complexity and reduce performance.</p>
+                                <div class="alert alert-warning">
+                                    <small><strong>Reality:</strong> More servers = more coordination = more complexity = slower individual operations</small>
+                                </div>
+                                <div class="small text-muted">
+                                    <strong>Performance:</strong> Fast for single user<br>
+                                    <strong>Scalability:</strong> Handles many users (but may be slower per user)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Concepts -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">storage</span>
+                    Database Concepts
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">table_chart</span>
+                                    SQL vs. NoSQL
+                                </h5>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-success">SQL (ACID)</h6>
+                                        <ul class="small">
+                                            <li><strong>ACID compliance:</strong> Atomicity, Consistency, Isolation, Durability</li>
+                                            <li>Complex queries & joins</li>
+                                            <li>Structured data with schemas</li>
+                                            <li><strong>Best for:</strong> Banks, financial systems, transactions</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12">
+                                        <h6 class="text-primary">NoSQL (BASE)</h6>
+                                        <ul class="small">
+                                            <li><strong>BASE:</strong> Basically Available, Soft state, Eventually consistent</li>
+                                            <li>Horizontal scaling, flexible schema</li>
+                                            <li>High performance, less complexity</li>
+                                            <li><strong>Best for:</strong> Social media, content management</li>
+                                        </ul>
+                                        <div class="alert alert-warning mt-2">
+                                            <small><strong>Note:</strong> BASE terms are often vague - "eventually consistent" could mean milliseconds or hours!</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">tune</span>
+                                    Normalization vs. Denormalization
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>Normalized:</strong> Each piece of data stored once, linked by IDs<br>
+                                    <strong>Denormalized:</strong> Duplicate data for faster queries
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> Store user's first name, last name in every order record vs linking to separate user table</small>
+                                </div>
+                                <div class="small text-muted">
+                                    <strong>Trade-off:</strong> Storage space vs Query speed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">dashboard</span>
+                                    Database Sharding & Federation
+                                </h5>
+                                <p class="card-text text-muted mb-3">Split database by data type or range to improve performance.</p>
+                                <div class="small text-muted mb-3">
+                                    <strong>Sharding examples:</strong><br>
+                                    • Users A-D → Server 1<br>
+                                    • Users E-H → Server 2<br>
+                                    • Or: Beyoncé database, Shakira database
+                                </div>
+                                <div class="alert alert-light">
+                                    <small><strong>Benefit:</strong> Faster than O(n) search across entire dataset</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">analytics</span>
+                                    Column-Based Databases (OLAP)
+                                </h5>
+                                <p class="card-text text-muted mb-3">Store data by columns instead of rows for analytics workloads.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Use case:</strong> When you frequently ask "show me all users from USA" - store that as a pre-computed column</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Storage Implementation -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">hard_drive</span>
+                    How Data is Actually Stored
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">description</span>
+                                    From Text Files to Write-Ahead Logs
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>Simple files:</strong> Just append records to a text file (O(n) search)<br>
+                                    <strong>Write-ahead logs (WAL):</strong> Keep track of offsets for O(1) access
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Benefits:</strong> Crash recovery, simple appending, can remove old segments</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">account_tree</span>
+                                    SS Tables vs B-Trees
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>SS Tables/LSM Trees:</strong> Write-heavy workloads (Cassandra)<br>
+                                    <strong>B-Trees:</strong> Read-heavy workloads (MySQL, DynamoDB)
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Trade-off:</strong> Write optimization vs Read optimization</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">analytics</span>
+                                    Analytics & Column-Based Storage
+                                </h5>
+                                <p class="card-text text-muted mb-3">Instead of scanning all rows, pre-compute and store query results as columns for faster analytics.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> "Find all US users" - store as separate column instead of scanning every row</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">search</span>
+                                    Full-Text Search
+                                </h5>
+                                <p class="card-text text-muted mb-3">Uses inverted indices - map each word to documents containing it.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> "cat" → [doc1, doc2, doc3] for fast text search</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Replication -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">content_copy</span>
+                    Replication
+                </h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="md-card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">Replication Strategies</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded">
+                                            <span class="material-icons text-primary" style="font-size: 36px;">supervisor_account</span>
+                                            <h6 class="mt-2">Master-Slave</h6>
+                                            <small class="text-muted">One write node, multiple read replicas</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded">
+                                            <span class="material-icons text-success" style="font-size: 36px;">group</span>
+                                            <h6 class="mt-2">Master-Master</h6>
+                                            <small class="text-muted">Multiple write nodes with conflict resolution</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center p-3 border rounded">
+                                            <span class="material-icons text-warning" style="font-size: 36px;">sync</span>
+                                            <h6 class="mt-2">Synchronous vs Asynchronous</h6>
+                                            <small class="text-muted">Consistency vs Performance trade-off</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Communication Protocols -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">send</span>
+                    Sending Data
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">http</span>
+                                    HTTP / TCP / UDP
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li><strong>HTTP:</strong> Application layer, stateless, REST APIs</li>
+                                    <li><strong>TCP:</strong> Reliable, ordered, connection-based</li>
+                                    <li><strong>UDP:</strong> Fast, connectionless, best-effort delivery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">api</span>
+                                    RPC / REST / gRPC / Message Queues
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li><strong>REST:</strong> HTTP-based, stateless, widely adopted</li>
+                                    <li><strong>RPC:</strong> Function calls over network</li>
+                                    <li><strong>gRPC:</strong> High-performance RPC with Protocol Buffers</li>
+                                    <li><strong>Message Queues:</strong> Asynchronous, decoupled communication</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Concepts -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">psychology</span>
+                    Advanced Concepts
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">repeat</span>
+                                    Idempotency
+                                </h5>
+                                <p class="card-text text-muted">Operations that can be repeated multiple times without changing the result beyond the initial application.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> HTTP PUT and DELETE are idempotent, POST is not</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">person</span>
+                                    Leader Follower Pattern
+                                </h5>
+                                <p class="card-text text-muted">One leader node handles writes, followers replicate and handle reads. Provides consistency and fault tolerance.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Use case:</strong> Database replication, consensus algorithms</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">hourglass_empty</span>
+                                    Eventual Consistency
+                                </h5>
+                                <p class="card-text text-muted">System will become consistent over time, even without receiving new updates. Common in distributed systems.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> DNS updates, social media feeds</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">whatshot</span>
+                                    Hot Partition / Celebrity Problem
+                                </h5>
+                                <p class="card-text text-muted">When a single partition receives disproportionately high traffic, causing bottlenecks and reduced performance.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Solution:</strong> Consistent hashing, data replication, load balancing</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partitioning and Sharding -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">dashboard</span>
+                    Partitioning & Sharding
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">splitscreen</span>
+                                    Why Partition Data?
+                                </h5>
+                                <p class="card-text text-muted mb-3">Break large datasets into smaller, manageable partitions. Instead of O(n) search across everything, search specific partitions.</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Example:</strong> A-C users on server1, D-F on server2, etc.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">warning</span>
+                                    Hot Partition Problem
+                                </h5>
+                                <p class="card-text text-muted mb-3">When one partition gets disproportionately more traffic (celebrity problem).</p>
+                                <div class="alert alert-light">
+                                    <small><strong>Solution:</strong> Consistent hashing, better partition keys, replication</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions and ACID -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">security</span>
+                    Transactions & ACID Properties
+                </h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="md-card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">ACID Properties Explained</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-primary me-3" style="font-size: 1rem;">A</span>
+                                            <div>
+                                                <h6 class="mb-2">Atomicity</h6>
+                                                <p class="text-muted small mb-0">All operations in a transaction succeed or fail together. No partial states.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-success me-3" style="font-size: 1rem;">C</span>
+                                            <div>
+                                                <h6 class="mb-2">Consistency</h6>
+                                                <p class="text-muted small mb-0">Database remains in valid state. Note: This term is often vague and overloaded.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-warning me-3" style="font-size: 1rem;">I</span>
+                                            <div>
+                                                <h6 class="mb-2">Isolation</h6>
+                                                <p class="text-muted small mb-0">Concurrent transactions don't interfere. No race conditions or dirty reads.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-danger me-3" style="font-size: 1rem;">D</span>
+                                            <div>
+                                                <h6 class="mb-2">Durability</h6>
+                                                <p class="text-muted small mb-0">Committed data survives system failures. Persisted to non-volatile storage.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">layers</span>
+                                    Isolation Levels
+                                </h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><strong>Read Committed:</strong> No dirty reads/writes</li>
+                                    <li class="mb-2"><strong>Snapshot Isolation:</strong> Each transaction sees consistent snapshot</li>
+                                    <li class="mb-2"><strong>Serializable:</strong> Strongest level, transactions appear sequential</li>
+                                </ul>
+                                <div class="alert alert-light">
+                                    <small><strong>Trade-off:</strong> Stronger isolation = Better consistency, but lower performance</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">lock</span>
+                                    ACID vs BASE
+                                </h5>
+                                <p class="card-text text-muted mb-3">
+                                    <strong>ACID:</strong> Traditional SQL databases<br>
+                                    <strong>BASE:</strong> NoSQL approach - Basically Available, Soft state, Eventual consistency
+                                </p>
+                                <div class="alert alert-light">
+                                    <small><strong>Reality:</strong> BASE terms are often vague with no concrete metrics</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Encoding and Data Transmission -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">transform</span>
+                    Encoding & Data Transmission
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">code</span>
+                                    Serialization Formats
+                                </h5>
+                                <p class="card-text text-muted mb-3">Converting objects between different programming languages and systems.</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>JSON:</strong> Human-readable, widely supported</li>
+                                    <li><strong>XML:</strong> Verbose but structured</li>
+                                    <li><strong>Binary:</strong> Compact, faster (Protocol Buffers, Avro)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">sync_alt</span>
+                                    Data Flow Methods
+                                </h5>
+                                <p class="card-text text-muted mb-3">How services communicate with each other:</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>HTTP/REST:</strong> Most common, stateless</li>
+                                    <li><strong>RPC:</strong> Function calls over network</li>
+                                    <li><strong>Message Queues:</strong> Asynchronous, decoupled</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Tips -->
+            <div class="md-card md-card-elevated">
+                <div class="card-body">
+                    <h3 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">school</span>
+                        Study Strategy
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-primary">📚 Learning Roadmap (Beginner → Advanced)</h5>
+                            <div class="mb-3">
+                                <h6 class="text-success">1. Complete Beginner</h6>
+                                <ul class="small">
+                                    <li><strong>Donnemartin System Design Primer</strong> (GitHub repo) - Start here!</li>
+                                    <li>Gets you to "decent" interview level</li>
+                                    <li>90% of the way to not being bad at system design</li>
+                                </ul>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-primary">2. Mid-Level Preparation</h6>
+                                <ul class="small">
+                                    <li>Alex Xu System Design Interview V1 & V2</li>
+                                    <li>Hacking the System Design Interview</li>
+                                    <li><strong>DDIA Chapters 1-6</strong> (3-4 hours each)</li>
+                                </ul>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-warning">3. Advanced (Upper-Level)</h6>
+                                <ul class="small">
+                                    <li>Database Internals</li>
+                                    <li>Understanding Distributed Systems</li>
+                                    <li>Google academic papers & whitepapers</li>
+                                    <li>Full DDIA</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-primary">🎯 Study Strategy</h5>
+                            <ul>
+                                <li><strong>Theory first approach</strong> - System design is like biology, not math</li>
+                                <li>You can learn by watching lectures & reading (unlike algorithms)</li>
+                                <li>Create flashcards for ACID, CAP, isolation levels</li>
+                                <li>Draw diagrams explaining trade-offs</li>
+                                <li>Practice explaining concepts out loud</li>
+                                <li><strong>Do mock interviews</strong> - tons of nuance in what interviewers want</li>
+                            </ul>
+                            <div class="alert alert-success mt-3">
+                                <small><strong>Success Path:</strong> Donnemartin → Alex Xu V1 → V2 → DDIA (1-6) = Mid-level ready!</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">lightbulb</span>
+                        <strong>Pro Tip:</strong> Focus on understanding trade-offs rather than memorizing solutions. Interviewers want to see your reasoning process.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

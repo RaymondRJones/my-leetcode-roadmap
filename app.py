@@ -227,6 +227,26 @@ def about():
     """About Raymond and his journey"""
     return render_template('about.html')
 
+@app.route('/system-design')
+def system_design():
+    """System Design Roadmap homepage"""
+    return render_template('system_design/index.html')
+
+@app.route('/system-design/real-life-problems')
+def system_design_real_life():
+    """System Design Real Life Problems page"""
+    return render_template('system_design/real_life_problems.html')
+
+@app.route('/system-design/trivia')
+def system_design_trivia():
+    """System Design Trivia and Knowledge Checks page"""
+    return render_template('system_design/trivia.html')
+
+@app.route('/system-design/low-level-design')
+def system_design_low_level():
+    """System Design Low Level Design page"""
+    return render_template('system_design/low_level_design.html')
+
 def estimate_difficulty_and_topics(problem_name):
     """Estimate difficulty and topics based on problem name"""
     name_lower = problem_name.lower()

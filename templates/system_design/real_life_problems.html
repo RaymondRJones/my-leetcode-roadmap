@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{% block title %}System Design - Real Life Problems{% endblock %}
+
+{% block content %}
+<div class="container mt-4 fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center mb-4">
+                <a href="/system-design" class="btn btn-outline-primary me-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">arrow_back</span>
+                    Back to Roadmap
+                </a>
+                <h1 class="display-5 mb-0">Real Life System Design Problems</h1>
+            </div>
+            
+            <p class="lead mb-5">Practice designing real-world systems within 30-45 minute time constraints. Each problem tests different aspects of system design and scalability.</p>
+
+            <!-- Geography Based Problems -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">location_on</span>
+                    Geography Based Problems
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">map</span>
+                                    Design Google Maps
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a mapping service with real-time navigation, traffic data, and location search.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Geospatial Indexing</span>
+                                    <span class="badge bg-secondary me-2">Caching</span>
+                                    <span class="badge bg-secondary me-2">Real-time Data</span>
+                                </div>
+                                <small class="text-muted">Tests: Spatial databases, quadtrees, CDN usage</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">directions_car</span>
+                                    Design Uber
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a ride-sharing platform with real-time matching and location tracking.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Location Matching</span>
+                                    <span class="badge bg-secondary me-2">WebSockets</span>
+                                    <span class="badge bg-secondary me-2">Payment Processing</span>
+                                </div>
+                                <small class="text-muted">Tests: Real-time communication, matching algorithms, scalability</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">radar</span>
+                                    Design Proximity Service
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a service to find nearby points of interest like restaurants and businesses.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Geohashing</span>
+                                    <span class="badge bg-secondary me-2">Search Optimization</span>
+                                    <span class="badge bg-secondary me-2">Data Partitioning</span>
+                                </div>
+                                <small class="text-muted">Tests: Geospatial queries, performance optimization</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">people</span>
+                                    Design Nearby Friends
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a feature to discover friends in your vicinity with privacy controls.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Privacy</span>
+                                    <span class="badge bg-secondary me-2">Location Updates</span>
+                                    <span class="badge bg-secondary me-2">Social Graph</span>
+                                </div>
+                                <small class="text-muted">Tests: Privacy design, efficient location updates</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Problems -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">cloud_queue</span>
+                    Infrastructure Problems
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">trending_up</span>
+                                    Design Top K Spotify Songs
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a system to track and display the most popular songs in real-time.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Stream Processing</span>
+                                    <span class="badge bg-secondary me-2">Top-K Algorithm</span>
+                                    <span class="badge bg-secondary me-2">Heavy Hitters</span>
+                                </div>
+                                <small class="text-muted">Tests: Real-time analytics, approximate algorithms</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">web</span>
+                                    Design Web Crawler
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a distributed web crawler that can index billions of web pages efficiently.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Distributed Systems</span>
+                                    <span class="badge bg-secondary me-2">Rate Limiting</span>
+                                    <span class="badge bg-secondary me-2">Data Pipeline</span>
+                                </div>
+                                <small class="text-muted">Tests: Scalability, politeness policies, deduplication</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">schedule</span>
+                                    Design Job Scheduler
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a distributed task scheduler like Cron that can handle millions of jobs.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Task Queues</span>
+                                    <span class="badge bg-secondary me-2">Load Balancing</span>
+                                    <span class="badge bg-secondary me-2">Fault Tolerance</span>
+                                </div>
+                                <small class="text-muted">Tests: Reliability, scheduling algorithms, failure handling</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">cloud_upload</span>
+                                    Design AWS S3 (Object Storage)
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a highly available and durable object storage service.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Distributed Storage</span>
+                                    <span class="badge bg-secondary me-2">Replication</span>
+                                    <span class="badge bg-secondary me-2">Consistency</span>
+                                </div>
+                                <small class="text-muted">Tests: Data durability, consistency models, partitioning</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">message</span>
+                                    Design Kafka / Message Queue
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a high-throughput distributed messaging system.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Message Queues</span>
+                                    <span class="badge bg-secondary me-2">Partitioning</span>
+                                    <span class="badge bg-secondary me-2">Pub/Sub</span>
+                                </div>
+                                <small class="text-muted">Tests: Throughput, ordering guarantees, durability</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Products -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">stars</span>
+                    Popular Products
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">share</span>
+                                    Design Facebook / Twitter
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a social media platform with news feeds, posts, and social interactions.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">News Feed</span>
+                                    <span class="badge bg-secondary me-2">Social Graph</span>
+                                    <span class="badge bg-secondary me-2">Content Delivery</span>
+                                </div>
+                                <small class="text-muted">Tests: Timeline generation, scalability, content ranking</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">play_circle</span>
+                                    Design Youtube
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a video streaming platform with uploads, encoding, and global delivery.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Video Streaming</span>
+                                    <span class="badge bg-secondary me-2">CDN</span>
+                                    <span class="badge bg-secondary me-2">Transcoding</span>
+                                </div>
+                                <small class="text-muted">Tests: Video processing, global distribution, storage</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">cloud</span>
+                                    Design Google Drive
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a cloud storage service with file sync, sharing, and collaboration.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">File Sync</span>
+                                    <span class="badge bg-secondary me-2">Conflict Resolution</span>
+                                    <span class="badge bg-secondary me-2">Sharing Permissions</span>
+                                </div>
+                                <small class="text-muted">Tests: Synchronization, versioning, collaborative editing</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">code</span>
+                                    Design Leetcode
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build an online judge system for coding challenges with real-time execution.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Code Execution</span>
+                                    <span class="badge bg-secondary me-2">Security</span>
+                                    <span class="badge bg-secondary me-2">Contest System</span>
+                                </div>
+                                <small class="text-muted">Tests: Sandboxing, performance evaluation, ranking</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">event</span>
+                                    Design TicketMaster
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create an event ticketing system handling high traffic and preventing overselling.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Inventory Management</span>
+                                    <span class="badge bg-secondary me-2">High Traffic</span>
+                                    <span class="badge bg-secondary me-2">Concurrency Control</span>
+                                </div>
+                                <small class="text-muted">Tests: Race conditions, queueing, fairness</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">payment</span>
+                                    Design Payment System
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a secure and reliable payment processing system.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Security</span>
+                                    <span class="badge bg-secondary me-2">Transactions</span>
+                                    <span class="badge bg-secondary me-2">Fraud Detection</span>
+                                </div>
+                                <small class="text-muted">Tests: ACID properties, security, compliance</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">leaderboard</span>
+                                    Design Real-Time Leaderboard
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a gaming leaderboard with real-time updates and rankings.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Real-time Updates</span>
+                                    <span class="badge bg-secondary me-2">Ranking Algorithm</span>
+                                    <span class="badge bg-secondary me-2">Caching</span>
+                                </div>
+                                <small class="text-muted">Tests: Real-time ranking, performance, consistency</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="md-card md-card-elevated">
+                <div class="card-body">
+                    <h3 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">tips_and_updates</span>
+                        Pro Tips for System Design Problems
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">timer</span>
+                                    <strong>Start with requirements</strong> - Clarify functional and non-functional requirements
+                                </li>
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">architecture</span>
+                                    <strong>High-level design first</strong> - Begin with major components and their interactions
+                                </li>
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">calculate</span>
+                                    <strong>Back-of-envelope calculations</strong> - Estimate scale, storage, and bandwidth
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">storage</span>
+                                    <strong>Database design</strong> - Consider data models, consistency, and partitioning
+                                </li>
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">trending_up</span>
+                                    <strong>Scale gradually</strong> - Start simple, then discuss scaling bottlenecks
+                                </li>
+                                <li class="mb-3">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px; font-size: 20px;">bug_report</span>
+                                    <strong>Consider edge cases</strong> - Discuss failure scenarios and monitoring
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

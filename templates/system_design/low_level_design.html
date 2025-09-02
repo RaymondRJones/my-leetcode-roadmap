@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+
+{% block title %}System Design - Low Level Design (OOP){% endblock %}
+
+{% block content %}
+<div class="container mt-4 fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center mb-4">
+                <a href="/system-design" class="btn btn-outline-primary me-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">arrow_back</span>
+                    Back to Roadmap
+                </a>
+                <h1 class="display-5 mb-0">Low Level Design (Object Oriented Programming)</h1>
+            </div>
+            
+            <p class="lead mb-5">Master object-oriented design patterns and practice coding system components. These problems test your ability to write clean, maintainable, and extensible code.</p>
+
+            <!-- Design Patterns -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">pattern</span>
+                    Essential Design Patterns
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">single_bed</span>
+                                    Singleton Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Ensures only one instance of a class exists throughout the application lifetime.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Global Access</span>
+                                    <span class="badge bg-secondary me-2">Lazy Initialization</span>
+                                    <span class="badge bg-secondary me-2">Thread Safety</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> Database connections, loggers, configuration managers</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">visibility</span>
+                                    Observer Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Defines a one-to-many dependency between objects so that when one object changes state, all dependents are notified.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Event Handling</span>
+                                    <span class="badge bg-secondary me-2">Loose Coupling</span>
+                                    <span class="badge bg-secondary me-2">Notifications</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> GUI event handling, model-view architectures</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">build</span>
+                                    Factory Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Creates objects without specifying the exact class to create. Useful for creating families of related objects.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Object Creation</span>
+                                    <span class="badge bg-secondary me-2">Abstraction</span>
+                                    <span class="badge bg-secondary me-2">Flexibility</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> UI components, database drivers, file parsers</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">layers</span>
+                                    Decorator Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Adds new functionality to objects dynamically without altering their structure.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Dynamic Behavior</span>
+                                    <span class="badge bg-secondary me-2">Composition</span>
+                                    <span class="badge bg-secondary me-2">Extension</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> Stream processing, UI decorations, middleware</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">psychology</span>
+                                    Strategy Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Defines a family of algorithms, encapsulates each one, and makes them interchangeable.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Algorithm Selection</span>
+                                    <span class="badge bg-secondary me-2">Runtime Choice</span>
+                                    <span class="badge bg-secondary me-2">Encapsulation</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> Payment processing, sorting algorithms, compression</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-primary" style="vertical-align: middle; margin-right: 8px;">published_with_changes</span>
+                                    Command Pattern
+                                </h5>
+                                <p class="card-text text-muted mb-3">Encapsulates a request as an object, allowing you to parameterize clients with different requests, queue operations, and support undo.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary me-2">Undo/Redo</span>
+                                    <span class="badge bg-secondary me-2">Queuing</span>
+                                    <span class="badge bg-secondary me-2">Logging</span>
+                                </div>
+                                <small class="text-muted"><strong>Use cases:</strong> Text editors, remote controls, macro recording</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular LLD Problems -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">assignment</span>
+                    Popular Low Level Design Problems
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">local_parking</span>
+                                    Design Parking Lot
+                                </h5>
+                                <p class="card-text text-muted mb-3">Design a parking lot system with different vehicle types, pricing strategies, and parking spot management.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">Class Hierarchy</span>
+                                    <span class="badge bg-primary me-2">Polymorphism</span>
+                                    <span class="badge bg-primary me-2">State Management</span>
+                                </div>
+                                <div class="accordion" id="parkingAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#parking-details">
+                                                Key Components
+                                            </button>
+                                        </h2>
+                                        <div id="parking-details" class="accordion-collapse collapse" data-bs-parent="#parkingAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-unstyled">
+                                                    <li>• Vehicle types (Car, Motorcycle, Truck)</li>
+                                                    <li>• Parking spot sizes (Compact, Regular, Large)</li>
+                                                    <li>• Pricing strategies (hourly, daily, monthly)</li>
+                                                    <li>• Entry/Exit gates with ticket management</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">elevator</span>
+                                    Design Elevator System
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create an elevator control system with multiple elevators, scheduling algorithms, and request handling.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">State Machine</span>
+                                    <span class="badge bg-primary me-2">Scheduling</span>
+                                    <span class="badge bg-primary me-2">Concurrency</span>
+                                </div>
+                                <div class="accordion" id="elevatorAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#elevator-details">
+                                                Key Components
+                                            </button>
+                                        </h2>
+                                        <div id="elevator-details" class="accordion-collapse collapse" data-bs-parent="#elevatorAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-unstyled">
+                                                    <li>• Elevator states (Idle, Moving Up/Down)</li>
+                                                    <li>• Request queue management</li>
+                                                    <li>• Scheduling algorithms (FIFO, SCAN, LOOK)</li>
+                                                    <li>• Multiple elevator coordination</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">library_books</span>
+                                    Design Library Management System
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a system to manage books, members, and borrowing operations with different user roles.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">CRUD Operations</span>
+                                    <span class="badge bg-primary me-2">User Roles</span>
+                                    <span class="badge bg-primary me-2">Business Logic</span>
+                                </div>
+                                <small class="text-muted">Tests: Database design, access control, reservation system</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">videogame_asset</span>
+                                    Design Tic-Tac-Toe / Chess Game
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create a game system with move validation, game state tracking, and winner detection.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">Game Logic</span>
+                                    <span class="badge bg-primary me-2">Move Validation</span>
+                                    <span class="badge bg-primary me-2">State Pattern</span>
+                                </div>
+                                <small class="text-muted">Tests: Game rules implementation, extensibility for different games</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">call</span>
+                                    Design Phone Directory / Contact Book
+                                </h5>
+                                <p class="card-text text-muted mb-3">Build a contact management system with search, add, delete, and update operations.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">Data Structures</span>
+                                    <span class="badge bg-primary me-2">Search Algorithms</span>
+                                    <span class="badge bg-primary me-2">Sorting</span>
+                                </div>
+                                <small class="text-muted">Tests: Efficient search, data organization, extensibility</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="md-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">shopping_cart</span>
+                                    Design Online Shopping Cart
+                                </h5>
+                                <p class="card-text text-muted mb-3">Create an e-commerce cart system with product management, discounts, and checkout flow.</p>
+                                <div class="mb-3">
+                                    <span class="badge bg-primary me-2">Business Logic</span>
+                                    <span class="badge bg-primary me-2">Pricing Rules</span>
+                                    <span class="badge bg-primary me-2">State Management</span>
+                                </div>
+                                <small class="text-muted">Tests: Pricing calculations, inventory management, extensible discount system</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOLID Principles -->
+            <div class="mb-5">
+                <h2 class="mb-4">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">rule</span>
+                    SOLID Principles
+                </h2>
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="md-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-primary me-3" style="font-size: 1rem;">S</span>
+                                            <div>
+                                                <h6 class="mb-2">Single Responsibility Principle</h6>
+                                                <p class="text-muted small mb-0">A class should have only one reason to change</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-success me-3" style="font-size: 1rem;">O</span>
+                                            <div>
+                                                <h6 class="mb-2">Open/Closed Principle</h6>
+                                                <p class="text-muted small mb-0">Open for extension, closed for modification</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-warning me-3" style="font-size: 1rem;">L</span>
+                                            <div>
+                                                <h6 class="mb-2">Liskov Substitution Principle</h6>
+                                                <p class="text-muted small mb-0">Objects should be replaceable with their subtypes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-info me-3" style="font-size: 1rem;">I</span>
+                                            <div>
+                                                <h6 class="mb-2">Interface Segregation Principle</h6>
+                                                <p class="text-muted small mb-0">Many specific interfaces are better than one general</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-start">
+                                            <span class="badge bg-danger me-3" style="font-size: 1rem;">D</span>
+                                            <div>
+                                                <h6 class="mb-2">Dependency Inversion Principle</h6>
+                                                <p class="text-muted small mb-0">Depend on abstractions, not concrete implementations</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Approach Guide -->
+            <div class="md-card md-card-elevated">
+                <div class="card-body">
+                    <h3 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">map</span>
+                        LLD Interview Approach
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-primary mb-3">📋 Step-by-Step Process</h5>
+                            <ol>
+                                <li class="mb-2"><strong>Clarify Requirements:</strong> Ask about scope, constraints, and expected functionality</li>
+                                <li class="mb-2"><strong>Identify Core Entities:</strong> Determine main objects and their relationships</li>
+                                <li class="mb-2"><strong>Define Classes & Interfaces:</strong> Create clean abstractions</li>
+                                <li class="mb-2"><strong>Implement Key Methods:</strong> Focus on critical business logic</li>
+                                <li class="mb-2"><strong>Discuss Extensions:</strong> How to handle future requirements</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-primary mb-3">💡 Best Practices</h5>
+                            <ul>
+                                <li class="mb-2">Start simple, then add complexity</li>
+                                <li class="mb-2">Use meaningful names for classes and methods</li>
+                                <li class="mb-2">Apply design patterns appropriately</li>
+                                <li class="mb-2">Consider error handling and edge cases</li>
+                                <li class="mb-2">Think about code reusability and maintainability</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">code</span>
+                        <strong>Remember:</strong> Focus on clean, readable code rather than complex optimizations. Interviewers want to see your design thinking and coding style.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

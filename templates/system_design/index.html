@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block title %}System Design Roadmap{% endblock %}
+
+{% block content %}
+<div class="container mt-4 fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 mb-4 text-center">System Design Roadmap</h1>
+            
+            <!-- What Is This Section -->
+            <div class="md-card md-card-elevated mb-5">
+                <div class="card-body">
+                    <h2 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">help_outline</span>
+                        What Is This?
+                    </h2>
+                    <div class="lead mb-4">
+                        <p>I failed my first System Design Interview in 2022. It was for LinkedIn and they were offering like $200k/year</p>
+                        
+                        <p>If I had known System Design, I would have made more. But I never knew how to study</p>
+                        
+                        <p>I made this to help you guys and myself in the past.</p>
+                        
+                        <p class="text-muted mt-3">I work at Walmart in the SF Bay Area now. I've solved 1,293 Leetcode Problems</p>
+                        
+                        <p class="text-muted">I've spent over 100 hours reading and studying System Design Books, like DDIA, Alex Xu's V1 and V2, Hacking System Design.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Section -->
+            <div class="md-card md-card-elevated mb-5">
+                <div class="card-body">
+                    <h2 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">star</span>
+                        Why?
+                    </h2>
+                    <p class="lead mb-3">Higher paying Senior or Mid-level roles will test applicants knowledge</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">check_circle</span>
+                            Requirement if you want to access to $200k/year roles
+                        </li>
+                        <li class="mb-2">
+                            <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">check_circle</span>
+                            More responsibility
+                        </li>
+                        <li class="mb-2">
+                            <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">check_circle</span>
+                            More control and decision making within the entire organization
+                        </li>
+                        <li class="mb-2">
+                            <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">check_circle</span>
+                            Access to "Senior" Level roles, paying $500k/year in some cases
+                        </li>
+                        <li class="mb-2">
+                            <span class="material-icons text-warning" style="vertical-align: middle; margin-right: 8px;">attach_money</span>
+                            <strong>What if You Could Learn Something that hands you $100k/year more for the rest of your life?</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- How to Use Roadmap Section -->
+            <div class="md-card md-card-elevated mb-5">
+                <div class="card-body">
+                    <h3 class="mb-4">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">route</span>
+                        How to Use Roadmap
+                    </h3>
+                    <p class="mb-4">System Design interviews are composed of three main sections. Real life problems, where you will be given 30 to 45 minutes to complete a working design. Trivia, where an interviewer will ask you to explain a variety of database, server, API, networking, and other topics. And finally, you can be asked "Low level design", which tests your ability to code and use object oriented programming design patterns.</p>
+                    
+                    <p class="mb-4">In my experience, I've had interviews where they will test knowledge in multiple of these areas. For that reason, if I want to be as prepared as possible, it's a requirement to know each of these main topics. Because of this, I've broken this roadmap into three main pages for each of the topics.</p>
+                </div>
+            </div>
+
+            <!-- Roadmap Visualization Section -->
+            <div class="md-card md-card-elevated mb-5">
+                <div class="card-body">
+                    <h3 class="mb-4 text-center">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">timeline</span>
+                        Roadmap Visualization
+                    </h3>
+                    <p class="text-center mb-4 text-muted">Click on each phase to dive deeper</p>
+                    
+                    <!-- Phase 1: Trivia and Knowledge -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <a href="/system-design/trivia" class="text-decoration-none">
+                                <div class="md-card phase-card" style="background: linear-gradient(135deg, var(--nord8), var(--nord10));">
+                                    <div class="card-body text-center text-white">
+                                        <div class="mb-3">
+                                            <span class="material-icons" style="font-size: 48px;">quiz</span>
+                                        </div>
+                                        <h4 class="mb-2">Phase 1: Learn Concepts & Trivia</h4>
+                                        <p class="mb-0">Master fundamental concepts like CAP theorem, consistency models, database types, and system architecture patterns</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2: Real Life Problems -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <a href="/system-design/real-life-problems" class="text-decoration-none">
+                                <div class="md-card phase-card" style="background: linear-gradient(135deg, var(--nord14), var(--nord13));">
+                                    <div class="card-body text-center text-white">
+                                        <div class="mb-3">
+                                            <span class="material-icons" style="font-size: 48px;">architecture</span>
+                                        </div>
+                                        <h4 class="mb-2">Phase 2: Real Life System Design</h4>
+                                        <p class="mb-0">Practice designing real systems like Facebook, Uber, Google Maps within 30-45 minute time constraints</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3: Low Level Design -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <a href="/system-design/low-level-design" class="text-decoration-none">
+                                <div class="md-card phase-card" style="background: linear-gradient(135deg, var(--nord15), var(--nord12));">
+                                    <div class="card-body text-center text-white">
+                                        <div class="mb-3">
+                                            <span class="material-icons" style="font-size: 48px;">code</span>
+                                        </div>
+                                        <h4 class="mb-2">Phase 3: Low Level Design & OOP</h4>
+                                        <p class="mb-0">Master object-oriented design patterns and practice coding problems like parking lot and elevator systems</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4: Mock Interviews -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="md-card phase-card" style="background: linear-gradient(135deg, var(--nord11), var(--nord12));">
+                                <div class="card-body text-center text-white">
+                                    <div class="mb-3">
+                                        <span class="material-icons" style="font-size: 48px;">record_voice_over</span>
+                                    </div>
+                                    <h4 class="mb-2">Phase 4: Mock Interviews</h4>
+                                    <p class="mb-0">Practice with real humans to simulate interview conditions and improve communication skills</p>
+                                    <small class="opacity-75">Coming Soon</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.phase-card {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+    border: none !important;
+    overflow: hidden;
+}
+
+.phase-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--md-elevation-5);
+}
+
+.phase-card .material-icons {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.phase-card h4 {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+
+.phase-card p {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+a.text-decoration-none:hover .phase-card {
+    text-decoration: none !important;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.phase-card:hover {
+    animation: pulse 2s infinite;
+}
+</style>
+{% endblock %}
