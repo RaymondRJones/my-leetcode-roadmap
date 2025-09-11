@@ -4856,10 +4856,10 @@
           "url": "https://leetcode.com/problems/linked-list-frequency/"
         },
         {
-          "name": "Two Best Non-Overlapping",
+          "name": "Two Best Non-Overlapping Events",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/two-best-non-overlapping/"
+          "url": "https://leetcode.com/problems/two-best-non-overlapping-events/description/"
         }
       ]
     },
@@ -4867,16 +4867,16 @@
       "day": 2,
       "problems": [
         {
-          "name": "Count Elements With Maximum",
+          "name": "Count Elements With Maximum Frecuency",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-elements-with-maximum/"
+          "url": "https://leetcode.com/problems/count-elements-with-maximum-frequency/description/"
         },
         {
-          "name": "Maximum Beauty of an Array",
+          "name": "Maximum Beauty of an Array After Applying Operation",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-beauty-of-an-array/"
+          "url": "https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/description/"
         },
         {
           "name": "Permutations",
@@ -4890,10 +4890,10 @@
       "day": 3,
       "problems": [
         {
-          "name": "Distribute Elements Into Two",
+          "name": "Distribute Elements Into Two Arrays",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/distribute-elements-into-two/"
+          "url": "https://leetcode.com/problems/distribute-elements-into-two-arrays-i/description/"
         },
         {
           "name": "Detect Cycles in 2D Grid",
@@ -4902,10 +4902,10 @@
           "url": "https://leetcode.com/problems/detect-cycles-in-2d-grid/"
         },
         {
-          "name": "Shortest Uncommon Substring in",
+          "name": "Shortest Uncommon Substring in an Array",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/shortest-uncommon-substring-in/"
+          "url": "https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/description/"
         }
       ]
     },
@@ -4913,10 +4913,10 @@
       "day": 4,
       "problems": [
         {
-          "name": "Maximize Happiness of Selected",
+          "name": "Maximize Happiness of Selected Children",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximize-happiness-of-selected/"
+          "url": "https://leetcode.com/problems/maximize-happiness-of-selected-children/description/"
         },
         {
           "name": "Apple Redistribution into Boxes",
@@ -4959,10 +4959,10 @@
       "day": 6,
       "problems": [
         {
-          "name": "Minimum Time to Make Rope",
+          "name": "Minimum Time to Make Rope Colorful",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-time-to-make-rope/"
+          "url": "https://leetcode.com/problems/minimum-time-to-make-rope-colorful/description/"
         },
         {
           "name": "Minimum Common Value",
@@ -4982,10 +4982,10 @@
       "day": 7,
       "problems": [
         {
-          "name": "Remove Zero Sum Consecutive",
+          "name": "Remove Zero Sum Consecutive Nodes From Linked List",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/remove-zero-sum-consecutive/"
+          "url": "https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/description/"
         },
         {
           "name": "Maximum Subarray",
@@ -5040,10 +5040,10 @@
           "url": "https://leetcode.com/problems/insert-interval/"
         },
         {
-          "name": "Mark Elements on Array by",
+          "name": "Mark Elements on Array by Performing Queries",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/mark-elements-on-array-by/"
+          "url": "https://leetcode.com/problems/mark-elements-on-array-by-performing-queries/description/"
         }
       ]
     },
@@ -5051,10 +5051,10 @@
       "day": 10,
       "problems": [
         {
-          "name": "Find the Sum of Encrypted",
+          "name": "Find the Sum of Encrypted Integers",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-the-sum-of-encrypted/"
+          "url": "https://leetcode.com/problems/find-the-sum-of-encrypted-integers/description/"
         },
         {
           "name": "Escape The Ghosts",
@@ -5120,10 +5120,10 @@
       "day": 13,
       "problems": [
         {
-          "name": "Maximum Candies You Can Get",
+          "name": "Maximum Candies You Can Get From Boxes",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-candies-you-can-get/"
+          "url": "https://leetcode.com/problems/maximum-candies-you-can-get-from-boxes/description/"
         },
         {
           "name": "Merge In Between Linked Lists",
@@ -5132,10 +5132,10 @@
           "url": "https://leetcode.com/problems/merge-in-between-linked-lists/"
         },
         {
-          "name": "All Ancestors of a Node in a",
+          "name": "All Ancestors of a Node in a Directed Acyclic Graph",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/all-ancestors-of-a-node-in-a/"
+          "url": "https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/description/"
         }
       ]
     },
@@ -5149,10 +5149,10 @@
           "url": "https://leetcode.com/problems/where-will-the-ball-fall/"
         },
         {
-          "name": "Find Closest Node to Given Two",
+          "name": "Find Closest Node to Given Two Nodes",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-closest-node-to-given-two/"
+          "url": "https://leetcode.com/problems/find-closest-node-to-given-two-nodes/description/"
         },
         {
           "name": "Task Scheduler",
@@ -5166,22 +5166,22 @@
       "day": 15,
       "problems": [
         {
-          "name": "Minimum Number of Arrows to",
+          "name": "Minimum Number of Arrows to Burst Ballons",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-number-of-arrows-to/"
+          "url": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/description/"
         },
         {
-          "name": "Minimum Deletions to Make",
+          "name": "Minimum Deletions to Make String Balanced",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-deletions-to-make/"
+          "url": "https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/description/"
         },
         {
-          "name": "Count Substrings Starting and",
+          "name": "Count Substrings Starting and Ending With Given Character",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-substrings-starting-and/"
+          "url": "https://leetcode.com/problems/count-substrings-starting-and-ending-with-given-character/description/"
         }
       ]
     },
@@ -5189,10 +5189,10 @@
       "day": 16,
       "problems": [
         {
-          "name": "Existence of a Substring in a",
+          "name": "Existence of a Substring in a String and Its Reverse",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/existence-of-a-substring-in-a/"
+          "url": "https://leetcode.com/problems/existence-of-a-substring-in-a-string-and-its-reverse/description/"
         },
         {
           "name": "Climbing Stairs",
@@ -5212,16 +5212,16 @@
       "day": 17,
       "problems": [
         {
-          "name": "Maximize Number of",
+          "name": "Maximize Number of Nice Divisors",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximize-number-of/"
+          "url": "https://leetcode.com/problems/maximize-number-of-nice-divisors/description/"
         },
         {
-          "name": "Minimum Operations to Halve",
+          "name": "Minimum Operations to Halve Array Sum",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-operations-to-halve/"
+          "url": "https://leetcode.com/problems/minimum-operations-to-halve-array-sum/description/"
         },
         {
           "name": "Reverse Linked List",
@@ -5235,10 +5235,10 @@
       "day": 18,
       "problems": [
         {
-          "name": "Insufficient Nodes in Root to Leaf",
+          "name": "Insufficient Nodes in Root to Leaf Paths",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf/"
+          "url": "https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/description/"
         },
         {
           "name": "Letter Tile Possibilities",
@@ -5270,10 +5270,10 @@
           "url": "https://leetcode.com/problems/reorder-list/"
         },
         {
-          "name": "Find the City With the Smallest",
+          "name": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-the-city-with-the-smallest/"
+          "url": "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/"
         }
       ]
     },
@@ -5304,10 +5304,10 @@
       "day": 21,
       "problems": [
         {
-          "name": "Minimum Number of Operations",
+          "name": "Minimum Number of Operations to Convert Time",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-number-of-operations/"
+          "url": "https://leetcode.com/problems/minimum-number-of-operations-to-convert-time/description/"
         },
         {
           "name": "Minimum Number of Keypresses",
@@ -5333,16 +5333,16 @@
           "url": "https://leetcode.com/problems/most-frequent-ids/"
         },
         {
-          "name": "Apply Operations to Make Sum of",
+          "name": "Apply Operations to Make Sum of Array Greater Than or Equal to K",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/apply-operations-to-make-sum-of/"
+          "url": "https://leetcode.com/problems/apply-operations-to-make-sum-of-array-greater-than-or-equal-to-k/description/"
         },
         {
-          "name": "Maximum Length Substring With",
+          "name": "Maximum Length Substring With Two Occurrences",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-length-substring-with/"
+          "url": "https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/description/"
         }
       ]
     },
@@ -5425,10 +5425,10 @@
           "url": "https://leetcode.com/problems/word-break-ii/"
         },
         {
-          "name": "Minimum Adjacent Swaps to",
+          "name": "Minimum Adjacent Swaps to Alternate Parity",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to/"
+          "url": "https://leetcode.com/problems/minimum-adjacent-swaps-to-alternate-parity/description/"
         },
         {
           "name": "Zigzag Conversion",
@@ -5442,16 +5442,16 @@
       "day": 27,
       "problems": [
         {
-          "name": "Longest Substring with At Most K",
+          "name": "Longest Substring with At Most K Distinct Characters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/longest-substring-with-at-most-k/"
+          "url": "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/"
         },
         {
-          "name": "Find Missing and Repeated",
+          "name": "Find Missing and Repeated Values",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-missing-and-repeated/"
+          "url": "https://leetcode.com/problems/find-missing-and-repeated-values/description/"
         },
         {
           "name": "Stream of Characters",
@@ -5465,10 +5465,10 @@
       "day": 28,
       "problems": [
         {
-          "name": "Number of Ways to Stay in the",
+          "name": "Number of Ways to Stay in the Same Place After Some Steps",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/number-of-ways-to-stay-in-the/"
+          "url": "https://leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/description/"
         },
         {
           "name": "Max Increase to Keep City Skyline",
@@ -5494,16 +5494,16 @@
           "url": "https://leetcode.com/problems/sort-array-by-parity/"
         },
         {
-          "name": "Length of Longest Subarray With",
+          "name": "Length of Longest Subarray With at Most K Frequency",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/length-of-longest-subarray-with/"
+          "url": "https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/description/"
         },
         {
-          "name": "Longest Continuous Subarray",
+          "name": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/longest-continuous-subarray/"
+          "url": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/"
         }
       ]
     },
@@ -5511,10 +5511,10 @@
       "day": 30,
       "problems": [
         {
-          "name": "Count Subarrays With Score",
+          "name": "Count Subarrays With Score Less Than K",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-subarrays-with-score/"
+          "url": "https://leetcode.com/problems/count-subarrays-with-score-less-than-k/description/"
         },
         {
           "name": "Apply Discount to Prices",
@@ -5529,22 +5529,22 @@
           "url": "https://leetcode.com/problems/maximum-erasure-value/"
         },
         {
-          "name": "Minimum Levels to Gain More",
+          "name": "Minimum Levels to Gain More Points",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-levels-to-gain-more/"
+          "url": "https://leetcode.com/problems/minimum-levels-to-gain-more-points/description/"
         },
         {
-          "name": "Shortest Subarray With OR at",
+          "name": "Shortest Subarray With OR at Least K I",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/shortest-subarray-with-or-at/"
+          "url": "https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/description/"
         },
         {
-          "name": "Subarrays with K Different",
+          "name": "Subarrays with K Different Integers",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/subarrays-with-k-different/"
+          "url": "https://leetcode.com/problems/subarrays-with-k-different-integers/description/"
         },
         {
           "name": "Maximum Frequency Stack",
@@ -5553,16 +5553,16 @@
           "url": "https://leetcode.com/problems/maximum-frequency-stack/"
         },
         {
-          "name": "Count Subarrays Where Max",
+          "name": "Count Subarrays Where Max Element Appears at Least K Times",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-subarrays-where-max/"
+          "url": "https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/description/"
         },
         {
-          "name": "Count Submatrices with Top-Left",
+          "name": "Count Submatrices with Top-Left Element and Sum Less Than K",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-submatrices-with-top-left/"
+          "url": "https://leetcode.com/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/description/"
         },
         {
           "name": "Maximum Good Subarray Sum",
@@ -5583,10 +5583,10 @@
           "url": "https://leetcode.com/problems/add-two-numbers/"
         },
         {
-          "name": "Longest Substring with At Most",
+          "name": "Longest Substring with At Most Two Distinct Characters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/longest-substring-with-at-most/"
+          "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/description/"
         },
         {
           "name": "Length of Last Word",
@@ -5595,10 +5595,10 @@
           "url": "https://leetcode.com/problems/length-of-last-word/"
         },
         {
-          "name": "Count Subarrays With Fixed",
+          "name": "Count Subarrays With Fixed Bounds",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-subarrays-with-fixed/"
+          "url": "https://leetcode.com/problems/count-subarrays-with-fixed-bounds/description/"
         },
         {
           "name": "Count Alternating Subarrays",
@@ -5619,10 +5619,10 @@
           "url": "https://leetcode.com/problems/harshad-number/"
         },
         {
-          "name": "Count Collisions of Monkeys on a",
+          "name": "Count Collisions of Monkeys on a Polygon",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-collisions-of-monkeys-on-a/"
+          "url": "https://leetcode.com/problems/count-collisions-of-monkeys-on-a-polygon/description/"
         },
         {
           "name": "Sliding Window Maximum",
@@ -5643,10 +5643,10 @@
           "url": "https://leetcode.com/problems/n-queens/"
         },
         {
-          "name": "Maximum Nesting Depth of the",
+          "name": "Maximum Nesting Depth of the Parentheses",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-nesting-depth-of-the/"
+          "url": "https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/description/"
         },
         {
           "name": "Word Search",
