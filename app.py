@@ -3,8 +3,20 @@ from flask import Flask, render_template, jsonify, request, redirect
 import json
 import os
 from pdf_analyzer import LeetCodeRoadmapAnalyzer
+from openai import OpenAI
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
+
+# Initialize OpenAI client only if API key is available
+def get_openai_client():
+    api_key = os.environ.get('OPENAI_API_KEY')
+    if not api_key:
+        raise ValueError("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.")
+    return OpenAI(api_key=api_key)
 
 class RoadmapWebApp:
     def __init__(self):
@@ -246,6 +258,139 @@ def system_design_trivia():
 def system_design_low_level():
     """System Design Low Level Design page"""
     return render_template('system_design/low_level_design.html')
+
+@app.route('/behavioral-guide')
+def behavioral_guide():
+    """Behavioral Interview Guide with AI Helper"""
+    # Amazon Leadership Principles questions
+    behavioral_questions = {
+        "General": [
+            "Why do you want to work for [our company]? / Why are you leaving your job?",
+            "What are your goals for the future?",
+            "What are your strengths / weaknesses?",
+            "Do you have experience working with cross-functional teams?",
+            "Tell me about a project you're proud of"
+        ],
+        "Customer Obsession": [
+            "Tell me about a time you went above and beyond for a customer.",
+            "How do you prioritize customer needs in your work?"
+        ],
+        "Ownership": [
+            "Describe a time when you took on a task beyond your responsibilities.",
+            "Tell me about a time you made a mistake at work. How did you handle it?",
+            "Tell me about a time you received feedback from your manager and what did you do?"
+        ],
+        "Invent and Simplify": [
+            "Describe a time you created a simple solution to a complex problem.",
+            "Tell me about a process you improved. What was your approach?"
+        ],
+        "Are Right, A Lot": [
+            "Tell me about a decision you made that was wrong. What did you learn?",
+            "Describe a time when you had to make a difficult judgment call."
+        ],
+        "Learn and Be Curious": [
+            "Tell me about a time you picked up a new skill to solve a problem.",
+            "What's the most recent thing you learned on your own?"
+        ],
+        "Think Big": [
+            "Tell me about a time you proposed a bold idea. What happened?",
+            "Describe a situation where you took a long-term view to solve a problem."
+        ],
+        "Bias for Action": [
+            "Give me an example of a time when you made a decision quickly.",
+            "Tell me about a time you took initiative to start a project."
+        ],
+        "Earn Trust": [
+            "Tell me about a time you had a conflict with a colleague. How did you handle it?",
+            "Describe how you build relationships in a team."
+        ],
+        "Dive Deep": [
+            "Tell me about a technical problem you had to dig into to understand.",
+            "How do you identify root causes when something goes wrong?"
+        ],
+        "Have Backbone; Disagree and Commit": [
+            "Tell me about a time you strongly disagreed with your manager or team.",
+            "Describe a situation where you advocated for a different approach."
+        ],
+        "Deliver Results": [
+            "Tell me about a time you had to deliver a project under a tight deadline.",
+            "Describe how you stay focused and productive."
+        ]
+    }
+
+    return render_template('behavioral_guide.html', questions=behavioral_questions)
+
+@app.route('/api/test', methods=['GET'])
+def test_api():
+    """Simple test endpoint"""
+    return jsonify({'status': 'API working', 'message': 'Test successful'})
+
+@app.route('/api/behavioral-feedback', methods=['POST'])
+def behavioral_feedback():
+    """API endpoint to get behavioral story feedback using OpenAI"""
+    try:
+        print("Received behavioral feedback request")  # Debug log
+        data = request.get_json()
+        print(f"Request data: {data}")  # Debug log
+
+        question = data.get('question', '')
+        story = data.get('story', '')
+
+        print(f"Question: {question[:50]}...")  # Debug log
+        print(f"Story length: {len(story)}")  # Debug log
+
+        if not question or not story:
+            print("Missing question or story")  # Debug log
+            return jsonify({'error': 'Question and story are required'}), 400
+
+        # System prompt for behavioral interview feedback
+        system_prompt = """You are an expert behavioral interview coach specializing in Amazon's Leadership Principles. Your role is to evaluate behavioral stories and provide constructive feedback.
+
+CRITICAL RULES:
+1. The candidate should NEVER use "we" in their stories - they must use "I" to show personal ownership and impact
+2. Stories should follow the STAR method (Situation, Task, Action, Result)
+3. Focus on specific, measurable results and personal contributions
+4. Look for leadership principles demonstration
+
+Provide feedback in this format:
+- Score: X/10
+- Strengths: (2-3 key strengths)
+- Areas for Improvement: (2-3 specific suggestions)
+- Leadership Principles Demonstrated: (which Amazon LP this shows)
+- Suggested Improvements: (specific suggestions to make the story stronger)
+
+Be constructive but direct. Focus on making the story more compelling and interview-ready."""
+
+        user_prompt = f"""Question: {question}
+
+Candidate's Story: {story}
+
+Please evaluate this behavioral story and provide detailed feedback."""
+
+        # Call OpenAI API
+        client = get_openai_client()
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            max_tokens=1000,
+            temperature=0.7
+        )
+
+        feedback = response.choices[0].message.content
+
+        return jsonify({
+            'feedback': feedback,
+            'status': 'success'
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': f'Failed to get feedback: {str(e)}',
+            'status': 'error'
+        }), 500
 
 def estimate_difficulty_and_topics(problem_name):
     """Estimate difficulty and topics based on problem name"""
