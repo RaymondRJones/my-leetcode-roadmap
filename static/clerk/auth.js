@@ -203,22 +203,21 @@ function setupFallbackMode() {
 
 // Protect premium links
 function protectPremiumLinks() {
-    const premiumLinks = document.querySelectorAll('a[href*="/advanced"], a[href*="/intermediate/month"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+    const premiumLinks = document.querySelectorAll('a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
 
     premiumLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             if (!window.ClerkAuth?.isSignedIn()) {
                 e.preventDefault();
-                if (window.ClerkAuth?.signIn) {
-                    window.ClerkAuth.signIn();
-                }
+                // Redirect non-logged-in users to sales page
+                window.location.href = '/landing';
                 return false;
             }
 
             if (!window.ClerkAuth.hasPremiumAccess() && !window.ClerkAuth.isAllowedUser()) {
                 e.preventDefault();
                 // Redirect to payment page instead of showing modal
-                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
+                window.open('https://raymond-site.vercel.app/landing', '_blank');
                 return false;
             }
         });

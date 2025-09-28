@@ -87,7 +87,7 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         user = get_current_user()
         if not user:
-            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+            return redirect('/landing')
         return f(*args, **kwargs)
     return decorated_function
 
@@ -97,10 +97,10 @@ def premium_required(f):
     def decorated_function(*args, **kwargs):
         user = get_current_user()
         if not user:
-            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+            return redirect('/landing')
 
         if not has_premium_access(user) and not is_allowed_user(user):
-            return render_template('paywall.html', message="This content requires premium access. Check your metadata for 'has_premium' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+            return redirect('/landing')
 
         return f(*args, **kwargs)
     return decorated_function
@@ -111,10 +111,10 @@ def ai_access_required(f):
     def decorated_function(*args, **kwargs):
         user = get_current_user()
         if not user:
-            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+            return redirect('/landing')
 
         if not has_ai_access(user) and not is_allowed_user(user):
-            return render_template('paywall.html', message="This content requires AI access. Check your metadata for 'has_ai_access' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+            return redirect('/landing')
 
         return f(*args, **kwargs)
     return decorated_function
@@ -125,10 +125,10 @@ def system_design_access_required(f):
     def decorated_function(*args, **kwargs):
         user = get_current_user()
         if not user:
-            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+            return redirect('/landing')
 
         if not has_system_design_access(user) and not is_allowed_user(user):
-            return render_template('paywall.html', message="This content requires system design access. Check your metadata for 'has_system_design_access' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+            return redirect('/landing')
 
         return f(*args, **kwargs)
     return decorated_function
@@ -319,13 +319,18 @@ def auth_logout():
 
 @app.route('/')
 def index():
-    """Sales homepage showing all available roadmaps"""
+    """Intermediate roadmap homepage (Fortune500) - Free for all users"""
+    return render_template('intermediate.html', roadmap=web_app.get_ordered_intermediate_roadmap_data())
+
+@app.route('/landing')
+def sales_page():
+    """Sales page showing all available premium roadmaps"""
     return render_template('sales_homepage.html')
 
 @app.route('/intermediate')
-def intermediate_view():
-    """Intermediate roadmap page (Fortune500) - Premium Access Required"""
-    return render_template('intermediate.html', roadmap=web_app.get_ordered_intermediate_roadmap_data())
+def intermediate_redirect():
+    """Redirect old intermediate URL to new homepage"""
+    return redirect('/')
 
 @app.route('/advanced')
 @premium_required
