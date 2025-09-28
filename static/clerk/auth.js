@@ -1,42 +1,27 @@
-// Clerk Authentication Integration for Flask App
-
+// Simple Clerk Authentication Integration
 let clerk;
-let isInitialized = false;
 
-// Initialize Clerk
 async function initializeClerk() {
-    if (isInitialized) return;
-
+    // Wait for Clerk to be loaded and initialized by the data attribute
     try {
-        // Wait for Clerk to be available
-        if (!window.Clerk) {
-            await new Promise((resolve) => {
-                const checkClerk = () => {
-                    if (window.Clerk) {
-                        resolve();
-                    } else {
-                        setTimeout(checkClerk, 100);
-                    }
-                };
-                checkClerk();
-            });
+        // Wait for window.Clerk to be available
+        let attempts = 0;
+        while (!window.Clerk && attempts < 50) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
         }
 
-        // Get publishable key from server configuration
-        const clerkPubKey = window.CLERK_CONFIG?.publishableKey;
-
-        if (!clerkPubKey) {
-            console.error('Clerk publishable key not found. Please check your server configuration.');
+        if (!window.Clerk) {
+            console.error("Clerk failed to load");
+            setupFallbackMode();
             return;
         }
 
-        clerk = new window.Clerk(clerkPubKey);
-        await clerk.load({
-            signInUrl: '/auth/login',
-            signUpUrl: '/auth/signup'
-        });
+        // Clerk is automatically initialized with the data attribute, just get the instance
+        clerk = window.Clerk;
 
-        isInitialized = true;
+        // Wait for Clerk to be fully loaded and ready
+        await clerk.load();
 
         // Set up global auth utilities
         window.ClerkAuth = {
@@ -63,38 +48,60 @@ async function initializeClerk() {
                 return allowedEmails.includes(user.primaryEmailAddress?.emailAddress) ||
                        user.publicMetadata?.specialAccess === true;
             },
-            signIn: () => clerk.openSignIn(),
-            signUp: () => clerk.openSignUp(),
-            signOut: () => clerk.signOut()
+            signIn: () => {
+                if (clerk.loaded) {
+                    clerk.openSignIn();
+                } else {
+                    console.warn('Clerk not ready yet, please try again');
+                }
+            },
+            signUp: () => {
+                if (clerk.loaded) {
+                    clerk.openSignUp();
+                } else {
+                    console.warn('Clerk not ready yet, please try again');
+                }
+            },
+            signOut: () => {
+                if (clerk.loaded) {
+                    clerk.signOut();
+                } else {
+                    console.warn('Clerk not ready yet, please try again');
+                }
+            }
         };
+
+        // Update UI based on auth state
+        updateAuthUI();
 
         // Listen for auth state changes
         clerk.addListener(({ user }) => {
-            updateAuthUI(user);
-            handleAuthChange(user);
+            updateAuthUI();
+            if (user) {
+                sendAuthToBackend(user);
+            } else {
+                fetch('/auth/logout', { method: 'GET' });
+            }
         });
-
-        // Initial UI update
-        updateAuthUI(clerk.user);
 
         console.log('Clerk initialized successfully');
     } catch (error) {
         console.error('Failed to initialize Clerk:', error);
+        setupFallbackMode();
     }
 }
 
-// Update authentication UI elements
-function updateAuthUI(user) {
+function updateAuthUI() {
+    const user = clerk?.user;
     const authButtons = document.querySelectorAll('[data-auth-button]');
     const userInfo = document.querySelectorAll('[data-user-info]');
-    const protectedContent = document.querySelectorAll('[data-protected]');
 
     if (user) {
         // User is signed in
         authButtons.forEach(btn => {
             if (btn.dataset.authButton === 'sign-out') {
                 btn.style.display = 'inline-block';
-                btn.onclick = () => clerk.signOut();
+                btn.onclick = () => window.ClerkAuth.signOut();
             } else {
                 btn.style.display = 'none';
             }
@@ -104,25 +111,15 @@ function updateAuthUI(user) {
             info.textContent = `Hello, ${user.firstName || user.emailAddresses[0]?.emailAddress || 'User'}`;
             info.style.display = 'inline-block';
         });
-
-        // Show/hide protected content based on premium access
-        protectedContent.forEach(content => {
-            const requiresPremium = content.dataset.protected === 'premium';
-            if (requiresPremium && !window.ClerkAuth.hasPremiumAccess()) {
-                content.innerHTML = '<div class="alert alert-warning">🔒 Premium content - upgrade to access</div>';
-            } else {
-                content.style.display = 'block';
-            }
-        });
     } else {
         // User is not signed in
         authButtons.forEach(btn => {
             if (btn.dataset.authButton === 'sign-in') {
                 btn.style.display = 'inline-block';
-                btn.onclick = () => clerk.openSignIn();
+                btn.onclick = () => window.ClerkAuth.signIn();
             } else if (btn.dataset.authButton === 'sign-up') {
                 btn.style.display = 'inline-block';
-                btn.onclick = () => clerk.openSignUp();
+                btn.onclick = () => window.ClerkAuth.signUp();
             } else {
                 btn.style.display = 'none';
             }
@@ -131,26 +128,22 @@ function updateAuthUI(user) {
         userInfo.forEach(info => {
             info.style.display = 'none';
         });
-
-        protectedContent.forEach(content => {
-            content.innerHTML = '<div class="alert alert-info">🔐 Please sign in to access this content</div>';
-        });
     }
 }
 
-// Handle authentication state changes
-function handleAuthChange(user) {
-    if (user) {
-        // User signed in - send to backend for session management
-        sendAuthToBackend(user);
-    } else {
-        // User signed out - clear backend session
-        fetch('/auth/logout', { method: 'GET' });
-    }
-}
+// Track last synced user to prevent duplicate syncs
+let lastSyncedUserId = null;
 
 // Send authentication data to Flask backend
 async function sendAuthToBackend(user) {
+    // Prevent duplicate syncs for the same user
+    if (lastSyncedUserId === user.id) {
+        console.log('User already synced, skipping');
+        return;
+    }
+
+    lastSyncedUserId = user.id;
+
     try {
         const response = await fetch('/auth/callback', {
             method: 'POST',
@@ -171,10 +164,7 @@ async function sendAuthToBackend(user) {
 
         if (response.ok) {
             console.log('Auth sync successful');
-            // Reload page to update server-side authentication state
-            setTimeout(() => {
-                window.location.reload();
-            }, 500);
+            // Don't reload - just update UI state
         } else {
             console.error('Auth sync failed');
         }
@@ -183,80 +173,62 @@ async function sendAuthToBackend(user) {
     }
 }
 
-// Protect links that require authentication
-function protectLinks() {
-    const protectedLinks = document.querySelectorAll('a[href*="/advanced"], a[href*="/intermediate/month"]');
+// Fallback mode when Clerk is not available
+function setupFallbackMode() {
+    console.warn('Running in fallback mode without authentication');
 
-    protectedLinks.forEach(link => {
+    window.ClerkAuth = {
+        isSignedIn: () => false,
+        getUser: () => null,
+        getToken: async () => null,
+        hasPremiumAccess: () => false,
+        isAllowedUser: () => false,
+        signIn: () => {
+            alert('Authentication is not configured. Please set up Clerk keys to enable sign-in.');
+        },
+        signUp: () => {
+            alert('Authentication is not configured. Please set up Clerk keys to enable sign-up.');
+        },
+        signOut: () => {
+            alert('Authentication is not configured.');
+        }
+    };
+
+    // Hide auth buttons in fallback mode
+    const authButtons = document.querySelectorAll('[data-auth-button]');
+    authButtons.forEach(btn => {
+        btn.style.display = 'none';
+    });
+}
+
+// Protect premium links
+function protectPremiumLinks() {
+    const premiumLinks = document.querySelectorAll('a[href*="/advanced"], a[href*="/intermediate/month"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+
+    premiumLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            if (!window.ClerkAuth || !window.ClerkAuth.isSignedIn()) {
+            if (!window.ClerkAuth?.isSignedIn()) {
                 e.preventDefault();
-                clerk.openSignIn();
+                if (window.ClerkAuth?.signIn) {
+                    window.ClerkAuth.signIn();
+                }
                 return false;
             }
 
             if (!window.ClerkAuth.hasPremiumAccess() && !window.ClerkAuth.isAllowedUser()) {
                 e.preventDefault();
-                showPaywallModal();
+                // Redirect to payment page instead of showing modal
+                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
                 return false;
             }
         });
     });
 }
 
-// Show paywall modal
-function showPaywallModal() {
-    const modal = document.createElement('div');
-    modal.className = 'modal fade';
-    modal.innerHTML = `
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">🔒 Premium Content</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>This content requires a premium subscription to access.</p>
-                    <p>Upgrade now to unlock:</p>
-                    <ul>
-                        <li>✨ Advanced FAANG+ Roadmap</li>
-                        <li>🎯 Intermediate Fortune500 Monthly Plans</li>
-                        <li>📊 Detailed Progress Tracking</li>
-                        <li>💼 Interview Preparation Resources</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Later</button>
-                    <button type="button" class="btn btn-primary" onclick="handleUpgrade()">Upgrade Now</button>
-                </div>
-            </div>
-        </div>
-    `;
-
-    document.body.appendChild(modal);
-    const bootstrapModal = new bootstrap.Modal(modal);
-    bootstrapModal.show();
-
-    modal.addEventListener('hidden.bs.modal', () => {
-        document.body.removeChild(modal);
-    });
-}
-
-// Handle upgrade process
-function handleUpgrade() {
-    // This is where you'd integrate with your payment system
-    alert('Upgrade functionality would be integrated here with Stripe/PayPal etc.');
-}
-
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     initializeClerk();
 
-    // Small delay to ensure Clerk is loaded before protecting links
-    setTimeout(protectLinks, 1000);
-});
-
-// Re-run protection after page updates
-window.addEventListener('load', () => {
-    setTimeout(protectLinks, 1500);
+    // Set up link protection after a brief delay
+    setTimeout(protectPremiumLinks, 1000);
 });

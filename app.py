@@ -633,7 +633,7 @@ def estimate_difficulty_and_topics(problem_name):
     return difficulty, topics, time
 
 @app.route('/complete-list')
-@premium_required
+
 def complete_list():
     """Complete question list with customizable time sliders"""
     all_questions = []

@@ -10,14 +10,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Clerk Authentication -->
-    <script src="https://unpkg.com/@clerk/clerk-js@latest/dist/clerk.browser.js" crossorigin="anonymous"></script>
-    <script>
-        // Pass Clerk configuration to JavaScript
-        window.CLERK_CONFIG = {
-            publishableKey: "{{ clerk_publishable_key or 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA' }}"
-        };
+    <script
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="{{ clerk_publishable_key }}"
+        src="https://above-shrew-89.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
     </script>
-    <script src="/static/clerk/auth.js" defer></script>
+    <script src="/static/clerk/auth.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XZL13RZZD"></script>
@@ -555,11 +555,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/about">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">person</span>About
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/status">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">account_circle</span>Auth Status
                         </a>
                     </li>
                 </ul>
