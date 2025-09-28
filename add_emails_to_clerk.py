@@ -2,18 +2,22 @@
 import csv
 import os
 import requests
+from dotenv import load_dotenv
 
-# Load Clerk API credentials (must be set in environment variables for security)
+# Load environment variables from .env file
+load_dotenv()
+
+# Load Clerk API credentials from environment variables
 CLERK_SECRET_KEY = os.environ.get("CLERK_SECRET_KEY")
 if not CLERK_SECRET_KEY:
-    raise RuntimeError("❌ Please set the CLERK_SECRET_KEY environment variable.")
+    raise RuntimeError("❌ Please set the CLERK_SECRET_KEY in your .env file or environment variables.")
 
 CLERK_API_URL = "https://api.clerk.com/v1"
 
 # Metadata you want to assign
 DEFAULT_METADATA = {
     "has_premium": True,
-    "has_ai_access": True,
+    "has_ai_access": False,
     "has_system_design_access": True,
 }
 
@@ -32,7 +36,13 @@ def find_clerk_user_by_email(email: str):
         print(f"⚠️ Error searching for user {email}: {resp.text}")
         return None
 
-    data = resp.json().get("data", [])
+    response_data = resp.json()
+    # Handle both formats: {"data": [...]} or [...]
+    if isinstance(response_data, dict):
+        data = response_data.get("data", [])
+    else:
+        data = response_data
+
     for user in data:
         for e in user.get("email_addresses", []):
             if e.get("email_address") == email:
@@ -45,13 +55,16 @@ def create_clerk_user(email: str, metadata: dict):
     payload = {
         "email_address": [email],
         "public_metadata": metadata,
-        "skip_password_requirements": True,
+        "skip_password_checks": True,
+        "skip_password_requirement": True,
+        "password": "TempPassword123!",  # Temporary password for phantom user
+        "created_at": None  # Let Clerk set creation time
     }
     resp = requests.post(f"{CLERK_API_URL}/users", headers=HEADERS, json=payload)
     if resp.status_code != 200:
         print(f"⚠️ Failed to create user {email}: {resp.text}")
         return None
-    print(f"✅ Created new user {email}")
+    print(f"✅ Created phantom user {email} with premium metadata")
     return resp.json()
 
 
