@@ -22,8 +22,13 @@ async function initializeClerk() {
             });
         }
 
-        // Get publishable key from backend or environment
-        const clerkPubKey = 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA'; // Replace with your key
+        // Get publishable key from server configuration
+        const clerkPubKey = window.CLERK_CONFIG?.publishableKey;
+
+        if (!clerkPubKey) {
+            console.error('Clerk publishable key not found. Please check your server configuration.');
+            return;
+        }
 
         clerk = new window.Clerk(clerkPubKey);
         await clerk.load({

@@ -11,6 +11,12 @@
 
     <!-- Clerk Authentication -->
     <script src="https://unpkg.com/@clerk/clerk-js@latest/dist/clerk.browser.js" crossorigin="anonymous"></script>
+    <script>
+        // Pass Clerk configuration to JavaScript
+        window.CLERK_CONFIG = {
+            publishableKey: "{{ clerk_publishable_key or 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA' }}"
+        };
+    </script>
     <script src="/static/clerk/auth.js" defer></script>
 
     <!-- Google tag (gtag.js) -->
