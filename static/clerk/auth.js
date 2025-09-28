@@ -206,6 +206,7 @@ function protectPremiumLinks() {
     const premiumLinks = document.querySelectorAll('a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
 
     premiumLinks.forEach(link => {
+        console.log("HIII", window.ClerkAuth.hasPremiumAccess(), window.ClerkAuth.isAllowedUser())
         link.addEventListener('click', (e) => {
             if (!window.ClerkAuth?.isSignedIn()) {
                 e.preventDefault();

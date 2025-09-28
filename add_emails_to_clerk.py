@@ -16,9 +16,10 @@ CLERK_API_URL = "https://api.clerk.com/v1"
 
 # Metadata you want to assign
 DEFAULT_METADATA = {
-    "has_premium": True,
+    "premium": True,  # This matches what hasPremiumAccess() checks for
     "has_ai_access": False,
     "has_system_design_access": True,
+    "specialAccess": True,  # This matches what isAllowedUser() checks for
 }
 
 HEADERS = {
