@@ -8,12 +8,24 @@ async function initializeClerk() {
     if (isInitialized) return;
 
     try {
-        const { Clerk } = await import('https://clerk.app/clerk.js');
+        // Wait for Clerk to be available
+        if (!window.Clerk) {
+            await new Promise((resolve) => {
+                const checkClerk = () => {
+                    if (window.Clerk) {
+                        resolve();
+                    } else {
+                        setTimeout(checkClerk, 100);
+                    }
+                };
+                checkClerk();
+            });
+        }
 
         // Get publishable key from backend or environment
         const clerkPubKey = 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA'; // Replace with your key
 
-        clerk = new Clerk(clerkPubKey);
+        clerk = new window.Clerk(clerkPubKey);
         await clerk.load({
             signInUrl: '/auth/login',
             signUpUrl: '/auth/signup'
