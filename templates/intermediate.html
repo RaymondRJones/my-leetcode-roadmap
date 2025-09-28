@@ -61,7 +61,7 @@
 <div class="row">
     {% for month, days in roadmap.items() %}
     <div class="col-md-6 col-lg-4 mb-4">
-        <div class="month-card md-card h-100 fade-in-up" style="animation-delay: {{ loop.index0 * 0.1 + 0.3 }}s;">
+        <div class="month-card md-card h-100 fade-in-up" style="animation-delay: {{ loop.index0 * 0.1 + 0.3 }}s;" data-protected="premium">
             <div class="card-body">
                 <h3 class="card-title">
                     <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">rocket_launch</span>Intermediate {{ month }}

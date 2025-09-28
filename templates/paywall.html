@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Premium Access Required - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="md-card text-center p-5">
+                <div class="mb-4">
+                    <span class="material-icons" style="font-size: 64px; color: var(--md-warning);">lock</span>
+                </div>
+
+                <h2 class="mb-3">🔒 Access Required</h2>
+                <p class="lead mb-4">{{ message or "This content requires special access." }}</p>
+
+                {% if user_email %}
+                <div class="alert alert-info">
+                    <strong>Signed in as:</strong> {{ user_email }}
+                    <br><small>Contact support if you believe you should have access to this content.</small>
+                </div>
+                {% endif %}
+
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <div class="md-card p-4 mb-4">
+                            <h5>✨ What You Get With Premium</h5>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">star</span>
+                                    Advanced FAANG+ Roadmap
+                                </li>
+                                <li class="mb-2">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">rocket_launch</span>
+                                    Intermediate Fortune500 Monthly Plans
+                                </li>
+                                <li class="mb-2">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">analytics</span>
+                                    Detailed Progress Tracking
+                                </li>
+                                <li class="mb-2">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">psychology</span>
+                                    Interview Preparation Resources
+                                </li>
+                                <li class="mb-2">
+                                    <span class="material-icons text-success" style="vertical-align: middle; margin-right: 8px;">support</span>
+                                    Priority Support
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="md-card p-4 mb-4">
+                            <h5>🎯 Success Stories</h5>
+                            <blockquote class="blockquote mt-3">
+                                <p class="mb-0">"This roadmap helped me land my dream job at Google!"</p>
+                                <footer class="blockquote-footer mt-2">Recent Premium User</footer>
+                            </blockquote>
+                            <blockquote class="blockquote mt-3">
+                                <p class="mb-0">"The structured approach made all the difference in my interview prep."</p>
+                                <footer class="blockquote-footer mt-2">FAANG Engineer</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    {% if redirect_to_login %}
+                        <p class="mb-3">Sign in to continue</p>
+                        <button data-auth-button="sign-in" class="btn btn-primary btn-lg me-3">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">login</span>
+                            Sign In
+                        </button>
+                        <button data-auth-button="sign-up" class="btn btn-outline-primary btn-lg">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">person_add</span>
+                            Create Account
+                        </button>
+                    {% elif current_user %}
+                        <div class="alert alert-warning">
+                            <h6>🔧 Required Metadata</h6>
+                            <p class="mb-1">Your account needs one of the following permissions in Clerk metadata:</p>
+                            <ul class="mb-2">
+                                <li><code>has_premium: true</code> - For roadmap access</li>
+                                <li><code>has_ai_access: true</code> - For AI features</li>
+                                <li><code>has_system_design_access: true</code> - For system design content</li>
+                            </ul>
+                            <small>Contact support to have these permissions added to your account.</small>
+                        </div>
+                        <a href="/" class="btn btn-outline-secondary btn-lg">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">home</span>
+                            Back to Home
+                        </a>
+                    {% else %}
+                        <p class="mb-3">Access your premium content</p>
+                        <button data-auth-button="sign-in" class="btn btn-primary btn-lg me-3">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">login</span>
+                            Sign In
+                        </button>
+                        <button data-auth-button="sign-up" class="btn btn-outline-primary btn-lg">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">person_add</span>
+                            Create Account
+                        </button>
+                    {% endif %}
+                </div>
+
+                <div class="mt-5 pt-4 border-top">
+                    <h6>📞 Need Help?</h6>
+                    <p class="text-muted">Contact support if you believe you should have access to this content.</p>
+                    <small class="text-muted">
+                        Special access is available for select users.
+                        If you're in our allowed user list, please make sure you're signed in with the correct email.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function handleUpgrade() {
+    // Placeholder for payment integration
+    alert('Premium upgrade functionality would be integrated here with Stripe, PayPal, or other payment providers.');
+
+    // In a real implementation, you would:
+    // 1. Open payment modal/redirect to checkout
+    // 2. Handle successful payment
+    // 3. Update user metadata in Clerk
+    // 4. Redirect back to requested content
+}
+</script>
+{% endblock %}

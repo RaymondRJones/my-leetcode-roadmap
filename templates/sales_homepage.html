@@ -1,0 +1,532 @@
+{% extends "base.html" %}
+
+{% block title %}Ray's Complete LeetCode Mastery Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="text-center">
+            <h1 class="display-3 mb-4" style="font-weight: 300;">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 16px; font-size: 4rem; color: var(--md-primary);">rocket_launch</span>
+                Master LeetCode & Land Your Dream Job
+            </h1>
+            <p class="lead mb-4" style="font-size: 1.4rem; max-width: 800px; margin: 0 auto;">
+                From Complete Beginner to FAANG Engineer: Your complete roadmap to coding interview success with AI-powered guidance and proven strategies.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Panels -->
+<div class="row" style="margin-top: 16px;">
+    <!-- Free Content -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="md-card h-100 position-relative roadmap-panel" style="border: 2px solid var(--md-success); margin-top: 16px;">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-success); margin-right: 16px;">school</span>
+                    <div>
+                        <h4 class="mb-1">Complete Beginner Roadmap</h4>
+                        <small class="text-muted">Start from zero programming knowledge</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">Perfect for absolute beginners. Learn programming fundamentals with AtCoder problems and build your foundation step by step.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>200+ Beginner-friendly problems</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>AtCoder problem collection</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>Programming fundamentals</small>
+                    </div>
+                </div>
+
+                <a href="/beginner" class="btn btn-success w-100">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_arrow</span>
+                    Start Learning Free
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="md-card h-100 position-relative roadmap-panel" style="border: 2px solid var(--md-success); margin-top: 16px;">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-success); margin-right: 16px;">trending_up</span>
+                    <div>
+                        <h4 class="mb-1">Software Engineer Roadmap</h4>
+                        <small class="text-muted">Raymond's complete journey</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">Follow Raymond's proven path from bootcamp to Fortune 1 companies. Learn the strategies that actually work in 2025.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>Career progression stages</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>Resume & LinkedIn optimization</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <small>Real-world experience tips</small>
+                    </div>
+                </div>
+
+                <a href="/roadmap" class="btn btn-success w-100">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">map</span>
+                    View Roadmap
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Content -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% set has_access = has_premium or is_allowed %}
+        <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
+             {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank')"{% else %}style="border: 2px solid var(--md-warning); margin-top: 16px;"{% endif %}>
+
+            {% if not has_access %}
+                <div class="locked-overlay">
+                    <div class="lock-icon">
+                        <span class="material-icons">lock</span>
+                    </div>
+                    <div class="pricing-info">
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: {% if has_access %}var(--md-warning){% else %}var(--md-outline){% endif %}; margin-right: 16px;">business</span>
+                    <div>
+                        <h4 class="mb-1">Fortune500 Roadmap</h4>
+                        <small class="text-muted">Intermediate level preparation</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">Structured 3-month plan designed for mid-tier company interviews. Perfect bridge between beginner and advanced level.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-warning{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>3-month structured plan</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-warning{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>200+ curated problems</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-warning{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>Daily practice schedule</small>
+                    </div>
+                </div>
+
+                {% if has_access %}
+                    <a href="/intermediate" class="btn btn-warning w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">rocket_launch</span>
+                        Start Fortune500 Track
+                    </a>
+                {% else %}
+                    <a href="https://raymond-site.vercel.app/leetcode-roadmap" target="_blank" class="btn btn-outline-secondary w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upgrade</span>
+                        Get Premium Access - $11
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% set has_access = has_premium or is_allowed %}
+        <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
+             {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank')"{% else %}style="border: 2px solid var(--md-error); margin-top: 16px;"{% endif %}>
+
+            {% if not has_access %}
+                <div class="locked-overlay">
+                    <div class="lock-icon">
+                        <span class="material-icons">lock</span>
+                    </div>
+                    <div class="pricing-info">
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: {% if has_access %}var(--md-error){% else %}var(--md-outline){% endif %}; margin-right: 16px;">star</span>
+                    <div>
+                        <h4 class="mb-1">FAANG+ Roadmap</h4>
+                        <small class="text-muted">Raymond's path to top 2%</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">The exact problems Raymond solved to reach top 2% on LeetCode and land offers from top-tier companies.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-danger{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>5-month advanced plan</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-danger{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>500+ hard problems</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-danger{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>Top 2% proven strategy</small>
+                    </div>
+                </div>
+
+                {% if has_access %}
+                    <a href="/advanced" class="btn btn-danger w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">emoji_events</span>
+                        Start FAANG+ Track
+                    </a>
+                {% else %}
+                    <a href="https://raymond-site.vercel.app/leetcode-roadmap" target="_blank" class="btn btn-outline-secondary w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upgrade</span>
+                        Get Premium Access - $11
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% set has_access = has_system_design_access or is_allowed %}
+        <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
+             {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank')"{% else %}style="border: 2px solid var(--md-primary); margin-top: 16px;"{% endif %}>
+
+            {% if not has_access %}
+                <div class="locked-overlay">
+                    <div class="lock-icon">
+                        <span class="material-icons">lock</span>
+                    </div>
+                    <div class="pricing-info">
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: {% if has_access %}var(--md-primary){% else %}var(--md-outline){% endif %}; margin-right: 16px;">architecture</span>
+                    <div>
+                        <h4 class="mb-1">System Design Roadmap</h4>
+                        <small class="text-muted">Master large-scale systems</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">Comprehensive system design preparation covering real-world problems, trivia, and low-level design patterns.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-primary{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>Real-life system problems</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-primary{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>System design trivia</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-primary{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>Low-level design patterns</small>
+                    </div>
+                </div>
+
+                {% if has_access %}
+                    <a href="/system-design" class="btn btn-primary w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">architecture</span>
+                        Start System Design
+                    </a>
+                {% else %}
+                    <a href="https://raymond-site.vercel.app/leetcode-roadmap" target="_blank" class="btn btn-outline-secondary w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upgrade</span>
+                        Get Access - $11
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mb-4">
+        {% set has_access = has_ai_access or is_allowed %}
+        <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
+             {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank')"{% else %}style="border: 2px solid var(--md-secondary); margin-top: 16px;"{% endif %}>
+
+            {% if not has_access %}
+                <div class="locked-overlay">
+                    <div class="lock-icon">
+                        <span class="material-icons">lock</span>
+                    </div>
+                    <div class="pricing-info">
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: {% if has_access %}var(--md-secondary){% else %}var(--md-outline){% endif %}; margin-right: 16px;">psychology</span>
+                    <div>
+                        <h4 class="mb-1">Behavioral Interview AI Guide</h4>
+                        <small class="text-muted">AI-powered interview prep</small>
+                    </div>
+                </div>
+
+                <p class="mb-3">Master behavioral interviews with AI feedback on your STAR stories. Practice Amazon Leadership Principles and more.</p>
+
+                <div class="features-list mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-info{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>AI-powered story feedback</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-info{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>Amazon Leadership Principles</small>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="material-icons {% if has_access %}text-info{% else %}text-muted{% endif %}" style="font-size: 18px; margin-right: 8px;">{% if has_access %}check_circle{% else %}lock{% endif %}</span>
+                        <small>STAR method guidance</small>
+                    </div>
+                </div>
+
+                {% if has_access %}
+                    <a href="/behavioral-guide" class="btn btn-info w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">smart_toy</span>
+                        Start AI Prep
+                    </a>
+                {% else %}
+                    <a href="https://raymond-site.vercel.app/leetcode-roadmap" target="_blank" class="btn btn-outline-secondary w-100">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upgrade</span>
+                        Get AI Access - $11
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Get Full Access CTA -->
+{% if not (has_premium and has_ai_access and has_system_design_access) %}
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="md-card text-center p-5" style="background: linear-gradient(135deg, var(--md-primary), var(--md-secondary)); color: white;">
+            <h2 class="mb-3">🚀 Ready to Unlock Your Full Potential?</h2>
+            <p class="lead mb-4">Get instant access to all premium roadmaps, AI-powered tools, and system design content.</p>
+
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="text-center">
+                        <span class="material-icons" style="font-size: 48px; margin-bottom: 8px;">workspace_premium</span>
+                        <h6>Premium Roadmaps</h6>
+                        <small>Fortune500 + FAANG+</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="text-center">
+                        <span class="material-icons" style="font-size: 48px; margin-bottom: 8px;">smart_toy</span>
+                        <h6>AI Interview Prep</h6>
+                        <small>Behavioral + Feedback</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="text-center">
+                        <span class="material-icons" style="font-size: 48px; margin-bottom: 8px;">architecture</span>
+                        <h6>System Design</h6>
+                        <small>Complete Mastery</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="text-center">
+                        <span class="material-icons" style="font-size: 48px; margin-bottom: 8px;">support</span>
+                        <h6>Priority Support</h6>
+                        <small>Direct Access</small>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://raymond-site.vercel.app/leetcode-roadmap" target="_blank" class="btn btn-light btn-lg" style="padding: 16px 32px; font-size: 1.2rem; color: var(--md-primary); font-weight: 500;">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upgrade</span>
+                Get Full Access Now
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Success Stories -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="text-center mb-4">💼 Success Stories</h3>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="md-card text-center p-4">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-success); margin-bottom: 16px;">emoji_events</span>
+                    <h6>Top 2% LeetCode</h6>
+                    <p class="small text-muted">"Reached top 2% using Raymond's exact roadmap and landed multiple FAANG offers."</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="md-card text-center p-4">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-warning); margin-bottom: 16px;">business</span>
+                    <h6>Fortune 500 Success</h6>
+                    <p class="small text-muted">"The intermediate roadmap perfectly prepared me for my Microsoft interview."</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="md-card text-center p-4">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px;">psychology</span>
+                    <h6>Behavioral Mastery</h6>
+                    <p class="small text-muted">"The AI feedback helped me craft perfect STAR stories for my Amazon interview."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.roadmap-panel {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.roadmap-panel:hover:not(.locked-panel) {
+    transform: translateY(-4px);
+    box-shadow: var(--md-elevation-4);
+}
+
+.locked-panel {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0.7;
+}
+
+.locked-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--md-elevation-3);
+    opacity: 0.8;
+}
+
+/* Locked Overlay */
+.locked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(76, 86, 106, 0.1);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+}
+
+.lock-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(76, 86, 106, 0.9);
+    color: white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(76, 86, 106, 0.3);
+}
+
+.lock-icon .material-icons {
+    font-size: 36px;
+}
+
+.pricing-info {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(208, 135, 112, 0.95);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(208, 135, 112, 0.3);
+    z-index: 6;
+}
+
+.pricing-info .price {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.features-list {
+    min-height: 90px;
+}
+
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    .lock-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .lock-icon .material-icons {
+        font-size: 28px;
+    }
+
+    .pricing-info {
+        top: 12px;
+        right: 12px;
+        padding: 6px 10px;
+    }
+
+    .pricing-info .price {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .lock-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .lock-icon .material-icons {
+        font-size: 24px;
+    }
+
+    .pricing-info {
+        padding: 4px 8px;
+    }
+
+    .pricing-info .price {
+        font-size: 0.75rem;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Authentication Status - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="md-card p-4">
+                <h2 class="mb-4">🔍 Authentication Status</h2>
+
+                {% if current_user %}
+                    <div class="alert alert-success">
+                        <h5>✅ Authenticated</h5>
+                        <p><strong>Email:</strong>
+                            {% if current_user.email_addresses %}
+                                {{ current_user.email_addresses[0].email_address }}
+                            {% else %}
+                                No email found
+                            {% endif %}
+                        </p>
+                        <p><strong>Name:</strong> {{ current_user.first_name }} {{ current_user.last_name }}</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    {% if has_premium %}
+                                        <span class="material-icons text-success" style="font-size: 48px;">check_circle</span>
+                                        <h6 class="mt-2">Premium Access</h6>
+                                        <small class="text-success">Enabled</small>
+                                    {% else %}
+                                        <span class="material-icons text-danger" style="font-size: 48px;">cancel</span>
+                                        <h6 class="mt-2">Premium Access</h6>
+                                        <small class="text-danger">Disabled</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    {% if has_ai_access %}
+                                        <span class="material-icons text-success" style="font-size: 48px;">smart_toy</span>
+                                        <h6 class="mt-2">AI Access</h6>
+                                        <small class="text-success">Enabled</small>
+                                    {% else %}
+                                        <span class="material-icons text-danger" style="font-size: 48px;">smart_toy</span>
+                                        <h6 class="mt-2">AI Access</h6>
+                                        <small class="text-danger">Disabled</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    {% if has_system_design_access %}
+                                        <span class="material-icons text-success" style="font-size: 48px;">architecture</span>
+                                        <h6 class="mt-2">System Design</h6>
+                                        <small class="text-success">Enabled</small>
+                                    {% else %}
+                                        <span class="material-icons text-danger" style="font-size: 48px;">architecture</span>
+                                        <h6 class="mt-2">System Design</h6>
+                                        <small class="text-danger">Disabled</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4">
+                        <h6>📋 Current Metadata</h6>
+                        <pre><code>{{ current_user.public_metadata | tojson(indent=2) }}</code></pre>
+                    </div>
+
+                    <div class="alert alert-warning mt-4">
+                        <h6>🔧 To Enable Access</h6>
+                        <p>Add these keys to your user's <strong>public metadata</strong> in Clerk Dashboard:</p>
+                        <ul>
+                            <li><code>"has_premium": true</code> - For roadmap access</li>
+                            <li><code>"has_ai_access": true</code> - For behavioral guide & AI features</li>
+                            <li><code>"has_system_design_access": true</code> - For system design content</li>
+                        </ul>
+                    </div>
+
+                {% else %}
+                    <div class="alert alert-warning">
+                        <h5>❌ Not Authenticated</h5>
+                        <p>Please sign in to view your authentication status.</p>
+                        <button data-auth-button="sign-in" class="btn btn-primary">
+                            Sign In
+                        </button>
+                    </div>
+                {% endif %}
+
+                <div class="mt-4">
+                    <h6>🧪 Test Links</h6>
+                    <div class="list-group">
+                        <a href="/advanced" class="list-group-item list-group-item-action">
+                            🔒 Advanced Roadmap (requires has_premium)
+                        </a>
+                        <a href="/intermediate/month/Month 1" class="list-group-item list-group-item-action">
+                            🔒 Intermediate Month 1 (requires has_premium)
+                        </a>
+                        <a href="/behavioral-guide" class="list-group-item list-group-item-action">
+                            🤖 Behavioral Guide (requires has_ai_access)
+                        </a>
+                        <a href="/system-design" class="list-group-item list-group-item-action">
+                            🏗️ System Design (requires has_system_design_access)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="/debug/auth" class="btn btn-info" target="_blank">
+                        🐛 Raw Debug Info (JSON)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

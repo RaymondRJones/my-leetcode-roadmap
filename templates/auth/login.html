@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="md-card text-center p-5">
+                <div class="mb-4">
+                    <span class="material-icons" style="font-size: 64px; color: var(--md-primary);">person</span>
+                </div>
+
+                <h2 class="mb-3">Welcome Back!</h2>
+                <p class="lead mb-4">Sign in to access premium roadmaps and track your progress</p>
+
+                <!-- Clerk will mount the sign-in component here -->
+                <div id="clerk-sign-in"></div>
+
+                <div class="mt-4">
+                    <p class="text-muted">
+                        Don't have an account?
+                        <button data-auth-button="sign-up" class="btn btn-link p-0">Sign up here</button>
+                    </p>
+                </div>
+
+                <div class="mt-5 pt-4 border-top">
+                    <h6>🚀 What You'll Get Access To:</h6>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <small class="text-muted">
+                                <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">star</span>
+                                FAANG+ Roadmap
+                            </small>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">
+                                <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">rocket_launch</span>
+                                Fortune500 Plans
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Mount Clerk sign-in component when available
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for Clerk to be initialized
+    const checkClerk = setInterval(() => {
+        if (window.clerk) {
+            clearInterval(checkClerk);
+
+            // Mount the sign-in component
+            clerk.mountSignIn(document.getElementById('clerk-sign-in'), {
+                redirectUrl: '/',
+                signUpUrl: '/auth/signup'
+            });
+        }
+    }, 100);
+});
+</script>
+{% endblock %}

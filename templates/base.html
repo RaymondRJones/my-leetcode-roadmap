@@ -8,7 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
+    <!-- Clerk Authentication -->
+    <script src="/static/clerk/auth.js" defer></script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XZL13RZZD"></script>
     <script>
@@ -502,12 +505,12 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">rocket_launch</span>Fortune500 Roadmap
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">home</span>Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/advanced">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">star</span>FAANG+ Roadmap
+                        <a class="nav-link" href="/intermediate">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">rocket_launch</span>Fortune500 Roadmap
                         </a>
                     </li>
                     <li class="nav-item">
@@ -516,15 +519,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/roadmap">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">trending_up</span>The Steps
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/advanced">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">star</span>FAANG+ Roadmap
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="/complete-list">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">list</span>Ray700
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/roadmap">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">trending_up</span>The Stages
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/system-design">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">architecture</span>System Design
@@ -540,8 +550,27 @@
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">person</span>About
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/status">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">account_circle</span>Auth Status
+                        </a>
+                    </li>
                 </ul>
                 <div class="navbar-nav">
+                    <!-- User Info -->
+                    <span data-user-info class="nav-link" style="display: none;"></span>
+
+                    <!-- Authentication Buttons -->
+                    <button data-auth-button="sign-in" class="btn btn-outline-primary btn-sm me-2" style="display: none;">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">login</span>Sign In
+                    </button>
+                    <button data-auth-button="sign-up" class="btn btn-primary btn-sm me-2" style="display: none;">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">person_add</span>Sign Up
+                    </button>
+                    <button data-auth-button="sign-out" class="btn btn-outline-danger btn-sm me-2" style="display: none;">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">logout</span>Sign Out
+                    </button>
+
                     <li class="nav-item">
                         <button class="btn btn-outline-primary btn-sm" onclick="refreshData()">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">refresh</span>Refresh

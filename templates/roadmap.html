@@ -54,169 +54,232 @@
     </div>
 </div>
 
-<!-- Interactive Roadmap -->
+<!-- Tabbed Learning Journey -->
 <div class="roadmap-journey-container mb-5">
     <div class="journey-header text-center mb-4">
         <h3 class="text-primary mb-2">
             <span class="material-icons me-2" style="vertical-align: middle;">route</span>Your Learning Journey
         </h3>
-        <p class="text-muted">Click on any level to explore the details and see what's required to progress</p>
+        <p class="text-muted">Select any level to see detailed action steps and requirements</p>
     </div>
-    
-    <!-- Desktop/Tablet Journey Path -->
-    <div class="journey-path d-none d-md-block">
-        <svg viewBox="0 0 1200 400" class="journey-svg">
-            <!-- Background decorative elements -->
-            <defs>
-                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#5e81ac;stop-opacity:0.4" />
-                    <stop offset="50%" style="stop-color:#88c0d0;stop-opacity:0.4" />
-                    <stop offset="100%" style="stop-color:#5e81ac;stop-opacity:0.4" />
-                </linearGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge> 
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/> 
-                    </feMerge>
-                </filter>
-                <!-- Mountain background -->
-                <polygon id="mountain1" points="0,300 50,200 100,300" fill="#e5e9f0" opacity="0.3"/>
-                <polygon id="mountain2" points="80,300 150,150 220,300" fill="#d8dee9" opacity="0.3"/>
-                <polygon id="mountain3" points="1000,300 1100,100 1200,300" fill="#d8dee9" opacity="0.3"/>
-            </defs>
-            
-            <!-- Mountain background -->
-            <use href="#mountain1" x="0" y="0"/>
-            <use href="#mountain2" x="200" y="0"/>
-            <use href="#mountain2" x="600" y="0"/>
-            <use href="#mountain3" x="0" y="0"/>
-            
-            <!-- Connecting path with varying heights to show effort -->
-            <path id="journeyPath" 
-                  d="M 80 320 
-                     Q 120 300 180 290
-                     Q 240 280 320 270
-                     Q 400 250 480 240
-                     Q 560 220 640 200
-                     Q 720 180 800 160
-                     Q 880 140 960 120
-                     Q 1040 100 1120 80" 
-                  stroke="url(#pathGradient)" 
-                  stroke-width="6" 
-                  fill="none" 
-                  stroke-dasharray="8,4" 
-                  opacity="0.7"/>
-            
-            <!-- Level indicators with varying sizes based on difficulty -->
-            <!-- Level 0: Starting Point -->
-            <g class="level-group" data-level="0">
-                <circle class="level-circle starting" cx="80" cy="320" r="25"/>
-                <text x="80" y="328" class="level-number" text-anchor="middle">0</text>
-                <text x="80" y="355" class="level-title" text-anchor="middle">Zero Code</text>
-                <text x="80" y="370" class="level-time" text-anchor="middle">Days-Weeks</text>
-            </g>
-            
-            <!-- Distance indicator 1 -->
-            <g class="distance-indicator" data-from="0" data-to="1">
-                <rect x="150" y="285" width="100" height="20" rx="10" fill="rgba(129, 161, 193, 0.2)" stroke="#5e81ac" stroke-width="1"/>
-                <text x="200" y="298" class="distance-text" text-anchor="middle">1-6 months</text>
-            </g>
-            
-            <!-- Level 1: First Hurdle -->
-            <g class="level-group" data-level="1">
-                <circle class="level-circle medium" cx="320" cy="270" r="28"/>
-                <text x="320" y="278" class="level-number" text-anchor="middle">1</text>
-                <text x="320" y="305" class="level-title" text-anchor="middle">Vibe Coder</text>
-                <text x="320" y="320" class="level-time" text-anchor="middle">1-6 months</text>
-            </g>
-            
-            <!-- Distance indicator 2 -->
-            <g class="distance-indicator" data-from="1" data-to="2">
-                <rect x="390" y="245" width="120" height="20" rx="10" fill="rgba(235, 203, 139, 0.2)" stroke="#ebcb8b" stroke-width="1"/>
-                <text x="450" y="258" class="distance-text" text-anchor="middle">Specialization</text>
-            </g>
-            
-            <!-- Level 2: Skill Building -->
-            <g class="level-group" data-level="2">
-                <circle class="level-circle medium" cx="560" cy="240" r="30"/>
-                <text x="560" y="248" class="level-number" text-anchor="middle">2</text>
-                <text x="560" y="275" class="level-title" text-anchor="middle">Official Programmer</text>
-                <text x="560" y="290" class="level-time" text-anchor="middle">Varies</text>
-            </g>
-            
-            <!-- Distance indicator 3 (Communication Gap) -->
-            <g class="distance-indicator major-gap" data-from="2" data-to="3">
-                <rect x="630" y="215" width="140" height="20" rx="10" fill="rgba(191, 97, 106, 0.2)" stroke="#bf616a" stroke-width="2"/>
-                <text x="700" y="228" class="distance-text major" text-anchor="middle">Communication Gap</text>
-            </g>
-            
-            <!-- Level 3: Professional Skills -->
-            <g class="level-group" data-level="3">
-                <circle class="level-circle hard" cx="800" cy="200" r="32"/>
-                <text x="800" y="208" class="level-number" text-anchor="middle">3</text>
-                <text x="800" y="240" class="level-title" text-anchor="middle">Job Ready</text>
-                <text x="800" y="255" class="level-time" text-anchor="middle">1-6 months</text>
-            </g>
-            
-            <!-- Distance indicator 4 -->
-            <g class="distance-indicator" data-from="3" data-to="4">
-                <rect x="860" y="175" width="100" height="20" rx="10" fill="rgba(235, 203, 139, 0.2)" stroke="#ebcb8b" stroke-width="1"/>
-                <text x="910" y="188" class="distance-text" text-anchor="middle">LeetCode</text>
-            </g>
-            
-            <!-- Level 4: Technical Mastery -->
-            <g class="level-group" data-level="4">
-                <circle class="level-circle medium" cx="1000" cy="160" r="30"/>
-                <text x="1000" y="168" class="level-number" text-anchor="middle">4</text>
-                <text x="1000" y="200" class="level-title" text-anchor="middle">LeetCode Grinder</text>
-                <text x="1000" y="215" class="level-time" text-anchor="middle">1-2 months</text>
-            </g>
-            
-            <!-- Distance indicator 5 (Final Challenge) -->
-            <g class="distance-indicator major-gap" data-from="4" data-to="5">
-                <rect x="1070" y="135" width="120" height="20" rx="10" fill="rgba(191, 97, 106, 0.2)" stroke="#bf616a" stroke-width="2"/>
-                <text x="1130" y="148" class="distance-text major" text-anchor="middle">System Design</text>
-            </g>
-            
-            <!-- Level 5: Fortune 1 Engineer -->
-            <g class="level-group" data-level="5">
-                <circle class="level-circle expert" cx="1200" cy="120" r="35"/>
-                <text x="1200" y="128" class="level-number expert-text" text-anchor="middle">5</text>
-                <text x="1200" y="165" class="level-title" text-anchor="middle">Fortune 1 SWE</text>
-                <text x="1200" y="180" class="level-time" text-anchor="middle">1-2 months</text>
-                <!-- Success crown -->
-                <path d="M 1185 95 L 1190 85 L 1195 95 L 1200 85 L 1205 95 L 1210 85 L 1215 95 L 1210 105 L 1190 105 Z" 
-                      fill="#ebcb8b" stroke="#d08770" stroke-width="1"/>
-            </g>
-        </svg>
-    </div>
-    
-    <!-- Mobile Journey Cards -->
-    <div class="mobile-journey d-block d-md-none">
-        <div class="mobile-level-cards">
-            <!-- Cards will be generated by JavaScript -->
+
+    <!-- Tab Navigation -->
+    <div class="roadmap-tabs-container">
+        <ul class="nav nav-pills roadmap-tabs justify-content-center mb-4" id="roadmapTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab active" id="level-0-tab" data-bs-toggle="pill" data-bs-target="#level-0"
+                        type="button" role="tab" aria-controls="level-0" aria-selected="true">
+                    <span class="material-icons">play_circle_filled</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 1</div>
+                        <div class="tab-subtitle">Start Coding</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-1-tab" data-bs-toggle="pill" data-bs-target="#level-1"
+                        type="button" role="tab" aria-controls="level-1" aria-selected="false">
+                    <span class="material-icons">code</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 2</div>
+                        <div class="tab-subtitle">Build Projects</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-2-tab" data-bs-toggle="pill" data-bs-target="#level-2"
+                        type="button" role="tab" aria-controls="level-2" aria-selected="false">
+                    <span class="material-icons">engineering</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 3</div>
+                        <div class="tab-subtitle">Practice Basic DSA</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-3-tab" data-bs-toggle="pill" data-bs-target="#level-3"
+                        type="button" role="tab" aria-controls="level-3" aria-selected="false">
+                    <span class="material-icons">groups</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 4</div>
+                        <div class="tab-subtitle">Improve Resume and Stories</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-4-tab" data-bs-toggle="pill" data-bs-target="#level-4"
+                        type="button" role="tab" aria-controls="level-4" aria-selected="false">
+                    <span class="material-icons">quiz</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 5</div>
+                        <div class="tab-subtitle">Practice Leetcode</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-5-tab" data-bs-toggle="pill" data-bs-target="#level-5"
+                        type="button" role="tab" aria-controls="level-5" aria-selected="false">
+                    <span class="material-icons">emoji_events</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 6</div>
+                        <div class="tab-subtitle">Crack System Design</div>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link roadmap-tab" id="level-5-tab" data-bs-toggle="pill" data-bs-target="#level-5"
+                        type="button" role="tab" aria-controls="level-5" aria-selected="false">
+                    <span class="material-icons">emoji_events</span>
+                    <div class="tab-content">
+                        <div class="tab-title">Step 7</div>
+                        <div class="tab-subtitle">Enjoy Job Offer</div>
+                    </div>
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content roadmap-tab-content" id="roadmapTabContent">
+            <!-- Level 0 Content -->
+            <div class="tab-pane fade show active" id="level-0" role="tabpanel" aria-labelledby="level-0-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">play_circle_filled</span>Level 0: Zero Code</h4>
+                        <span class="difficulty-badge difficulty-easy">Easy</span>
+                    </div>
+                    <p class="level-description">You've never programmed before and want to learn but don't know how. You haven't touched any code or built anything.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(0)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> Days to weeks</span>
+                            <span><strong>Focus:</strong> Getting started</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 1 Content -->
+            <div class="tab-pane fade" id="level-1" role="tabpanel" aria-labelledby="level-1-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">code</span>Level 1: Vibe Coder</h4>
+                        <span class="difficulty-badge difficulty-medium">Medium</span>
+                    </div>
+                    <p class="level-description">You can build projects but only with tutorials or LLM assistance. You cannot code anything without help, which is problematic for interviews.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(1)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> 1-6 months</span>
+                            <span><strong>Focus:</strong> Independence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 2 Content -->
+            <div class="tab-pane fade" id="level-2" role="tabpanel" aria-labelledby="level-2-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">engineering</span>Level 2: Official Programmer</h4>
+                        <span class="difficulty-badge difficulty-medium">Medium</span>
+                    </div>
+                    <p class="level-description">You can build projects by yourself and code things like tic-tac-toe without help, but you're unsure what to focus on and are still slow.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(2)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> Varies</span>
+                            <span><strong>Focus:</strong> Specialization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 3 Content -->
+            <div class="tab-pane fade" id="level-3" role="tabpanel" aria-labelledby="level-3-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">groups</span>Level 3: Job Ready Engineer</h4>
+                        <span class="difficulty-badge difficulty-hard">Hard</span>
+                    </div>
+                    <p class="level-description">You can build projects and code fast enough to impress in interviews, but you lack communication skills needed for job hunting.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(3)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> 1-6 months</span>
+                            <span><strong>Focus:</strong> Communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 4 Content -->
+            <div class="tab-pane fade" id="level-4" role="tabpanel" aria-labelledby="level-4-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">quiz</span>Level 4: LeetCode Grinder</h4>
+                        <span class="difficulty-badge difficulty-medium">Medium</span>
+                    </div>
+                    <p class="level-description">You have a great resume and are getting interviews, but you keep failing the coding interviews.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(4)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> 1-2 months</span>
+                            <span><strong>Focus:</strong> Technical Interview Skills</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 5 Content -->
+            <div class="tab-pane fade" id="level-5" role="tabpanel" aria-labelledby="level-5-tab">
+                <div class="level-overview-card">
+                    <div class="level-header">
+                        <h4><span class="material-icons me-2">emoji_events</span>Level 5: Fortune 1 SWE</h4>
+                        <span class="difficulty-badge difficulty-hard">Hard</span>
+                    </div>
+                    <p class="level-description">You're passing coding interviews but now face system design questions. This is typically for senior roles but increasingly asked for juniors.</p>
+                    <div class="level-actions">
+                        <button class="btn btn-primary btn-action" onclick="showStepsModal(5)">
+                            <span class="material-icons me-2">list</span>See 6 Action Steps
+                        </button>
+                        <div class="level-stats">
+                            <span><strong>Time:</strong> 1-2 months</span>
+                            <span><strong>Focus:</strong> System Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Level Details Modal -->
-<div class="modal fade" id="levelModal" tabindex="-1" aria-labelledby="levelModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<!-- Action Steps Modal -->
+<div class="modal fade" id="stepsModal" tabindex="-1" aria-labelledby="stepsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="levelModalLabel">
-                    <span class="material-icons me-2" style="vertical-align: middle;" id="modalIcon">school</span>
-                    <span id="modalTitle">Level Details</span>
+                <h5 class="modal-title" id="stepsModalLabel">
+                    <span class="material-icons me-2" style="vertical-align: middle;" id="stepsModalIcon">list</span>
+                    <span id="stepsModalTitle">Action Steps</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Level details will be populated by JavaScript -->
+            <div class="modal-body" id="stepsModalBody">
+                <!-- Action steps will be populated by JavaScript -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="modalActionBtn">Start Level</button>
+                <button type="button" class="btn btn-success" id="stepsActionBtn">Start This Level</button>
             </div>
         </div>
     </div>
@@ -266,10 +329,10 @@
 <style>
 /* Journey Container */
 .roadmap-journey-container {
-    background: linear-gradient(135deg, var(--nord6) 0%, var(--nord5) 100%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 20px;
     padding: 40px 20px;
-    box-shadow: var(--md-elevation-2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     position: relative;
     overflow: hidden;
 }
@@ -281,276 +344,305 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--md-primary), var(--md-secondary), var(--md-primary));
+    background: linear-gradient(90deg, #007bff, #6f42c1, #007bff);
 }
 
-.journey-svg {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
+/* Tab Navigation */
+.roadmap-tabs-container {
+    max-width: 100%;
 }
 
-/* Level Circles with Progressive Sizing */
-.level-circle {
-    fill: rgba(129, 161, 193, 0.2);
-    stroke: var(--md-primary);
-    stroke-width: 3;
-    cursor: pointer;
+.roadmap-tabs {
+    border-bottom: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+}
+
+.roadmap-tab {
+    border: none !important;
+    background: transparent;
+    border-radius: 12px !important;
+    padding: 16px 12px;
+    margin: 4px;
+    color: #6c757d;
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
-
-.level-circle.starting {
-    fill: rgba(163, 190, 140, 0.2);
-    stroke: var(--md-success);
-    stroke-width: 3;
-}
-
-.level-circle.medium {
-    fill: rgba(235, 203, 139, 0.2);
-    stroke: var(--md-warning);
-    stroke-width: 3;
-}
-
-.level-circle.hard {
-    fill: rgba(191, 97, 106, 0.2);
-    stroke: var(--md-error);
-    stroke-width: 4;
-}
-
-.level-circle.expert {
-    fill: linear-gradient(135deg, var(--nord13), var(--nord12));
-    stroke: var(--nord12);
-    stroke-width: 4;
-    filter: drop-shadow(0 4px 8px rgba(235, 203, 139, 0.3));
-}
-
-.level-group:hover .level-circle {
-    transform: scale(1.05);
-    filter: drop-shadow(0 4px 12px rgba(94, 129, 172, 0.3));
-}
-
-.level-group:hover .level-circle.starting {
-    fill: var(--md-success);
-    stroke-width: 4;
-    transform: scale(1.05);
-}
-
-.level-group:hover .level-circle.medium {
-    fill: var(--md-warning);
-    stroke-width: 4;
-    transform: scale(1.05);
-}
-
-.level-group:hover .level-circle.hard {
-    fill: var(--md-error);
-    stroke-width: 5;
-    transform: scale(1.05);
-}
-
-.level-group:hover .level-circle.expert {
-    transform: scale(1.08);
-    filter: drop-shadow(0 6px 16px rgba(235, 203, 139, 0.5));
-}
-
-/* Level Text */
-.level-number {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    fill: var(--md-primary);
-    pointer-events: none;
-    user-select: none;
-}
-
-.level-number.expert-text {
-    fill: var(--nord12);
-    font-size: 18px;
-}
-
-.level-title {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    fill: var(--md-on-surface);
-    pointer-events: none;
-    user-select: none;
-}
-
-.level-time {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-    fill: var(--md-on-surface-variant);
-    pointer-events: none;
-    user-select: none;
-}
-
-.level-group:hover .level-number {
-    fill: white;
-}
-
-.level-group:hover .level-number.expert-text {
-    fill: var(--nord12);
-}
-
-/* Distance Indicators */
-.distance-indicator rect {
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-
-.distance-indicator:hover rect {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.distance-indicator.major-gap rect {
-    stroke-width: 2;
-    fill: rgba(191, 97, 106, 0.2);
-    stroke: var(--md-error);
-}
-
-.distance-text {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 11px;
-    fill: var(--md-on-surface);
-    pointer-events: none;
-    user-select: none;
-}
-
-.distance-text.major {
-    font-weight: 600;
-    fill: var(--md-error);
-}
-
-/* Mobile Cards */
-.mobile-level-cards {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
 }
 
-.mobile-level-card {
-    background: var(--md-surface);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: var(--md-elevation-1);
-    border-left: 4px solid var(--md-primary);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+.roadmap-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(111,66,193,0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.mobile-level-card:hover {
-    box-shadow: var(--md-elevation-3);
-    transform: translateY(-2px);
+.roadmap-tab:hover::before {
+    opacity: 1;
 }
 
-.mobile-level-card.starting {
-    border-left-color: var(--md-success);
+.roadmap-tab .material-icons {
+    font-size: 24px;
+    margin-bottom: 8px;
+    z-index: 1;
+    position: relative;
 }
 
-.mobile-level-card.medium {
-    border-left-color: var(--md-warning);
+.roadmap-tab .tab-content {
+    z-index: 1;
+    position: relative;
 }
 
-.mobile-level-card.hard {
-    border-left-color: var(--md-error);
+.roadmap-tab .tab-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.2;
 }
 
-.mobile-level-card.expert {
-    border-left-color: var(--nord13);
-    background: linear-gradient(135deg, rgba(235, 203, 139, 0.1), var(--md-surface));
+.roadmap-tab .tab-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    line-height: 1.2;
 }
 
-/* Modal Customizations */
-.modal-content {
-    border-radius: 16px;
-    border: none;
-    box-shadow: var(--md-elevation-5);
-}
-
-.modal-header {
-    background: linear-gradient(135deg, var(--md-primary), var(--md-secondary));
+.roadmap-tab.active {
+    background: linear-gradient(135deg, #007bff, #6f42c1);
     color: white;
-    border-radius: 16px 16px 0 0;
-    border-bottom: none;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,123,255,0.3);
 }
 
-.modal-header .btn-close {
-    filter: invert(1);
+.roadmap-tab.active::before {
+    opacity: 0;
 }
 
-.requirements-list {
-    list-style: none;
-    padding: 0;
+.roadmap-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    color: #495057;
+}
+
+.roadmap-tab.active:hover {
+    color: white;
+}
+
+/* Tab Content */
+.roadmap-tab-content {
+    margin-top: 24px;
+}
+
+.level-overview-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.level-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.level-header h4 {
     margin: 0;
-}
-
-.requirements-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--md-outline);
+    color: #212529;
+    font-weight: 600;
     display: flex;
     align-items: center;
 }
 
-.requirements-list li:last-child {
-    border-bottom: none;
+.level-description {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 1.1rem;
 }
 
-.requirements-list .material-icons {
-    color: var(--md-primary);
-    margin-right: 12px;
-    font-size: 20px;
+.level-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
+.btn-action {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.3);
+}
+
+.level-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.level-stats span {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Difficulty Badges */
 .difficulty-badge {
-    padding: 4px 12px;
-    border-radius: 16px;
+    padding: 6px 16px;
+    border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.difficulty-easy { 
-    background: rgba(163, 190, 140, 0.15);
-    color: var(--md-success);
-}
-.difficulty-medium { 
-    background: rgba(235, 203, 139, 0.15);
-    color: var(--md-warning);
-}
-.difficulty-hard { 
-    background: rgba(191, 97, 106, 0.15);
-    color: var(--md-error);
+.difficulty-easy {
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
 }
 
+.difficulty-medium {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.difficulty-hard {
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+}
+
+/* Modal Customizations */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #007bff, #6f42c1);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    padding: 24px 32px;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+.modal-body {
+    padding: 32px;
+}
+
+.modal-footer {
+    padding: 24px 32px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Action Steps */
+.action-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.action-step {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #007bff;
+    transition: all 0.3s ease;
+}
+
+.action-step:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.action-step-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.action-step-number {
+    background: #007bff;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-right: 12px;
+    font-size: 0.875rem;
+}
+
+.action-step-title {
+    font-weight: 600;
+    color: #212529;
+    margin: 0;
+}
+
+.action-step-description {
+    color: #6c757d;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Stats Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
-    margin-top: 20px;
+    margin: 24px 0;
 }
 
 .stat-item {
     text-align: center;
-    padding: 16px;
-    background: var(--md-background);
+    padding: 20px;
+    background: #f8f9fa;
     border-radius: 12px;
-    border: 1px solid var(--md-outline);
+    border: 1px solid #e9ecef;
 }
 
 .stat-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--md-primary);
-    margin-bottom: 4px;
+    color: #007bff;
+    margin-bottom: 8px;
 }
 
 .stat-label {
     font-size: 0.875rem;
-    color: var(--md-on-surface-variant);
+    color: #6c757d;
     font-weight: 500;
 }
 
@@ -570,31 +662,63 @@
     }
 }
 
-.level-group {
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-
-.level-group:hover {
-    transform: translateY(-1px);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .roadmap-journey-container {
-        padding: 20px 15px;
+        padding: 24px 16px;
     }
-    
-    .journey-header h3 {
-        font-size: 1.25rem;
+
+    .roadmap-tabs {
+        padding: 6px;
     }
-    
-    .mobile-level-card {
-        padding: 16px;
+
+    .roadmap-tab {
+        min-width: 100px;
+        padding: 12px 8px;
+    }
+
+    .roadmap-tab .material-icons {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .level-overview-card {
+        padding: 24px;
+    }
+
+    .level-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .level-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .level-stats {
+        justify-content: space-between;
+    }
+
+    .modal-body {
+        padding: 24px;
+    }
+
+    .action-steps-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 576px) {
+    .roadmap-tab .tab-title {
+        font-size: 0.75rem;
+    }
+
+    .roadmap-tab .tab-subtitle {
+        font-size: 0.7rem;
+    }
+
     .stats-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -602,345 +726,309 @@
 </style>
 
 <script>
-// Level data with enhanced information
+// Level data with detailed action steps
 const levelData = {
     0: {
         title: "Zero Code",
         description: "You've never programmed before and want to learn but don't know how. You haven't touched any code or built anything.",
-        requirements: [
-            "Watch tutorials on YouTube",
-            "Use LLMs like Claude Code, Lovable, or ChatGPT", 
-            "Build simple projects with assistance",
-            "Connect and experiment with code",
-            "Learn basic programming concepts",
-            "Set up development environment"
+        actionSteps: [
+            {
+                title: "Watch Programming Tutorials",
+                description: "Start with beginner-friendly YouTube channels like FreeCodeCamp, Programming with Mosh, or The Net Ninja to understand basic concepts."
+            },
+            {
+                title: "Use AI Coding Assistants",
+                description: "Leverage tools like Claude Code, GitHub Copilot, or ChatGPT to help write and understand code while learning."
+            },
+            {
+                title: "Set Up Development Environment",
+                description: "Install a code editor (VS Code), choose your first language (Python or JavaScript), and set up the necessary tools."
+            },
+            {
+                title: "Build Your First Project",
+                description: "Create a simple calculator, to-do list, or personal website following step-by-step tutorials."
+            },
+            {
+                title: "Learn Programming Fundamentals",
+                description: "Understand variables, functions, loops, conditionals, and basic data structures through hands-on practice."
+            },
+            {
+                title: "Join Coding Communities",
+                description: "Connect with other beginners on Discord servers, Reddit (r/learnprogramming), or local meetups for support and motivation."
+            }
         ],
         timeToComplete: "Days to weeks",
         difficulty: "Easy",
         difficultyClass: "difficulty-easy",
         focusArea: "Getting started",
         nextLevel: "Once you can build basic projects with tutorials/LLMs",
-        icon: "play_circle_filled",
-        tips: [
-            "Don't worry about perfection - just start coding",
-            "Use AI tools to accelerate your learning",
-            "Build simple projects like calculators or to-do lists"
-        ],
-        resources: [
-            "FreeCodeCamp tutorials",
-            "YouTube programming channels",
-            "Claude Code for assistance"
-        ]
+        icon: "play_circle_filled"
     },
     1: {
-        title: "Vibe Coder", 
+        title: "Vibe Coder",
         description: "You can build projects but only with tutorials or LLM assistance. You cannot code anything without help, which is problematic for interviews.",
-        requirements: [
-            "Code without assistance for 20 minutes daily",
-            "Build projects without LLM help",
-            "Do coding exercises (LeetCode, etc.)",
-            "Let your brain work without AI assistance",
-            "Understand core programming patterns",
-            "Debug code independently"
+        actionSteps: [
+            {
+                title: "Code 20 Minutes Daily Without Help",
+                description: "Force yourself to solve simple problems without AI or tutorials. Start with basic exercises and gradually increase difficulty."
+            },
+            {
+                title: "Build Projects Independently",
+                description: "Recreate projects you've built with tutorials, but this time do it completely from memory and your own understanding."
+            },
+            {
+                title: "Practice Algorithm Problems",
+                description: "Start with easy LeetCode problems, HackerRank challenges, or Codewars katas to build problem-solving skills."
+            },
+            {
+                title: "Debug Code Without Assistance",
+                description: "When your code breaks, resist the urge to ask AI. Use print statements, debugger tools, and systematic thinking."
+            },
+            {
+                title: "Understand Core Patterns",
+                description: "Learn common programming patterns: loops, recursion, array manipulation, and string processing without looking them up."
+            },
+            {
+                title: "Explain Code Out Loud",
+                description: "Practice explaining your code line-by-line to yourself or others. This helps identify gaps in understanding."
+            }
         ],
         timeToComplete: "1-6 months",
         difficulty: "Medium",
-        difficultyClass: "difficulty-medium", 
+        difficultyClass: "difficulty-medium",
         focusArea: "Independence",
         nextLevel: "When you can code projects by yourself",
-        icon: "code",
-        tips: [
-            "Practice coding without any assistance daily",
-            "Start with simple problems and gradually increase difficulty", 
-            "Focus on understanding, not just copying code"
-        ],
-        resources: [
-            "LeetCode Easy problems",
-            "Coding bootcamp exercises",
-            "Personal projects without tutorials"
-        ]
+        icon: "code"
     },
     2: {
         title: "Official Programmer",
         description: "You can build projects by yourself and code things like tic-tac-toe without help, but you're unsure what to focus on and are still slow.",
-        requirements: [
-            "Pick a specialization (React, Python, Java, etc.)",
-            "Get deeper knowledge in your chosen area", 
-            "Build projects faster",
-            "Focus on one thing, not jack-of-all-trades",
-            "Learn advanced concepts in your specialty",
-            "Build portfolio projects"
+        actionSteps: [
+            {
+                title: "Choose Your Specialization",
+                description: "Pick one technology stack (React/JavaScript, Python/Django, Java/Spring, etc.) and commit to mastering it deeply."
+            },
+            {
+                title: "Build 3-5 Portfolio Projects",
+                description: "Create substantial projects in your chosen stack: a web app, API, mobile app, or desktop application with real features."
+            },
+            {
+                title: "Learn Framework Best Practices",
+                description: "Study official documentation, coding standards, and design patterns specific to your chosen technology."
+            },
+            {
+                title: "Optimize for Speed and Quality",
+                description: "Focus on writing code faster while maintaining quality. Practice typing, learn keyboard shortcuts, and use code snippets."
+            },
+            {
+                title: "Study Advanced Concepts",
+                description: "Dive deep into advanced topics: async programming, state management, testing, deployment, and performance optimization."
+            },
+            {
+                title: "Contribute to Open Source",
+                description: "Find beginner-friendly issues on GitHub projects using your tech stack. This exposes you to real-world codebases."
+            }
         ],
         timeToComplete: "Varies",
         difficulty: "Medium",
         difficultyClass: "difficulty-medium",
         focusArea: "Specialization",
         nextLevel: "When you can code fast and talk deeply about your projects",
-        icon: "engineering",
-        tips: [
-            "Choose one technology stack and master it",
-            "Build 3-5 substantial projects in your specialty",
-            "Join communities around your chosen technology"
-        ],
-        resources: [
-            "Official documentation",
-            "Framework-specific tutorials",
-            "GitHub trending projects"
-        ]
+        icon: "engineering"
     },
     3: {
         title: "Job Ready Engineer",
         description: "You can build projects and code fast enough to impress in interviews, but you lack communication skills needed for job hunting.",
-        requirements: [
-            "Stop coding, focus on talking to people",
-            "Get resume reviews from peers",
-            "Practice behavioral stories",
-            "Network in communities (Discord, school, etc.)",
-            "Ask for referrals",
-            "Prepare for interviews"
+        actionSteps: [
+            {
+                title: "Polish Your Resume",
+                description: "Get feedback from senior developers, use action verbs, quantify achievements, and tailor it to specific job descriptions."
+            },
+            {
+                title: "Practice Behavioral Stories",
+                description: "Prepare 5-8 STAR method stories showcasing leadership, problem-solving, teamwork, and technical challenges you've overcome."
+            },
+            {
+                title: "Network Actively",
+                description: "Join tech meetups, conferences, Discord servers, and LinkedIn groups. Engage genuinely and build relationships, not just collect contacts."
+            },
+            {
+                title: "Ask for Referrals",
+                description: "Reach out to connections at target companies. Most hires come through referrals, so leverage your network effectively."
+            },
+            {
+                title: "Practice Interview Communication",
+                description: "Record yourself explaining technical concepts to non-technical people. Practice walking through your projects clearly and concisely."
+            },
+            {
+                title: "Build Your Online Presence",
+                description: "Create a professional LinkedIn profile, update your GitHub with clean repos, and consider writing technical blog posts."
+            }
         ],
-        timeToComplete: "1-6 months", 
+        timeToComplete: "1-6 months",
         difficulty: "Hard",
         difficultyClass: "difficulty-hard",
         focusArea: "Communication",
         nextLevel: "When you're getting interviews consistently",
-        icon: "groups",
-        tips: [
-            "Practice explaining your projects to non-technical people",
-            "Attend meetups and networking events",
-            "Create a strong LinkedIn presence"
-        ],
-        resources: [
-            "STAR method for behavioral interviews",
-            "Local tech meetups",
-            "LinkedIn networking"
-        ]
+        icon: "groups"
     },
     4: {
-        title: "Leetcode Grinder",
+        title: "LeetCode Grinder",
         description: "You have a great resume and are getting interviews, but you keep failing the coding interviews.",
-        requirements: [
-            "Practice more LeetCode problems",
-            "Study language trivia", 
-            "Learn to connect to APIs",
-            "Solve problems faster",
-            "Practice coding under pressure",
-            "Master common algorithms and data structures"
+        actionSteps: [
+            {
+                title: "Master Data Structures",
+                description: "Deeply understand arrays, linked lists, stacks, queues, trees, graphs, and hash tables. Know when and how to use each."
+            },
+            {
+                title: "Learn Algorithm Patterns",
+                description: "Study common patterns: two pointers, sliding window, DFS/BFS, dynamic programming, and binary search."
+            },
+            {
+                title: "Practice Under Time Pressure",
+                description: "Set timers for coding problems. Easy: 15min, Medium: 25min, Hard: 45min. Practice explaining your approach while coding."
+            },
+            {
+                title: "Study Language Specifics",
+                description: "Master your interview language's syntax, built-in functions, time/space complexities, and common pitfalls."
+            },
+            {
+                title: "Mock Interview Practice",
+                description: "Use Pramp, InterviewBit, or find practice partners. Get comfortable coding while someone watches and asks questions."
+            },
+            {
+                title: "Learn System Integration",
+                description: "Practice connecting to APIs, handling edge cases, and writing production-quality code that handles errors gracefully."
+            }
         ],
         timeToComplete: "1-2 months",
         difficulty: "Medium",
-        difficultyClass: "difficulty-medium", 
+        difficultyClass: "difficulty-medium",
         focusArea: "Technical Interview Skills",
         nextLevel: "When you can consistently pass coding interviews",
-        icon: "quiz",
-        tips: [
-            "Practice 1-2 LeetCode problems daily",
-            "Time yourself during practice sessions",
-            "Learn to explain your thought process clearly"
-        ],
-        resources: [
-            "LeetCode premium",
-            "Cracking the Coding Interview book",
-            "AlgoExpert platform"
-        ]
+        icon: "quiz"
     },
     5: {
         title: "Fortune 1 SWE",
         description: "You're passing coding interviews but now face system design questions. This is typically for senior roles but increasingly asked for juniors.",
-        requirements: [
-            "Study system design patterns",
-            "Learn about scalability",
-            "Understand distributed systems", 
-            "Practice design questions",
-            "Study real-world architectures",
-            "Master trade-offs and design decisions"
+        actionSteps: [
+            {
+                title: "Study Distributed Systems",
+                description: "Learn about load balancing, caching, databases (SQL vs NoSQL), microservices, and how large-scale systems handle millions of users."
+            },
+            {
+                title: "Master System Design Patterns",
+                description: "Understand CAP theorem, eventual consistency, sharding, replication, and trade-offs between different architectural approaches."
+            },
+            {
+                title: "Practice Design Questions",
+                description: "Design systems like Twitter, Netflix, Uber, or chat applications. Focus on gathering requirements and explaining trade-offs."
+            },
+            {
+                title: "Learn Real-World Architectures",
+                description: "Study how major companies build their systems. Read engineering blogs from Google, Facebook, Netflix, and Uber."
+            },
+            {
+                title: "Understand Scalability Principles",
+                description: "Learn about horizontal vs vertical scaling, CDNs, API gateways, message queues, and how to handle increasing traffic."
+            },
+            {
+                title: "Practice System Design Interviews",
+                description: "Use platforms like Educative, System Design Primer, or find practice partners. Focus on communication and justifying decisions."
+            }
         ],
         timeToComplete: "1-2 months",
-        difficulty: "Hard", 
+        difficulty: "Hard",
         difficultyClass: "difficulty-hard",
-        focusArea: "System Architecture", 
+        focusArea: "System Architecture",
         nextLevel: "You've reached Fortune 1 software engineer level!",
-        icon: "emoji_events",
-        tips: [
-            "Study how major companies architect their systems",
-            "Practice designing systems you use daily",
-            "Focus on trade-offs rather than perfect solutions"
-        ],
-        resources: [
-            "Designing Data-Intensive Applications book",
-            "System Design Primer GitHub repo",
-            "High Scalability blog"
-        ]
+        icon: "emoji_events"
     }
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeRoadmap();
-    createMobileCards();
-    
-    // Add click handlers to level groups
-    document.querySelectorAll('.level-group').forEach(group => {
-        group.addEventListener('click', function() {
-            const level = parseInt(this.dataset.level);
-            showLevelModal(level);
-        });
-    });
-});
-
-function initializeRoadmap() {
-    // Add hover effects and click handlers
-    document.querySelectorAll('.level-group').forEach(group => {
-        group.addEventListener('mouseenter', function() {
-            this.style.filter = 'drop-shadow(0 4px 12px rgba(25,118,210,0.3))';
-        });
-        
-        group.addEventListener('mouseleave', function() {
-            this.style.filter = '';
-        });
-    });
-}
-
-function createMobileCards() {
-    const container = document.querySelector('.mobile-level-cards');
-    if (!container) return;
-    
-    for (let i = 0; i <= 5; i++) {
-        const data = levelData[i];
-        const card = document.createElement('div');
-        card.className = `mobile-level-card ${getDifficultyClass(data.difficulty)}`;
-        card.onclick = () => showLevelModal(i);
-        
-        card.innerHTML = `
-            <div class="d-flex align-items-center mb-3">
-                <div class="me-3">
-                    <span class="material-icons" style="font-size: 36px; color: var(--md-primary);">${data.icon}</span>
-                </div>
-                <div>
-                    <h5 class="mb-1">Level ${i}: ${data.title}</h5>
-                    <span class="difficulty-badge ${data.difficultyClass}">${data.difficulty}</span>
-                </div>
-            </div>
-            <p class="text-muted mb-3">${data.description}</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted"><strong>Time:</strong> ${data.timeToComplete}</small>
-                <small class="text-muted"><strong>Focus:</strong> ${data.focusArea}</small>
-            </div>
-        `;
-        
-        container.appendChild(card);
-    }
-}
-
-function getDifficultyClass(difficulty) {
-    switch(difficulty) {
-        case 'Easy': return 'starting';
-        case 'Medium': return 'medium';
-        case 'Hard': return 'hard';
-        default: return 'medium';
-    }
-}
-
-function showLevelModal(level) {
+// Function to show the detailed steps modal
+function showStepsModal(level) {
     const data = levelData[level];
-    
+
     // Update modal title and icon
-    document.getElementById('modalIcon').textContent = data.icon;
-    document.getElementById('modalTitle').textContent = `Level ${level}: ${data.title}`;
-    
-    // Create requirements list
-    const requirementsList = data.requirements.map(req => 
-        `<li><span class="material-icons">check_circle</span>${req}</li>`
-    ).join('');
-    
-    // Create tips list
-    const tipsList = data.tips.map(tip => 
-        `<li><span class="material-icons">lightbulb</span>${tip}</li>`
-    ).join('');
-    
-    // Create resources list
-    const resourcesList = data.resources.map(resource => 
-        `<li><span class="material-icons">link</span>${resource}</li>`
-    ).join('');
-    
+    document.getElementById('stepsModalIcon').textContent = data.icon;
+    document.getElementById('stepsModalTitle').textContent = `Level ${level}: ${data.title}`;
+
+    // Create action steps grid
+    const stepsGrid = data.actionSteps.map((step, index) => `
+        <div class="action-step">
+            <div class="action-step-header">
+                <div class="action-step-number">${index + 1}</div>
+                <h6 class="action-step-title">${step.title}</h6>
+            </div>
+            <p class="action-step-description">${step.description}</p>
+        </div>
+    `).join('');
+
     // Update modal body
-    document.getElementById('modalBody').innerHTML = `
+    document.getElementById('stepsModalBody').innerHTML = `
         <div class="mb-4">
             <p class="lead">${data.description}</p>
         </div>
-        
+
         <div class="stats-grid mb-4">
             <div class="stat-item">
                 <div class="stat-value">${data.timeToComplete}</div>
-                <div class="stat-label">Time Needed</div>
+                <div class="stat-label">Time Commitment</div>
             </div>
             <div class="stat-item">
                 <div class="stat-value">
                     <span class="difficulty-badge ${data.difficultyClass}">${data.difficulty}</span>
                 </div>
-                <div class="stat-label">Difficulty</div>
+                <div class="stat-label">Difficulty Level</div>
             </div>
             <div class="stat-item">
                 <div class="stat-value">${data.focusArea}</div>
-                <div class="stat-label">Focus Area</div>
+                <div class="stat-label">Primary Focus</div>
             </div>
         </div>
-        
+
         <div class="mb-4">
-            <h6 class="text-primary mb-3">
-                <span class="material-icons me-2" style="vertical-align: middle;">assignment</span>
-                Key Requirements
-            </h6>
-            <ul class="requirements-list">
-                ${requirementsList}
-            </ul>
+            <h5 class="text-primary mb-3">
+                <span class="material-icons me-2" style="vertical-align: middle;">checklist</span>
+                6 Action Steps to Complete This Level
+            </h5>
+            <div class="action-steps-grid">
+                ${stepsGrid}
+            </div>
         </div>
-        
-        <div class="mb-4">
-            <h6 class="text-success mb-3">
-                <span class="material-icons me-2" style="vertical-align: middle;">tips_and_updates</span>
-                Pro Tips
-            </h6>
-            <ul class="requirements-list">
-                ${tipsList}
-            </ul>
-        </div>
-        
-        <div class="mb-4">
-            <h6 class="text-warning mb-3">
-                <span class="material-icons me-2" style="vertical-align: middle;">school</span>
-                Recommended Resources
-            </h6>
-            <ul class="requirements-list">
-                ${resourcesList}
-            </ul>
-        </div>
-        
+
         <div class="alert alert-info">
-            <h6><span class="material-icons me-2" style="vertical-align: middle;">flag</span>Next Level Goal</h6>
+            <h6><span class="material-icons me-2" style="vertical-align: middle;">flag</span>Level Complete When:</h6>
             <p class="mb-0">${data.nextLevel}</p>
         </div>
     `;
-    
+
     // Update action button
-    const actionBtn = document.getElementById('modalActionBtn');
+    const actionBtn = document.getElementById('stepsActionBtn');
     if (level === 5) {
-        actionBtn.textContent = 'Congratulations!';
+        actionBtn.textContent = 'You Made It! 🎉';
         actionBtn.className = 'btn btn-success';
         actionBtn.disabled = true;
     } else {
-        actionBtn.textContent = `Start Level ${level}`;
-        actionBtn.className = 'btn btn-primary';
+        actionBtn.textContent = `Begin Level ${level}`;
+        actionBtn.className = 'btn btn-success';
         actionBtn.disabled = false;
         actionBtn.onclick = () => {
-            // You can add navigation logic here
-            console.log(`Starting level ${level}`);
+            console.log(`Starting level ${level} with ${data.actionSteps.length} action steps`);
+            // Here you could redirect to specific resources or track progress
         };
     }
-    
+
     // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('levelModal'));
+    const modal = new bootstrap.Modal(document.getElementById('stepsModal'));
     modal.show();
 }
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Roadmap page initialized with tabbed interface');
+});
 </script>
 
 {% endblock %}

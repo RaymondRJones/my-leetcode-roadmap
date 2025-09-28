@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, jsonify, request, redirect, session, abort
 import json
 import os
+import jwt
+import requests
+from functools import wraps
 from pdf_analyzer import LeetCodeRoadmapAnalyzer
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -10,6 +13,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your-secret-key-change-this-in-production')
+
+# Clerk configuration
+CLERK_SECRET_KEY = os.environ.get('CLERK_SECRET_KEY')
+CLERK_PUBLISHABLE_KEY = os.environ.get('CLERK_PUBLISHABLE_KEY', 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA')
 
 # Initialize OpenAI client only if API key is available
 def get_openai_client():
@@ -17,6 +25,113 @@ def get_openai_client():
     if not api_key:
         raise ValueError("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.")
     return OpenAI(api_key=api_key)
+
+# Simplified authentication - relying on frontend verification and session storage
+def get_current_user():
+    """Get current user from Flask session (set by frontend auth callback)"""
+    return session.get('user')
+
+def has_premium_access(user_data):
+    """Check if user has premium access"""
+    if not user_data:
+        return False
+
+    # Check premium metadata
+    public_metadata = user_data.get('public_metadata', {})
+    return public_metadata.get('has_premium', False)
+
+def has_ai_access(user_data):
+    """Check if user has AI access"""
+    if not user_data:
+        return False
+
+    public_metadata = user_data.get('public_metadata', {})
+    return public_metadata.get('has_ai_access', False)
+
+def has_system_design_access(user_data):
+    """Check if user has system design access"""
+    if not user_data:
+        return False
+
+    public_metadata = user_data.get('public_metadata', {})
+    return public_metadata.get('has_system_design_access', False)
+
+def is_allowed_user(user_data):
+    """Check if user is in the special allowed list"""
+    if not user_data:
+        return False
+
+    # List of allowed email addresses with special access
+    allowed_emails = [
+        'admin@example.com',
+        'raymond@example.com',
+        # Add more allowed emails here
+    ]
+
+    email_addresses = user_data.get('email_addresses', [])
+    primary_email = ''
+    if email_addresses:
+        primary_email = email_addresses[0].get('email_address', '')
+
+    public_metadata = user_data.get('public_metadata', {})
+
+    return (
+        primary_email in allowed_emails or
+        public_metadata.get('specialAccess') is True
+    )
+
+# Authentication decorators
+def login_required(f):
+    """Require user to be logged in"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+        return f(*args, **kwargs)
+    return decorated_function
+
+def premium_required(f):
+    """Require user to have premium access"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+
+        if not has_premium_access(user) and not is_allowed_user(user):
+            return render_template('paywall.html', message="This content requires premium access. Check your metadata for 'has_premium' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+def ai_access_required(f):
+    """Require user to have AI access"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+
+        if not has_ai_access(user) and not is_allowed_user(user):
+            return render_template('paywall.html', message="This content requires AI access. Check your metadata for 'has_ai_access' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+def system_design_access_required(f):
+    """Require user to have system design access"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return render_template('paywall.html', message="Please sign in to access this content.", redirect_to_login=True)
+
+        if not has_system_design_access(user) and not is_allowed_user(user):
+            return render_template('paywall.html', message="This content requires system design access. Check your metadata for 'has_system_design_access' permission.", user_email=user.get('email_addresses', [{}])[0].get('email_address', ''))
+
+        return f(*args, **kwargs)
+    return decorated_function
 
 class RoadmapWebApp:
     def __init__(self):
@@ -160,14 +275,62 @@ class RoadmapWebApp:
 
 web_app = RoadmapWebApp()
 
+# Context processor to make auth data available in all templates
+@app.context_processor
+def inject_auth():
+    user = get_current_user()
+    return {
+        'current_user': user,
+        'is_authenticated': user is not None,
+        'has_premium': has_premium_access(user) if user else False,
+        'has_ai_access': has_ai_access(user) if user else False,
+        'has_system_design_access': has_system_design_access(user) if user else False,
+        'is_allowed': is_allowed_user(user) if user else False,
+        'clerk_publishable_key': CLERK_PUBLISHABLE_KEY
+    }
+
+# Authentication routes
+@app.route('/auth/login')
+def auth_login():
+    """Login page - handled by Clerk on frontend"""
+    return render_template('auth/login.html')
+
+@app.route('/auth/callback', methods=['POST'])
+def auth_callback():
+    """Handle Clerk auth callback"""
+    try:
+        data = request.get_json()
+        user_data = data.get('user')
+
+        if user_data:
+            # Store user data in Flask session
+            session['user'] = user_data
+            return jsonify({'status': 'success'})
+
+        return jsonify({'status': 'error', 'message': 'No user data provided'}), 400
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/auth/logout')
+def auth_logout():
+    """Logout user"""
+    session.pop('user', None)
+    return redirect('/')
+
 @app.route('/')
 def index():
-    """Main page showing the intermediate roadmap (now home page)"""
+    """Sales homepage showing all available roadmaps"""
+    return render_template('sales_homepage.html')
+
+@app.route('/intermediate')
+def intermediate_view():
+    """Intermediate roadmap page (Fortune500) - Premium Access Required"""
     return render_template('intermediate.html', roadmap=web_app.get_ordered_intermediate_roadmap_data())
 
 @app.route('/advanced')
+@premium_required
 def advanced_view():
-    """Advanced roadmap page (formerly home page)"""
+    """Advanced roadmap page (formerly home page) - Premium content"""
     return render_template('index.html', roadmap=web_app.get_ordered_roadmap_data())
 
 @app.route('/api/roadmap')
@@ -185,17 +348,14 @@ def api_refresh():
         return jsonify({'status': 'error', 'message': str(e)})
 
 @app.route('/advanced/month/<month_name>')
+@premium_required
 def advanced_month_view(month_name):
-    """View for a specific advanced month"""
+    """View for a specific advanced month - Premium content"""
     # Convert display month name back to original month name
     original_month = web_app.get_original_month_name(month_name)
     month_data = web_app.roadmap_data.get(original_month, [])
     return render_template('month.html', month=month_name, days=month_data)
 
-@app.route('/intermediate')
-def intermediate_redirect():
-    """Redirect intermediate to home page"""
-    return redirect('/')
 
 @app.route('/month/<month_name>')
 def intermediate_month_redirect(month_name):
@@ -203,8 +363,9 @@ def intermediate_month_redirect(month_name):
     return redirect(f'/intermediate/month/{month_name}')
 
 @app.route('/intermediate/month/<month_name>')
+@premium_required
 def intermediate_month_view(month_name):
-    """View for a specific intermediate month"""
+    """View for a specific intermediate month - Premium content"""
     ordered_data = web_app.get_ordered_intermediate_roadmap_data()
     month_data = ordered_data.get(month_name, [])
     return render_template('month.html', month=f"Intermediate {month_name}", days=month_data, is_intermediate=True)
@@ -240,28 +401,33 @@ def about():
     return render_template('about.html')
 
 @app.route('/system-design')
+@system_design_access_required
 def system_design():
-    """System Design Roadmap homepage"""
+    """System Design Roadmap homepage - System Design Access Required"""
     return render_template('system_design/index.html')
 
 @app.route('/system-design/real-life-problems')
+@system_design_access_required
 def system_design_real_life():
-    """System Design Real Life Problems page"""
+    """System Design Real Life Problems page - System Design Access Required"""
     return render_template('system_design/real_life_problems.html')
 
 @app.route('/system-design/trivia')
+@system_design_access_required
 def system_design_trivia():
-    """System Design Trivia and Knowledge Checks page"""
+    """System Design Trivia and Knowledge Checks page - System Design Access Required"""
     return render_template('system_design/trivia.html')
 
 @app.route('/system-design/low-level-design')
+@system_design_access_required
 def system_design_low_level():
-    """System Design Low Level Design page"""
+    """System Design Low Level Design page - System Design Access Required"""
     return render_template('system_design/low_level_design.html')
 
 @app.route('/behavioral-guide')
+@ai_access_required
 def behavioral_guide():
-    """Behavioral Interview Guide with AI Helper"""
+    """Behavioral Interview Guide with AI Helper - AI Access Required"""
     # Amazon Leadership Principles questions
     behavioral_questions = {
         "General": [
@@ -325,9 +491,29 @@ def test_api():
     """Simple test endpoint"""
     return jsonify({'status': 'API working', 'message': 'Test successful'})
 
+@app.route('/debug/auth')
+def debug_auth():
+    """Debug authentication state"""
+    user = get_current_user()
+    return jsonify({
+        'authenticated': user is not None,
+        'user_data': user,
+        'has_premium': has_premium_access(user),
+        'has_ai_access': has_ai_access(user),
+        'has_system_design_access': has_system_design_access(user),
+        'is_allowed': is_allowed_user(user),
+        'session_data': dict(session)
+    })
+
+@app.route('/auth/status')
+def auth_status():
+    """Show authentication status page"""
+    return render_template('auth_status.html')
+
 @app.route('/api/behavioral-feedback', methods=['POST'])
+@ai_access_required
 def behavioral_feedback():
-    """API endpoint to get behavioral story feedback using OpenAI"""
+    """API endpoint to get behavioral story feedback using OpenAI - AI Access Required"""
     try:
         print("Received behavioral feedback request")  # Debug log
         data = request.get_json()
@@ -447,6 +633,7 @@ def estimate_difficulty_and_topics(problem_name):
     return difficulty, topics, time
 
 @app.route('/complete-list')
+@premium_required
 def complete_list():
     """Complete question list with customizable time sliders"""
     all_questions = []
