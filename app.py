@@ -429,6 +429,11 @@ def system_design_low_level():
     """System Design Low Level Design page - System Design Access Required"""
     return render_template('system_design/low_level_design.html')
 
+@app.route('/guides')
+def guides():
+    """Guides landing page with all available guides"""
+    return render_template('guides.html')
+
 @app.route('/behavioral-guide')
 @ai_access_required
 def behavioral_guide():

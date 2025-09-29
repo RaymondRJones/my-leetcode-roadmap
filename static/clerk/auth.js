@@ -34,7 +34,8 @@ async function initializeClerk() {
             hasPremiumAccess: () => {
                 const user = clerk.user;
                 if (!user) return false;
-                return user.publicMetadata?.premium === true ||
+                return user.publicMetadata?.has_premium === true ||
+                       user.publicMetadata?.premium === true ||
                        user.publicMetadata?.tier === 'premium' ||
                        user.organizationMemberships?.length > 0;
             },
@@ -203,7 +204,7 @@ function setupFallbackMode() {
 
 // Protect premium links
 function protectPremiumLinks() {
-    const premiumLinks = document.querySelectorAll('a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+    const premiumLinks = document.querySelectorAll('a[href*="/guides"], a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
 
     premiumLinks.forEach(link => {
         console.log("HIII", window.ClerkAuth.hasPremiumAccess(), window.ClerkAuth.isAllowedUser())

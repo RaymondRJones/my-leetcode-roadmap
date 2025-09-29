@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}Guides - Ray's Roadmap{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-5">
+                <div class="mb-3">
+                    <span class="material-icons" style="font-size: 48px; color: var(--md-primary);">school</span>
+                </div>
+                <h1 class="display-4 fw-bold text-primary mb-3">Complete Interview Guides</h1>
+                <p class="lead text-muted">Everything you need to land your dream tech job</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Behavioral Interview Guide -->
+        <div class="col-md-6">
+            <div class="card h-100 border-info">
+                <div class="card-header bg-info text-white">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">psychology</span>
+                        <h4 class="mb-0">Behavioral Interview Guide</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Master behavioral interviews with AI-powered feedback using Amazon's Leadership Principles. Practice your STAR stories and get personalized coaching.</p>
+                    <ul class="list-unstyled mb-3">
+                        <li><i class="material-icons text-info me-2" style="font-size: 16px;">check_circle</i>50+ behavioral questions</li>
+                        <li><i class="material-icons text-info me-2" style="font-size: 16px;">check_circle</i>AI feedback system</li>
+                        <li><i class="material-icons text-info me-2" style="font-size: 16px;">check_circle</i>STAR method framework</li>
+                        <li><i class="material-icons text-info me-2" style="font-size: 16px;">check_circle</i>Amazon Leadership Principles</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="/behavioral-guide" class="btn btn-info w-100">
+                        <span class="material-icons me-2" style="font-size: 18px;">launch</span>
+                        Start Behavioral Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Design Guide -->
+        <div class="col-md-6">
+            <div class="card h-100 border-primary">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">architecture</span>
+                        <h4 class="mb-0">System Design Roadmap</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Comprehensive system design preparation covering real-world problems, trivia, and low-level design patterns. From beginner to advanced concepts.</p>
+                    <ul class="list-unstyled mb-3">
+                        <li><i class="material-icons text-primary me-2" style="font-size: 16px;">check_circle</i>Real-life design problems</li>
+                        <li><i class="material-icons text-primary me-2" style="font-size: 16px;">check_circle</i>System design trivia</li>
+                        <li><i class="material-icons text-primary me-2" style="font-size: 16px;">check_circle</i>Low-level design patterns</li>
+                        <li><i class="material-icons text-primary me-2" style="font-size: 16px;">check_circle</i>Scalability concepts</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="/system-design" class="btn btn-primary w-100">
+                        <span class="material-icons me-2" style="font-size: 18px;">launch</span>
+                        Start System Design
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume + LinkedIn Guide -->
+        <div class="col-md-6">
+            <div class="card h-100 border-success">
+                <div class="card-header bg-success text-white">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">article</span>
+                        <h4 class="mb-0">Resume + LinkedIn Guide</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Get my exact resume template that landed me offers at top tech companies, plus a detailed video breakdown of what makes it effective.</p>
+                    <ul class="list-unstyled mb-3">
+                        <li><i class="material-icons text-success me-2" style="font-size: 16px;">check_circle</i>My exact resume template</li>
+                        <li><i class="material-icons text-success me-2" style="font-size: 16px;">check_circle</i>Video breakdown & analysis</li>
+                        <li><i class="material-icons text-success me-2" style="font-size: 16px;">check_circle</i>LinkedIn optimization tips</li>
+                        <li><i class="material-icons text-success me-2" style="font-size: 16px;">check_circle</i>ATS-friendly formatting</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <a href="https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit?tab=t.0" target="_blank" class="btn btn-success w-100 btn-sm">
+                                <span class="material-icons me-1" style="font-size: 16px;">description</span>
+                                Resume
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://www.youtube.com/watch?v=xX3riyhZEdk&t=1171s" target="_blank" class="btn btn-outline-success w-100 btn-sm">
+                                <span class="material-icons me-1" style="font-size: 16px;">play_arrow</span>
+                                Video
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 Hour Course on Landing a Job -->
+        <div class="col-md-6">
+            <div class="card h-100 border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">work</span>
+                        <h4 class="mb-0">2 Hour Course: Landing a Job</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Complete crash course covering the entire job search process from applications to offers. Everything I learned landing multiple FAANG offers.</p>
+                    <ul class="list-unstyled mb-3">
+                        <li><i class="material-icons text-warning me-2" style="font-size: 16px;">check_circle</i>Job search strategy</li>
+                        <li><i class="material-icons text-warning me-2" style="font-size: 16px;">check_circle</i>Application optimization</li>
+                        <li><i class="material-icons text-warning me-2" style="font-size: 16px;">check_circle</i>Interview preparation</li>
+                        <li><i class="material-icons text-warning me-2" style="font-size: 16px;">check_circle</i>Salary negotiation</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="https://www.loom.com/share/afc5bcb3e0e34977ad93ceb17848fcee?sid=bb4e0f27-f7bb-4ec2-8a96-d118f1b5d70f" target="_blank" class="btn btn-warning w-100 text-dark">
+                        <span class="material-icons me-2" style="font-size: 18px;">play_arrow</span>
+                        Watch Course
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 100+ Hours of LeetCode Solutions -->
+        <div class="col-12">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2">code</span>
+                        <h4 class="mb-0">100+ Hours of LeetCode Solutions & Strategy</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="card-text">Comprehensive video playlist covering 100+ LeetCode problems with detailed explanations, multiple approaches, and strategic thinking for technical interviews.</p>
+                            <ul class="list-unstyled mb-3">
+                                <li><i class="material-icons text-danger me-2" style="font-size: 16px;">check_circle</i>100+ detailed problem solutions</li>
+                                <li><i class="material-icons text-danger me-2" style="font-size: 16px;">check_circle</i>Multiple solution approaches</li>
+                                <li><i class="material-icons text-danger me-2" style="font-size: 16px;">check_circle</i>Time & space complexity analysis</li>
+                                <li><i class="material-icons text-danger me-2" style="font-size: 16px;">check_circle</i>Interview strategy & patterns</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="badge bg-danger fs-6 mb-3">100+ Videos</div>
+                            <br>
+                            <div class="badge bg-outline-danger fs-6">All Difficulty Levels</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="https://www.youtube.com/playlist?list=PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK" target="_blank" class="btn btn-danger w-100">
+                        <span class="material-icons me-2" style="font-size: 18px;">play_arrow</span>
+                        Watch LeetCode Solutions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body text-center py-4">
+                    <h3 class="mb-3">Ready to Start Your Journey?</h3>
+                    <p class="lead mb-4">Choose any guide above to begin mastering your interview skills and landing your dream job.</p>
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <a href="/behavioral-guide" class="btn btn-info me-2">Start with Behavioral</a>
+                            <a href="/system-design" class="btn btn-primary me-2">Start with System Design</a>
+                            <a href="/" class="btn btn-outline-secondary">Back to Roadmap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
