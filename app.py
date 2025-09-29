@@ -17,7 +17,9 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your-secret-key-change-this
 
 # Clerk configuration
 CLERK_SECRET_KEY = os.environ.get('CLERK_SECRET_KEY')
-CLERK_PUBLISHABLE_KEY = os.environ.get('CLERK_PUBLISHABLE_KEY', 'pk_test_YWJvdmUtc2hyZXctODkuY2xlcmsuYWNjb3VudHMuZGV2JA')
+CLERK_PUBLISHABLE_KEY = os.environ.get('CLERK_PUBLISHABLE_KEY')
+if not CLERK_PUBLISHABLE_KEY:
+    raise RuntimeError("❌ Please set the CLERK_PUBLISHABLE_KEY in your .env file.")
 
 # Initialize OpenAI client only if API key is available
 def get_openai_client():

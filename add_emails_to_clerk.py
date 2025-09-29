@@ -17,7 +17,7 @@ CLERK_API_URL = "https://api.clerk.com/v1"
 # Metadata you want to assign
 DEFAULT_METADATA = {
     "has_premium": True,
-    "has_ai_access": True,
+    "has_ai_access": False,
     "has_system_design_access": True,
 }
 
