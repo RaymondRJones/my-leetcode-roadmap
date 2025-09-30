@@ -1,5 +1,7 @@
 // Simple Clerk Authentication Integration
 let clerk;
+let isClerkReady = false;
+let authCheckInProgress = false;
 
 async function initializeClerk() {
     // Wait for Clerk to be loaded and initialized by the data attribute
@@ -72,12 +74,18 @@ async function initializeClerk() {
             }
         };
 
+        // Mark Clerk as ready
+        isClerkReady = true;
+        authCheckInProgress = false;
+
         // Update UI based on auth state
         updateAuthUI();
+        updateNavigationAccess();
 
         // Listen for auth state changes
         clerk.addListener(({ user }) => {
             updateAuthUI();
+            updateNavigationAccess();
             if (user) {
                 sendAuthToBackend(user);
             } else {
@@ -88,9 +96,12 @@ async function initializeClerk() {
         console.log('Clerk initialized successfully');
     } catch (error) {
         console.error('Failed to initialize Clerk:', error);
+        isClerkReady = true; // Mark as ready to avoid infinite loading
+        authCheckInProgress = false;
         setupFallbackMode();
     }
 }
+
 
 function updateAuthUI() {
     const user = clerk?.user;
@@ -130,6 +141,64 @@ function updateAuthUI() {
             info.style.display = 'none';
         });
     }
+}
+
+// Update navigation access based on authentication status
+function updateNavigationAccess() {
+    if (!isClerkReady) return;
+
+    const premiumNavLinks = document.querySelectorAll('a[href="/advanced"], a[href="/complete-list"], a[href="/system-design"], a[href="/behavioral-guide"]');
+    const isSignedIn = window.ClerkAuth?.isSignedIn();
+    const hasPremium = window.ClerkAuth?.hasPremiumAccess();
+    const isAllowed = window.ClerkAuth?.isAllowedUser();
+
+    premiumNavLinks.forEach(link => {
+        // Remove any existing classes and handlers
+        link.classList.remove('nav-disabled', 'nav-premium-required');
+        link.removeAttribute('data-original-href');
+
+        if (!isSignedIn) {
+            // User not signed in - disable and redirect to landing
+            link.classList.add('nav-disabled');
+            link.setAttribute('data-original-href', link.href);
+            link.href = '/landing';
+            link.title = 'Sign in required';
+
+            // Add visual indicator
+            link.style.opacity = '0.6';
+            link.style.pointerEvents = 'none';
+        } else if (!hasPremium && !isAllowed) {
+            // User signed in but no premium access
+            link.classList.add('nav-premium-required');
+            link.setAttribute('data-original-href', link.href);
+            link.href = 'https://raymond-site.vercel.app/leetcode-roadmap';
+            link.setAttribute('target', '_blank');
+            link.title = 'Premium access required';
+
+            // Add visual indicator
+            link.style.opacity = '0.7';
+            const icon = link.querySelector('.material-icons');
+            if (icon) {
+                icon.style.color = 'var(--md-warning)';
+            }
+        } else {
+            // User has access - restore normal functionality
+            const originalHref = link.getAttribute('data-original-href');
+            if (originalHref) {
+                link.href = originalHref;
+                link.removeAttribute('data-original-href');
+            }
+            link.removeAttribute('target');
+            link.title = '';
+            link.style.opacity = '1';
+            link.style.pointerEvents = 'auto';
+
+            const icon = link.querySelector('.material-icons');
+            if (icon) {
+                icon.style.color = '';
+            }
+        }
+    });
 }
 
 // Track last synced user to prevent duplicate syncs
@@ -178,6 +247,9 @@ async function sendAuthToBackend(user) {
 function setupFallbackMode() {
     console.warn('Running in fallback mode without authentication');
 
+    isClerkReady = true;
+    authCheckInProgress = false;
+
     window.ClerkAuth = {
         isSignedIn: () => false,
         getUser: () => null,
@@ -195,6 +267,9 @@ function setupFallbackMode() {
         }
     };
 
+    // Update navigation access (will disable premium links)
+    updateNavigationAccess();
+
     // Hide auth buttons in fallback mode
     const authButtons = document.querySelectorAll('[data-auth-button]');
     authButtons.forEach(btn => {
@@ -202,34 +277,79 @@ function setupFallbackMode() {
     });
 }
 
-// Protect premium links
+// Enhanced premium link protection with immediate blocking
 function protectPremiumLinks() {
     const premiumLinks = document.querySelectorAll('a[href*="/guides"], a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
 
     premiumLinks.forEach(link => {
-        console.log("HIII", window.ClerkAuth.hasPremiumAccess(), window.ClerkAuth.isAllowedUser())
-        link.addEventListener('click', (e) => {
+        // Remove any existing click handlers
+        link.replaceWith(link.cloneNode(true));
+        const newLink = document.querySelector(`a[href="${link.href}"]`);
+
+        newLink.addEventListener('click', (e) => {
+            // Block all clicks if Clerk isn't ready yet
+            if (!isClerkReady || authCheckInProgress) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Blocking access - authentication still loading');
+                return false;
+            }
+
             if (!window.ClerkAuth?.isSignedIn()) {
                 e.preventDefault();
-                // Redirect non-logged-in users to sales page
+                e.stopPropagation();
+                console.log('Blocking access - user not signed in');
                 window.location.href = '/landing';
                 return false;
             }
 
             if (!window.ClerkAuth.hasPremiumAccess() && !window.ClerkAuth.isAllowedUser()) {
                 e.preventDefault();
-                // Redirect to payment page instead of showing modal
-                window.open('https://raymond-site.vercel.app/landing', '_blank');
+                e.stopPropagation();
+                console.log('Blocking access - no premium access');
+                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
                 return false;
             }
+
+            console.log('Allowing access - user has permissions');
         });
+    });
+}
+
+// Immediate protection for all links - runs before Clerk loads
+function immediateProtection() {
+    authCheckInProgress = true;
+
+    // Block ALL premium links immediately
+    const allPremiumLinks = document.querySelectorAll('a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+
+    allPremiumLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (!isClerkReady) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('SECURITY: Blocked access attempt before authentication ready');
+                return false;
+            }
+        }, { capture: true }); // Use capture to catch events early
     });
 }
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Apply immediate protection before Clerk loads
+    immediateProtection();
+
+    // Initialize Clerk authentication
     initializeClerk();
 
-    // Set up link protection after a brief delay
-    setTimeout(protectPremiumLinks, 1000);
+    // Set up comprehensive link protection
+    setTimeout(protectPremiumLinks, 100);
 });
+
+// Also run immediate protection as early as possible
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', immediateProtection);
+} else {
+    immediateProtection();
+}

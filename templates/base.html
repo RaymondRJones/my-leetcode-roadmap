@@ -419,6 +419,28 @@
             animation: fadeInUp 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
+        /* Navigation Security States */
+        .nav-disabled {
+            opacity: 0.6 !important;
+            pointer-events: none !important;
+            cursor: not-allowed !important;
+        }
+
+        .nav-premium-required {
+            position: relative;
+        }
+
+        .nav-premium-required::after {
+            content: "🔒";
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%);
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+
         /* Footer */
         footer {
             background: var(--md-surface) !important;

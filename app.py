@@ -432,6 +432,7 @@ def system_design_low_level():
     return render_template('system_design/low_level_design.html')
 
 @app.route('/guides')
+@premium_required
 def guides():
     """Guides landing page with all available guides"""
     return render_template('guides.html')
@@ -645,7 +646,7 @@ def estimate_difficulty_and_topics(problem_name):
     return difficulty, topics, time
 
 @app.route('/complete-list')
-
+@premium_required
 def complete_list():
     """Complete question list with customizable time sliders"""
     all_questions = []
