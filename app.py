@@ -744,6 +744,16 @@ def complete_list():
     
     return render_template('complete_list.html', questions_data=all_questions)
 
+@app.route('/privacy')
+def privacy_policy():
+    """Privacy Policy page"""
+    return render_template('privacy_policy.html')
+
+@app.route('/terms')
+def terms_of_service():
+    """Terms of Service page"""
+    return render_template('terms_of_service.html')
+
 if __name__ == '__main__':
     # Create templates directory
     os.makedirs('templates', exist_ok=True)

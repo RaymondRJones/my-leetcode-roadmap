@@ -1,3 +1,6 @@
 scripts/
 .env
 emails.csv
+emails_to_add.csv
+roadmap_data_sept_29_2025.json
+roadmap_data_sept_01_2025.json
