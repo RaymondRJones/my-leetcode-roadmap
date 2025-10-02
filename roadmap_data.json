@@ -4242,10 +4242,10 @@
       "day": 1,
       "problems": [
         {
-          "name": "Display Table of Food Orders in a",
+          "name": "Display Table of Food Orders in a Restaurant",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a/"
+          "url": "https://leetcode.com/problems/display-table-of-food-orders-in-a-restaurant/description/"
         },
         {
           "name": "K-th Smallest Prime Fraction",
@@ -4259,10 +4259,10 @@
       "day": 2,
       "problems": [
         {
-          "name": "Maximize Happiness of Selected",
+          "name": "Maximize Happiness of Selected Children",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximize-happiness-of-selected/"
+          "url": "https://leetcode.com/problems/maximize-happiness-of-selected-children/description/"
         },
         {
           "name": "Relative Ranks",
@@ -4276,16 +4276,16 @@
       "day": 3,
       "problems": [
         {
-          "name": "Minimum Number of Operations",
+          "name": "Minimum Number of Operations to Convert Time",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-number-of-operations/"
+          "url": "https://leetcode.com/problems/minimum-number-of-operations-to-convert-time/description/"
         },
         {
-          "name": "Calculate Money in Leetcode",
+          "name": "Calculate Money in Leetcode Bank",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/calculate-money-in-leetcode/"
+          "url": "https://leetcode.com/problems/calculate-money-in-leetcode-bank/description/"
         }
       ]
     },
@@ -4299,10 +4299,10 @@
           "url": "https://leetcode.com/problems/max-consecutive-ones/"
         },
         {
-          "name": "Double a Number Represented",
+          "name": "Double a Number Represented as a Linked List",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/double-a-number-represented/"
+          "url": "https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/description/"
         }
       ]
     },
@@ -4316,10 +4316,10 @@
           "url": "https://leetcode.com/problems/remove-nodes-from-linked-list/"
         },
         {
-          "name": "Maximum Difference Score in a",
+          "name": "Maximum Difference Score in a Grid",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-difference-score-in-a/"
+          "url": "https://leetcode.com/problems/maximum-difference-score-in-a-grid/description/"
         }
       ]
     },
@@ -4327,16 +4327,16 @@
       "day": 6,
       "problems": [
         {
-          "name": "Taking Maximum Energy From",
+          "name": "Taking Maximum Energy From the Mystic Dungeon",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/taking-maximum-energy-from/"
+          "url": "https://leetcode.com/problems/taking-maximum-energy-from-the-mystic-dungeon/description/"
         },
         {
-          "name": "Permutation Difference between",
+          "name": "Permutation Difference Between Two Strings",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/permutation-difference-between/"
+          "url": "https://leetcode.com/problems/permutation-difference-between-two-strings/description/"
         }
       ]
     },
@@ -4361,16 +4361,16 @@
       "day": 8,
       "problems": [
         {
-          "name": "Minimum Substring Partition of",
+          "name": "Minimum Substring Partition of Equal Character Frecuency",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-substring-partition-of/"
+          "url": "https://leetcode.com/problems/minimum-substring-partition-of-equal-character-frequency/description/"
         },
         {
-          "name": "Maximum Points Inside the",
+          "name": "Maximum Points Inside the Square",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-points-inside-the/"
+          "url": "https://leetcode.com/problems/maximum-points-inside-the-square/description/"
         }
       ]
     },
@@ -4384,10 +4384,10 @@
           "url": "https://leetcode.com/problems/check-if-grid-satisfies-conditions/"
         },
         {
-          "name": "Length of Longest Subarray With",
+          "name": "Length of Longest Subarray With at Most K Frequency",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/length-of-longest-subarray-with/"
+          "url": "https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/description/"
         }
       ]
     },
@@ -4395,16 +4395,16 @@
       "day": 10,
       "problems": [
         {
-          "name": "Remove Adjacent Almost-Equal",
+          "name": "Remove Adjacent Almost-Equal Characters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/remove-adjacent-almost-equal/"
+          "url": "https://leetcode.com/problems/remove-adjacent-almost-equal-characters/description/"
         },
         {
-          "name": "Find Common Elements Between",
+          "name": "Find Common Elements Between Two Arrays",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-common-elements-between/"
+          "url": "https://leetcode.com/problems/find-common-elements-between-two-arrays/description/"
         }
       ]
     },
@@ -4429,10 +4429,10 @@
       "day": 12,
       "problems": [
         {
-          "name": "Minimum Number of Coins for",
+          "name": "Minimum Number of Coins for Fruits",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-number-of-coins-for/"
+          "url": "https://leetcode.com/problems/minimum-number-of-coins-for-fruits/description/"
         },
         {
           "name": "Path with Maximum Gold",
@@ -4469,10 +4469,10 @@
           "url": "https://leetcode.com/problems/destroy-sequential-targets/"
         },
         {
-          "name": "Last Moment Before All Ants Fall",
+          "name": "Last Moment Before All Ants Fall Out of a Plank",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/last-moment-before-all-ants-fall/"
+          "url": "https://leetcode.com/problems/last-moment-before-all-ants-fall-out-of-a-plank/description/"
         }
       ]
     },
@@ -4486,10 +4486,10 @@
           "url": "https://leetcode.com/problems/frequency-tracker/"
         },
         {
-          "name": "First Completely Painted Row or",
+          "name": "First Completely Painted Row or Column",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/first-completely-painted-row-or/"
+          "url": "https://leetcode.com/problems/first-completely-painted-row-or-column/description/"
         }
       ]
     },
@@ -4537,10 +4537,10 @@
           "url": "https://leetcode.com/problems/special-array-i/"
         },
         {
-          "name": "Find the Maximum Sum of Node",
+          "name": "Find the Maximum Sum of Node Values",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-the-maximum-sum-of-node/"
+          "url": "https://leetcode.com/problems/find-the-maximum-sum-of-node-values/description/"
         }
       ]
     },
@@ -4605,10 +4605,10 @@
           "url": "https://leetcode.com/problems/word-break-ii/"
         },
         {
-          "name": "Find Occurrences of an Element",
+          "name": "Find Occurrences of an Element in an Array",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-occurrences-of-an-element/"
+          "url": "https://leetcode.com/problems/find-occurrences-of-an-element-in-an-array/description/"
         }
       ]
     },
@@ -4616,16 +4616,16 @@
       "day": 23,
       "problems": [
         {
-          "name": "Find the Number of Distinct",
+          "name": "Find the Number of Distinct Colors Among the Balls",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-the-number-of-distinct/"
+          "url": "https://leetcode.com/problems/find-the-number-of-distinct-colors-among-the-balls/description/"
         },
         {
-          "name": "Find the XOR of Numbers Which",
+          "name": "Find the XOR of Numbers Which Appear Twice",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/find-the-xor-of-numbers-which/"
+          "url": "https://leetcode.com/problems/find-the-xor-of-numbers-which-appear-twice/description/"
         }
       ]
     },
@@ -4633,10 +4633,10 @@
       "day": 24,
       "problems": [
         {
-          "name": "Maximum Score Words Formed",
+          "name": "Maximum Score Words Formed by Letters",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/maximum-score-words-formed/"
+          "url": "https://leetcode.com/problems/maximum-score-words-formed-by-letters/description/"
         },
         {
           "name": "Search Insert Position",
@@ -4741,10 +4741,10 @@
           "url": "https://leetcode.com/problems/string-compression-iii/"
         },
         {
-          "name": "Minimum Number of Chairs in a",
+          "name": "Minimum Number of Chairs in a Waiting Room",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/minimum-number-of-chairs-in-a/"
+          "url": "https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/description/"
         },
         {
           "name": "Maximal Network Rank",
@@ -4771,28 +4771,28 @@
           "url": "https://leetcode.com/problems/binary-tree-postorder-traversal/"
         },
         {
-          "name": "Count Triplets That Can Form",
+          "name": "Count Triplets That Can Form To Arrays of Equal Xor",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/count-triplets-that-can-form/"
+          "url": "https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/description/"
         },
         {
-          "name": "Number of Steps to Reduce a",
+          "name": "Number of Steps to Reduce a Number to Zero",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a/"
+          "url": "https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/description/"
         },
         {
-          "name": "Get Equal Substrings Within",
+          "name": "Get Equal Substrings Within Budget",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/get-equal-substrings-within/"
+          "url": "https://leetcode.com/problems/get-equal-substrings-within-budget/description/"
         },
         {
-          "name": "Special Array With X Elements",
+          "name": "Special Array With X Elements Greater Than or Equal X",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/special-array-with-x-elements/"
+          "url": "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/description/"
         },
         {
           "name": "Sign of the Product of an Array",
@@ -4819,16 +4819,16 @@
           "url": "https://leetcode.com/problems/minimum-index-of-a-valid-split/"
         },
         {
-          "name": "Append Characters to String to",
+          "name": "Append Characters to String to Make Subsequence",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/append-characters-to-string-to/"
+          "url": "https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/description/"
         },
         {
-          "name": "Lexicographically Minimum String",
+          "name": "Lexicographically Minimum String After Removing Stars",
           "status": "Accepted",
           "solved": true,
-          "url": "https://leetcode.com/problems/lexicographically-minimum-string/"
+          "url": "https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/description/"
         },
         {
           "name": "Count Days Without Meetings",
