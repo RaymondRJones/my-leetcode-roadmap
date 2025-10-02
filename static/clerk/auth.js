@@ -280,8 +280,45 @@ function setupFallbackMode() {
 // Enhanced premium link protection with immediate blocking
 function protectPremiumLinks() {
     const premiumLinks = document.querySelectorAll('a[href*="/guides"], a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+    const intermediateMonthLinks = document.querySelectorAll('a[href*="/intermediate/month/Month%202"], a[href*="/intermediate/month/Month 2"], a[href*="/intermediate/month/Month%203"], a[href*="/intermediate/month/Month 3"]');
 
     premiumLinks.forEach(link => {
+
+        // Remove any existing click handlers
+        link.replaceWith(link.cloneNode(true));
+        const newLink = document.querySelector(`a[href="${link.href}"]`);
+
+        newLink.addEventListener('click', (e) => {
+            // Block all clicks if Clerk isn't ready yet
+            if (!isClerkReady || authCheckInProgress) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Blocking access - authentication still loading');
+                return false;
+            }
+
+            if (!window.ClerkAuth?.isSignedIn()) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Blocking access - user not signed in');
+                window.location.href = '/landing';
+                return false;
+            }
+
+            if (!window.ClerkAuth.hasPremiumAccess() && !window.ClerkAuth.isAllowedUser()) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Blocking access - no premium access');
+                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
+                return false;
+            }
+
+            console.log('Allowing access - user has permissions');
+        });
+    });
+
+    // Protect Month 2 and Month 3 intermediate links
+    intermediateMonthLinks.forEach(link => {
         // Remove any existing click handlers
         link.replaceWith(link.cloneNode(true));
         const newLink = document.querySelector(`a[href="${link.href}"]`);
@@ -322,8 +359,21 @@ function immediateProtection() {
 
     // Block ALL premium links immediately
     const allPremiumLinks = document.querySelectorAll('a[href*="/complete-list"], a[href*="/advanced"], a[href*="/system-design"], a[href*="/behavioral-guide"]');
+    const intermediateMonthLinks = document.querySelectorAll('a[href*="/intermediate/month/Month%202"], a[href*="/intermediate/month/Month 2"], a[href*="/intermediate/month/Month%203"], a[href*="/intermediate/month/Month 3"]');
 
     allPremiumLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (!isClerkReady) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('SECURITY: Blocked access attempt before authentication ready');
+                return false;
+            }
+        }, { capture: true }); // Use capture to catch events early
+    });
+
+    // Block Month 2 and Month 3 intermediate links immediately
+    intermediateMonthLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             if (!isClerkReady) {
                 e.preventDefault();

@@ -370,9 +370,17 @@ def intermediate_month_redirect(month_name):
     return redirect(f'/intermediate/month/{month_name}')
 
 @app.route('/intermediate/month/<month_name>')
-@premium_required
 def intermediate_month_view(month_name):
-    """View for a specific intermediate month - Premium content"""
+    """View for a specific intermediate month - Month 1 is free, Month 2+ requires premium"""
+    # Allow Month 1 for everyone, require premium for Month 2 and 3
+    if month_name != 'Month 1':
+        # Check if user has premium access
+        user = get_current_user()
+        if not user:
+            return redirect('/landing')
+        if not has_premium_access(user) and not is_allowed_user(user):
+            return redirect('https://raymond-site.vercel.app/leetcode-roadmap')
+
     ordered_data = web_app.get_ordered_intermediate_roadmap_data()
     month_data = ordered_data.get(month_name, [])
     return render_template('month.html', month=f"Intermediate {month_name}", days=month_data, is_intermediate=True)
