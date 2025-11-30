@@ -34,29 +34,42 @@
 
                 <p class="mb-3">Complete crash course covering the entire job search process from applications to offers. Everything I learned landing multiple job offers.</p>
 
-                <div class="features-list mb-4 guide-panel">
+                <div class="features-list mb-4">
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>Job search strategy</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Resume and LinkedIn Improvement</small>
+                        <small>Resume and LinkedIn optimization</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Technical / Coding interview</small>
+                        <small>Technical / Coding interview prep</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>System Design Interview Prep</small>
+                        <small>System Design interview strategies</small>
                     </div>
                 </div>
 
-                <a href="https://www.loom.com/share/afc5bcb3e0e34977ad93ceb17848fcee?sid=bb4e0f27-f7bb-4ec2-8a96-d118f1b5d70f" target="_blank" class="btn btn-warning w-100">
+                <button class="btn btn-warning w-100" onclick="toggleVideo('jobCourseVideo', this)">
                     <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_arrow</span>
-                    Watch Course
-                </a>
+                    <span class="button-text">Watch Course</span>
+                </button>
+
+                <div id="jobCourseVideo" class="video-container" style="display: none; margin-top: 16px;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            src="https://www.loom.com/embed/afc5bcb3e0e34977ad93ceb17848fcee?sid=bb4e0f27-f7bb-4ec2-8a96-d118f1b5d70f"
+                            frameborder="0"
+                            webkitallowfullscreen
+                            mozallowfullscreen
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,14 +81,14 @@
                 <div class="d-flex align-items-center mb-3">
                     <span class="material-icons" style="font-size: 48px; color: var(--md-success); margin-right: 16px;">article</span>
                     <div>
-                        <h4 class="mb-1">Resume + LinkedIn Guide (My Exact Resume) </h4>
+                        <h4 class="mb-1">Resume + LinkedIn Guide (My Exact Resume)</h4>
                         <small class="text-muted">Proven templates & strategies</small>
                     </div>
                 </div>
 
                 <p class="mb-3">Get my exact resume template that landed me offers at top tech companies, plus a detailed video breakdown of what makes it effective.</p>
 
-                <div class="features-list mb-4 guide-panel">
+                <div class="features-list mb-4">
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>My exact resume template</small>
@@ -94,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="row g-2">
+                <div class="row g-2 mb-3">
                     <div class="col-6">
                         <a href="https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit?tab=t.0" target="_blank" class="btn btn-success w-100">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">description</span>
@@ -102,18 +115,29 @@
                         </a>
                     </div>
                     <div class="col-6">
-                        <a href="https://www.youtube.com/watch?v=xX3riyhZEdk&t=1171s" target="_blank" class="btn btn-outline-success w-100">
+                        <button class="btn btn-outline-success w-100" onclick="toggleVideo('resumeVideo', this)">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">play_arrow</span>
-                            Video Explanation
-                        </a>
+                            <span class="button-text">Video Guide</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="resumeVideo" class="video-container" style="display: none; margin-top: 8px;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/xX3riyhZEdk?start=1171"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!-- Old Study Live Streams + LeetCode Solutions -->
+    <!-- LeetCode Solutions -->
     <div class="col-12 mb-4">
         <div class="md-card position-relative guide-panel" style="border: 2px solid var(--md-error); margin-top: 16px;">
             <div class="card-body p-4">
@@ -122,14 +146,14 @@
                         <div class="d-flex align-items-center mb-3">
                             <span class="material-icons" style="font-size: 48px; color: var(--md-error); margin-right: 16px;">code</span>
                             <div>
-                                <h4 class="mb-1">100+ Hours of Live Leetcode Problems Before I Got My Walmart Offer</h4>
+                                <h4 class="mb-1">100+ Hours of Live LeetCode Problems Before I Got My Walmart Offer</h4>
                                 <small class="text-muted">Comprehensive problem-solving mastery</small>
                             </div>
                         </div>
 
                         <p class="mb-3">Comprehensive video playlist covering 100+ LeetCode problems with detailed explanations, multiple approaches, and strategic thinking for technical interviews.</p>
 
-                        <div class="features-list mb-4 guide-panel">
+                        <div class="features-list mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="material-icons text-danger" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                                 <small>100+ detailed problem solutions</small>
@@ -148,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center d-flex flex-column justify-content-center">
                         <div class="mb-3">
                             <span class="badge" style="background-color: var(--md-error); color: white; font-size: 0.9rem; padding: 8px 16px;">100+ Videos</span>
                         </div>
@@ -159,14 +183,14 @@
                 </div>
 
                 <a href="https://www.youtube.com/playlist?list=PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK" target="_blank" class="btn btn-danger w-100">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_arrow</span>
-                    Watch LeetCode Me Solving
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">open_in_new</span>
+                    Open Full Playlist on YouTube
                 </a>
             </div>
         </div>
     </div>
 
-        <!-- System Design Guide -->
+    <!-- System Design Guide -->
     <div class="col-lg-6 col-md-6 mb-4">
         <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-primary); margin-top: 16px;">
             <div class="card-body p-4">
@@ -180,14 +204,14 @@
 
                 <p class="mb-3">Comprehensive system design preparation covering real-world problems, trivia, and low-level design patterns. From beginner to advanced concepts.</p>
 
-                <div class="features-list mb-4 guide-panel">
+                <div class="features-list mb-4">
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>Real-life design problems</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>System design trivia</small>
+                        <small>System design trivia & concepts</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
@@ -195,61 +219,185 @@
                     </div>
                     <div class="d-flex align-items-center mb-2">
                         <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Scalability concepts</small>
+                        <small>Scalability & architecture</small>
                     </div>
                 </div>
 
-                <a href="/system-design" class="btn btn-primary w-100">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">architecture</span>
-                    Start System Design
-                </a>
-                <!-- Link to my System Design notes -> https://drive.google.com/drive/folders/1yzSVJ42p0YiaFft9O_2cVfSLwEX56vcm?usp=sharing -->
+                <div class="d-grid gap-2 mb-3">
+                    <a href="/system-design" class="btn btn-primary">
+                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">architecture</span>
+                        Start System Design
+                    </a>
+                    <div class="btn-group" role="group">
+                        <a href="https://drive.google.com/drive/folders/1yzSVJ42p0YiaFft9O_2cVfSLwEX56vcm?usp=sharing" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">folder</span>
+                            My Notes
+                        </a>
+                        <button class="btn btn-outline-primary btn-sm" onclick="toggleVideo('systemDesignOverview', this)">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">play_circle</span>
+                            <span class="button-text">Overview</span>
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="toggleVideo('systemDesignInterview', this)">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">video_library</span>
+                            <span class="button-text">Tips</span>
+                        </button>
+                    </div>
+                </div>
 
+                <div id="systemDesignOverview" class="video-container" style="display: none; margin-bottom: 12px;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            src="https://www.loom.com/embed/ae85749ddfb542c9ba3cbfa0957fbcb2"
+                            frameborder="0"
+                            webkitallowfullscreen
+                            mozallowfullscreen
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div id="systemDesignInterview" class="video-container" style="display: none; margin-bottom: 12px;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/UuAlnzAxEzs"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                        </iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Behavioral Interview Guide -->
     <div class="col-lg-6 col-md-6 mb-4">
-        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-secondary); margin-top: 16px;">
+        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-secondary); margin-top: 16px; opacity: 0.9;">
             <div class="card-body p-4">
                 <div class="d-flex align-items-center mb-3">
                     <span class="material-icons" style="font-size: 48px; color: var(--md-secondary); margin-right: 16px;">psychology</span>
                     <div>
-                        <h4 class="mb-1">Behavioral Interview Guide  (Coming soon...)</h4>
-                        <small class="text-muted">AI-powered interview prep</small>
+                        <h4 class="mb-1">Behavioral Interview Guide</h4>
+                        <small class="text-muted">
+                            <span class="badge bg-warning text-dark">Coming Soon</span>
+                            AI-powered interview prep
+                        </small>
                     </div>
                 </div>
 
                 <p class="mb-3">Master behavioral interviews with AI-powered feedback using Amazon's Leadership Principles. Practice your STAR stories and get personalized coaching.</p>
 
-                <div class="features-list mb-4 guide-panel">
+                <div class="features-list mb-4">
                     <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-info" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>50+ behavioral questions</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-info" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>AI feedback system</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-info" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>STAR method framework</small>
                     </div>
                     <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-info" style="font-size: 18px; margin-right: 8px;">check_circle</span>
+                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
                         <small>Amazon Leadership Principles</small>
                     </div>
                 </div>
 
-                <a href="/behavioral-guide" class="btn btn-info w-100">
+                <button class="btn btn-secondary w-100" disabled>
                     <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">smart_toy</span>
-                    Start Behavioral Guide
-                </a>
+                    Coming Soon
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.video-container {
+    animation: expandCard 0.3s ease-out;
+    transform-origin: top;
+}
+
+@keyframes expandCard {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.md-card {
+    transition: all 0.3s ease;
+}
+</style>
+
+<script>
+function toggleVideo(videoId, button) {
+    const videoContainer = document.getElementById(videoId);
+    const card = videoContainer.closest('.md-card');
+    const buttonText = button.querySelector('.button-text');
+    const icon = button.querySelector('.material-icons');
+    
+    if (videoContainer.style.display === 'none') {
+        // Close any other open videos in the same card
+        const allVideosInCard = card.querySelectorAll('.video-container');
+        allVideosInCard.forEach(video => {
+            if (video.id !== videoId && video.style.display !== 'none') {
+                video.style.display = 'none';
+                // Reset the button for the closed video
+                const otherButtons = card.querySelectorAll('button');
+                otherButtons.forEach(btn => {
+                    const btnText = btn.querySelector('.button-text');
+                    const btnIcon = btn.querySelector('.material-icons');
+                    if (btnText && btnText.textContent.includes('Hide')) {
+                        btnText.textContent = btnText.textContent.replace('Hide', 'Watch').replace('Close', 'Watch');
+                        if (btnIcon) btnIcon.textContent = 'play_arrow';
+                    }
+                });
+            }
+        });
+        
+        // Show the video
+        videoContainer.style.display = 'block';
+        if (buttonText) {
+            if (buttonText.textContent.includes('Course')) {
+                buttonText.textContent = 'Hide Course';
+            } else if (buttonText.textContent.includes('Guide')) {
+                buttonText.textContent = 'Hide Guide';
+            } else if (buttonText.textContent.includes('Overview')) {
+                buttonText.textContent = 'Close';
+            } else if (buttonText.textContent.includes('Tips')) {
+                buttonText.textContent = 'Close';
+            }
+        }
+        if (icon) icon.textContent = 'expand_less';
+        
+        // Smooth scroll to video
+        setTimeout(() => {
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        // Hide the video
+        videoContainer.style.display = 'none';
+        if (buttonText) {
+            if (buttonText.textContent.includes('Hide')) {
+                buttonText.textContent = buttonText.textContent.replace('Hide', 'Watch');
+            } else {
+                buttonText.textContent = buttonText.textContent.replace('Close', buttonText.textContent.includes('Overview') ? 'Overview' : 'Tips');
+            }
+        }
+        if (icon) icon.textContent = 'play_arrow';
+    }
+}
+</script>
 
 <!-- Call to Action -->
 <div class="row mt-5">
