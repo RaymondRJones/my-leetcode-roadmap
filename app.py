@@ -769,7 +769,7 @@ if __name__ == '__main__':
     os.makedirs('static', exist_ok=True)
     
     # Get port from environment variable for Heroku, or use 5000 for local dev
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 5002))
     debug = os.environ.get('FLASK_ENV') != 'production'
     
     print(f"🌐 Starting server on port {port}")
