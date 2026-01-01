@@ -4,129 +4,6 @@
       "day": 1,
       "problems": [
         {
-          "name": "Concatenate Non-Zero Digits and Multiply by Sum I",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-i/",
-          "note": "Teaches how to convert int into characters and loop through them. Optimized solution uses math to extract digits (important pattern)."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "problems": [
-        {
-          "name": "Available Captures for Rook",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/available-captures-for-rook/",
-          "note": "Teaches how to manipulate 2D arrays."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "problems": [
-        {
-          "name": "Watering Plants",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/watering-plants/"
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "problems": [
-        {
-          "name": "Generate Tag for Video Caption",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/generate-tag-for-video-caption/"
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "problems": [
-        {
-          "name": "Find Players With Zero or One Losses",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/find-players-with-zero-or-one-losses/"
-        }
-      ]
-    },
-    {
-      "day": 6,
-      "problems": [
-        {
-          "name": "Slowest Key",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/slowest-key/"
-        }
-      ]
-    },
-    {
-      "day": 7,
-      "problems": [
-        {
-          "name": "Moving Stones Until Consecutive",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/moving-stones-until-consecutive/"
-        }
-      ]
-    },
-    {
-      "day": 8,
-      "problems": [
-        {
-          "name": "Longest Even Odd Subarray With Threshold",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/"
-        }
-      ]
-    },
-    {
-      "day": 9,
-      "problems": [
-        {
-          "name": "Node With Highest Edge Score",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/node-with-highest-edge-score/"
-        }
-      ]
-    },
-    {
-      "day": 10,
-      "problems": [
-        {
-          "name": "Defuse the Bomb",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/defuse-the-bomb/"
-        }
-      ]
-    },
-    {
-      "day": 11,
-      "problems": [
-        {
-          "name": "Maximum Sum With At Most K Elements",
-          "status": "Unattempted",
-          "solved": false,
-          "url": "https://leetcode.com/problems/maximum-sum-with-at-most-k-elements/"
-        }
-      ]
-    },
-    {
-      "day": 12,
-      "problems": [
-        {
           "name": "Course Schedule",
           "status": "Accepted",
           "solved": true,
@@ -135,7 +12,7 @@
       ]
     },
     {
-      "day": 13,
+      "day": 2,
       "problems": [
         {
           "name": "Minimum Processing Time",
@@ -146,7 +23,7 @@
       ]
     },
     {
-      "day": 14,
+      "day": 3,
       "problems": [
         {
           "name": "Divisible and Non-divisible Sums",
@@ -157,7 +34,7 @@
       ]
     },
     {
-      "day": 15,
+      "day": 4,
       "problems": [
         {
           "name": "Word Search",
@@ -168,7 +45,7 @@
       ]
     },
     {
-      "day": 16,
+      "day": 5,
       "problems": [
         {
           "name": "Backspace String Compare",
@@ -179,7 +56,7 @@
       ]
     },
     {
-      "day": 17,
+      "day": 6,
       "problems": [
         {
           "name": "Validate Binary Tree Nodes",
@@ -190,7 +67,7 @@
       ]
     },
     {
-      "day": 18,
+      "day": 7,
       "problems": [
         {
           "name": "Valid Parentheses",
@@ -201,7 +78,7 @@
       ]
     },
     {
-      "day": 19,
+      "day": 8,
       "problems": [
         {
           "name": "Two Sum",
@@ -212,7 +89,7 @@
       ]
     },
     {
-      "day": 20,
+      "day": 9,
       "problems": [
         {
           "name": "Buildings With an Ocean View",
@@ -223,7 +100,7 @@
       ]
     },
     {
-      "day": 21,
+      "day": 10,
       "problems": [
         {
           "name": "Meeting Rooms II",
@@ -234,7 +111,7 @@
       ]
     },
     {
-      "day": 22,
+      "day": 11,
       "problems": [
         {
           "name": "Number of Flowers in Full Bloom",
@@ -245,7 +122,7 @@
       ]
     },
     {
-      "day": 23,
+      "day": 12,
       "problems": [
         {
           "name": "Climbing Stairs",
@@ -256,7 +133,7 @@
       ]
     },
     {
-      "day": 24,
+      "day": 13,
       "problems": [
         {
           "name": "Binary Tree Vertical Order",
@@ -267,7 +144,7 @@
       ]
     },
     {
-      "day": 25,
+      "day": 14,
       "problems": [
         {
           "name": "Range Sum of BST",
@@ -278,7 +155,7 @@
       ]
     },
     {
-      "day": 26,
+      "day": 15,
       "problems": [
         {
           "name": "The Maze II",
@@ -289,7 +166,7 @@
       ]
     },
     {
-      "day": 27,
+      "day": 16,
       "problems": [
         {
           "name": "Word Ladder",
@@ -300,7 +177,7 @@
       ]
     },
     {
-      "day": 28,
+      "day": 17,
       "problems": [
         {
           "name": "Simplify Path",
@@ -311,7 +188,7 @@
       ]
     },
     {
-      "day": 29,
+      "day": 18,
       "problems": [
         {
           "name": "Find First and Last Position of",
@@ -322,7 +199,7 @@
       ]
     },
     {
-      "day": 30,
+      "day": 19,
       "problems": [
         {
           "name": "Course Schedule II",
