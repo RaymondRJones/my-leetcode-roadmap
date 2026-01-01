@@ -4,6 +4,9 @@ import json
 import os
 import jwt
 import requests
+import stripe
+import hmac
+import hashlib
 from functools import wraps
 from pdf_analyzer import LeetCodeRoadmapAnalyzer
 from openai import OpenAI
@@ -21,12 +24,181 @@ CLERK_PUBLISHABLE_KEY = os.environ.get('CLERK_PUBLISHABLE_KEY')
 if not CLERK_PUBLISHABLE_KEY:
     raise RuntimeError("❌ Please set the CLERK_PUBLISHABLE_KEY in your .env file.")
 
+# Stripe configuration
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+if STRIPE_SECRET_KEY:
+    stripe.api_key = STRIPE_SECRET_KEY
+
+# Stripe Product ID to Metadata Mapping
+STRIPE_PRODUCT_METADATA = {
+    'prod_SvD9M0caNlgkfo': {
+        'has_premium': True,
+        'has_ai_access': False,
+        'has_system_design_access': False,
+        'description': 'Premium Only'
+    },
+    'prod_SzSqbijjdXdg2a': {
+        'has_premium': True,
+        'has_ai_access': False,
+        'has_system_design_access': True,
+        'description': 'Premium + System Design'
+    },
+    'prod_SxymCQ9tLRKY3u': {
+        'has_premium': True,
+        'has_ai_access': False,
+        'has_system_design_access': True,
+        'description': 'Premium + System Design (Alternate)'
+    }
+}
+
 # Initialize OpenAI client only if API key is available
 def get_openai_client():
     api_key = os.environ.get('OPENAI_API_KEY')
     if not api_key:
         raise ValueError("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.")
     return OpenAI(api_key=api_key)
+
+# Clerk API helper functions for Stripe webhook integration
+def get_clerk_user_by_email(email):
+    """Find Clerk user by email address"""
+    if not CLERK_SECRET_KEY:
+        return None
+
+    headers = {
+        'Authorization': f'Bearer {CLERK_SECRET_KEY}',
+        'Content-Type': 'application/json'
+    }
+
+    try:
+        resp = requests.get(
+            'https://api.clerk.com/v1/users',
+            headers=headers,
+            params={'email_address': email}
+        )
+
+        if resp.status_code != 200:
+            return None
+
+        response_data = resp.json()
+        if isinstance(response_data, dict):
+            data = response_data.get('data', [])
+        else:
+            data = response_data
+
+        for user in data:
+            for e in user.get('email_addresses', []):
+                if e.get('email_address') == email:
+                    return user
+        return None
+    except Exception as e:
+        print(f"Error finding Clerk user {email}: {e}")
+        return None
+
+
+def create_clerk_user_with_metadata(email, metadata):
+    """Create new Clerk user with private metadata"""
+    if not CLERK_SECRET_KEY:
+        return None
+
+    headers = {
+        'Authorization': f'Bearer {CLERK_SECRET_KEY}',
+        'Content-Type': 'application/json'
+    }
+
+    payload = {
+        'email_address': [email],
+        'private_metadata': metadata,
+        'skip_password_checks': True,
+        'skip_password_requirement': True,
+        'password': f'TempStripe{os.urandom(8).hex()}!',
+    }
+
+    try:
+        resp = requests.post(
+            'https://api.clerk.com/v1/users',
+            headers=headers,
+            json=payload
+        )
+
+        if resp.status_code != 200:
+            print(f"Failed to create Clerk user {email}: {resp.text}")
+            return None
+
+        print(f"✅ Created Clerk user {email} from Stripe purchase")
+        return resp.json()
+    except Exception as e:
+        print(f"Error creating Clerk user {email}: {e}")
+        return None
+
+
+def update_clerk_user_metadata_by_id(user_id, metadata):
+    """Update Clerk user's private metadata"""
+    if not CLERK_SECRET_KEY:
+        return None
+
+    headers = {
+        'Authorization': f'Bearer {CLERK_SECRET_KEY}',
+        'Content-Type': 'application/json'
+    }
+
+    payload = {'private_metadata': metadata}
+
+    try:
+        resp = requests.patch(
+            f'https://api.clerk.com/v1/users/{user_id}',
+            headers=headers,
+            json=payload
+        )
+
+        if resp.status_code != 200:
+            print(f"Failed to update Clerk user {user_id}: {resp.text}")
+            return None
+
+        print(f"✅ Updated Clerk user {user_id} metadata")
+        return resp.json()
+    except Exception as e:
+        print(f"Error updating Clerk user {user_id}: {e}")
+        return None
+
+
+def provision_user_from_stripe(email, product_id):
+    """Provision or update Clerk user based on Stripe product purchase"""
+    metadata = STRIPE_PRODUCT_METADATA.get(product_id)
+
+    # Default configuration for unknown products - grant premium access
+    if not metadata:
+        print(f"⚠️ Unknown product ID: {product_id}, using default premium access")
+        metadata = {
+            'has_premium': True,
+            'has_ai_access': False,
+            'has_system_design_access': False,
+            'description': 'Default Premium (Unknown Product)'
+        }
+
+    # Remove description from metadata before applying
+    user_metadata = {k: v for k, v in metadata.items() if k != 'description'}
+
+    # Check if user exists
+    user = get_clerk_user_by_email(email)
+
+    if user:
+        # User exists - merge metadata
+        user_id = user['id']
+        current_metadata = user.get('private_metadata', {})
+
+        # Merge: new metadata takes precedence
+        merged_metadata = current_metadata.copy()
+        for key, value in user_metadata.items():
+            if value or key not in merged_metadata:
+                merged_metadata[key] = value
+
+        result = update_clerk_user_metadata_by_id(user_id, merged_metadata)
+        return result is not None
+    else:
+        # Create new user
+        result = create_clerk_user_with_metadata(email, user_metadata)
+        return result is not None
 
 # Simplified authentication - relying on frontend verification and session storage
 def get_current_user():
@@ -38,7 +210,12 @@ def has_premium_access(user_data):
     if not user_data:
         return False
 
-    # Check premium metadata
+    # Check private_metadata first (more secure), fallback to public_metadata
+    private_metadata = user_data.get('private_metadata', {})
+    if private_metadata and 'has_premium' in private_metadata:
+        return private_metadata.get('has_premium', False)
+
+    # Fallback to public_metadata for backwards compatibility
     public_metadata = user_data.get('public_metadata', {})
     return public_metadata.get('has_premium', False)
 
@@ -47,6 +224,12 @@ def has_ai_access(user_data):
     if not user_data:
         return False
 
+    # Check private_metadata first, fallback to public_metadata
+    private_metadata = user_data.get('private_metadata', {})
+    if private_metadata and 'has_ai_access' in private_metadata:
+        return private_metadata.get('has_ai_access', False)
+
+    # Fallback to public_metadata
     public_metadata = user_data.get('public_metadata', {})
     return public_metadata.get('has_ai_access', False)
 
@@ -55,6 +238,12 @@ def has_system_design_access(user_data):
     if not user_data:
         return False
 
+    # Check private_metadata first, fallback to public_metadata
+    private_metadata = user_data.get('private_metadata', {})
+    if private_metadata and 'has_system_design_access' in private_metadata:
+        return private_metadata.get('has_system_design_access', False)
+
+    # Fallback to public_metadata
     public_metadata = user_data.get('public_metadata', {})
     return public_metadata.get('has_system_design_access', False)
 
@@ -134,6 +323,82 @@ def system_design_access_required(f):
 
         return f(*args, **kwargs)
     return decorated_function
+
+# Stripe webhook event extraction helpers
+def extract_customer_email_from_stripe_event(event):
+    """Extract customer email from Stripe event"""
+    data = event.get('data', {}).get('object', {})
+
+    # Try customer_email field
+    if 'customer_email' in data and data['customer_email']:
+        return data['customer_email']
+
+    # Try customer_details
+    if 'customer_details' in data:
+        email = data['customer_details'].get('email')
+        if email:
+            return email
+
+    # Fetch customer object
+    customer_id = data.get('customer')
+    if customer_id and STRIPE_SECRET_KEY:
+        try:
+            customer = stripe.Customer.retrieve(customer_id)
+            return customer.email
+        except Exception as e:
+            print(f"Error fetching customer {customer_id}: {e}")
+            return None
+
+    return None
+
+
+def extract_product_id_from_stripe_event(event):
+    """Extract product ID from Stripe event"""
+    event_type = event.get('type', '')
+    data = event.get('data', {}).get('object', {})
+
+    # For checkout.session.completed
+    if event_type == 'checkout.session.completed':
+        # Check if line_items are included in the event
+        line_items = data.get('line_items', {}).get('data', [])
+
+        # If line_items not in event, fetch the session with expanded line_items
+        if not line_items and STRIPE_SECRET_KEY:
+            session_id = data.get('id')
+            if session_id:
+                try:
+                    print(f"📥 Fetching session {session_id} with line items...")
+                    session = stripe.checkout.Session.retrieve(
+                        session_id,
+                        expand=['line_items']
+                    )
+                    line_items = session.get('line_items', {}).get('data', [])
+                    print(f"✅ Retrieved {len(line_items)} line items")
+                except Exception as e:
+                    print(f"❌ Error fetching session: {e}")
+
+        # Extract product from line items
+        if line_items:
+            price = line_items[0].get('price', {})
+            product_id = price.get('product')
+            print(f"🔍 Found product ID from line items: {product_id}")
+            return product_id
+
+    # For subscription/invoice events
+    if 'subscription' in event_type or event_type == 'invoice.payment_succeeded':
+        if 'items' in data:
+            items = data['items'].get('data', [])
+            if items:
+                price = items[0].get('price', {})
+                return price.get('product')
+
+        if 'lines' in data:
+            lines = data['lines'].get('data', [])
+            if lines:
+                price = lines[0].get('price', {})
+                return price.get('product')
+
+    return None
 
 class RoadmapWebApp:
     def __init__(self):
@@ -598,6 +863,107 @@ Please evaluate this behavioral story and provide detailed feedback."""
             'error': f'Failed to get feedback: {str(e)}',
             'status': 'error'
         }), 500
+
+@app.route('/api/webhooks/stripe', methods=['POST'])
+def stripe_webhook():
+    """
+    Stripe webhook handler for subscription events.
+    Auto-provisions users in Clerk when payments complete.
+    """
+    payload = request.get_data()
+    sig_header = request.headers.get('Stripe-Signature')
+
+    print(f"📬 Received Stripe webhook")
+
+    # Verify webhook signature
+    if not STRIPE_WEBHOOK_SECRET:
+        print("⚠️ STRIPE_WEBHOOK_SECRET not configured")
+        return jsonify({'error': 'Webhook secret not configured'}), 200
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        print(f"❌ Invalid webhook payload: {e}")
+        return jsonify({'error': 'Invalid payload'}), 400
+    except stripe.error.SignatureVerificationError as e:
+        print(f"❌ Invalid webhook signature: {e}")
+        return jsonify({'error': 'Invalid signature'}), 400
+
+    # Get event type
+    event_type = event.get('type')
+    print(f"📋 Processing event type: {event_type}")
+
+    # Handle supported events
+    supported_events = [
+        'checkout.session.completed',
+        'invoice.payment_succeeded',
+        'customer.subscription.updated',
+        'customer.subscription.deleted'
+    ]
+
+    if event_type not in supported_events:
+        print(f"ℹ️ Ignoring event type: {event_type}")
+        return jsonify({'status': 'ignored'}), 200
+
+    # Extract customer email
+    customer_email = extract_customer_email_from_stripe_event(event)
+    if not customer_email:
+        print(f"⚠️ Could not extract customer email")
+        return jsonify({'status': 'error', 'reason': 'no email'}), 200
+
+    print(f"👤 Customer email: {customer_email}")
+
+    # Extract product ID
+    product_id = extract_product_id_from_stripe_event(event)
+    if not product_id:
+        print(f"⚠️ Could not extract product ID")
+        return jsonify({'status': 'error', 'reason': 'no product'}), 200
+
+    print(f"📦 Product ID: {product_id}")
+
+    # Note: Unknown products will use default premium access configuration
+
+    # Handle subscription deletion (revoke access)
+    if event_type == 'customer.subscription.deleted':
+        print(f"🗑️ Subscription deleted for {customer_email}")
+        user = get_clerk_user_by_email(customer_email)
+        if user:
+            revoked_metadata = {
+                'has_premium': False,
+                'has_ai_access': False,
+                'has_system_design_access': False
+            }
+            update_clerk_user_metadata_by_id(user['id'], revoked_metadata)
+            print(f"✅ Revoked access for {customer_email}")
+        return jsonify({'status': 'success', 'action': 'revoked'}), 200
+
+    # Provision user
+    try:
+        success = provision_user_from_stripe(customer_email, product_id)
+
+        if success:
+            # Get product description, with fallback for unknown products
+            product_metadata = STRIPE_PRODUCT_METADATA.get(product_id, {
+                'description': 'Default Premium (Unknown Product)'
+            })
+            product_desc = product_metadata.get('description', product_id)
+            print(f"✅ Successfully provisioned {customer_email} with {product_desc}")
+            return jsonify({
+                'status': 'success',
+                'email': customer_email,
+                'product': product_desc
+            }), 200
+        else:
+            print(f"❌ Failed to provision {customer_email}")
+            return jsonify({'status': 'error', 'reason': 'provision failed'}), 200
+
+    except Exception as e:
+        print(f"❌ Error processing webhook: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'status': 'error', 'reason': str(e)}), 200
 
 def estimate_difficulty_and_topics(problem_name):
     """Estimate difficulty and topics based on problem name"""

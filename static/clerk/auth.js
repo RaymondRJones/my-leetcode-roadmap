@@ -227,6 +227,7 @@ async function sendAuthToBackend(user) {
                     first_name: user.firstName,
                     last_name: user.lastName,
                     public_metadata: user.publicMetadata,
+                    private_metadata: user.privateMetadata,
                     organization_memberships: user.organizationMemberships
                 }
             })
