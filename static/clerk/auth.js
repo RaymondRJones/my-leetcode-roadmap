@@ -36,6 +36,12 @@ async function initializeClerk() {
             hasPremiumAccess: () => {
                 const user = clerk.user;
                 if (!user) return false;
+
+                // Check private_metadata first (more secure), then fall back to public_metadata
+                if (user.privateMetadata?.has_premium === true) {
+                    return true;
+                }
+
                 return user.publicMetadata?.has_premium === true ||
                        user.publicMetadata?.premium === true ||
                        user.publicMetadata?.tier === 'premium' ||
@@ -49,6 +55,7 @@ async function initializeClerk() {
                     'raymond@example.com',
                 ];
                 return allowedEmails.includes(user.primaryEmailAddress?.emailAddress) ||
+                       user.privateMetadata?.specialAccess === true ||
                        user.publicMetadata?.specialAccess === true;
             },
             signIn: () => {
