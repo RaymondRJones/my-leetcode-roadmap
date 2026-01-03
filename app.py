@@ -97,7 +97,7 @@ def get_clerk_user_by_email(email):
 
 
 def create_clerk_user_with_metadata(email, metadata):
-    """Create new Clerk user with private metadata"""
+    """Create new Clerk user with both private and public metadata"""
     if not CLERK_SECRET_KEY:
         return None
 
@@ -109,6 +109,7 @@ def create_clerk_user_with_metadata(email, metadata):
     payload = {
         'email_address': [email],
         'private_metadata': metadata,
+        'public_metadata': metadata,
         'skip_password_checks': True,
         'skip_password_requirement': True,
         'password': f'TempStripe{os.urandom(8).hex()}!',
@@ -133,7 +134,7 @@ def create_clerk_user_with_metadata(email, metadata):
 
 
 def update_clerk_user_metadata_by_id(user_id, metadata):
-    """Update Clerk user's private metadata"""
+    """Update Clerk user's private and public metadata"""
     if not CLERK_SECRET_KEY:
         return None
 
@@ -142,7 +143,10 @@ def update_clerk_user_metadata_by_id(user_id, metadata):
         'Content-Type': 'application/json'
     }
 
-    payload = {'private_metadata': metadata}
+    payload = {
+        'private_metadata': metadata,
+        'public_metadata': metadata
+    }
 
     try:
         resp = requests.patch(
