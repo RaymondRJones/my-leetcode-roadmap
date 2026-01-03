@@ -586,8 +586,115 @@ def auth_logout():
 
 @app.route('/')
 def index():
-    """Intermediate roadmap homepage (Fortune500) - Free for all users"""
-    return render_template('intermediate.html', roadmap=web_app.get_ordered_intermediate_roadmap_data())
+    """Classroom homepage - Central hub for all courses"""
+    courses = [
+        {
+            'title': 'Complete Beginner Roadmap',
+            'description': 'Master programming fundamentals with 200+ beginner-friendly problems. Perfect for absolute beginners starting from zero.',
+            'route': '/beginner',
+            'icon': 'school',
+            'label': 'LEVEL 1',
+            'image_url': '/static/images/course-beginner.jpg',
+            'is_premium': False,
+            'course_type': 'course-free',
+            'duration': '4-8 weeks',
+            'problem_count': '200+ problems',
+            'level': 'Beginner',
+            'order': 1
+        },
+        {
+            'title': 'Fortune500 Roadmap',
+            'description': 'Intermediate preparation for mid-tier companies. Month 1 is free, complete all 3 months to master mid-level interviews.',
+            'route': '/intermediate',
+            'icon': 'rocket_launch',
+            'label': 'LEVEL 2',
+            'image_url': '/static/images/course-intermediate.jpg',
+            'is_premium': True,
+            'course_type': 'course-premium',
+            'duration': '3 months',
+            'problem_count': '300+ problems',
+            'level': 'Intermediate',
+            'order': 2
+        },
+        {
+            'title': 'The Software Engineering Journey',
+            'description': 'Follow Raymond\'s complete path from bootcamp to Fortune 1 software engineer. Learn the strategies that work in 2025.',
+            'route': '/roadmap',
+            'icon': 'trending_up',
+            'label': 'CAREER GUIDE',
+            'image_url': '/static/images/course-journey.jpg',
+            'is_premium': False,
+            'course_type': 'course-free',
+            'duration': '6-18 months',
+            'problem_count': 'Career guide',
+            'level': 'All Levels',
+            'order': 3
+        },
+        {
+            'title': 'FAANG+ Roadmap',
+            'description': 'Raymond\'s exact path to top 2% on LeetCode. Advanced problems for FAANG and top-tier company preparation.',
+            'route': '/advanced',
+            'icon': 'star',
+            'label': 'LEVEL 3',
+            'image_url': '/static/images/course-advanced.jpg',
+            'is_premium': True,
+            'course_type': 'course-premium',
+            'duration': '6+ months',
+            'problem_count': '400+ problems',
+            'level': 'Advanced',
+            'order': 4
+        },
+        {
+            'title': 'Ray700 Complete List',
+            'description': 'Custom study plan generator with 700+ curated problems. Filter by difficulty, topics, and create your personalized roadmap.',
+            'route': '/complete-list',
+            'icon': 'tune',
+            'label': 'MASTER COLLECTION',
+            'image_url': '/static/images/course-ray700.jpg',
+            'is_premium': True,
+            'course_type': 'course-premium',
+            'duration': 'Flexible',
+            'problem_count': '700+ problems',
+            'level': 'All Levels',
+            'order': 5
+        },
+        {
+            'title': 'Resume + LinkedIn Guide',
+            'description': 'My exact resume and LinkedIn profile that landed me offers at Fortune 1 companies. Step-by-step templates and strategies.',
+            'route': '/guides',
+            'icon': 'description',
+            'label': 'CAREER DOCS',
+            'image_url': '/static/images/course-resume.jpg',
+            'is_premium': True,
+            'course_type': 'course-premium',
+            'duration': '2-4 hours',
+            'problem_count': 'Templates',
+            'level': 'All Levels',
+            'order': 6
+        },
+        {
+            'title': 'System Design Guide',
+            'description': 'Master system design interviews with real-world examples, architecture patterns, and scalability principles.',
+            'route': '/guides',
+            'icon': 'account_tree',
+            'label': 'ARCHITECTURE',
+            'image_url': '/static/images/course-system-design.jpg',
+            'is_premium': True,
+            'course_type': 'course-premium',
+            'duration': '4-8 weeks',
+            'problem_count': 'Design patterns',
+            'level': 'Advanced',
+            'order': 7
+        }
+    ]
+
+    courses.sort(key=lambda x: x['order'])
+    return render_template('classroom.html', courses=courses)
+
+@app.route('/classroom')
+def classroom():
+    """Redirect to classroom homepage"""
+    return redirect('/')
 
 @app.route('/landing')
 def sales_page():
@@ -595,9 +702,9 @@ def sales_page():
     return render_template('sales_homepage.html')
 
 @app.route('/intermediate')
-def intermediate_redirect():
-    """Redirect old intermediate URL to new homepage"""
-    return redirect('/')
+def intermediate_view():
+    """Intermediate roadmap (Fortune500) - Free for all users"""
+    return render_template('intermediate.html', roadmap=web_app.get_ordered_intermediate_roadmap_data())
 
 @app.route('/advanced')
 @premium_required

@@ -186,6 +186,178 @@
             box-shadow: var(--md-elevation-2);
         }
 
+        /* Course Cards - Material Design Image Cards */
+        .course-card {
+            background: var(--md-surface);
+            border-radius: 16px;
+            box-shadow: var(--md-elevation-2);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: none;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--md-primary), var(--nord10));
+            z-index: 1;
+        }
+
+        .course-card.course-free::before {
+            background: var(--md-success);
+        }
+
+        .course-card.course-premium::before {
+            background: linear-gradient(90deg, var(--nord12), var(--nord11));
+        }
+
+        .course-card:hover {
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-6px);
+        }
+
+        .course-card-image {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--nord9) 0%, var(--nord10) 100%);
+        }
+
+        /* Unique gradient backgrounds for each course */
+        .course-card:nth-child(1) .course-card-image {
+            background: linear-gradient(135deg, #5e81ac 0%, #81a1c1 100%); /* Blue for Level 1 */
+        }
+
+        .course-card:nth-child(2) .course-card-image {
+            background: linear-gradient(135deg, #b48ead 0%, #d08770 100%); /* Purple-Orange for Level 2 */
+        }
+
+        .course-card:nth-child(3) .course-card-image {
+            background: linear-gradient(135deg, #88c0d0 0%, #8fbcbb 100%); /* Cyan for Career Guide */
+        }
+
+        .course-card:nth-child(4) .course-card-image {
+            background: linear-gradient(135deg, #ebcb8b 0%, #d08770 100%); /* Gold-Orange for Level 3 */
+        }
+
+        .course-card:nth-child(5) .course-card-image {
+            background: linear-gradient(135deg, #a3be8c 0%, #5e81ac 100%); /* Green-Blue for Master Collection */
+        }
+
+        .course-card:nth-child(6) .course-card-image {
+            background: linear-gradient(135deg, #bf616a 0%, #d08770 100%); /* Red-Orange for Resume Guide */
+        }
+
+        .course-card:nth-child(7) .course-card-image {
+            background: linear-gradient(135deg, #5e81ac 0%, #88c0d0 100%); /* Blue-Cyan for System Design */
+        }
+
+        .course-card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .course-card:hover .course-card-image img {
+            transform: scale(1.05);
+        }
+
+        /* Image overlay for better text readability */
+        .course-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(46, 52, 64, 0.7), transparent);
+            pointer-events: none;
+        }
+
+        .course-card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--md-error);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--md-elevation-2);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .course-card-badge.badge-free {
+            background: var(--md-success);
+        }
+
+        .course-card-content {
+            padding: 24px;
+        }
+
+        .course-card-title {
+            color: var(--md-primary);
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-card-description {
+            color: var(--md-on-surface-variant);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            min-height: 60px; /* Ensures consistent card heights */
+        }
+
+        .course-card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--md-outline);
+            flex-wrap: wrap;
+        }
+
+        .course-card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.875rem;
+            color: var(--md-on-surface-variant);
+        }
+
+        /* Responsive adjustments for course cards */
+        @media (max-width: 768px) {
+            .course-card-title {
+                font-size: 1.25rem;
+            }
+
+            .course-card-content {
+                padding: 20px;
+            }
+        }
+
         /* Nord-themed Progress Bars */
         .progress {
             height: 8px;
@@ -533,36 +705,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/beginner">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">school</span>Complete Beginner Roadmap
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">rocket_launch</span>Fortune500 Roadmap
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/roadmap">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">trending_up</span>The Steps
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/advanced">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">star</span>FAANG+ Roadmap
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/complete-list">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">list</span>Ray700
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/guides">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">school</span>Guides
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 18px;">school</span>Classroom
                         </a>
                     </li>
                     <li class="nav-item">
