@@ -685,6 +685,34 @@ def index():
             'problem_count': 'Design patterns',
             'level': 'Advanced',
             'order': 7
+        },
+        {
+            'title': 'Python Assessment',
+            'description': 'Test your Python knowledge with 20 multiple-choice questions. Evaluate your skills in syntax, data structures, and OOP concepts.',
+            'route': '/python-assessment',
+            'icon': 'quiz',
+            'label': 'PYTHON TEST',
+            'image_url': '/static/images/course-python.jpg',
+            'is_premium': False,
+            'course_type': 'course-free',
+            'duration': '15-20 min',
+            'problem_count': '20 questions',
+            'level': 'All Levels',
+            'order': 8
+        },
+        {
+            'title': 'Java Assessment',
+            'description': 'Evaluate your Java proficiency with 20 multiple-choice questions covering fundamentals, OOP, collections, and best practices.',
+            'route': '/java-assessment',
+            'icon': 'quiz',
+            'label': 'JAVA TEST',
+            'image_url': '/static/images/course-java.jpg',
+            'is_premium': False,
+            'course_type': 'course-free',
+            'duration': '15-20 min',
+            'problem_count': '20 questions',
+            'level': 'All Levels',
+            'order': 9
         }
     ]
 
@@ -786,6 +814,16 @@ def software_roadmap():
 def about():
     """About Raymond and his journey"""
     return render_template('about.html')
+
+@app.route('/python-assessment')
+def python_assessment():
+    """Python programming assessment quiz"""
+    return render_template('python_assessment.html')
+
+@app.route('/java-assessment')
+def java_assessment():
+    """Java programming assessment quiz"""
+    return render_template('java_assessment.html')
 
 @app.route('/system-design')
 @system_design_access_required

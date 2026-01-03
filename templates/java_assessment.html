@@ -1,0 +1,678 @@
+{% extends "base.html" %}
+
+{% block title %}Java Assessment - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 text-center mb-4 fade-in-up">
+            <span class="material-icons" style="vertical-align: middle; margin-right: 12px; font-size: 3rem; color: var(--md-primary);">quiz</span>
+            Java Assessment
+        </h1>
+
+        <div class="md-card md-card-elevated mb-4 fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card-body" style="padding: 32px;">
+                <h3 class="card-title text-center mb-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; color: var(--md-primary);">psychology</span>
+                    Test Your Java Knowledge
+                </h3>
+                <p class="lead text-center mb-0" style="color: var(--md-on-surface-variant);">
+                    Answer 20 multiple-choice questions to evaluate your Java proficiency.
+                    This assessment covers fundamentals, OOP, collections, and best practices.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quiz Form -->
+<form id="javaQuiz">
+    <div class="row">
+        <div class="col-12">
+            <!-- Question 1 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.2s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">1</span>
+                        Which of the following is NOT a valid access modifier in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q1" value="a" id="q1a">
+                        <label class="form-check-label" for="q1a">public</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q1" value="b" id="q1b">
+                        <label class="form-check-label" for="q1b">private</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q1" value="c" id="q1c">
+                        <label class="form-check-label" for="q1c">protected</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q1" value="d" id="q1d">
+                        <label class="form-check-label" for="q1d">package</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.25s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">2</span>
+                        What is the default value of a boolean variable in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q2" value="a" id="q2a">
+                        <label class="form-check-label" for="q2a">true</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q2" value="b" id="q2b">
+                        <label class="form-check-label" for="q2b">false</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q2" value="c" id="q2c">
+                        <label class="form-check-label" for="q2c">null</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q2" value="d" id="q2d">
+                        <label class="form-check-label" for="q2d">0</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.3s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">3</span>
+                        Which keyword is used to inherit a class in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q3" value="a" id="q3a">
+                        <label class="form-check-label" for="q3a">implements</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q3" value="b" id="q3b">
+                        <label class="form-check-label" for="q3b">extends</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q3" value="c" id="q3c">
+                        <label class="form-check-label" for="q3c">inherits</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q3" value="d" id="q3d">
+                        <label class="form-check-label" for="q3d">super</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.35s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">4</span>
+                        Which collection class provides fast access by key in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q4" value="a" id="q4a">
+                        <label class="form-check-label" for="q4a">ArrayList</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q4" value="b" id="q4b">
+                        <label class="form-check-label" for="q4b">LinkedList</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q4" value="c" id="q4c">
+                        <label class="form-check-label" for="q4c">HashMap</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q4" value="d" id="q4d">
+                        <label class="form-check-label" for="q4d">TreeSet</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.4s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">5</span>
+                        What is the output of: System.out.println(5 + 3 + "2");
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q5" value="a" id="q5a">
+                        <label class="form-check-label" for="q5a">10</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q5" value="b" id="q5b">
+                        <label class="form-check-label" for="q5b">82</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q5" value="c" id="q5c">
+                        <label class="form-check-label" for="q5c">532</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q5" value="d" id="q5d">
+                        <label class="form-check-label" for="q5d">Error</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.45s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">6</span>
+                        Which keyword prevents a method from being overridden?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q6" value="a" id="q6a">
+                        <label class="form-check-label" for="q6a">static</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q6" value="b" id="q6b">
+                        <label class="form-check-label" for="q6b">final</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q6" value="c" id="q6c">
+                        <label class="form-check-label" for="q6c">abstract</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q6" value="d" id="q6d">
+                        <label class="form-check-label" for="q6d">const</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.5s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">7</span>
+                        What is the purpose of the 'super' keyword?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q7" value="a" id="q7a">
+                        <label class="form-check-label" for="q7a">To call the current class constructor</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q7" value="b" id="q7b">
+                        <label class="form-check-label" for="q7b">To refer to the parent class</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q7" value="c" id="q7c">
+                        <label class="form-check-label" for="q7c">To create a static variable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" value="d" id="q7d">
+                        <label class="form-check-label" for="q7d">To import a package</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.55s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">8</span>
+                        Which interface must be implemented for a class to be used in a for-each loop?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q8" value="a" id="q8a">
+                        <label class="form-check-label" for="q8a">Serializable</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q8" value="b" id="q8b">
+                        <label class="form-check-label" for="q8b">Comparable</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q8" value="c" id="q8c">
+                        <label class="form-check-label" for="q8c">Iterable</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" value="d" id="q8d">
+                        <label class="form-check-label" for="q8d">Cloneable</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.6s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">9</span>
+                        What is the difference between '==' and '.equals()' in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q9" value="a" id="q9a">
+                        <label class="form-check-label" for="q9a">No difference</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q9" value="b" id="q9b">
+                        <label class="form-check-label" for="q9b">'==' checks reference equality, '.equals()' checks value equality</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q9" value="c" id="q9c">
+                        <label class="form-check-label" for="q9c">'==' checks value, '.equals()' checks type</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q9" value="d" id="q9d">
+                        <label class="form-check-label" for="q9d">'==' is faster but less accurate</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.65s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">10</span>
+                        Which exception is thrown when dividing by zero in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q10" value="a" id="q10a">
+                        <label class="form-check-label" for="q10a">NullPointerException</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q10" value="b" id="q10b">
+                        <label class="form-check-label" for="q10b">ArithmeticException</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q10" value="c" id="q10c">
+                        <label class="form-check-label" for="q10c">NumberFormatException</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q10" value="d" id="q10d">
+                        <label class="form-check-label" for="q10d">IllegalArgumentException</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.7s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">11</span>
+                        What is the main difference between an abstract class and an interface?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q11" value="a" id="q11a">
+                        <label class="form-check-label" for="q11a">Abstract classes can have constructors, interfaces cannot</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q11" value="b" id="q11b">
+                        <label class="form-check-label" for="q11b">No difference</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q11" value="c" id="q11c">
+                        <label class="form-check-label" for="q11c">Interfaces can have instance variables</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q11" value="d" id="q11d">
+                        <label class="form-check-label" for="q11d">Abstract classes are faster</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.75s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">12</span>
+                        Which keyword is used to prevent a class from being inherited?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q12" value="a" id="q12a">
+                        <label class="form-check-label" for="q12a">sealed</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q12" value="b" id="q12b">
+                        <label class="form-check-label" for="q12b">final</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q12" value="c" id="q12c">
+                        <label class="form-check-label" for="q12c">static</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q12" value="d" id="q12d">
+                        <label class="form-check-label" for="q12d">private</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.8s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">13</span>
+                        What is autoboxing in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q13" value="a" id="q13a">
+                        <label class="form-check-label" for="q13a">Automatic conversion of primitive to wrapper class</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q13" value="b" id="q13b">
+                        <label class="form-check-label" for="q13b">Automatic garbage collection</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q13" value="c" id="q13c">
+                        <label class="form-check-label" for="q13c">Boxing objects for shipping</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q13" value="d" id="q13d">
+                        <label class="form-check-label" for="q13d">Type casting</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.85s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">14</span>
+                        Which collection does NOT allow duplicate elements?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q14" value="a" id="q14a">
+                        <label class="form-check-label" for="q14a">ArrayList</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q14" value="b" id="q14b">
+                        <label class="form-check-label" for="q14b">LinkedList</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q14" value="c" id="q14c">
+                        <label class="form-check-label" for="q14c">HashSet</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q14" value="d" id="q14d">
+                        <label class="form-check-label" for="q14d">Vector</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.9s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">15</span>
+                        What is the purpose of the 'static' keyword?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q15" value="a" id="q15a">
+                        <label class="form-check-label" for="q15a">Makes variables unchangeable</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q15" value="b" id="q15b">
+                        <label class="form-check-label" for="q15b">Belongs to the class rather than instances</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q15" value="c" id="q15c">
+                        <label class="form-check-label" for="q15c">Prevents inheritance</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q15" value="d" id="q15d">
+                        <label class="form-check-label" for="q15d">Creates private methods</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 0.95s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">16</span>
+                        Which method is called when an object is garbage collected?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q16" value="a" id="q16a">
+                        <label class="form-check-label" for="q16a">delete()</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q16" value="b" id="q16b">
+                        <label class="form-check-label" for="q16b">finalize()</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q16" value="c" id="q16c">
+                        <label class="form-check-label" for="q16c">dispose()</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q16" value="d" id="q16d">
+                        <label class="form-check-label" for="q16d">destroy()</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 1s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">17</span>
+                        What is method overloading?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q17" value="a" id="q17a">
+                        <label class="form-check-label" for="q17a">Same method name with different parameters</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q17" value="b" id="q17b">
+                        <label class="form-check-label" for="q17b">Redefining a parent class method</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q17" value="c" id="q17c">
+                        <label class="form-check-label" for="q17c">Having too many methods</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q17" value="d" id="q17d">
+                        <label class="form-check-label" for="q17d">Using static methods</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 1.05s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">18</span>
+                        Which of these is a checked exception in Java?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q18" value="a" id="q18a">
+                        <label class="form-check-label" for="q18a">NullPointerException</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q18" value="b" id="q18b">
+                        <label class="form-check-label" for="q18b">IOException</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q18" value="c" id="q18c">
+                        <label class="form-check-label" for="q18c">ArrayIndexOutOfBoundsException</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q18" value="d" id="q18d">
+                        <label class="form-check-label" for="q18d">ArithmeticException</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 1.1s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">19</span>
+                        What does the 'transient' keyword do?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q19" value="a" id="q19a">
+                        <label class="form-check-label" for="q19a">Prevents a variable from being serialized</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q19" value="b" id="q19b">
+                        <label class="form-check-label" for="q19b">Makes a variable temporary</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q19" value="c" id="q19c">
+                        <label class="form-check-label" for="q19c">Makes a variable final</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q19" value="d" id="q19d">
+                        <label class="form-check-label" for="q19d">Creates a static variable</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="md-card mb-4 fade-in-up" style="animation-delay: 1.15s;">
+                <div class="card-body" style="padding: 24px;">
+                    <h5 class="mb-3" style="color: var(--md-primary);">
+                        <span class="badge" style="background: var(--md-primary); margin-right: 8px;">20</span>
+                        What is the time complexity of searching in an unsorted ArrayList?
+                    </h5>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q20" value="a" id="q20a">
+                        <label class="form-check-label" for="q20a">O(1)</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q20" value="b" id="q20b">
+                        <label class="form-check-label" for="q20b">O(log n)</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="q20" value="c" id="q20c">
+                        <label class="form-check-label" for="q20c">O(n)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="q20" value="d" id="q20d">
+                        <label class="form-check-label" for="q20d">O(n^2)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mb-4">
+                <button type="submit" class="btn btn-primary btn-lg" style="padding: 16px 48px;">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">check_circle</span>
+                    Submit Assessment
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Results Section (Hidden Initially) -->
+<div id="results" style="display: none;">
+    <div class="row">
+        <div class="col-12">
+            <div class="md-card md-card-elevated mb-4">
+                <div class="card-body text-center" style="padding: 48px;">
+                    <span class="material-icons" id="resultIcon" style="font-size: 72px; margin-bottom: 24px; display: inline-block;"></span>
+                    <h2 id="resultTitle" class="mb-3"></h2>
+                    <p id="resultScore" class="lead mb-4"></p>
+                    <p id="resultMessage" class="mb-4" style="max-width: 600px; margin: 0 auto;"></p>
+
+                    <div class="mb-4">
+                        <button onclick="location.reload()" class="btn btn-primary me-2">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">refresh</span>
+                            Retake Assessment
+                        </button>
+                        <a href="/" class="btn btn-outline-primary">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">home</span>
+                            Back to Classroom
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Answer key
+    const answers = {
+        q1: 'd',  // package is not a valid access modifier
+        q2: 'b',  // false
+        q3: 'b',  // extends
+        q4: 'c',  // HashMap
+        q5: 'b',  // 82
+        q6: 'b',  // final
+        q7: 'b',  // refer to parent class
+        q8: 'c',  // Iterable
+        q9: 'b',  // '==' checks reference, '.equals()' checks value
+        q10: 'b', // ArithmeticException
+        q11: 'a', // Abstract classes can have constructors
+        q12: 'b', // final
+        q13: 'a', // Automatic conversion of primitive to wrapper
+        q14: 'c', // HashSet
+        q15: 'b', // Belongs to class rather than instances
+        q16: 'b', // finalize()
+        q17: 'a', // Same method name with different parameters
+        q18: 'b', // IOException
+        q19: 'a', // Prevents serialization
+        q20: 'c'  // O(n)
+    };
+
+    document.getElementById('javaQuiz').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let score = 0;
+        let totalQuestions = Object.keys(answers).length;
+
+        // Calculate score
+        for (let question in answers) {
+            const selected = document.querySelector(`input[name="${question}"]:checked`);
+            if (selected && selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        // Calculate percentage
+        const percentage = Math.round((score / totalQuestions) * 100);
+
+        // Hide quiz, show results
+        document.getElementById('javaQuiz').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+
+        // Scroll to results
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+        // Determine result message and styling
+        let title, message, icon, iconColor;
+
+        if (percentage >= 90) {
+            title = 'Excellent! Java Expert';
+            message = 'Outstanding performance! You have a strong grasp of Java fundamentals, OOP principles, collections, and best practices. You\'re well-prepared for Java-based coding interviews.';
+            icon = 'emoji_events';
+            iconColor = '#ebcb8b';
+        } else if (percentage >= 75) {
+            title = 'Great Job! Strong Java Skills';
+            message = 'Well done! You have a solid understanding of Java. Review the questions you missed to strengthen your knowledge further, especially around collections and advanced OOP concepts.';
+            icon = 'verified';
+            iconColor = '#a3be8c';
+        } else if (percentage >= 60) {
+            title = 'Good Effort! Intermediate Level';
+            message = 'You have a decent foundation in Java. Focus on practicing more with collections, exception handling, and OOP concepts to improve your skills.';
+            icon = 'thumb_up';
+            iconColor = '#5e81ac';
+        } else if (percentage >= 40) {
+            title = 'Keep Learning! Beginner Level';
+            message = 'You\'re making progress! Spend more time studying Java basics, OOP principles, and the Collections framework. Practice coding daily to build your skills.';
+            icon = 'lightbulb';
+            iconColor = '#d08770';
+        } else {
+            title = 'Need More Practice';
+            message = 'Consider starting with Java fundamentals. Work through beginner tutorials covering OOP, data types, and basic syntax. Practice coding regularly to build your foundation.';
+            icon = 'school';
+            iconColor = '#bf616a';
+        }
+
+        // Update results
+        document.getElementById('resultIcon').textContent = icon;
+        document.getElementById('resultIcon').style.color = iconColor;
+        document.getElementById('resultTitle').textContent = title;
+        document.getElementById('resultScore').textContent = `Score: ${score}/${totalQuestions} (${percentage}%)`;
+        document.getElementById('resultMessage').textContent = message;
+    });
+</script>
+{% endblock %}
