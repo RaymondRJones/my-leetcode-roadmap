@@ -434,7 +434,7 @@ class RoadmapWebApp:
     
     def load_intermediate_roadmap_data(self):
         """Load intermediate roadmap data from JSON file"""
-        if os.path.exists('intermediate_roadmap_data.json'):
+        if os.path.exists('intermediate_roadmap_data_v2.json'):
             with open('intermediate_roadmap_data.json', 'r', encoding='utf-8') as f:
                 self.intermediate_roadmap_data = json.load(f)
         else:
