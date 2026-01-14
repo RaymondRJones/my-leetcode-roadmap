@@ -148,3 +148,66 @@ def full_access_client(app, mock_full_access_user_data):
     with client.session_transaction() as sess:
         sess['user'] = mock_full_access_user_data
     return client
+
+
+@pytest.fixture
+def mock_enrolled_user_data():
+    """Create mock data for an enrolled challenge user."""
+    return {
+        'id': 'user_enrolled',
+        'email_addresses': [
+            {'email_address': 'enrolled@example.com'}
+        ],
+        'private_metadata': {
+            'has_premium': True
+        },
+        'public_metadata': {
+            'challenge': {
+                'enrolled': True,
+                'start_date': '2025-01-01T00:00:00',
+                'days_completed': [1, 2],
+                'problems_solved': {'day_1': ['two-sum']},
+                'total_problems_solved': 1,
+                'current_streak': 2,
+                'best_streak': 2,
+                'points': 10,
+                'achievements': ['first_problem']
+            }
+        }
+    }
+
+
+@pytest.fixture
+def mock_admin_user_data():
+    """Create mock data for an admin user."""
+    return {
+        'id': 'user_admin',
+        'email_addresses': [
+            {'email_address': 'admin@example.com'}
+        ],
+        'private_metadata': {
+            'is_admin': True,
+            'has_premium': True
+        },
+        'public_metadata': {
+            'is_admin': True
+        }
+    }
+
+
+@pytest.fixture
+def enrolled_client(app, mock_enrolled_user_data):
+    """Create test client with enrolled challenge user."""
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess['user'] = mock_enrolled_user_data
+    return client
+
+
+@pytest.fixture
+def admin_client(app, mock_admin_user_data):
+    """Create test client with admin user."""
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess['user'] = mock_admin_user_data
+    return client
