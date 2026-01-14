@@ -9,7 +9,7 @@
         <div>
             <h1 class="mb-1">
                 <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">calendar_month</span>
-                28-Day Calendar
+                28-Day Challenge
             </h1>
             <p class="text-muted mb-0">Track your daily progress through the challenge</p>
         </div>
@@ -45,66 +45,76 @@
         <div class="col-6 col-md-3">
             <div class="md-card p-3 text-center">
                 <span class="material-icons mb-1" style="font-size: 28px; color: var(--nord14);">check_circle</span>
-                <h4 class="mb-0">{{ challenge_data.days_completed|length or 0 }}/28</h4>
+                <h4 class="mb-0">{{ challenge_data.days_completed|length if challenge_data.days_completed else 0 }}/28</h4>
                 <small class="text-muted">Days Complete</small>
             </div>
         </div>
     </div>
 
-    <!-- Calendar Grid -->
+    <!-- Calendar -->
     <div class="md-card p-4 mb-5">
-        <!-- Week Headers -->
-        <div class="row g-2 mb-3 text-center">
-            <div class="col"><small class="text-muted fw-bold">Week 1</small></div>
-            <div class="col"><small class="text-muted fw-bold">Week 2</small></div>
-            <div class="col"><small class="text-muted fw-bold">Week 3</small></div>
-            <div class="col"><small class="text-muted fw-bold">Week 4</small></div>
+        <!-- Month Header -->
+        <div class="text-center mb-4">
+            <h3 class="calendar-month-title mb-0">January 2025</h3>
+            <small class="text-muted">Your 28-Day Challenge</small>
         </div>
 
-        <!-- Calendar Days - 7 rows x 4 columns -->
-        {% for row in range(7) %}
-        <div class="row g-2 mb-2">
-            {% for week in range(4) %}
-            {% set day_num = week * 7 + row + 1 %}
-            {% if day_num <= 28 %}
-            {% set day_info = calendar_days[day_num - 1] %}
-            <div class="col">
-                {% if day_info.is_locked %}
-                <!-- Locked Day -->
-                <div class="calendar-day locked" title="Day {{ day_num }} - Locked">
-                    <div class="day-number">{{ day_num }}</div>
-                    <span class="material-icons day-icon">lock</span>
-                </div>
-                {% elif day_info.is_completed %}
-                <!-- Completed Day -->
-                <a href="/challenge/day/{{ day_num }}" class="text-decoration-none">
-                    <div class="calendar-day completed" title="Day {{ day_num }} - Completed">
-                        <div class="day-number">{{ day_num }}</div>
-                        <span class="material-icons day-icon">check_circle</span>
-                    </div>
-                </a>
-                {% elif day_info.is_current %}
-                <!-- Current Day -->
-                <a href="/challenge/day/{{ day_num }}" class="text-decoration-none">
-                    <div class="calendar-day current" title="Day {{ day_num }} - Today's Challenge">
-                        <div class="day-number">{{ day_num }}</div>
-                        <span class="material-icons day-icon">play_circle</span>
-                    </div>
-                </a>
-                {% else %}
-                <!-- Available (missed) Day -->
-                <a href="/challenge/day/{{ day_num }}" class="text-decoration-none">
-                    <div class="calendar-day available" title="Day {{ day_num }} - Available">
-                        <div class="day-number">{{ day_num }}</div>
-                        <span class="material-icons day-icon">radio_button_unchecked</span>
-                    </div>
-                </a>
-                {% endif %}
+        <!-- Day of Week Headers -->
+        <div class="calendar-grid">
+            <div class="calendar-header">Sun</div>
+            <div class="calendar-header">Mon</div>
+            <div class="calendar-header">Tue</div>
+            <div class="calendar-header">Wed</div>
+            <div class="calendar-header">Thu</div>
+            <div class="calendar-header">Fri</div>
+            <div class="calendar-header">Sat</div>
+
+            <!-- Empty cells before January 1st (Wednesday) -->
+            <div class="calendar-cell empty"></div>
+            <div class="calendar-cell empty"></div>
+            <div class="calendar-cell empty"></div>
+
+            <!-- Calendar Days 1-28 (Jan 1 starts on Wednesday) -->
+            {% for day_num in range(1, 29) %}
+            {% set day_info = calendar_days[day_num - 1] if calendar_days and day_num <= calendar_days|length else {} %}
+            {% set is_completed = day_info.is_completed if day_info else false %}
+            {% set is_current = day_info.is_current if day_info else false %}
+            {% set is_locked = day_info.is_locked if day_info else true %}
+            {% set is_available = not is_locked and not is_completed and not is_current %}
+
+            {% if is_locked %}
+            <div class="calendar-cell locked" title="Day {{ day_num }} - Locked">
+                <span class="calendar-day-number">{{ day_num }}</span>
             </div>
+            {% elif is_current %}
+            <a href="/challenge/day/{{ day_num }}" class="calendar-cell current" title="Day {{ day_num }} - Today's Challenge">
+                <span class="calendar-day-number">{{ day_num }}</span>
+                <span class="status-dot current-dot"></span>
+            </a>
+            {% elif is_completed %}
+            <a href="/challenge/day/{{ day_num }}" class="calendar-cell completed" title="Day {{ day_num }} - Completed">
+                <span class="calendar-day-number">{{ day_num }}</span>
+                <span class="status-dot completed-dot"></span>
+            </a>
+            {% else %}
+            <a href="/challenge/day/{{ day_num }}" class="calendar-cell available" title="Day {{ day_num }} - Available">
+                <span class="calendar-day-number">{{ day_num }}</span>
+                <span class="status-dot available-dot"></span>
+            </a>
             {% endif %}
             {% endfor %}
+
+            <!-- Remaining days of January (29-31) shown but not part of challenge -->
+            <div class="calendar-cell inactive">
+                <span class="calendar-day-number">29</span>
+            </div>
+            <div class="calendar-cell inactive">
+                <span class="calendar-day-number">30</span>
+            </div>
+            <div class="calendar-cell inactive">
+                <span class="calendar-day-number">31</span>
+            </div>
         </div>
-        {% endfor %}
     </div>
 
     <!-- Legend -->
@@ -112,19 +122,19 @@
         <h6 class="mb-3">Legend</h6>
         <div class="d-flex flex-wrap gap-4">
             <div class="d-flex align-items-center">
-                <div class="calendar-day-mini completed me-2"></div>
+                <span class="status-dot completed-dot me-2" style="position: static;"></span>
                 <span class="small">Completed</span>
             </div>
             <div class="d-flex align-items-center">
-                <div class="calendar-day-mini current me-2"></div>
-                <span class="small">Current Day</span>
+                <span class="status-dot current-dot me-2" style="position: static; animation: none;"></span>
+                <span class="small">Today's Challenge</span>
             </div>
             <div class="d-flex align-items-center">
-                <div class="calendar-day-mini available me-2"></div>
+                <span class="status-dot available-dot me-2" style="position: static;"></span>
                 <span class="small">Available</span>
             </div>
             <div class="d-flex align-items-center">
-                <div class="calendar-day-mini locked me-2"></div>
+                <span class="legend-locked me-2"></span>
                 <span class="small">Locked</span>
             </div>
         </div>
@@ -150,109 +160,159 @@
 </div>
 
 <style>
-/* Calendar Day Styles */
-.calendar-day {
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-month-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--md-on-surface);
+}
+
+/* Day of Week Headers */
+.calendar-header {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nord3);
+    text-transform: uppercase;
+    padding: 8px 0;
+    letter-spacing: 0.5px;
+}
+
+/* Calendar Cells */
+.calendar-cell {
     aspect-ratio: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background: var(--md-surface);
-    border: 2px solid var(--md-outline);
+    text-decoration: none;
+    position: relative;
     transition: all 0.2s ease;
-    cursor: pointer;
-    min-height: 80px;
+    min-height: 60px;
 }
 
-.calendar-day:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--md-elevation-2);
+.calendar-cell.empty {
+    background: transparent;
 }
 
-.calendar-day .day-number {
+/* Day Numbers - Grayed out by default */
+.calendar-day-number {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--md-on-surface);
+    font-weight: 500;
+    color: var(--nord4);
+    transition: color 0.2s ease;
 }
 
-.calendar-day .day-icon {
-    font-size: 20px;
-    margin-top: 4px;
+/* Status Dots */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
 }
 
-/* Completed */
-.calendar-day.completed {
-    background: linear-gradient(135deg, var(--nord14), #8fbc8f);
-    border-color: var(--nord14);
-}
-
-.calendar-day.completed .day-number,
-.calendar-day.completed .day-icon {
-    color: white;
-}
-
-/* Current */
-.calendar-day.current {
-    border-color: var(--md-primary);
-    border-width: 3px;
-    box-shadow: 0 0 0 3px rgba(94, 129, 172, 0.3);
-}
-
-.calendar-day.current .day-icon {
-    color: var(--md-primary);
-}
-
-/* Available */
-.calendar-day.available {
-    background: var(--md-surface);
-}
-
-.calendar-day.available .day-icon {
-    color: var(--nord3);
-}
-
-/* Locked */
-.calendar-day.locked {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: var(--nord4);
-}
-
-.calendar-day.locked:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-.calendar-day.locked .day-icon {
-    color: var(--nord3);
-}
-
-/* Mini legend items */
-.calendar-day-mini {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    border: 2px solid var(--md-outline);
-}
-
-.calendar-day-mini.completed {
+/* Completed - Green dot */
+.status-dot.completed-dot {
     background: var(--nord14);
-    border-color: var(--nord14);
+    box-shadow: 0 0 0 2px rgba(163, 190, 140, 0.3);
 }
 
-.calendar-day-mini.current {
-    border-color: var(--md-primary);
-    border-width: 3px;
+/* Current - Blue pulsing dot */
+.status-dot.current-dot {
+    background: var(--md-primary);
+    box-shadow: 0 0 0 2px rgba(94, 129, 172, 0.3);
+    animation: pulse 2s infinite;
 }
 
-.calendar-day-mini.available {
-    background: var(--md-surface);
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 2px rgba(94, 129, 172, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(94, 129, 172, 0.1);
+    }
 }
 
-.calendar-day-mini.locked {
+/* Available - Gray dot */
+.status-dot.available-dot {
+    background: var(--nord3);
     opacity: 0.5;
+}
+
+/* Legend locked indicator */
+.legend-locked {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     background: var(--nord4);
+    opacity: 0.3;
+}
+
+/* Completed days */
+.calendar-cell.completed {
+    cursor: pointer;
+}
+
+.calendar-cell.completed:hover {
+    background: rgba(163, 190, 140, 0.1);
+}
+
+.calendar-cell.completed .calendar-day-number {
+    color: var(--nord14);
+    font-weight: 600;
+}
+
+/* Current day */
+.calendar-cell.current {
+    cursor: pointer;
+    background: rgba(94, 129, 172, 0.08);
+    border: 2px solid var(--md-primary);
+}
+
+.calendar-cell.current:hover {
+    background: rgba(94, 129, 172, 0.15);
+}
+
+.calendar-cell.current .calendar-day-number {
+    color: var(--md-primary);
+    font-weight: 700;
+}
+
+/* Available days */
+.calendar-cell.available {
+    cursor: pointer;
+}
+
+.calendar-cell.available:hover {
+    background: rgba(76, 86, 106, 0.08);
+}
+
+.calendar-cell.available .calendar-day-number {
+    color: var(--nord3);
+}
+
+/* Locked days */
+.calendar-cell.locked {
+    cursor: not-allowed;
+}
+
+.calendar-cell.locked .calendar-day-number {
+    color: var(--nord4);
+    opacity: 0.5;
+}
+
+/* Inactive days (29-31) */
+.calendar-cell.inactive .calendar-day-number {
+    color: var(--nord4);
+    opacity: 0.3;
 }
 
 /* Achievement Badges */
@@ -262,7 +322,7 @@
     align-items: center;
     padding: 16px;
     border-radius: 12px;
-    background: var(--nord4);
+    background: var(--nord5);
     text-align: center;
     transition: all 0.2s ease;
 }
@@ -275,20 +335,45 @@
     font-size: 32px;
     color: var(--nord3);
     margin-bottom: 8px;
+    opacity: 0.5;
 }
 
 .achievement-badge.unlocked .achievement-icon {
     color: white;
+    opacity: 1;
 }
 
 .achievement-badge .achievement-name {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--nord3);
+    opacity: 0.7;
 }
 
 .achievement-badge.unlocked .achievement-name {
     color: white;
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .calendar-cell {
+        min-height: 50px;
+    }
+
+    .calendar-day-number {
+        font-size: 1rem;
+    }
+
+    .status-dot {
+        width: 6px;
+        height: 6px;
+        bottom: 6px;
+    }
+
+    .calendar-header {
+        font-size: 0.65rem;
+    }
 }
 </style>
 {% endblock %}
