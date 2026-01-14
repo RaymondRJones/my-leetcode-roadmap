@@ -1,9 +1,11 @@
 """
 API routes blueprint.
 """
+from datetime import datetime
 from flask import Blueprint, jsonify, request, current_app
 
-from ..auth.decorators import ai_access_required
+from ..auth.decorators import ai_access_required, login_required, admin_required
+from ..auth.access import get_current_user
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -73,6 +75,221 @@ def behavioral_feedback():
             'status': 'error'
         }), 500
 
+
+# =============================================================================
+# Challenge API Endpoints
+# =============================================================================
+
+@api_bp.route('/challenge/enroll', methods=['POST'])
+@login_required
+def enroll_challenge():
+    """Enroll the current user in the 28-day challenge."""
+    user = get_current_user()
+    user_id = user.get('id')
+
+    # Initialize challenge data
+    challenge_data = {
+        'enrolled': True,
+        'start_date': datetime.now().isoformat(),
+        'days_completed': [],
+        'problems_solved': {},
+        'total_problems_solved': 0,
+        'current_streak': 0,
+        'best_streak': 0,
+        'points': 0,
+        'achievements': [],
+        'last_activity_date': datetime.now().isoformat()
+    }
+
+    # Update Clerk metadata
+    current_meta = user.get('public_metadata', {})
+    current_meta['challenge'] = challenge_data
+
+    clerk_service = current_app.clerk
+    result = clerk_service.update_user_metadata(user_id, current_meta)
+
+    if result:
+        return jsonify({'status': 'success', 'challenge': challenge_data})
+    return jsonify({'error': 'Failed to enroll'}), 500
+
+
+@api_bp.route('/challenge/complete-problem', methods=['POST'])
+@login_required
+def complete_problem():
+    """Mark a problem as completed."""
+    data = request.get_json()
+    day = data.get('day')
+    problem_id = data.get('problem_id')
+
+    if not day or not problem_id:
+        return jsonify({'error': 'day and problem_id required'}), 400
+
+    user = get_current_user()
+    user_id = user.get('id')
+    public_meta = user.get('public_metadata', {})
+    challenge = public_meta.get('challenge', {})
+
+    if not challenge.get('enrolled'):
+        return jsonify({'error': 'Not enrolled in challenge'}), 400
+
+    # Update problems_solved
+    day_key = f'day_{day}'
+    problems_solved = challenge.get('problems_solved', {})
+    if day_key not in problems_solved:
+        problems_solved[day_key] = []
+
+    if problem_id not in problems_solved[day_key]:
+        problems_solved[day_key].append(problem_id)
+        challenge['problems_solved'] = problems_solved
+        challenge['total_problems_solved'] = sum(len(p) for p in problems_solved.values())
+
+        # Check if day is complete
+        service = current_app.challenge_service
+        if service.is_day_complete(day, problems_solved):
+            days_completed = challenge.get('days_completed', [])
+            if day not in days_completed:
+                days_completed.append(day)
+                challenge['days_completed'] = days_completed
+
+        # Update streak
+        current_day = service.calculate_current_day(challenge.get('start_date', ''))
+        challenge['current_streak'] = service.calculate_streak(
+            challenge.get('days_completed', []), current_day
+        )
+        challenge['best_streak'] = max(
+            challenge.get('best_streak', 0),
+            challenge['current_streak']
+        )
+
+        # Calculate points
+        challenge['points'] = service.calculate_points(challenge)
+
+        # Check for new achievements
+        new_achievements = service.check_achievements(challenge)
+        if new_achievements:
+            challenge['achievements'] = list(
+                set(challenge.get('achievements', []) + new_achievements)
+            )
+
+        challenge['last_activity_date'] = datetime.now().isoformat()
+
+        # Save to Clerk
+        public_meta['challenge'] = challenge
+        clerk_service = current_app.clerk
+        clerk_service.update_user_metadata(user_id, public_meta)
+
+        return jsonify({
+            'status': 'success',
+            'challenge': challenge,
+            'new_achievements': new_achievements
+        })
+
+    return jsonify({'status': 'already_completed'})
+
+
+@api_bp.route('/challenge/progress')
+@login_required
+def get_challenge_progress():
+    """Get user's challenge progress."""
+    user = get_current_user()
+    challenge = user.get('public_metadata', {}).get('challenge', {})
+
+    if not challenge.get('enrolled'):
+        return jsonify({'enrolled': False})
+
+    service = current_app.challenge_service
+    current_day = service.calculate_current_day(challenge.get('start_date', ''))
+
+    return jsonify({
+        'enrolled': True,
+        'current_day': current_day,
+        'days_completed': challenge.get('days_completed', []),
+        'problems_solved': challenge.get('problems_solved', {}),
+        'total_problems_solved': challenge.get('total_problems_solved', 0),
+        'current_streak': challenge.get('current_streak', 0),
+        'best_streak': challenge.get('best_streak', 0),
+        'points': challenge.get('points', 0),
+        'achievements': challenge.get('achievements', [])
+    })
+
+
+@api_bp.route('/challenge/submit-skool', methods=['POST'])
+@login_required
+def submit_skool():
+    """Submit a Skool post for admin review."""
+    data = request.get_json()
+    day = data.get('day')
+    url = data.get('url')
+
+    if not day or not url:
+        return jsonify({'error': 'day and url required'}), 400
+
+    if 'skool.com' not in url:
+        return jsonify({'error': 'Invalid Skool URL'}), 400
+
+    user = get_current_user()
+    user_id = user.get('id')
+    public_meta = user.get('public_metadata', {})
+
+    submissions = public_meta.get('skool_submissions', [])
+    submissions.append({
+        'day': day,
+        'url': url,
+        'submitted_at': datetime.now().isoformat(),
+        'status': 'pending'
+    })
+
+    public_meta['skool_submissions'] = submissions
+    clerk_service = current_app.clerk
+    clerk_service.update_user_metadata(user_id, public_meta)
+
+    return jsonify({'status': 'success', 'message': 'Submission received'})
+
+
+@api_bp.route('/challenge/leaderboard')
+def get_challenge_leaderboard():
+    """Get challenge leaderboard data."""
+    # For now, return empty - would need Clerk API to list all users
+    return jsonify({
+        'leaderboard': [],
+        'message': 'Leaderboard coming soon'
+    })
+
+
+@api_bp.route('/challenge/admin/participants')
+@admin_required
+def get_challenge_participants():
+    """Get all challenge participants (admin only)."""
+    # Would require Clerk API to list all users with challenge data
+    return jsonify({
+        'participants': [],
+        'message': 'Admin participant list coming soon'
+    })
+
+
+@api_bp.route('/challenge/admin/approve-submission', methods=['POST'])
+@admin_required
+def approve_skool_submission():
+    """Approve or reject a Skool submission (admin only)."""
+    data = request.get_json()
+    user_id = data.get('user_id')
+    submission_index = data.get('submission_index')
+    action = data.get('action')  # 'approve' or 'reject'
+
+    if not user_id or submission_index is None or action not in ['approve', 'reject']:
+        return jsonify({'error': 'user_id, submission_index, and action required'}), 400
+
+    # Would need to fetch user by ID and update submission status
+    # For now, return success placeholder
+    return jsonify({
+        'status': 'success',
+        'message': f'Submission {action}d'
+    })
+
+
+# =============================================================================
+# Stripe Webhook
+# =============================================================================
 
 @api_bp.route('/webhooks/stripe', methods=['POST'])
 def stripe_webhook():

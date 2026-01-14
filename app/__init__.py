@@ -8,12 +8,14 @@ from flask import Flask
 
 from .config import config, get_config
 from .services import ClerkService, StripeService, OpenAIService, RoadmapService
+from .services.challenge_service import ChallengeService
 from .auth.access import (
     get_current_user,
     has_premium_access,
     has_ai_access,
     has_system_design_access,
-    is_allowed_user
+    is_allowed_user,
+    is_admin
 )
 
 
@@ -80,15 +82,19 @@ def _init_services(app: Flask):
         intermediate_month_order=app.config.get('INTERMEDIATE_MONTH_ORDER', [])
     )
 
+    # Challenge service
+    app.challenge_service = ChallengeService()
+
 
 def _register_blueprints(app: Flask):
     """Register all blueprints with the Flask app."""
-    from .routes import auth_bp, main_bp, api_bp, system_design_bp
+    from .routes import auth_bp, main_bp, api_bp, system_design_bp, challenge_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(api_bp)
     app.register_blueprint(system_design_bp)
+    app.register_blueprint(challenge_bp)
 
 
 def _register_context_processor(app: Flask):
@@ -105,5 +111,6 @@ def _register_context_processor(app: Flask):
             'has_ai_access': has_ai_access(user) if user else False,
             'has_system_design_access': has_system_design_access(user) if user else False,
             'is_allowed': is_allowed_user(user) if user else False,
+            'is_admin': is_admin(user) if user else False,
             'clerk_publishable_key': app.config.get('CLERK_PUBLISHABLE_KEY')
         }

@@ -9,7 +9,8 @@ from .access import (
     has_premium_access,
     has_ai_access,
     has_system_design_access,
-    is_allowed_user
+    is_allowed_user,
+    is_admin
 )
 
 
@@ -64,6 +65,25 @@ def system_design_access_required(f):
 
         if not has_system_design_access(user) and not is_allowed_user(user):
             return redirect('/landing')
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def admin_required(f):
+    """Require user to be an admin.
+
+    Used for admin-only routes like challenge admin dashboard.
+    Redirects non-admins to the home page.
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return redirect('/landing')
+
+        if not is_admin(user):
+            return redirect('/')
 
         return f(*args, **kwargs)
     return decorated_function

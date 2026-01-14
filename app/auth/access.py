@@ -75,3 +75,26 @@ def is_allowed_user(user_data: Optional[dict]) -> bool:
         primary_email in allowed_emails or
         public_metadata.get('specialAccess') is True
     )
+
+
+def is_admin(user_data: Optional[dict]) -> bool:
+    """Check if user is an admin.
+
+    Admins have access to admin-only routes like challenge admin dashboard.
+    Checks is_admin flag in metadata, or falls back to is_allowed_user.
+
+    Args:
+        user_data: The user data dictionary
+
+    Returns:
+        True if user is an admin
+    """
+    if not user_data:
+        return False
+
+    # Check is_admin flag in metadata
+    if _get_metadata_value(user_data, 'is_admin', False):
+        return True
+
+    # Allowed users (from config list) are also considered admins
+    return is_allowed_user(user_data)

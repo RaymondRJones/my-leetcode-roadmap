@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}28-Day Challenge - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    {% if not enrolled %}
+    <!-- Hero Section for Non-Enrolled Users -->
+    <div class="text-center mb-5">
+        <div class="mb-4">
+            <span class="material-icons" style="font-size: 64px; color: var(--md-primary);">emoji_events</span>
+        </div>
+        <h1 class="display-4 mb-3">28-Day LeetCode Challenge</h1>
+        <p class="lead text-muted mb-4">
+            Transform your coding skills in just 28 days. Solve curated problems,
+            track your progress, earn achievements, and compete on the leaderboard.
+        </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord10);">code</span>
+                <h5>Built-in Code Editor</h5>
+                <p class="text-muted mb-0">Write and test Python code directly in your browser with instant feedback.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord12);">local_fire_department</span>
+                <h5>Streak Tracking</h5>
+                <p class="text-muted mb-0">Build consistency with daily streaks and earn bonus points for maintaining them.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord14);">military_tech</span>
+                <h5>Achievements & Points</h5>
+                <p class="text-muted mb-0">Unlock achievements, earn points, and climb the leaderboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Points System -->
+    <div class="md-card p-4 mb-5">
+        <h4 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">star</span>
+            Points System
+        </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-muted mb-3">Problem Points</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="badge bg-success me-2">Easy</span>
+                        {{ point_values.easy }} points per problem
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-warning text-dark me-2">Medium</span>
+                        {{ point_values.medium }} points per problem
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-danger me-2">Hard</span>
+                        {{ point_values.hard }} points per problem
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-muted mb-3">Streak Bonuses</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord12);">local_fire_department</span>
+                        7-day streak: +{{ point_values.streak_7 }} bonus
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord11);">whatshot</span>
+                        14-day streak: +{{ point_values.streak_14 }} bonus
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord13);">emoji_events</span>
+                        28-day completion: +{{ point_values.streak_28 }} bonus
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+        {% if is_authenticated %}
+        <button onclick="enrollInChallenge()" class="btn btn-lg px-5 py-3" style="background: var(--md-primary); color: white;">
+            <span class="material-icons me-2" style="vertical-align: middle;">rocket_launch</span>
+            Start the Challenge
+        </button>
+        {% else %}
+        <a href="/auth/login" class="btn btn-lg px-5 py-3" style="background: var(--md-primary); color: white;">
+            <span class="material-icons me-2" style="vertical-align: middle;">login</span>
+            Sign In to Start
+        </a>
+        {% endif %}
+    </div>
+
+    {% else %}
+    <!-- Dashboard for Enrolled Users -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">
+            <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">emoji_events</span>
+            28-Day Challenge
+        </h1>
+        <a href="/challenge/calendar" class="btn btn-outline-primary">
+            <span class="material-icons me-1" style="vertical-align: middle;">calendar_month</span>
+            View Calendar
+        </a>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord12);">local_fire_department</span>
+                <h2 class="mb-1">{{ challenge_data.current_streak or 0 }}</h2>
+                <p class="text-muted mb-0">Current Streak</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord13);">star</span>
+                <h2 class="mb-1">{{ challenge_data.points or 0 }}</h2>
+                <p class="text-muted mb-0">Total Points</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord14);">check_circle</span>
+                <h2 class="mb-1">{{ challenge_data.total_problems_solved or 0 }}</h2>
+                <p class="text-muted mb-0">Problems Solved</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord10);">calendar_today</span>
+                <h2 class="mb-1">{{ challenge_data.days_completed|length or 0 }}/28</h2>
+                <p class="text-muted mb-0">Days Completed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="md-card p-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Challenge Progress</h5>
+            <span class="text-muted">{{ ((challenge_data.days_completed|length or 0) / 28 * 100)|round|int }}% Complete</span>
+        </div>
+        <div class="progress" style="height: 12px; border-radius: 6px;">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{ ((challenge_data.days_completed|length or 0) / 28 * 100)|round|int }}%; background: var(--md-primary);">
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <a href="/challenge/day/{{ [challenge_data.days_completed|length + 1, 28]|min }}" class="text-decoration-none">
+                <div class="md-card p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-3" style="font-size: 48px; color: var(--md-primary);">play_circle</span>
+                        <div>
+                            <h5 class="mb-1">Continue Challenge</h5>
+                            <p class="text-muted mb-0">Go to Day {{ [challenge_data.days_completed|length + 1, 28]|min }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="/challenge/leaderboard" class="text-decoration-none">
+                <div class="md-card p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-3" style="font-size: 48px; color: var(--nord13);">leaderboard</span>
+                        <div>
+                            <h5 class="mb-1">Leaderboard</h5>
+                            <p class="text-muted mb-0">See how you rank</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="md-card p-4">
+        <h5 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">military_tech</span>
+            Achievements
+        </h5>
+        <div class="row g-3">
+            {% for achievement_id, achievement in achievements_config.items() %}
+            <div class="col-md-4 col-lg-2">
+                <div class="text-center p-3 rounded {% if achievement_id in (challenge_data.achievements or []) %}bg-success bg-opacity-10{% else %}bg-light{% endif %}">
+                    <span class="material-icons mb-2" style="font-size: 36px; color: {% if achievement_id in (challenge_data.achievements or []) %}var(--nord14){% else %}var(--nord4){% endif %};">
+                        {{ achievement.icon }}
+                    </span>
+                    <p class="mb-0 small {% if achievement_id not in (challenge_data.achievements or []) %}text-muted{% endif %}">
+                        {{ achievement.name }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+async function enrollInChallenge() {
+    try {
+        const response = await fetch('/api/challenge/enroll', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            window.location.reload();
+        } else {
+            alert('Failed to enroll: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error enrolling:', error);
+        alert('Failed to enroll. Please try again.');
+    }
+}
+</script>
+{% endblock %}
