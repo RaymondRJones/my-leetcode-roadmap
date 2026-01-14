@@ -1,0 +1,467 @@
+{% extends "base.html" %}
+
+{% block title %}Day {{ day }} - 28-Day Challenge{% endblock %}
+
+{% block content %}
+<!-- Load Pyodide for Python execution -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+<!-- Load Monaco Editor -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="/challenge">Challenge</a></li>
+                    <li class="breadcrumb-item"><a href="/challenge/calendar">Calendar</a></li>
+                    <li class="breadcrumb-item active">Day {{ day }}</li>
+                </ol>
+            </nav>
+            <h2 class="mb-0">
+                Day {{ day }}: {{ theme }}
+                {% if is_day_complete %}
+                <span class="badge bg-success ms-2">Completed</span>
+                {% endif %}
+            </h2>
+        </div>
+        <div class="d-flex gap-2">
+            {% if day > 1 %}
+            <a href="/challenge/day/{{ day - 1 }}" class="btn btn-outline-secondary">
+                <span class="material-icons" style="vertical-align: middle;">arrow_back</span>
+            </a>
+            {% endif %}
+            {% if day < 28 and day < current_day %}
+            <a href="/challenge/day/{{ day + 1 }}" class="btn btn-outline-secondary">
+                <span class="material-icons" style="vertical-align: middle;">arrow_forward</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if problem %}
+    <div class="row g-4">
+        <!-- Problem Description Panel -->
+        <div class="col-lg-5">
+            <div class="md-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="mb-0">{{ problem.name }}</h4>
+                        <span class="badge {% if problem.difficulty == 'Easy' %}bg-success{% elif problem.difficulty == 'Medium' %}bg-warning text-dark{% else %}bg-danger{% endif %}">
+                            {{ problem.difficulty }}
+                        </span>
+                    </div>
+
+                    <p class="text-muted mb-3">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle;">star</span>
+                        {{ problem.points }} points
+                        <span class="mx-2">|</span>
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle;">timer</span>
+                        ~{{ problem.estimated_time }} min
+                    </p>
+
+                    <hr>
+
+                    <h6 class="mb-3">Problem Description</h6>
+                    <div class="mb-4" style="white-space: pre-wrap;">{{ problem.description }}</div>
+
+                    <h6 class="mb-3">Examples</h6>
+                    {% for example in problem.examples %}
+                    <div class="bg-light rounded p-3 mb-3">
+                        <p class="mb-1"><strong>Input:</strong> <code>{{ example.input }}</code></p>
+                        <p class="mb-1"><strong>Output:</strong> <code>{{ example.output }}</code></p>
+                        {% if example.explanation %}
+                        <p class="mb-0 text-muted"><strong>Explanation:</strong> {{ example.explanation }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <h6 class="mb-3">Constraints</h6>
+                    <ul class="mb-4">
+                        {% for constraint in problem.constraints %}
+                        <li><code>{{ constraint }}</code></li>
+                        {% endfor %}
+                    </ul>
+
+                    <a href="{{ problem.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle;">open_in_new</span>
+                        View on LeetCode
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Editor Panel -->
+        <div class="col-lg-7">
+            <div class="md-card mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">
+                            <span class="material-icons me-2" style="vertical-align: middle;">code</span>
+                            Python Editor
+                        </h5>
+                        <div id="pyodideStatus" class="text-muted small">
+                            <span class="spinner-border spinner-border-sm me-1"></span>
+                            Loading Python...
+                        </div>
+                    </div>
+
+                    <!-- Code Editor (Monaco) -->
+                    <div id="codeEditor" class="mb-3" style="height: 350px; border: 1px solid var(--md-outline); border-radius: 8px; overflow: hidden;"></div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-2 mb-3">
+                        <button id="runBtn" onclick="runCode()" class="btn btn-primary" disabled>
+                            <span class="material-icons me-1" style="vertical-align: middle;">play_arrow</span>
+                            Run Code
+                        </button>
+                        <button id="resetBtn" onclick="resetCode()" class="btn btn-outline-secondary">
+                            <span class="material-icons me-1" style="vertical-align: middle;">refresh</span>
+                            Reset
+                        </button>
+                        <button id="completeBtn" onclick="markComplete()" class="btn btn-success ms-auto" {% if problem.id in solved_ids %}disabled{% endif %}>
+                            <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+                            {% if problem.id in solved_ids %}Completed{% else %}Mark Complete{% endif %}
+                        </button>
+                    </div>
+
+                    <!-- Test Results -->
+                    <div id="testResults" class="d-none">
+                        <h6 class="mb-3">Test Results</h6>
+                        <div id="testResultsContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skool Submission -->
+            <div class="md-card">
+                <div class="card-body p-4">
+                    <h5 class="mb-3">
+                        <span class="material-icons me-2" style="vertical-align: middle;">share</span>
+                        Share on Skool (Optional)
+                    </h5>
+                    <p class="text-muted small mb-3">
+                        Posted about your progress on Skool? Submit your post URL for bonus points!
+                    </p>
+                    <div class="input-group">
+                        <input type="url" id="skoolUrl" class="form-control" placeholder="https://www.skool.com/...">
+                        <button onclick="submitSkool()" class="btn btn-outline-primary">
+                            <span class="material-icons" style="vertical-align: middle;">send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <span class="material-icons me-2" style="vertical-align: middle;">info</span>
+        No problems available for this day yet.
+    </div>
+    {% endif %}
+</div>
+
+<!-- Achievement Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+    <div id="achievementToast" class="toast" role="alert">
+        <div class="toast-header bg-success text-white">
+            <span class="material-icons me-2">emoji_events</span>
+            <strong class="me-auto">Achievement Unlocked!</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="achievementToastBody">
+        </div>
+    </div>
+</div>
+
+<script>
+let pyodide = null;
+let editor = null;
+const starterCode = {{ problem.starter_code | tojson if problem else '""' }};
+const testCases = {{ problem.test_cases | tojson if problem else '[]' }};
+const problemId = {{ problem.id | tojson if problem else '""' }};
+const day = {{ day }};
+
+const achievementsConfig = {{ achievements_config | tojson if achievements_config else '{}' }};
+
+// Initialize Monaco Editor
+function initMonaco() {
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        // Define a custom Nord-inspired theme
+        monaco.editor.defineTheme('nord-theme', {
+            base: 'vs',
+            inherit: true,
+            rules: [
+                { token: 'comment', foreground: '616E88', fontStyle: 'italic' },
+                { token: 'keyword', foreground: '81A1C1' },
+                { token: 'string', foreground: 'A3BE8C' },
+                { token: 'number', foreground: 'B48EAD' },
+                { token: 'type', foreground: '8FBCBB' },
+                { token: 'function', foreground: '88C0D0' },
+                { token: 'variable', foreground: 'D8DEE9' },
+            ],
+            colors: {
+                'editor.background': '#ECEFF4',
+                'editor.foreground': '#2E3440',
+                'editorLineNumber.foreground': '#4C566A',
+                'editor.selectionBackground': '#88C0D040',
+                'editor.lineHighlightBackground': '#E5E9F020',
+            }
+        });
+
+        editor = monaco.editor.create(document.getElementById('codeEditor'), {
+            value: starterCode,
+            language: 'python',
+            theme: 'nord-theme',
+            fontSize: 14,
+            lineNumbers: 'on',
+            minimap: { enabled: false },
+            automaticLayout: true,
+            tabSize: 4,
+            insertSpaces: true,
+            wordWrap: 'on',
+            scrollBeyondLastLine: false,
+            renderLineHighlight: 'line',
+            padding: { top: 12, bottom: 12 },
+            fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace",
+            fontLigatures: true,
+        });
+
+        // Enable auto-indentation for Python
+        editor.addAction({
+            id: 'indent-on-enter',
+            label: 'Auto Indent',
+            keybindings: [],
+            run: function() {}
+        });
+    });
+}
+
+// Initialize Pyodide
+async function initPyodide() {
+    try {
+        pyodide = await loadPyodide();
+        document.getElementById('runBtn').disabled = false;
+        document.getElementById('pyodideStatus').innerHTML = `
+            <span class="text-success">
+                <span class="material-icons" style="font-size: 16px; vertical-align: middle;">check_circle</span>
+                Python Ready
+            </span>
+        `;
+    } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        document.getElementById('pyodideStatus').innerHTML = `
+            <span class="text-danger">
+                <span class="material-icons" style="font-size: 16px; vertical-align: middle;">error</span>
+                Failed to load Python
+            </span>
+        `;
+    }
+}
+
+// Normalize output for comparison (handles whitespace, list formatting, etc.)
+function normalizeOutput(str) {
+    if (!str) return '';
+    // Trim and normalize whitespace
+    let normalized = str.trim();
+    // Normalize list/tuple formatting: remove spaces around brackets and after commas for consistency
+    normalized = normalized.replace(/\[\s*/g, '[').replace(/\s*\]/g, ']');
+    normalized = normalized.replace(/\(\s*/g, '(').replace(/\s*\)/g, ')');
+    normalized = normalized.replace(/,\s*/g, ', ');  // Ensure single space after comma
+    return normalized;
+}
+
+// Run code against test cases
+async function runCode() {
+    if (!pyodide) {
+        alert('Python is still loading. Please wait.');
+        return;
+    }
+
+    if (!editor) {
+        alert('Editor is still loading. Please wait.');
+        return;
+    }
+
+    const userCode = editor.getValue();
+    const resultsDiv = document.getElementById('testResults');
+    const resultsContent = document.getElementById('testResultsContent');
+
+    resultsDiv.classList.remove('d-none');
+    resultsContent.innerHTML = '<div class="text-center"><span class="spinner-border spinner-border-sm"></span> Running tests...</div>';
+
+    let allPassed = true;
+    let resultsHTML = '';
+
+    for (let i = 0; i < testCases.length; i++) {
+        const test = testCases[i];
+        let passed = false;
+        let actual = '';
+
+        try {
+            // Reset stdout
+            pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`);
+
+            // Run user code + test
+            const fullCode = `${userCode}
+
+# Run test
+result = ${test.function_call}
+print(result)
+`;
+            pyodide.runPython(fullCode);
+
+            actual = pyodide.runPython("sys.stdout.getvalue()").trim();
+
+            // Normalize both actual and expected for comparison
+            const normalizedActual = normalizeOutput(actual);
+            const normalizedExpected = normalizeOutput(test.expected);
+            passed = normalizedActual === normalizedExpected;
+
+        } catch (error) {
+            actual = `Error: ${error.message}`;
+            passed = false;
+        }
+
+        if (!passed) allPassed = false;
+
+        resultsHTML += `
+            <div class="mb-2 p-3 rounded ${passed ? 'bg-success bg-opacity-10' : 'bg-danger bg-opacity-10'}">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong>Test ${i + 1}</strong>
+                    <span class="badge ${passed ? 'bg-success' : 'bg-danger'}">${passed ? 'PASSED' : 'FAILED'}</span>
+                </div>
+                <div class="small">
+                    <p class="mb-1"><strong>Input:</strong> <code>${test.input}</code></p>
+                    <p class="mb-1"><strong>Expected:</strong> <code>${test.expected}</code></p>
+                    <p class="mb-0"><strong>Actual:</strong> <code>${actual}</code></p>
+                </div>
+            </div>
+        `;
+    }
+
+    resultsContent.innerHTML = resultsHTML;
+
+    if (allPassed) {
+        resultsContent.innerHTML += `
+            <div class="alert alert-success mt-3 mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">celebration</span>
+                All test cases passed! Click "Mark Complete" to save your progress.
+            </div>
+        `;
+    }
+}
+
+// Reset code to starter
+function resetCode() {
+    if (confirm('Reset code to the original starter code?')) {
+        if (editor) {
+            editor.setValue(starterCode);
+        }
+    }
+}
+
+// Mark problem as complete
+async function markComplete() {
+    try {
+        const response = await fetch('/api/challenge/complete-problem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                day: day,
+                problem_id: problemId
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            document.getElementById('completeBtn').disabled = true;
+            document.getElementById('completeBtn').innerHTML = `
+                <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+                Completed
+            `;
+
+            // Show achievement toasts
+            if (data.new_achievements && data.new_achievements.length > 0) {
+                for (const achievementId of data.new_achievements) {
+                    const achievement = achievementsConfig[achievementId];
+                    if (achievement) {
+                        showAchievementToast(achievement.name, achievement.icon);
+                    }
+                }
+            }
+
+            // Show success message
+            alert(`Problem completed! +${data.challenge.points - (data.challenge.points || 0)} points`);
+
+        } else if (data.status === 'already_completed') {
+            alert('This problem was already marked as complete.');
+        } else {
+            alert('Failed to mark complete: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error marking complete:', error);
+        alert('Failed to mark complete. Please try again.');
+    }
+}
+
+// Submit Skool post
+async function submitSkool() {
+    const url = document.getElementById('skoolUrl').value;
+
+    if (!url) {
+        alert('Please enter your Skool post URL');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/challenge/submit-skool', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                day: day,
+                url: url
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            document.getElementById('skoolUrl').value = '';
+            alert('Skool post submitted for review!');
+        } else {
+            alert('Failed to submit: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error submitting Skool:', error);
+        alert('Failed to submit. Please try again.');
+    }
+}
+
+// Show achievement toast
+function showAchievementToast(name, icon) {
+    const toast = document.getElementById('achievementToast');
+    const body = document.getElementById('achievementToastBody');
+    body.innerHTML = `
+        <span class="material-icons me-2" style="vertical-align: middle; color: var(--nord13);">${icon}</span>
+        <strong>${name}</strong> unlocked!
+    `;
+
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+}
+
+// Initialize on page load
+initMonaco();
+initPyodide();
+</script>
+{% endblock %}
