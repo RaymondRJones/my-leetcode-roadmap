@@ -46,10 +46,14 @@ def challenge_home():
 @login_required
 def challenge_day(day: int):
     """View a specific challenge day with code editor."""
-    if day < 1 or day > 28:
+    user = get_current_user()
+    user_is_admin = is_admin(user)
+
+    # Admins can access days 1-30, regular users only 1-28
+    max_day = 30 if user_is_admin else 28
+    if day < 1 or day > max_day:
         return redirect('/challenge')
 
-    user = get_current_user()
     public_metadata = user.get('public_metadata', {})
     challenge_data = public_metadata.get('challenge', {})
 
@@ -103,8 +107,10 @@ def challenge_calendar():
     current_day = service.calculate_current_day(challenge_data.get('start_date', ''))
     days_completed = challenge_data.get('days_completed', [])
     achievements_config = service.get_achievements_config()
+    user_is_admin = is_admin(user)
 
     # Build day data for template
+    # Admins can access all days (not locked)
     calendar_days = []
     for day_num in range(1, 29):
         day_problems = service.get_day_problems(day_num)
@@ -114,8 +120,8 @@ def challenge_calendar():
             'problem_count': len(day_problems),
             'is_completed': day_num in days_completed,
             'is_current': day_num == current_day,
-            'is_locked': day_num > current_day,
-            'is_available': day_num <= current_day
+            'is_locked': day_num > current_day and not user_is_admin,
+            'is_available': day_num <= current_day or user_is_admin
         })
 
     return render_template(
@@ -123,7 +129,8 @@ def challenge_calendar():
         challenge_data=challenge_data,
         current_day=current_day,
         calendar_days=calendar_days,
-        achievements_config=achievements_config
+        achievements_config=achievements_config,
+        is_admin=user_is_admin
     )
 
 

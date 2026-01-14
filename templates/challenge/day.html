@@ -297,7 +297,9 @@ async function runCode() {
     resultsContent.innerHTML = '<div class="text-center"><span class="spinner-border spinner-border-sm"></span> Running tests...</div>';
 
     let allPassed = true;
-    let resultsHTML = '';
+    let results = [];
+    let passedCount = 0;
+    let failedCount = 0;
 
     for (let i = 0; i < testCases.length; i++) {
         const test = testCases[i];
@@ -333,21 +335,65 @@ print(result)
             passed = false;
         }
 
-        if (!passed) allPassed = false;
+        if (!passed) {
+            allPassed = false;
+            failedCount++;
+        } else {
+            passedCount++;
+        }
 
-        resultsHTML += `
-            <div class="mb-2 p-3 rounded ${passed ? 'bg-success bg-opacity-10' : 'bg-danger bg-opacity-10'}">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <strong>Test ${i + 1}</strong>
-                    <span class="badge ${passed ? 'bg-success' : 'bg-danger'}">${passed ? 'PASSED' : 'FAILED'}</span>
-                </div>
-                <div class="small">
-                    <p class="mb-1"><strong>Input:</strong> <code>${test.input}</code></p>
-                    <p class="mb-1"><strong>Expected:</strong> <code>${test.expected}</code></p>
-                    <p class="mb-0"><strong>Actual:</strong> <code>${actual}</code></p>
-                </div>
+        results.push({ test, passed, actual, index: i + 1 });
+    }
+
+    // Build results HTML - show all if passed, limit to 3 failed tests if not
+    let resultsHTML = '';
+
+    if (allPassed) {
+        // Show summary when all pass
+        resultsHTML = `
+            <div class="alert alert-success mb-3">
+                <span class="material-icons me-2" style="vertical-align: middle;">check_circle</span>
+                <strong>All ${testCases.length} test cases passed!</strong>
             </div>
         `;
+    } else {
+        // Show summary with pass/fail counts
+        resultsHTML = `
+            <div class="alert alert-warning mb-3">
+                <span class="material-icons me-2" style="vertical-align: middle;">warning</span>
+                <strong>${passedCount}/${testCases.length} test cases passed</strong> - ${failedCount} failed
+            </div>
+        `;
+
+        // Only show up to 3 failed test cases
+        const failedTests = results.filter(r => !r.passed);
+        const testsToShow = failedTests.slice(0, 3);
+
+        for (const result of testsToShow) {
+            resultsHTML += `
+                <div class="mb-2 p-3 rounded bg-danger bg-opacity-10">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>Test ${result.index}</strong>
+                        <span class="badge bg-danger">FAILED</span>
+                    </div>
+                    <div class="small">
+                        <p class="mb-1"><strong>Input:</strong> <code>${result.test.input}</code></p>
+                        <p class="mb-1"><strong>Expected:</strong> <code>${result.test.expected}</code></p>
+                        <p class="mb-0"><strong>Actual:</strong> <code>${result.actual}</code></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show message if there are more failed tests
+        if (failedTests.length > 3) {
+            resultsHTML += `
+                <div class="text-muted small mt-2">
+                    <span class="material-icons me-1" style="font-size: 14px; vertical-align: middle;">more_horiz</span>
+                    ${failedTests.length - 3} more failed test(s) not shown
+                </div>
+            `;
+        }
     }
 
     resultsContent.innerHTML = resultsHTML;
