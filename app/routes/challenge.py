@@ -24,14 +24,23 @@ def challenge_home():
     challenge_data = {}
     enrolled = False
     heatmap_data = []
+    solved_problems = []
+    current_day = 1
+    days_completed = []
+
+    service = current_app.challenge_service
 
     if user:
         public_metadata = user.get('public_metadata', {})
         challenge_data = public_metadata.get('challenge', {})
         enrolled = challenge_data.get('enrolled', False)
 
-        # Generate heatmap data for the past year
         if enrolled:
+            # Calculate current day for mini-calendar
+            current_day = service.calculate_current_day(challenge_data.get('start_date', ''))
+            days_completed = challenge_data.get('days_completed', [])
+
+            # Generate heatmap data for the past year
             from datetime import date
             today = date.today()
             year_ago = today - timedelta(days=365)
@@ -49,7 +58,33 @@ def challenge_home():
                 })
                 current += timedelta(days=1)
 
-    service = current_app.challenge_service
+            # Build solved problems list for display
+            # Calendar problems
+            problems_solved = challenge_data.get('problems_solved', {})
+            for day_key, problem_ids in problems_solved.items():
+                try:
+                    day_num = int(day_key.split('_')[1])
+                except (ValueError, IndexError):
+                    continue
+                for pid in problem_ids:
+                    problem = service.get_problem(day_num, pid)
+                    if problem:
+                        solved_problems.append({
+                            'name': problem.get('name', pid),
+                            'difficulty': problem.get('difficulty', 'Unknown'),
+                            'type': 'calendar',
+                            'url': f"https://leetcode.com/problems/{pid}/"
+                        })
+
+            # Bonus problems
+            for bp in challenge_data.get('bonus_problems', []):
+                solved_problems.append({
+                    'name': bp.get('name', 'Unknown'),
+                    'difficulty': 'Bonus',
+                    'type': 'bonus',
+                    'url': bp.get('url', '#')
+                })
+
     achievements_config = service.get_achievements_config()
     point_values = service.get_point_values()
 
@@ -60,7 +95,10 @@ def challenge_home():
         achievements_config=achievements_config,
         point_values=point_values,
         total_days=service.get_total_days(),
-        heatmap_data=heatmap_data
+        heatmap_data=heatmap_data,
+        solved_problems=solved_problems,
+        current_day=current_day,
+        days_completed=days_completed
     )
 
 

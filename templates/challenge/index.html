@@ -115,7 +115,7 @@
     </div>
 
     <!-- Stats Row -->
-    <div class="row g-4 mb-5">
+    <div class="row g-4 mb-4">
         <div class="col-md-3">
             <div class="md-card p-4 text-center">
                 <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord12);">local_fire_department</span>
@@ -146,8 +146,40 @@
         </div>
     </div>
 
+    <!-- Challenge Rules -->
+    <div class="md-card p-4 mb-4">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle;">rule</span>
+            Challenge Rules
+        </h5>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-success">
+                    <span class="material-icons me-1" style="vertical-align: middle; font-size: 18px;">flag</span>
+                    The Goal
+                </h6>
+                <ul class="mb-3">
+                    <li>Solve at least <strong>1 LeetCode problem per day</strong></li>
+                    <li>Build a <strong>7-day streak</strong>, then extend to <strong>28 days</strong></li>
+                    <li>Solve ANY problem you want - not limited to the calendar problems</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 style="color: var(--nord13);">
+                    <span class="material-icons me-1" style="vertical-align: middle; font-size: 18px;">emoji_events</span>
+                    The Reward
+                </h6>
+                <ul class="mb-3">
+                    <li>Complete all 28 days = <strong>Full Skool refund ($7)</strong></li>
+                    <li>Post screenshot of your LeetCode profile in Skool</li>
+                    <li>Submit your Skool post link below for verification</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <!-- Progress Bar -->
-    <div class="md-card p-4 mb-5">
+    <div class="md-card p-4 mb-4">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="mb-0">Challenge Progress</h5>
             <span class="text-muted">{{ ((challenge_data.days_completed|length or 0) / 28 * 100)|round|int }}% Complete</span>
@@ -158,6 +190,73 @@
             </div>
         </div>
     </div>
+
+    <!-- Mini Calendar -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">calendar_month</span>
+                Your 28-Day Calendar
+            </h5>
+            <a href="/challenge/calendar" class="btn btn-sm btn-outline-primary">
+                Full Calendar <span class="material-icons" style="font-size: 16px; vertical-align: middle;">arrow_forward</span>
+            </a>
+        </div>
+        <div class="mini-calendar-grid">
+            {% for day in range(1, 29) %}
+            <a href="/challenge/day/{{ day }}" class="mini-cal-day {{ 'completed' if day in days_completed else ('current' if day == current_day else ('available' if day < current_day else 'locked')) }}" title="Day {{ day }}{% if day in days_completed %} - Completed{% elif day == current_day %} - Today{% elif day < current_day %} - Available{% else %} - Locked{% endif %}">
+                {{ day }}
+            </a>
+            {% endfor %}
+        </div>
+        <div class="mt-3 text-center">
+            <small class="text-muted">
+                <span class="mini-cal-legend completed"></span> Completed
+                <span class="mini-cal-legend current ms-3"></span> Current
+                <span class="mini-cal-legend available ms-3"></span> Available
+                <span class="mini-cal-legend locked ms-3"></span> Locked
+            </small>
+        </div>
+    </div>
+
+    <style>
+    .mini-calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+    .mini-cal-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .mini-cal-day:hover:not(.locked) {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .mini-cal-day.completed { background: var(--nord14); color: white; }
+    .mini-cal-day.current { background: var(--md-primary); color: white; box-shadow: 0 0 0 2px var(--md-primary), 0 0 0 4px rgba(76, 110, 245, 0.3); }
+    .mini-cal-day.available { background: var(--nord6); color: var(--nord3); }
+    .mini-cal-day.locked { background: var(--nord5); color: var(--nord4); opacity: 0.5; pointer-events: none; }
+    .mini-cal-legend {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .mini-cal-legend.completed { background: var(--nord14); }
+    .mini-cal-legend.current { background: var(--md-primary); }
+    .mini-cal-legend.available { background: var(--nord6); }
+    .mini-cal-legend.locked { background: var(--nord5); opacity: 0.5; }
+    </style>
 
     <!-- Activity Heatmap -->
     <div class="md-card p-4 mb-5">
@@ -218,6 +317,68 @@
         border-radius: 2px;
     }
     </style>
+
+    <!-- Solved Problems List -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">checklist</span>
+                Problems Solved ({{ solved_problems|length }})
+            </h5>
+        </div>
+        {% if solved_problems %}
+        <div class="solved-problems-list" style="max-height: 250px; overflow-y: auto;">
+            {% for problem in solved_problems %}
+            <div class="d-flex align-items-center justify-content-between p-2 mb-1 rounded" style="background: var(--nord6);">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons me-2 text-success" style="font-size: 18px;">check_circle</span>
+                    <a href="{{ problem.url }}" target="_blank" class="text-decoration-none">{{ problem.name }}</a>
+                </div>
+                <div>
+                    <span class="badge {{ 'bg-success' if problem.difficulty == 'Easy' else ('bg-warning text-dark' if problem.difficulty == 'Medium' else ('bg-info' if problem.difficulty == 'Bonus' else 'bg-danger')) }}">
+                        {{ problem.difficulty }}
+                    </span>
+                    <span class="badge bg-secondary">{{ problem.type }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted mb-0">No problems solved yet. Start your challenge!</p>
+        {% endif %}
+    </div>
+
+    <!-- Skool Proof Submission -->
+    <div class="md-card p-4 mb-4">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle;">verified</span>
+            Submit Skool Proof for Refund
+        </h5>
+        <p class="text-muted mb-3">
+            Once you've completed 28 days, post a screenshot of your LeetCode profile in the
+            <a href="https://www.skool.com/raymond/about" target="_blank">Skool community</a>
+            and paste the link to your post here.
+        </p>
+        {% if challenge_data.skool_proof_url %}
+        <div class="alert alert-success mb-0">
+            <span class="material-icons me-2" style="vertical-align: middle;">check_circle</span>
+            Proof submitted! <a href="{{ challenge_data.skool_proof_url }}" target="_blank">View your post</a>
+            <small class="d-block mt-1 text-muted">Submitted on {{ challenge_data.skool_proof_submitted_at[:10] if challenge_data.skool_proof_submitted_at else 'Unknown' }}</small>
+        </div>
+        {% else %}
+        <div class="input-group">
+            <input type="url" id="skoolProofUrl" class="form-control" placeholder="https://www.skool.com/raymond/...">
+            <button class="btn btn-primary" onclick="submitSkoolProof()" id="submitProofBtn">
+                <span class="material-icons" style="vertical-align: middle; font-size: 18px;">send</span>
+                Submit
+            </button>
+        </div>
+        <small class="text-muted mt-2 d-block">
+            <span class="material-icons" style="vertical-align: middle; font-size: 14px;">info</span>
+            Make sure you've posted your LeetCode profile screenshot in Skool before submitting.
+        </small>
+        {% endif %}
+    </div>
 
     <!-- Quick Actions -->
     <div class="row g-4 mb-5">
@@ -297,6 +458,50 @@ async function enrollInChallenge() {
     } catch (error) {
         console.error('Error enrolling:', error);
         alert('Failed to enroll. Please try again.');
+    }
+}
+
+async function submitSkoolProof() {
+    const urlInput = document.getElementById('skoolProofUrl');
+    const submitBtn = document.getElementById('submitProofBtn');
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        alert('Please enter your Skool post URL');
+        return;
+    }
+
+    if (!url.includes('skool.com')) {
+        alert('Please enter a valid Skool URL');
+        return;
+    }
+
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Submitting...';
+
+    try {
+        const response = await fetch('/api/challenge/submit-skool-proof', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            // Reload to show the success message
+            window.location.reload();
+        } else {
+            alert('Failed to submit: ' + (data.error || 'Unknown error'));
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span class="material-icons" style="vertical-align: middle; font-size: 18px;">send</span> Submit';
+        }
+    } catch (error) {
+        console.error('Error submitting proof:', error);
+        alert('Failed to submit. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="material-icons" style="vertical-align: middle; font-size: 18px;">send</span> Submit';
     }
 }
 

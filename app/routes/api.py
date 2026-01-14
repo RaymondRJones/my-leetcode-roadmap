@@ -1,11 +1,36 @@
 """
 API routes blueprint.
 """
+import re
 from datetime import datetime
+from urllib.parse import urlparse
+
 from flask import Blueprint, jsonify, request, current_app
 
 from ..auth.decorators import ai_access_required, login_required, admin_required
 from ..auth.access import get_current_user
+
+
+def extract_leetcode_slug(url):
+    """
+    Extract problem slug from various LeetCode URL formats.
+
+    Handles:
+    - https://leetcode.com/problems/two-sum/
+    - https://leetcode.com/problems/two-sum/description/
+    - https://leetcode.com/problems/two-sum/?envType=daily-question&envId=2026-01-09
+    - https://leetcode.com/problems/two-sum/description/?envType=daily-question
+
+    Returns the slug (e.g., 'two-sum') or None if not found.
+    """
+    parsed = urlparse(url)
+    path = parsed.path
+
+    # Match pattern: /problems/{slug}/ - capture just the slug part
+    match = re.search(r'/problems/([^/?]+)', path)
+    if match:
+        return match.group(1)
+    return None
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -286,8 +311,10 @@ def submit_bonus_problem():
     if any(existing.rstrip('/') == normalized_url for existing in existing_urls):
         return jsonify({'status': 'already_added'})
 
-    # Extract problem name from URL
-    problem_slug = url.replace('https://leetcode.com/problems/', '').replace('http://leetcode.com/problems/', '').strip('/')
+    # Extract problem slug from URL (handles /description/ and query params)
+    problem_slug = extract_leetcode_slug(url)
+    if not problem_slug:
+        return jsonify({'error': 'Could not extract problem name from URL'}), 400
     problem_name = problem_slug.replace('-', ' ').title()
 
     # Add new bonus problem
@@ -363,6 +390,37 @@ def approve_skool_submission():
         'status': 'success',
         'message': f'Submission {action}d'
     })
+
+
+@api_bp.route('/challenge/submit-skool-proof', methods=['POST'])
+@login_required
+def submit_skool_proof():
+    """Submit Skool post URL for 28-day challenge refund verification."""
+    data = request.get_json()
+    url = data.get('url', '').strip()
+
+    if not url:
+        return jsonify({'error': 'URL required'}), 400
+
+    if 'skool.com' not in url:
+        return jsonify({'error': 'Please provide a valid Skool URL'}), 400
+
+    user = get_current_user()
+    user_id = user.get('id')
+    public_meta = user.get('public_metadata', {})
+    challenge = public_meta.get('challenge', {})
+
+    if not challenge.get('enrolled'):
+        return jsonify({'error': 'Not enrolled in challenge'}), 400
+
+    challenge['skool_proof_url'] = url
+    challenge['skool_proof_submitted_at'] = datetime.now().isoformat()
+
+    public_meta['challenge'] = challenge
+    clerk_service = current_app.clerk
+    clerk_service.update_user_metadata(user_id, public_meta)
+
+    return jsonify({'status': 'success', 'message': 'Proof submitted successfully'})
 
 
 # =============================================================================
