@@ -8,6 +8,7 @@ Provides routes for:
 - Leaderboard
 - Admin dashboard and submission management
 """
+from datetime import datetime, timedelta
 from flask import Blueprint, render_template, redirect, current_app
 
 from ..auth.decorators import login_required, admin_required
@@ -109,13 +110,40 @@ def challenge_calendar():
     achievements_config = service.get_achievements_config()
     user_is_admin = is_admin(user)
 
-    # Build day data for template
+    # Parse start date
+    start_date_str = challenge_data.get('start_date', '')
+    try:
+        start_date = datetime.fromisoformat(start_date_str.replace('Z', '+00:00')).date()
+    except (ValueError, AttributeError):
+        start_date = datetime.now().date()
+
+    # Calculate end date (28 days from start)
+    end_date = start_date + timedelta(days=27)
+
+    # Determine which months are shown
+    start_month = start_date.strftime('%B %Y')
+    end_month = end_date.strftime('%B %Y')
+    if start_month == end_month:
+        calendar_title = start_month
+    else:
+        calendar_title = f"{start_date.strftime('%b %d')} - {end_date.strftime('%b %d, %Y')}"
+
+    # Calculate the weekday of the start date (0=Monday, 6=Sunday)
+    # For display: Sunday=0, Monday=1, ..., Saturday=6
+    start_weekday = (start_date.weekday() + 1) % 7  # Convert to Sunday=0 format
+
+    # Build day data for template with actual dates
     # Admins can access all days (not locked)
     calendar_days = []
     for day_num in range(1, 29):
+        day_date = start_date + timedelta(days=day_num - 1)
         day_problems = service.get_day_problems(day_num)
         calendar_days.append({
             'day': day_num,
+            'date': day_date,
+            'date_display': day_date.day,  # Just the day number
+            'month_short': day_date.strftime('%b'),  # Month abbreviation
+            'is_new_month': day_date.day == 1,  # Flag if this is first of month
             'theme': service.get_day_theme(day_num),
             'problem_count': len(day_problems),
             'is_completed': day_num in days_completed,
@@ -130,7 +158,10 @@ def challenge_calendar():
         current_day=current_day,
         calendar_days=calendar_days,
         achievements_config=achievements_config,
-        is_admin=user_is_admin
+        is_admin=user_is_admin,
+        start_date=start_date,
+        start_weekday=start_weekday,
+        calendar_title=calendar_title
     )
 
 

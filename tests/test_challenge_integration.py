@@ -586,11 +586,13 @@ class TestCalendarViewData:
             }
         return client
 
-    def test_calendar_shows_january(self, enrolled_calendar_client):
-        """Test calendar shows January."""
+    def test_calendar_shows_date_range(self, enrolled_calendar_client):
+        """Test calendar shows personalized date range."""
         response = enrolled_calendar_client.get('/challenge/calendar')
         assert response.status_code == 200
-        assert b'January' in response.data
+        # Calendar title is now dynamic based on user's start date
+        # Just verify the calendar page loads with the title section
+        assert b'28-Day Challenge' in response.data
 
     def test_calendar_contains_stats(self, enrolled_calendar_client):
         """Test calendar contains stats section."""

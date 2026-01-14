@@ -55,7 +55,7 @@
     <div class="md-card p-4 mb-5">
         <!-- Month Header -->
         <div class="text-center mb-4">
-            <h3 class="calendar-month-title mb-0">January 2025</h3>
+            <h3 class="calendar-month-title mb-0">{{ calendar_title }}</h3>
             <small class="text-muted">Your 28-Day Challenge</small>
         </div>
 
@@ -69,51 +69,43 @@
             <div class="calendar-header">Fri</div>
             <div class="calendar-header">Sat</div>
 
-            <!-- Empty cells before January 1st (Wednesday) -->
+            <!-- Empty cells before start date -->
+            {% for i in range(start_weekday) %}
             <div class="calendar-cell empty"></div>
-            <div class="calendar-cell empty"></div>
-            <div class="calendar-cell empty"></div>
+            {% endfor %}
 
-            <!-- Calendar Days 1-28 (Jan 1 starts on Wednesday) -->
-            {% for day_num in range(1, 29) %}
-            {% set day_info = calendar_days[day_num - 1] if calendar_days and day_num <= calendar_days|length else {} %}
-            {% set is_completed = day_info.is_completed if day_info else false %}
-            {% set is_current = day_info.is_current if day_info else false %}
-            {% set is_locked = day_info.is_locked if day_info else true %}
+            <!-- Calendar Days 1-28 based on user's start date -->
+            {% for day_info in calendar_days %}
+            {% set is_completed = day_info.is_completed %}
+            {% set is_current = day_info.is_current %}
+            {% set is_locked = day_info.is_locked %}
             {% set is_available = not is_locked and not is_completed and not is_current %}
 
             {% if is_locked %}
-            <div class="calendar-cell locked" title="Day {{ day_num }} - Locked">
-                <span class="calendar-day-number">{{ day_num }}</span>
+            <div class="calendar-cell locked" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Locked">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Day {{ day_info.day }}</span>
             </div>
             {% elif is_current %}
-            <a href="/challenge/day/{{ day_num }}" class="calendar-cell current" title="Day {{ day_num }} - Today's Challenge">
-                <span class="calendar-day-number">{{ day_num }}</span>
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell current" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Today's Challenge">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Day {{ day_info.day }}</span>
                 <span class="status-dot current-dot"></span>
             </a>
             {% elif is_completed %}
-            <a href="/challenge/day/{{ day_num }}" class="calendar-cell completed" title="Day {{ day_num }} - Completed">
-                <span class="calendar-day-number">{{ day_num }}</span>
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell completed" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Completed">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Day {{ day_info.day }}</span>
                 <span class="status-dot completed-dot"></span>
             </a>
             {% else %}
-            <a href="/challenge/day/{{ day_num }}" class="calendar-cell available" title="Day {{ day_num }} - Available">
-                <span class="calendar-day-number">{{ day_num }}</span>
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell available" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Available">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Day {{ day_info.day }}</span>
                 <span class="status-dot available-dot"></span>
             </a>
             {% endif %}
             {% endfor %}
-
-            <!-- Remaining days of January (29-31) shown but not part of challenge -->
-            <div class="calendar-cell inactive">
-                <span class="calendar-day-number">29</span>
-            </div>
-            <div class="calendar-cell inactive">
-                <span class="calendar-day-number">30</span>
-            </div>
-            <div class="calendar-cell inactive">
-                <span class="calendar-day-number">31</span>
-            </div>
         </div>
     </div>
 
@@ -203,10 +195,21 @@
     background: transparent;
 }
 
-/* Day Numbers - Grayed out by default */
-.calendar-day-number {
-    font-size: 1.25rem;
+/* Date Labels (actual calendar dates) */
+.calendar-date-label {
+    font-size: 0.65rem;
     font-weight: 500;
+    color: var(--nord3);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* Day Numbers - Challenge day number */
+.calendar-day-number {
+    font-size: 0.9rem;
+    font-weight: 600;
     color: var(--nord4);
     transition: color 0.2s ease;
 }
@@ -271,6 +274,11 @@
     font-weight: 600;
 }
 
+.calendar-cell.completed .calendar-date-label {
+    color: var(--nord14);
+    opacity: 0.8;
+}
+
 /* Current day */
 .calendar-cell.current {
     cursor: pointer;
@@ -285,6 +293,11 @@
 .calendar-cell.current .calendar-day-number {
     color: var(--md-primary);
     font-weight: 700;
+}
+
+.calendar-cell.current .calendar-date-label {
+    color: var(--md-primary);
+    opacity: 0.9;
 }
 
 /* Available days */
@@ -310,10 +323,8 @@
     opacity: 0.5;
 }
 
-/* Inactive days (29-31) */
-.calendar-cell.inactive .calendar-day-number {
-    color: var(--nord4);
-    opacity: 0.3;
+.calendar-cell.locked .calendar-date-label {
+    opacity: 0.4;
 }
 
 /* Achievement Badges */
@@ -370,21 +381,25 @@
 /* Responsive adjustments */
 @media (max-width: 576px) {
     .calendar-cell {
-        min-height: 50px;
+        min-height: 55px;
     }
 
     .calendar-day-number {
-        font-size: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .calendar-date-label {
+        font-size: 0.55rem;
     }
 
     .status-dot {
         width: 6px;
         height: 6px;
-        bottom: 6px;
+        bottom: 4px;
     }
 
     .calendar-header {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 }
 </style>
