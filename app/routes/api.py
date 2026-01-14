@@ -503,3 +503,76 @@ def stripe_webhook():
         import traceback
         traceback.print_exc()
         return jsonify({'status': 'error', 'reason': str(e)}), 200
+
+
+# =============================================================================
+# Daily Progress Trackers
+# =============================================================================
+
+@api_bp.route('/challenge/log-activity', methods=['POST'])
+@login_required
+def log_daily_activity():
+    """Log daily progress tracker activity."""
+    data = request.get_json()
+
+    user = get_current_user()
+    user_id = user.get('id')
+    public_meta = user.get('public_metadata', {})
+    challenge = public_meta.get('challenge', {})
+
+    if not challenge.get('enrolled'):
+        return jsonify({'error': 'Not enrolled in challenge'}), 400
+
+    # Default tracker values
+    default_trackers = {
+        'new_problems': 0,
+        'revised_problems': 0,
+        'github_commits': 0,
+        'skool_activity': 0,
+        'comments_done': 0,
+        'social_posts': 0,
+        'mock_interviews': 0,
+        'leetcode_rank': None
+    }
+
+    # Initialize trackers if needed
+    trackers = challenge.get('trackers', default_trackers.copy())
+    tracker_log = challenge.get('tracker_log', {})
+
+    today = datetime.now().date().isoformat()
+
+    # Get previous entry for today (if updating)
+    previous_entry = tracker_log.get(today, {})
+
+    # Cumulative tracker keys
+    cumulative_keys = [
+        'new_problems', 'revised_problems', 'github_commits',
+        'skool_activity', 'comments_done', 'social_posts', 'mock_interviews'
+    ]
+
+    # Update cumulative totals (add delta from previous entry)
+    for key in cumulative_keys:
+        old_value = previous_entry.get(key, 0) or 0
+        new_value = data.get(key, 0) or 0
+        delta = new_value - old_value
+        trackers[key] = (trackers.get(key, 0) or 0) + delta
+
+    # LeetCode rank is just stored directly (not cumulative)
+    if 'leetcode_rank' in data and data['leetcode_rank']:
+        trackers['leetcode_rank'] = data['leetcode_rank']
+
+    # Store today's log entry
+    tracker_log[today] = {key: data.get(key, 0) for key in cumulative_keys}
+    if data.get('leetcode_rank'):
+        tracker_log[today]['leetcode_rank'] = data['leetcode_rank']
+
+    # Save back to metadata
+    challenge['trackers'] = trackers
+    challenge['tracker_log'] = tracker_log
+
+    # Update Clerk
+    public_meta['challenge'] = challenge
+    clerk_service = current_app.clerk
+    clerk_service.update_user_metadata(user_id, public_meta)
+
+    return jsonify({'status': 'success', 'trackers': trackers})

@@ -27,8 +27,22 @@ def challenge_home():
     solved_problems = []
     current_day = 1
     days_completed = []
+    trackers = {}
+    todays_entry = {}
 
     service = current_app.challenge_service
+
+    # Default tracker values
+    default_trackers = {
+        'new_problems': 0,
+        'revised_problems': 0,
+        'github_commits': 0,
+        'skool_activity': 0,
+        'comments_done': 0,
+        'social_posts': 0,
+        'mock_interviews': 0,
+        'leetcode_rank': None
+    }
 
     if user:
         public_metadata = user.get('public_metadata', {})
@@ -40,8 +54,20 @@ def challenge_home():
             current_day = service.calculate_current_day(challenge_data.get('start_date', ''))
             days_completed = challenge_data.get('days_completed', [])
 
-            # Generate heatmap data for the past year
+            # Get tracker data
+            trackers = challenge_data.get('trackers', default_trackers.copy())
+            # Ensure all keys exist
+            for key, value in default_trackers.items():
+                if key not in trackers:
+                    trackers[key] = value
+
+            # Get today's log entry (for pre-filling form)
             from datetime import date
+            today_str = date.today().isoformat()
+            tracker_log = challenge_data.get('tracker_log', {})
+            todays_entry = tracker_log.get(today_str, {})
+
+            # Generate heatmap data for the past year
             today = date.today()
             year_ago = today - timedelta(days=365)
             activity_log = challenge_data.get('activity_log', {})
@@ -98,7 +124,9 @@ def challenge_home():
         heatmap_data=heatmap_data,
         solved_problems=solved_problems,
         current_day=current_day,
-        days_completed=days_completed
+        days_completed=days_completed,
+        trackers=trackers,
+        todays_entry=todays_entry
     )
 
 
