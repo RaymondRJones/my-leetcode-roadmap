@@ -210,3 +210,9 @@ def privacy_policy():
 def terms_of_service():
     """Terms of Service page."""
     return render_template('terms_of_service.html')
+
+
+@main_bp.route('/coaching')
+def coaching():
+    """Coaching page with Skool community and 1-1 coaching offerings."""
+    return render_template('coaching.html')
