@@ -14,8 +14,10 @@ A web-based platform for learning programming through curated problem roadmaps a
 - **Intermediate Roadmap (Fortune500)**: Mid-tier company interview prep
 - **Beginner Training**: AtCoder problems with AI-simplified explanations
 - **System Design**: Architecture and design patterns
+- **28-Day Challenge**: Gamified coding challenge with activity tracking
 - **Assessments**: Python and Java skill evaluations
 - **Guides**: Career resources including behavioral interviews
+- **Coaching**: Skool community and 1-1 coaching sessions
 
 Implements a **tiered freemium model** with Clerk authentication and Stripe payments.
 
@@ -96,7 +98,7 @@ leetcode-roadmap-generator/
 │       ├── __init__.py
 │       └── problem_utils.py            # URL generation, difficulty estimation
 │
-├── tests/                              # Test suite (178 tests)
+├── tests/                              # Test suite (371 tests)
 │   ├── conftest.py                     # Pytest fixtures
 │   ├── test_access.py                  # Auth access tests
 │   ├── test_routes.py                  # Route tests
@@ -104,7 +106,9 @@ leetcode-roadmap-generator/
 │   ├── test_services.py                # Service tests
 │   ├── test_roadmap_service.py         # RoadmapService tests
 │   ├── test_edge_cases.py              # Edge case tests
-│   └── test_utils.py                   # Utility function tests
+│   ├── test_utils.py                   # Utility function tests
+│   ├── test_challenge_integration.py   # Challenge feature integration tests
+│   └── test_challenge_edge_cases.py    # Challenge edge case tests
 │
 ├── app.py                              # Entry point (minimal, ~23 lines)
 ├── pdf_analyzer.py                     # PDF parsing and roadmap generation
@@ -127,6 +131,7 @@ leetcode-roadmap-generator/
 │   ├── month.html                      # Individual month view
 │   ├── complete_list.html              # Ray700 problem list
 │   ├── behavioral_guide.html           # Behavioral prep + AI feedback
+│   ├── coaching.html                   # Coaching page (Skool + 1-1)
 │   ├── system_design/                  # System design templates
 │   ├── auth/                           # Auth templates
 │   └── challenge/                      # 28-day challenge templates
@@ -213,7 +218,7 @@ python -m pytest tests/test_routes.py -v
 python -m pytest tests/test_access.py::TestHasPremiumAccess -v
 ```
 
-**Current Test Coverage: 75% (178 tests passing)**
+**Current Test Coverage: 80% (371 tests passing)**
 
 | Module | Coverage |
 |--------|----------|
@@ -239,6 +244,7 @@ python -m pytest tests/test_access.py::TestHasPremiumAccess -v
 | `GET /python-assessment` | Python quiz |
 | `GET /java-assessment` | Java quiz |
 | `GET /roadmap` | Career journey guide |
+| `GET /coaching` | Coaching page (Skool + 1-1 sessions) |
 
 ### Authentication Routes
 | Route | Description |
@@ -532,6 +538,7 @@ A gamified 28-day LeetCode challenge with built-in Python code editor, progress 
 | `POST /api/challenge/complete-problem` | Mark problem as completed |
 | `GET /api/challenge/progress` | Get user's challenge progress |
 | `POST /api/challenge/submit-skool` | Submit Skool post for review |
+| `POST /api/challenge/bonus-problem` | Submit bonus LeetCode problem |
 | `GET /api/challenge/leaderboard` | Get leaderboard data |
 | `GET /api/challenge/admin/participants` | All participants (admin) |
 | `POST /api/challenge/admin/approve-submission` | Approve/reject submission |
@@ -549,7 +556,14 @@ A gamified 28-day LeetCode challenge with built-in Python code editor, progress 
     "best_streak": 3,
     "points": 50,
     "achievements": ["first_problem"],
-    "last_activity_date": "2025-01-17T00:00:00"
+    "last_activity_date": "2025-01-17T00:00:00",
+    "activity_log": {
+      "2025-01-15": {"count": 1, "problems": ["two-sum"]},
+      "2025-01-16": {"count": 2, "problems": ["valid-parentheses", "bonus:reverse-string"]}
+    },
+    "bonus_problems": [
+      {"url": "https://leetcode.com/problems/reverse-string/", "name": "Reverse String", "added_at": "2025-01-16T00:00:00"}
+    ]
   },
   "skool_submissions": [
     {"day": 1, "url": "https://skool.com/...", "status": "pending"}
@@ -563,6 +577,7 @@ A gamified 28-day LeetCode challenge with built-in Python code editor, progress 
 | Easy problem | 10 |
 | Medium problem | 20 |
 | Hard problem | 40 |
+| Bonus problem | 5 |
 | 7-day streak bonus | +50 |
 | 14-day streak bonus | +100 |
 | 28-day completion bonus | +250 |
@@ -602,6 +617,54 @@ class ChallengeService:
 - Loaded from CDN: `https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js`
 - Test cases defined in `challenge_problems.json`
 
+### Activity Tracker Heatmap
+- GitHub/LeetCode-style contribution graph on `/challenge` page
+- Shows 365 days of activity (rolling year)
+- Color intensity based on problems solved per day (0-4+)
+- Tracks both challenge problems and bonus problems
+- Data stored in `activity_log` field in challenge metadata
+
+### Personalized Calendar
+- Calendar starts from user's enrollment date (not fixed dates)
+- Shows "Problem 1" through "Problem 28" with actual dates
+- Admin users can access all days without restrictions
+- Bonus problems section for logging extra LeetCode practice
+
+---
+
+## Coaching Page
+
+The `/coaching` page provides two offerings for personalized help.
+
+### Skool Community
+- **URL**: `https://www.skool.com/raymond/about`
+- **Price**: $7/month
+- **Features**:
+  - Resume template that got interviews at big tech
+  - LeetCode roadmap (beginner to top 3%)
+  - Full course: 0 experience to software engineer
+  - Problem-solving tricks and techniques
+  - Direct Q&A and community support
+  - Weekly live sessions
+
+### 1-1 Strategy Sessions
+- **URL**: Google Calendar booking link
+- **Focus**: Personalized study plan (not mock interviews)
+- **Deliverables**:
+  - 60-minute strategy call
+  - Personalized 90-day roadmap document
+  - Direct action steps tailored to goals
+  - Session recording
+
+### FAQ Section
+Handles common objections:
+- "Can't I figure this out myself?"
+- "I don't have time"
+- "How do I know this will work?"
+- Beginner vs experienced skill levels
+- Cancellation policy
+- Mock interviews clarification
+
 ---
 
 ## Important Files Reference
@@ -610,17 +673,20 @@ class ChallengeService:
 |------|---------|-------|
 | `app/__init__.py` | App factory | ~120 |
 | `app/config.py` | Configuration | ~100 |
-| `app/routes/main.py` | Main routes | ~200 |
-| `app/routes/api.py` | API routes | ~300 |
-| `app/routes/challenge.py` | Challenge routes | ~140 |
+| `app/routes/main.py` | Main routes | ~220 |
+| `app/routes/api.py` | API routes | ~440 |
+| `app/routes/challenge.py` | Challenge routes | ~200 |
 | `app/services/roadmap_service.py` | Data service | ~180 |
-| `app/services/challenge_service.py` | Challenge logic | ~200 |
+| `app/services/challenge_service.py` | Challenge logic | ~260 |
 | `app/auth/access.py` | Access checking | ~100 |
 | `app/auth/decorators.py` | Auth decorators | ~90 |
 | `app.py` | Entry point | ~23 |
 | `pdf_analyzer.py` | PDF parsing | ~263 |
-| `templates/base.html` | Master template | ~350 |
+| `templates/base.html` | Master template | ~760 |
+| `templates/challenge/index.html` | Challenge dashboard + heatmap | ~375 |
 | `templates/challenge/day.html` | Code editor page | ~250 |
+| `templates/challenge/calendar.html` | Personalized calendar | ~350 |
+| `templates/coaching.html` | Coaching page | ~460 |
 | `static/clerk/auth.js` | Frontend auth | ~150 |
 | `challenge_problems.json` | Challenge data | ~200 |
 
