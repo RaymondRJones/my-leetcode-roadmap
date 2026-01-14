@@ -122,10 +122,12 @@
                             <span class="material-icons me-1" style="vertical-align: middle;">refresh</span>
                             Reset
                         </button>
-                        <button id="completeBtn" onclick="markComplete()" class="btn btn-success ms-auto" {% if problem.id in solved_ids %}disabled{% endif %}>
+                        {% if problem.id in solved_ids %}
+                        <span class="btn btn-success ms-auto disabled">
                             <span class="material-icons me-1" style="vertical-align: middle;">check</span>
-                            {% if problem.id in solved_ids %}Completed{% else %}Mark Complete{% endif %}
-                        </button>
+                            Completed
+                        </span>
+                        {% endif %}
                     </div>
 
                     <!-- Test Results -->
@@ -352,11 +354,13 @@ print(result)
 
     if (allPassed) {
         resultsContent.innerHTML += `
-            <div class="alert alert-success mt-3 mb-0">
-                <span class="material-icons me-2" style="vertical-align: middle;">celebration</span>
-                All test cases passed! Click "Mark Complete" to save your progress.
+            <div class="alert alert-info mt-3 mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">hourglass_empty</span>
+                All test cases passed! Saving your progress...
             </div>
         `;
+        // Automatically mark as complete
+        await markComplete();
     }
 }
 
@@ -371,6 +375,8 @@ function resetCode() {
 
 // Mark problem as complete
 async function markComplete() {
+    const resultsContent = document.getElementById('testResultsContent');
+
     try {
         const response = await fetch('/api/challenge/complete-problem', {
             method: 'POST',
@@ -384,11 +390,16 @@ async function markComplete() {
         const data = await response.json();
 
         if (data.status === 'success') {
-            document.getElementById('completeBtn').disabled = true;
-            document.getElementById('completeBtn').innerHTML = `
-                <span class="material-icons me-1" style="vertical-align: middle;">check</span>
-                Completed
-            `;
+            // Update the results area with success message
+            const successAlert = resultsContent.querySelector('.alert-info');
+            if (successAlert) {
+                successAlert.className = 'alert alert-success mt-3 mb-0';
+                successAlert.innerHTML = `
+                    <span class="material-icons me-2" style="vertical-align: middle;">celebration</span>
+                    <strong>Problem completed!</strong> You earned ${data.challenge.points || 10} points.
+                    <a href="/challenge/calendar" class="alert-link ms-2">View Calendar</a>
+                `;
+            }
 
             // Show achievement toasts
             if (data.new_achievements && data.new_achievements.length > 0) {
@@ -400,17 +411,42 @@ async function markComplete() {
                 }
             }
 
-            // Show success message
-            alert(`Problem completed! +${data.challenge.points - (data.challenge.points || 0)} points`);
+            // Disable run button to prevent re-submission
+            document.getElementById('runBtn').disabled = true;
+            document.getElementById('runBtn').innerHTML = `
+                <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+                Completed
+            `;
 
         } else if (data.status === 'already_completed') {
-            alert('This problem was already marked as complete.');
+            const successAlert = resultsContent.querySelector('.alert-info');
+            if (successAlert) {
+                successAlert.className = 'alert alert-warning mt-3 mb-0';
+                successAlert.innerHTML = `
+                    <span class="material-icons me-2" style="vertical-align: middle;">info</span>
+                    This problem was already completed.
+                `;
+            }
         } else {
-            alert('Failed to mark complete: ' + (data.error || 'Unknown error'));
+            const successAlert = resultsContent.querySelector('.alert-info');
+            if (successAlert) {
+                successAlert.className = 'alert alert-danger mt-3 mb-0';
+                successAlert.innerHTML = `
+                    <span class="material-icons me-2" style="vertical-align: middle;">error</span>
+                    Failed to save: ${data.error || 'Unknown error'}
+                `;
+            }
         }
     } catch (error) {
         console.error('Error marking complete:', error);
-        alert('Failed to mark complete. Please try again.');
+        const successAlert = resultsContent.querySelector('.alert-info');
+        if (successAlert) {
+            successAlert.className = 'alert alert-danger mt-3 mb-0';
+            successAlert.innerHTML = `
+                <span class="material-icons me-2" style="vertical-align: middle;">error</span>
+                Failed to save progress. Please try again.
+            `;
+        }
     }
 }
 
