@@ -71,6 +71,7 @@ def challenge_day(day: int):
     problems_solved = challenge_data.get('problems_solved', {})
     day_key = f'day_{day}'
     solved_ids = problems_solved.get(day_key, [])
+    achievements_config = service.get_achievements_config()
 
     return render_template(
         'challenge/day.html',
@@ -81,7 +82,8 @@ def challenge_day(day: int):
         current_day=current_day,
         challenge_data=challenge_data,
         solved_ids=solved_ids,
-        is_day_complete=service.is_day_complete(day, problems_solved)
+        is_day_complete=service.is_day_complete(day, problems_solved),
+        achievements_config=achievements_config
     )
 
 

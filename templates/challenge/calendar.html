@@ -148,10 +148,11 @@
         </h5>
         <div class="row g-3">
             {% for achievement_id, achievement in achievements_config.items() %}
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="achievement-badge {% if achievement_id in (challenge_data.achievements or []) %}unlocked{% endif %}">
+            <div class="col-6 col-md-4">
+                <div class="achievement-badge {% if achievement_id in (challenge_data.achievements or []) %}unlocked{% endif %}" title="{{ achievement.description }}">
                     <span class="material-icons achievement-icon">{{ achievement.icon }}</span>
                     <span class="achievement-name">{{ achievement.name }}</span>
+                    <span class="achievement-desc">{{ achievement.description }}</span>
                 </div>
             </div>
             {% endfor %}
@@ -344,15 +345,26 @@
 }
 
 .achievement-badge .achievement-name {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--nord3);
-    opacity: 0.7;
 }
 
 .achievement-badge.unlocked .achievement-name {
     color: white;
-    opacity: 1;
+}
+
+.achievement-badge .achievement-desc {
+    font-size: 0.7rem;
+    color: var(--nord3);
+    opacity: 0.7;
+    display: block;
+    margin-top: 4px;
+}
+
+.achievement-badge.unlocked .achievement-desc {
+    color: white;
+    opacity: 0.9;
 }
 
 /* Responsive adjustments */

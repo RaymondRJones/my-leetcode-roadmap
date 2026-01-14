@@ -180,8 +180,11 @@
                     <div class="d-flex align-items-center">
                         <span class="material-icons me-3" style="font-size: 48px; color: var(--nord13);">leaderboard</span>
                         <div>
-                            <h5 class="mb-1">Leaderboard</h5>
-                            <p class="text-muted mb-0">See how you rank</p>
+                            <h5 class="mb-1">
+                                Leaderboard
+                                <span class="badge bg-secondary ms-2" style="font-size: 0.6rem; vertical-align: middle;">Coming Soon</span>
+                            </h5>
+                            <p class="text-muted mb-0">See how you rank against others</p>
                         </div>
                     </div>
                 </div>
@@ -197,14 +200,17 @@
         </h5>
         <div class="row g-3">
             {% for achievement_id, achievement in achievements_config.items() %}
-            <div class="col-md-4 col-lg-2">
-                <div class="text-center p-3 rounded {% if achievement_id in (challenge_data.achievements or []) %}bg-success bg-opacity-10{% else %}bg-light{% endif %}">
-                    <span class="material-icons mb-2" style="font-size: 36px; color: {% if achievement_id in (challenge_data.achievements or []) %}var(--nord14){% else %}var(--nord4){% endif %};">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center p-3 rounded {% if achievement_id in (challenge_data.achievements or []) %}bg-success bg-opacity-10{% else %}bg-light{% endif %}">
+                    <span class="material-icons me-3" style="font-size: 40px; color: {% if achievement_id in (challenge_data.achievements or []) %}var(--nord14){% else %}var(--nord4){% endif %};">
                         {{ achievement.icon }}
                     </span>
-                    <p class="mb-0 small {% if achievement_id not in (challenge_data.achievements or []) %}text-muted{% endif %}">
-                        {{ achievement.name }}
-                    </p>
+                    <div>
+                        <p class="mb-0 fw-bold {% if achievement_id not in (challenge_data.achievements or []) %}text-muted{% endif %}">
+                            {{ achievement.name }}
+                        </p>
+                        <small class="text-muted">{{ achievement.description }}</small>
+                    </div>
                 </div>
             </div>
             {% endfor %}
