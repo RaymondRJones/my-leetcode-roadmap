@@ -82,26 +82,26 @@
             {% set is_available = not is_locked and not is_completed and not is_current %}
 
             {% if is_locked %}
-            <div class="calendar-cell locked" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Locked">
+            <div class="calendar-cell locked" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Locked">
                 <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
-                <span class="calendar-day-number">Day {{ day_info.day }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
             </div>
             {% elif is_current %}
-            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell current" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Today's Challenge">
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell current" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Today's Challenge">
                 <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
-                <span class="calendar-day-number">Day {{ day_info.day }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
                 <span class="status-dot current-dot"></span>
             </a>
             {% elif is_completed %}
-            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell completed" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Completed">
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell completed" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Completed">
                 <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
-                <span class="calendar-day-number">Day {{ day_info.day }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
                 <span class="status-dot completed-dot"></span>
             </a>
             {% else %}
-            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell available" title="Day {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Available">
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell available" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Available">
                 <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
-                <span class="calendar-day-number">Day {{ day_info.day }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
                 <span class="status-dot available-dot"></span>
             </a>
             {% endif %}
@@ -129,6 +129,57 @@
                 <span class="legend-locked me-2"></span>
                 <span class="small">Locked</span>
             </div>
+        </div>
+    </div>
+
+    <!-- Bonus Problems -->
+    <div class="md-card p-4 mb-5">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle; color: var(--nord13);">add_circle</span>
+            Bonus Problems
+        </h5>
+        <p class="text-muted small mb-3">
+            Solved extra LeetCode problems outside the challenge? Log them here for bonus points!
+            Each bonus problem earns you <strong>5 points</strong>.
+        </p>
+
+        <!-- Submit Bonus Problem -->
+        <div class="row g-2 mb-4">
+            <div class="col-md-8">
+                <input type="url" id="bonusProblemUrl" class="form-control" placeholder="https://leetcode.com/problems/problem-name/">
+            </div>
+            <div class="col-md-4">
+                <button onclick="submitBonusProblem()" class="btn btn-outline-primary w-100">
+                    <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle;">add</span>
+                    Add Problem
+                </button>
+            </div>
+        </div>
+
+        <!-- Bonus Problems List -->
+        <div id="bonusProblemsContainer">
+            {% set bonus_problems = challenge_data.get('bonus_problems', []) %}
+            {% if bonus_problems %}
+            <h6 class="mb-2 text-muted">Your Bonus Problems ({{ bonus_problems|length }})</h6>
+            <div class="bonus-problems-list">
+                {% for problem in bonus_problems %}
+                <div class="bonus-problem-item d-flex align-items-center justify-content-between p-2 mb-2 rounded" style="background: var(--nord5);">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2" style="color: var(--nord14); font-size: 18px;">check_circle</span>
+                        <a href="{{ problem.url }}" target="_blank" class="text-decoration-none">
+                            {{ problem.name or problem.url | replace('https://leetcode.com/problems/', '') | replace('/', '') }}
+                        </a>
+                    </div>
+                    <span class="badge bg-warning text-dark">+5 pts</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div id="noBonusProblems" class="text-center text-muted py-3">
+                <span class="material-icons mb-2" style="font-size: 32px; opacity: 0.5;">emoji_events</span>
+                <p class="mb-0 small">No bonus problems yet. Start adding some!</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -403,4 +454,108 @@
     }
 }
 </style>
+
+<script>
+async function submitBonusProblem() {
+    const urlInput = document.getElementById('bonusProblemUrl');
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        alert('Please enter a LeetCode problem URL');
+        return;
+    }
+
+    if (!url.includes('leetcode.com/problems/')) {
+        alert('Please enter a valid LeetCode problem URL (e.g., https://leetcode.com/problems/two-sum/)');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/challenge/bonus-problem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            // Clear input
+            urlInput.value = '';
+
+            // Extract problem name from URL
+            const problemName = url.replace('https://leetcode.com/problems/', '').replace('/', '').replace(/-/g, ' ');
+
+            // Add to the list dynamically
+            const container = document.getElementById('bonusProblemsContainer');
+            const noBonusDiv = document.getElementById('noBonusProblems');
+
+            if (noBonusDiv) {
+                noBonusDiv.remove();
+                container.innerHTML = `
+                    <h6 class="mb-2 text-muted">Your Bonus Problems (<span id="bonusCount">1</span>)</h6>
+                    <div class="bonus-problems-list" id="bonusList"></div>
+                `;
+            }
+
+            const bonusList = document.getElementById('bonusList') || container.querySelector('.bonus-problems-list');
+            const countSpan = document.getElementById('bonusCount');
+            if (countSpan) {
+                countSpan.textContent = parseInt(countSpan.textContent) + 1;
+            }
+
+            const newItem = document.createElement('div');
+            newItem.className = 'bonus-problem-item d-flex align-items-center justify-content-between p-2 mb-2 rounded';
+            newItem.style.background = 'var(--nord5)';
+            newItem.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <span class="material-icons me-2" style="color: var(--nord14); font-size: 18px;">check_circle</span>
+                    <a href="${url}" target="_blank" class="text-decoration-none">${problemName}</a>
+                </div>
+                <span class="badge bg-warning text-dark">+5 pts</span>
+            `;
+            bonusList.appendChild(newItem);
+
+            // Show success message
+            showToast('Bonus problem added! +5 points', 'success');
+
+        } else if (data.status === 'already_added') {
+            alert('You have already added this problem.');
+        } else {
+            alert('Failed to add problem: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error submitting bonus problem:', error);
+        alert('Failed to add problem. Please try again.');
+    }
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        z-index: 1050;
+        animation: slideIn 0.3s ease;
+    `;
+    toast.style.background = type === 'success' ? 'var(--nord14)' : 'var(--nord11)';
+    toast.innerHTML = `
+        <span class="material-icons me-2" style="vertical-align: middle; font-size: 18px;">
+            ${type === 'success' ? 'check_circle' : 'error'}
+        </span>
+        ${message}
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'slideIn 0.3s ease reverse';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+</script>
 {% endblock %}

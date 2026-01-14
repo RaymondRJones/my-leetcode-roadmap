@@ -246,6 +246,66 @@ def submit_skool():
     return jsonify({'status': 'success', 'message': 'Submission received'})
 
 
+@api_bp.route('/challenge/bonus-problem', methods=['POST'])
+@login_required
+def submit_bonus_problem():
+    """Submit a bonus LeetCode problem for extra points."""
+    data = request.get_json()
+    url = data.get('url', '').strip()
+
+    if not url:
+        return jsonify({'error': 'URL required'}), 400
+
+    if 'leetcode.com/problems/' not in url:
+        return jsonify({'error': 'Invalid LeetCode problem URL'}), 400
+
+    user = get_current_user()
+    user_id = user.get('id')
+    public_meta = user.get('public_metadata', {})
+    challenge = public_meta.get('challenge', {})
+
+    if not challenge.get('enrolled'):
+        return jsonify({'error': 'Not enrolled in challenge'}), 400
+
+    # Get existing bonus problems
+    bonus_problems = challenge.get('bonus_problems', [])
+
+    # Check if already added
+    existing_urls = [p.get('url') for p in bonus_problems]
+    # Normalize URL for comparison (remove trailing slash)
+    normalized_url = url.rstrip('/')
+    if any(existing.rstrip('/') == normalized_url for existing in existing_urls):
+        return jsonify({'status': 'already_added'})
+
+    # Extract problem name from URL
+    problem_slug = url.replace('https://leetcode.com/problems/', '').replace('http://leetcode.com/problems/', '').strip('/')
+    problem_name = problem_slug.replace('-', ' ').title()
+
+    # Add new bonus problem
+    bonus_problems.append({
+        'url': url,
+        'name': problem_name,
+        'added_at': datetime.now().isoformat()
+    })
+
+    challenge['bonus_problems'] = bonus_problems
+
+    # Recalculate points (bonus problems are worth 5 points each)
+    service = current_app.challenge_service
+    challenge['points'] = service.calculate_points(challenge)
+
+    # Save to Clerk
+    public_meta['challenge'] = challenge
+    clerk_service = current_app.clerk
+    clerk_service.update_user_metadata(user_id, public_meta)
+
+    return jsonify({
+        'status': 'success',
+        'bonus_problems': bonus_problems,
+        'total_points': challenge['points']
+    })
+
+
 @api_bp.route('/challenge/leaderboard')
 def get_challenge_leaderboard():
     """Get challenge leaderboard data."""

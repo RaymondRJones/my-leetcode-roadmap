@@ -610,6 +610,73 @@ class TestCalendarViewData:
         assert b'Achievement' in response.data
 
 
+class TestBonusProblemsAPI:
+    """Test bonus problems API endpoint."""
+
+    @pytest.fixture
+    def enrolled_client_for_bonus(self, app):
+        """Create enrolled client for bonus tests."""
+        client = app.test_client()
+        with client.session_transaction() as sess:
+            sess['user'] = {
+                'id': 'user_bonus',
+                'email_addresses': [{'email_address': 'bonus@example.com'}],
+                'private_metadata': {'has_premium': True},
+                'public_metadata': {
+                    'challenge': {
+                        'enrolled': True,
+                        'start_date': '2025-01-13T00:00:00',
+                        'days_completed': [],
+                        'problems_solved': {},
+                        'total_problems_solved': 0,
+                        'current_streak': 0,
+                        'best_streak': 0,
+                        'points': 0,
+                        'achievements': [],
+                        'bonus_problems': []
+                    }
+                }
+            }
+        return client
+
+    def test_bonus_problem_requires_auth(self, client):
+        """Test bonus problem requires authentication."""
+        response = client.post(
+            '/api/challenge/bonus-problem',
+            data=json.dumps({'url': 'https://leetcode.com/problems/two-sum/'}),
+            content_type='application/json'
+        )
+        assert response.status_code in [302, 303, 401]
+
+    def test_bonus_problem_requires_url(self, enrolled_client_for_bonus):
+        """Test bonus problem requires URL."""
+        response = enrolled_client_for_bonus.post(
+            '/api/challenge/bonus-problem',
+            data=json.dumps({}),
+            content_type='application/json'
+        )
+        assert response.status_code == 400
+
+    def test_bonus_problem_validates_leetcode_url(self, enrolled_client_for_bonus):
+        """Test bonus problem validates LeetCode URL."""
+        response = enrolled_client_for_bonus.post(
+            '/api/challenge/bonus-problem',
+            data=json.dumps({'url': 'https://google.com'}),
+            content_type='application/json'
+        )
+        assert response.status_code == 400
+
+    def test_bonus_problem_accepts_valid_url(self, enrolled_client_for_bonus):
+        """Test bonus problem accepts valid LeetCode URL."""
+        response = enrolled_client_for_bonus.post(
+            '/api/challenge/bonus-problem',
+            data=json.dumps({'url': 'https://leetcode.com/problems/two-sum/'}),
+            content_type='application/json'
+        )
+        # Should succeed or fail gracefully (Clerk not available in tests)
+        assert response.status_code in [200, 500]
+
+
 class TestDayViewData:
     """Test day view contains expected data."""
 

@@ -158,6 +158,10 @@ class ChallengeService:
         approved_count = sum(1 for s in skool_submissions if s.get('status') == 'approved')
         points += approved_count * point_values.get('skool_post_approved', 30)
 
+        # Points from bonus problems (5 points each)
+        bonus_problems = challenge_data.get('bonus_problems', [])
+        points += len(bonus_problems) * point_values.get('bonus_problem', 5)
+
         return points
 
     def check_achievements(self, challenge_data: Dict) -> List[str]:
@@ -226,7 +230,8 @@ class ChallengeService:
             'streak_7': 50,
             'streak_14': 100,
             'streak_28': 250,
-            'skool_post_approved': 30
+            'skool_post_approved': 30,
+            'bonus_problem': 5
         })
 
     def get_total_days(self) -> int:
