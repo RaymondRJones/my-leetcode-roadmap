@@ -143,6 +143,15 @@ def complete_problem():
         challenge['problems_solved'] = problems_solved
         challenge['total_problems_solved'] = sum(len(p) for p in problems_solved.values())
 
+        # Track activity in activity_log for heatmap
+        today = datetime.now().date().isoformat()
+        activity_log = challenge.get('activity_log', {})
+        if today not in activity_log:
+            activity_log[today] = {'count': 0, 'problems': []}
+        activity_log[today]['count'] += 1
+        activity_log[today]['problems'].append(problem_id)
+        challenge['activity_log'] = activity_log
+
         # Check if day is complete
         service = current_app.challenge_service
         if service.is_day_complete(day, problems_solved):
@@ -289,6 +298,15 @@ def submit_bonus_problem():
     })
 
     challenge['bonus_problems'] = bonus_problems
+
+    # Track activity in activity_log for heatmap
+    today = datetime.now().date().isoformat()
+    activity_log = challenge.get('activity_log', {})
+    if today not in activity_log:
+        activity_log[today] = {'count': 0, 'problems': []}
+    activity_log[today]['count'] += 1
+    activity_log[today]['problems'].append(f"bonus:{problem_slug}")
+    challenge['activity_log'] = activity_log
 
     # Recalculate points (bonus problems are worth 5 points each)
     service = current_app.challenge_service

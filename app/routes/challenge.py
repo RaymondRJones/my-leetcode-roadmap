@@ -23,11 +23,31 @@ def challenge_home():
     user = get_current_user()
     challenge_data = {}
     enrolled = False
+    heatmap_data = []
 
     if user:
         public_metadata = user.get('public_metadata', {})
         challenge_data = public_metadata.get('challenge', {})
         enrolled = challenge_data.get('enrolled', False)
+
+        # Generate heatmap data for the past year
+        if enrolled:
+            from datetime import date
+            today = date.today()
+            year_ago = today - timedelta(days=365)
+            activity_log = challenge_data.get('activity_log', {})
+
+            # Build heatmap data structure
+            current = year_ago
+            while current <= today:
+                date_str = current.isoformat()
+                count = activity_log.get(date_str, {}).get('count', 0)
+                heatmap_data.append({
+                    'date': date_str,
+                    'count': count,
+                    'weekday': current.weekday()
+                })
+                current += timedelta(days=1)
 
     service = current_app.challenge_service
     achievements_config = service.get_achievements_config()
@@ -39,7 +59,8 @@ def challenge_home():
         challenge_data=challenge_data,
         achievements_config=achievements_config,
         point_values=point_values,
-        total_days=service.get_total_days()
+        total_days=service.get_total_days(),
+        heatmap_data=heatmap_data
     )
 
 
