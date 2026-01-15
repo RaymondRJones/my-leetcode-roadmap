@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-LeetCode Roadmap Generator - Entry Point
+LeetCode Roadmap Generator - WSGI Entry Point
 
-This is the main entry point for the Flask application.
+This is the WSGI entry point for the Flask application.
+Named 'wsgi.py' to avoid conflict with the 'app/' package directory.
 """
 import os
 from app import create_app

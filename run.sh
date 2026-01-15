@@ -38,4 +38,4 @@ echo "🌐 Starting web server..."
 echo "   The server will automatically find an available port"
 echo "   Press Ctrl+C to stop the server"
 echo ""
-python app.py
+python wsgi.py
