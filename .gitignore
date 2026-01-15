@@ -7,3 +7,7 @@ roadmap_data_sept_01_2025.json
 roadmap_data_oct_02_2025.json
 venv/
 __pycache__/
+
+# PDF files (not needed on Heroku - data is in JSON files)
+*.pdf
+intermediate_roadmap_pdfs/
