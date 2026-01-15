@@ -1,0 +1,395 @@
+{% extends "base.html" %}
+
+{% block title %}{{ quiz.metadata.title }} - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<!-- Quiz Container -->
+<div class="quiz-container" id="quizContainer">
+    <!-- Progress Section -->
+    <div class="quiz-progress-section mb-4">
+        <div class="quiz-progress-header">
+            <span class="quiz-progress-text">Question <span id="currentQuestion">1</span> of {{ quiz.metadata.total_questions }}</span>
+            <span class="quiz-progress-percent" id="progressPercent">0%</span>
+        </div>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Question Card -->
+    <div class="quiz-card md-card" id="questionCard">
+        <div class="card-body">
+            <div class="quiz-question-number" id="questionNumber">1</div>
+            <h4 class="quiz-question-text" id="questionText"></h4>
+
+            <!-- Answer Options -->
+            <div class="quiz-answers" id="answerOptions"></div>
+
+            <!-- Feedback Section (hidden until answered) -->
+            <div class="quiz-feedback" id="feedbackSection" style="display: none;">
+                <div class="quiz-feedback-header" id="feedbackHeader">
+                    <span class="material-icons" id="feedbackIcon"></span>
+                    <span id="feedbackTitle"></span>
+                </div>
+                <p class="quiz-feedback-explanation" id="feedbackExplanation"></p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="quiz-navigation">
+                <button class="btn btn-outline-primary quiz-nav-btn" id="prevBtn" onclick="prevQuestion()" style="display: none;">
+                    <span class="material-icons">arrow_back</span>
+                    Previous
+                </button>
+                <button class="btn btn-primary quiz-nav-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                    Next
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results Section (Hidden Initially) -->
+<div class="quiz-results-container" id="resultsContainer" style="display: none;">
+    <div class="quiz-results-card md-card md-card-elevated">
+        <div class="card-body text-center">
+            <!-- Score Ring -->
+            <div class="quiz-score-ring-container">
+                <svg class="quiz-score-ring" viewBox="0 0 120 120">
+                    <circle class="quiz-score-ring-bg" cx="60" cy="60" r="54" />
+                    <circle class="quiz-score-ring-fill" id="scoreRing" cx="60" cy="60" r="54"
+                            stroke-dasharray="339.292" stroke-dashoffset="339.292" />
+                </svg>
+                <div class="quiz-score-text">
+                    <span class="quiz-score-value" id="scoreValue">0</span>
+                    <span class="quiz-score-label">/ {{ quiz.metadata.total_questions }}</span>
+                </div>
+            </div>
+
+            <!-- Result Info -->
+            <div class="quiz-result-info">
+                <span class="material-icons quiz-result-icon" id="resultIcon"></span>
+                <h2 class="quiz-result-title" id="resultTitle"></h2>
+                <p class="quiz-result-percent" id="resultPercent"></p>
+                <p class="quiz-result-message" id="resultMessage"></p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="quiz-result-actions">
+                <button class="btn btn-outline-primary" onclick="showReview()">
+                    <span class="material-icons">visibility</span>
+                    Review Answers
+                </button>
+                <button class="btn btn-primary" onclick="retakeQuiz()">
+                    <span class="material-icons">refresh</span>
+                    Retake Quiz
+                </button>
+                <a href="/" class="btn btn-outline-secondary">
+                    <span class="material-icons">home</span>
+                    Back to Classroom
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Review Section (Hidden Initially) -->
+<div class="quiz-review-container" id="reviewContainer" style="display: none;">
+    <div class="quiz-review-header">
+        <h2>
+            <span class="material-icons">fact_check</span>
+            Answer Review
+        </h2>
+        <button class="btn btn-outline-primary" onclick="hideReview()">
+            <span class="material-icons">close</span>
+            Close Review
+        </button>
+    </div>
+    <div class="quiz-review-cards" id="reviewCards"></div>
+</div>
+
+<script>
+    // Quiz data from server
+    const quizData = {{ quiz | tojson | safe }};
+    const questions = quizData.questions;
+    const tiers = quizData.tiers;
+    const totalQuestions = questions.length;
+
+    // Quiz state
+    let currentIndex = 0;
+    let userAnswers = {};
+    let answered = {};
+
+    // Initialize quiz
+    function initQuiz() {
+        renderQuestion(0);
+        updateProgress();
+    }
+
+    // Render a question
+    function renderQuestion(index) {
+        const question = questions[index];
+        const questionCard = document.getElementById('questionCard');
+
+        // Add transition class
+        questionCard.classList.add('quiz-card-transition');
+
+        setTimeout(() => {
+            document.getElementById('questionNumber').textContent = question.id;
+            document.getElementById('questionText').textContent = question.text;
+
+            // Render answer options
+            const optionsHtml = question.options.map(opt => {
+                const isSelected = userAnswers[index] === opt.key;
+                const wasAnswered = answered[index];
+                const isCorrect = opt.key === question.correct;
+
+                let stateClass = '';
+                if (wasAnswered) {
+                    if (isSelected && isCorrect) stateClass = 'correct';
+                    else if (isSelected && !isCorrect) stateClass = 'incorrect';
+                    else if (isCorrect) stateClass = 'correct';
+                }
+
+                return `
+                    <div class="quiz-answer-card ${isSelected ? 'selected' : ''} ${stateClass}"
+                         data-key="${opt.key}"
+                         onclick="${wasAnswered ? '' : `selectAnswer('${opt.key}')`}">
+                        <div class="quiz-answer-letter">${opt.key.toUpperCase()}</div>
+                        <div class="quiz-answer-text">${opt.text}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('answerOptions').innerHTML = optionsHtml;
+
+            // Show/hide feedback
+            const feedbackSection = document.getElementById('feedbackSection');
+            if (answered[index]) {
+                showFeedback(question, userAnswers[index] === question.correct);
+            } else {
+                feedbackSection.style.display = 'none';
+            }
+
+            // Update navigation
+            updateNavigation();
+
+            questionCard.classList.remove('quiz-card-transition');
+        }, 150);
+    }
+
+    // Select an answer
+    function selectAnswer(key) {
+        if (answered[currentIndex]) return;
+
+        const question = questions[currentIndex];
+        userAnswers[currentIndex] = key;
+        answered[currentIndex] = true;
+
+        // Update answer card styles
+        const cards = document.querySelectorAll('.quiz-answer-card');
+        cards.forEach(card => {
+            const cardKey = card.dataset.key;
+            card.classList.remove('selected');
+
+            if (cardKey === key) {
+                card.classList.add('selected');
+                if (key === question.correct) {
+                    card.classList.add('correct');
+                } else {
+                    card.classList.add('incorrect');
+                }
+            }
+
+            if (cardKey === question.correct) {
+                card.classList.add('correct');
+            }
+
+            // Disable clicking
+            card.onclick = null;
+        });
+
+        // Show feedback
+        const isCorrect = key === question.correct;
+        showFeedback(question, isCorrect);
+
+        // Enable next button
+        document.getElementById('nextBtn').disabled = false;
+        updateProgress();
+    }
+
+    // Show feedback
+    function showFeedback(question, isCorrect) {
+        const feedbackSection = document.getElementById('feedbackSection');
+        const feedbackHeader = document.getElementById('feedbackHeader');
+        const feedbackIcon = document.getElementById('feedbackIcon');
+        const feedbackTitle = document.getElementById('feedbackTitle');
+        const feedbackExplanation = document.getElementById('feedbackExplanation');
+
+        feedbackSection.style.display = 'block';
+        feedbackSection.className = 'quiz-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+
+        feedbackIcon.textContent = isCorrect ? 'check_circle' : 'cancel';
+        feedbackTitle.textContent = isCorrect ? 'Correct!' : 'Incorrect';
+        feedbackExplanation.textContent = question.explanation;
+    }
+
+    // Navigate to previous question
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderQuestion(currentIndex);
+            updateProgress();
+        }
+    }
+
+    // Navigate to next question
+    function nextQuestion() {
+        if (currentIndex < totalQuestions - 1) {
+            currentIndex++;
+            renderQuestion(currentIndex);
+            updateProgress();
+        } else {
+            showResults();
+        }
+    }
+
+    // Update navigation buttons
+    function updateNavigation() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        prevBtn.style.display = currentIndex > 0 ? 'flex' : 'none';
+
+        if (currentIndex === totalQuestions - 1) {
+            nextBtn.innerHTML = '<span class="material-icons">done_all</span> Finish';
+        } else {
+            nextBtn.innerHTML = 'Next <span class="material-icons">arrow_forward</span>';
+        }
+
+        nextBtn.disabled = !answered[currentIndex];
+    }
+
+    // Update progress bar
+    function updateProgress() {
+        const answeredCount = Object.keys(answered).length;
+        const percent = Math.round((answeredCount / totalQuestions) * 100);
+
+        document.getElementById('currentQuestion').textContent = currentIndex + 1;
+        document.getElementById('progressPercent').textContent = percent + '%';
+        document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    // Calculate and show results
+    function showResults() {
+        let score = 0;
+        questions.forEach((q, i) => {
+            if (userAnswers[i] === q.correct) {
+                score++;
+            }
+        });
+
+        const percent = Math.round((score / totalQuestions) * 100);
+
+        // Find tier
+        let tier = tiers[tiers.length - 1];
+        for (const t of tiers) {
+            if (percent >= t.min) {
+                tier = t;
+                break;
+            }
+        }
+
+        // Hide quiz, show results
+        document.getElementById('quizContainer').style.display = 'none';
+        document.getElementById('resultsContainer').style.display = 'block';
+
+        // Update results
+        document.getElementById('scoreValue').textContent = score;
+        document.getElementById('resultIcon').textContent = tier.icon;
+        document.getElementById('resultIcon').style.color = tier.color;
+        document.getElementById('resultTitle').textContent = tier.title;
+        document.getElementById('resultPercent').textContent = percent + '% Score';
+        document.getElementById('resultMessage').textContent = tier.message;
+
+        // Animate score ring
+        const circumference = 2 * Math.PI * 54;
+        const offset = circumference - (percent / 100) * circumference;
+        const ring = document.getElementById('scoreRing');
+        ring.style.stroke = tier.color;
+        setTimeout(() => {
+            ring.style.strokeDashoffset = offset;
+        }, 100);
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Show review section
+    function showReview() {
+        const reviewCards = document.getElementById('reviewCards');
+
+        let html = '';
+        questions.forEach((q, i) => {
+            const userAnswer = userAnswers[i];
+            const isCorrect = userAnswer === q.correct;
+            const userOption = q.options.find(o => o.key === userAnswer);
+            const correctOption = q.options.find(o => o.key === q.correct);
+
+            html += `
+                <div class="quiz-review-card md-card ${isCorrect ? 'correct' : 'incorrect'}">
+                    <div class="quiz-review-card-header">
+                        <span class="quiz-review-card-number">${q.id}</span>
+                        <span class="material-icons quiz-review-card-icon">${isCorrect ? 'check_circle' : 'cancel'}</span>
+                    </div>
+                    <p class="quiz-review-card-question">${q.text}</p>
+                    <div class="quiz-review-card-answers">
+                        <div class="quiz-review-answer ${isCorrect ? 'correct' : 'user-incorrect'}">
+                            <strong>Your answer:</strong> ${userOption ? userOption.text : 'Not answered'}
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="quiz-review-answer correct">
+                            <strong>Correct answer:</strong> ${correctOption.text}
+                        </div>
+                        ` : ''}
+                    </div>
+                    <p class="quiz-review-card-explanation">${q.explanation}</p>
+                </div>
+            `;
+        });
+
+        reviewCards.innerHTML = html;
+
+        document.getElementById('resultsContainer').style.display = 'none';
+        document.getElementById('reviewContainer').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Hide review section
+    function hideReview() {
+        document.getElementById('reviewContainer').style.display = 'none';
+        document.getElementById('resultsContainer').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Retake quiz
+    function retakeQuiz() {
+        currentIndex = 0;
+        userAnswers = {};
+        answered = {};
+
+        document.getElementById('resultsContainer').style.display = 'none';
+        document.getElementById('reviewContainer').style.display = 'none';
+        document.getElementById('quizContainer').style.display = 'block';
+
+        // Reset score ring
+        document.getElementById('scoreRing').style.strokeDashoffset = '339.292';
+
+        initQuiz();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initQuiz);
+</script>
+{% endblock %}

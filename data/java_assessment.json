@@ -1,0 +1,289 @@
+{
+  "metadata": {
+    "title": "Java Assessment",
+    "description": "Evaluate your Java proficiency with 20 multiple-choice questions covering fundamentals, OOP, collections, and best practices.",
+    "total_questions": 20,
+    "duration": "15-20 min",
+    "icon": "quiz",
+    "language": "java"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "text": "Which of the following is NOT a valid access modifier in Java?",
+      "options": [
+        {"key": "a", "text": "public"},
+        {"key": "b", "text": "private"},
+        {"key": "c", "text": "protected"},
+        {"key": "d", "text": "package"}
+      ],
+      "correct": "d",
+      "explanation": "'package' is not a valid access modifier. Java has four access levels: public, private, protected, and default (no keyword, also called package-private)."
+    },
+    {
+      "id": 2,
+      "text": "What is the default value of a boolean variable in Java?",
+      "options": [
+        {"key": "a", "text": "true"},
+        {"key": "b", "text": "false"},
+        {"key": "c", "text": "null"},
+        {"key": "d", "text": "0"}
+      ],
+      "correct": "b",
+      "explanation": "Boolean instance variables default to 'false' in Java. Only object references default to null; primitive types have their own defaults."
+    },
+    {
+      "id": 3,
+      "text": "Which keyword is used to inherit a class in Java?",
+      "options": [
+        {"key": "a", "text": "implements"},
+        {"key": "b", "text": "extends"},
+        {"key": "c", "text": "inherits"},
+        {"key": "d", "text": "super"}
+      ],
+      "correct": "b",
+      "explanation": "'extends' is used for class inheritance. 'implements' is for interfaces. 'super' refers to the parent class, and 'inherits' isn't a Java keyword."
+    },
+    {
+      "id": 4,
+      "text": "Which collection class provides fast access by key in Java?",
+      "options": [
+        {"key": "a", "text": "ArrayList"},
+        {"key": "b", "text": "LinkedList"},
+        {"key": "c", "text": "HashMap"},
+        {"key": "d", "text": "TreeSet"}
+      ],
+      "correct": "c",
+      "explanation": "HashMap provides O(1) average case access by key using hashing. ArrayList and LinkedList use indices, while TreeSet maintains sorted order."
+    },
+    {
+      "id": 5,
+      "text": "What is the output of: System.out.println(5 + 3 + \"2\");",
+      "options": [
+        {"key": "a", "text": "10"},
+        {"key": "b", "text": "82"},
+        {"key": "c", "text": "532"},
+        {"key": "d", "text": "Error"}
+      ],
+      "correct": "b",
+      "explanation": "Java evaluates left to right. 5+3=8 (integer addition), then 8+\"2\"=\"82\" (string concatenation when a String is encountered)."
+    },
+    {
+      "id": 6,
+      "text": "Which keyword prevents a method from being overridden?",
+      "options": [
+        {"key": "a", "text": "static"},
+        {"key": "b", "text": "final"},
+        {"key": "c", "text": "abstract"},
+        {"key": "d", "text": "const"}
+      ],
+      "correct": "b",
+      "explanation": "'final' prevents method overriding and class extension. 'const' is not a Java keyword (use 'final' for constants)."
+    },
+    {
+      "id": 7,
+      "text": "What is the purpose of the 'super' keyword?",
+      "options": [
+        {"key": "a", "text": "To call the current class constructor"},
+        {"key": "b", "text": "To refer to the parent class"},
+        {"key": "c", "text": "To create a static variable"},
+        {"key": "d", "text": "To import a package"}
+      ],
+      "correct": "b",
+      "explanation": "'super' refers to the parent class, allowing access to parent methods, constructors, and variables. Use 'this' for the current class."
+    },
+    {
+      "id": 8,
+      "text": "Which interface must be implemented for a class to be used in a for-each loop?",
+      "options": [
+        {"key": "a", "text": "Serializable"},
+        {"key": "b", "text": "Comparable"},
+        {"key": "c", "text": "Iterable"},
+        {"key": "d", "text": "Cloneable"}
+      ],
+      "correct": "c",
+      "explanation": "For-each loops require the Iterable interface, which provides an Iterator for traversing elements. Arrays also work with for-each natively."
+    },
+    {
+      "id": 9,
+      "text": "What is the difference between '==' and '.equals()' in Java?",
+      "options": [
+        {"key": "a", "text": "No difference"},
+        {"key": "b", "text": "'==' checks reference equality, '.equals()' checks value equality"},
+        {"key": "c", "text": "'==' checks value, '.equals()' checks type"},
+        {"key": "d", "text": "'==' is faster but less accurate"}
+      ],
+      "correct": "b",
+      "explanation": "== compares object references (memory addresses), while .equals() compares values when properly overridden. For Strings, always use .equals()."
+    },
+    {
+      "id": 10,
+      "text": "Which exception is thrown when dividing by zero in Java?",
+      "options": [
+        {"key": "a", "text": "NullPointerException"},
+        {"key": "b", "text": "ArithmeticException"},
+        {"key": "c", "text": "NumberFormatException"},
+        {"key": "d", "text": "IllegalArgumentException"}
+      ],
+      "correct": "b",
+      "explanation": "ArithmeticException is thrown for integer division by zero. Note: floating-point division by zero returns Infinity instead of throwing an exception."
+    },
+    {
+      "id": 11,
+      "text": "What is the main difference between an abstract class and an interface?",
+      "options": [
+        {"key": "a", "text": "Abstract classes can have constructors, interfaces cannot"},
+        {"key": "b", "text": "No difference"},
+        {"key": "c", "text": "Interfaces can have instance variables"},
+        {"key": "d", "text": "Abstract classes are faster"}
+      ],
+      "correct": "a",
+      "explanation": "Abstract classes can have constructors, instance variables, and implemented methods. Interfaces traditionally only had abstract methods (though Java 8+ added default methods)."
+    },
+    {
+      "id": 12,
+      "text": "Which keyword is used to prevent a class from being inherited?",
+      "options": [
+        {"key": "a", "text": "sealed"},
+        {"key": "b", "text": "final"},
+        {"key": "c", "text": "static"},
+        {"key": "d", "text": "private"}
+      ],
+      "correct": "b",
+      "explanation": "A 'final' class cannot be extended/inherited. 'sealed' (Java 17+) allows limited inheritance to specific classes."
+    },
+    {
+      "id": 13,
+      "text": "What is autoboxing in Java?",
+      "options": [
+        {"key": "a", "text": "Automatic conversion of primitive to wrapper class"},
+        {"key": "b", "text": "Automatic garbage collection"},
+        {"key": "c", "text": "Boxing objects for shipping"},
+        {"key": "d", "text": "Type casting"}
+      ],
+      "correct": "a",
+      "explanation": "Autoboxing automatically converts primitives (int, boolean, etc.) to their wrapper classes (Integer, Boolean, etc.). The reverse is called unboxing."
+    },
+    {
+      "id": 14,
+      "text": "Which collection does NOT allow duplicate elements?",
+      "options": [
+        {"key": "a", "text": "ArrayList"},
+        {"key": "b", "text": "LinkedList"},
+        {"key": "c", "text": "HashSet"},
+        {"key": "d", "text": "Vector"}
+      ],
+      "correct": "c",
+      "explanation": "HashSet implements the Set interface which prohibits duplicates. ArrayList, LinkedList, and Vector all allow duplicate elements."
+    },
+    {
+      "id": 15,
+      "text": "What is the purpose of the 'static' keyword?",
+      "options": [
+        {"key": "a", "text": "Makes variables unchangeable"},
+        {"key": "b", "text": "Belongs to the class rather than instances"},
+        {"key": "c", "text": "Prevents inheritance"},
+        {"key": "d", "text": "Creates private methods"}
+      ],
+      "correct": "b",
+      "explanation": "Static members belong to the class itself, not individual instances. They're shared across all objects and can be accessed without creating an instance."
+    },
+    {
+      "id": 16,
+      "text": "Which method is called when an object is garbage collected?",
+      "options": [
+        {"key": "a", "text": "delete()"},
+        {"key": "b", "text": "finalize()"},
+        {"key": "c", "text": "dispose()"},
+        {"key": "d", "text": "destroy()"}
+      ],
+      "correct": "b",
+      "explanation": "finalize() is called before garbage collection (deprecated since Java 9). Use try-with-resources or explicit cleanup instead."
+    },
+    {
+      "id": 17,
+      "text": "What is method overloading?",
+      "options": [
+        {"key": "a", "text": "Same method name with different parameters"},
+        {"key": "b", "text": "Redefining a parent class method"},
+        {"key": "c", "text": "Having too many methods"},
+        {"key": "d", "text": "Using static methods"}
+      ],
+      "correct": "a",
+      "explanation": "Overloading = same method name with different parameters (compile-time polymorphism). Overriding = redefining a parent class method (runtime polymorphism)."
+    },
+    {
+      "id": 18,
+      "text": "Which of these is a checked exception in Java?",
+      "options": [
+        {"key": "a", "text": "NullPointerException"},
+        {"key": "b", "text": "IOException"},
+        {"key": "c", "text": "ArrayIndexOutOfBoundsException"},
+        {"key": "d", "text": "ArithmeticException"}
+      ],
+      "correct": "b",
+      "explanation": "IOException is a checked exception (must be handled or declared). RuntimeExceptions like NullPointerException and ArithmeticException are unchecked."
+    },
+    {
+      "id": 19,
+      "text": "What does the 'transient' keyword do?",
+      "options": [
+        {"key": "a", "text": "Prevents a variable from being serialized"},
+        {"key": "b", "text": "Makes a variable temporary"},
+        {"key": "c", "text": "Makes a variable final"},
+        {"key": "d", "text": "Creates a static variable"}
+      ],
+      "correct": "a",
+      "explanation": "'transient' excludes a field from serialization. Useful for sensitive data (passwords) or fields that can be reconstructed."
+    },
+    {
+      "id": 20,
+      "text": "What is the time complexity of searching in an unsorted ArrayList?",
+      "options": [
+        {"key": "a", "text": "O(1)"},
+        {"key": "b", "text": "O(log n)"},
+        {"key": "c", "text": "O(n)"},
+        {"key": "d", "text": "O(n^2)"}
+      ],
+      "correct": "c",
+      "explanation": "Linear search through an unsorted ArrayList requires checking each element: O(n). Sorted lists can use binary search for O(log n) complexity."
+    }
+  ],
+  "tiers": [
+    {
+      "min": 90,
+      "title": "Java Expert",
+      "message": "Outstanding performance! You have a strong grasp of Java fundamentals, OOP principles, collections, and best practices. You're well-prepared for Java-based coding interviews.",
+      "icon": "emoji_events",
+      "color": "#ebcb8b"
+    },
+    {
+      "min": 75,
+      "title": "Strong Java Skills",
+      "message": "Well done! You have a solid understanding of Java. Review the questions you missed to strengthen your knowledge further, especially around collections and advanced OOP concepts.",
+      "icon": "verified",
+      "color": "#a3be8c"
+    },
+    {
+      "min": 60,
+      "title": "Intermediate Level",
+      "message": "You have a decent foundation in Java. Focus on practicing more with collections, exception handling, and OOP concepts to improve your skills.",
+      "icon": "thumb_up",
+      "color": "#5e81ac"
+    },
+    {
+      "min": 40,
+      "title": "Beginner Level",
+      "message": "You're making progress! Spend more time studying Java basics, OOP principles, and the Collections framework. Practice coding daily to build your skills.",
+      "icon": "lightbulb",
+      "color": "#d08770"
+    },
+    {
+      "min": 0,
+      "title": "Need More Practice",
+      "message": "Consider starting with Java fundamentals. Work through beginner tutorials covering OOP, data types, and basic syntax. Practice coding regularly to build your foundation.",
+      "icon": "school",
+      "color": "#bf616a"
+    }
+  ]
+}

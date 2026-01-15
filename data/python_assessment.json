@@ -1,0 +1,289 @@
+{
+  "metadata": {
+    "title": "Python Assessment",
+    "description": "Test your Python knowledge with 20 multiple-choice questions covering syntax, data structures, OOP, and best practices.",
+    "total_questions": 20,
+    "duration": "15-20 min",
+    "icon": "quiz",
+    "language": "python"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "text": "What is the output of: print(type([]) == list)",
+      "options": [
+        {"key": "a", "text": "False"},
+        {"key": "b", "text": "True"},
+        {"key": "c", "text": "Error"},
+        {"key": "d", "text": "None"}
+      ],
+      "correct": "b",
+      "explanation": "The type() function returns <class 'list'> for an empty list [], which equals the list type, so the comparison returns True."
+    },
+    {
+      "id": 2,
+      "text": "Which of the following is a mutable data type in Python?",
+      "options": [
+        {"key": "a", "text": "tuple"},
+        {"key": "b", "text": "string"},
+        {"key": "c", "text": "list"},
+        {"key": "d", "text": "frozenset"}
+      ],
+      "correct": "c",
+      "explanation": "Lists are mutable - their contents can be changed after creation. Tuples, strings, and frozensets are immutable and cannot be modified."
+    },
+    {
+      "id": 3,
+      "text": "What does the 'self' keyword represent in a Python class?",
+      "options": [
+        {"key": "a", "text": "The class itself"},
+        {"key": "b", "text": "The instance of the class"},
+        {"key": "c", "text": "The parent class"},
+        {"key": "d", "text": "A global variable"}
+      ],
+      "correct": "b",
+      "explanation": "'self' refers to the current instance of the class, allowing access to instance attributes and methods. It's passed automatically when calling methods."
+    },
+    {
+      "id": 4,
+      "text": "What is the time complexity of accessing an element in a Python dictionary by key?",
+      "options": [
+        {"key": "a", "text": "O(n)"},
+        {"key": "b", "text": "O(log n)"},
+        {"key": "c", "text": "O(1) average case"},
+        {"key": "d", "text": "O(n^2)"}
+      ],
+      "correct": "c",
+      "explanation": "Python dictionaries use hash tables internally, providing O(1) average case lookup time. The key is hashed to find the value directly."
+    },
+    {
+      "id": 5,
+      "text": "Which keyword is used to create a function in Python?",
+      "options": [
+        {"key": "a", "text": "function"},
+        {"key": "b", "text": "def"},
+        {"key": "c", "text": "func"},
+        {"key": "d", "text": "lambda"}
+      ],
+      "correct": "b",
+      "explanation": "The 'def' keyword is used to define functions in Python. While 'lambda' creates anonymous functions, 'def' is the standard way to declare named functions."
+    },
+    {
+      "id": 6,
+      "text": "What is the output of: print(3 * '2')",
+      "options": [
+        {"key": "a", "text": "6"},
+        {"key": "b", "text": "222"},
+        {"key": "c", "text": "'222'"},
+        {"key": "d", "text": "Error"}
+      ],
+      "correct": "b",
+      "explanation": "Multiplying a string by an integer repeats the string that many times. '2' * 3 produces '222'. The print function displays it without quotes."
+    },
+    {
+      "id": 7,
+      "text": "Which method is used to add an element to the end of a list?",
+      "options": [
+        {"key": "a", "text": "add()"},
+        {"key": "b", "text": "append()"},
+        {"key": "c", "text": "insert()"},
+        {"key": "d", "text": "extend()"}
+      ],
+      "correct": "b",
+      "explanation": "append() adds a single element to the end of a list. insert() adds at a specific index, extend() adds multiple elements, and add() is used with sets."
+    },
+    {
+      "id": 8,
+      "text": "What does the 'pass' statement do in Python?",
+      "options": [
+        {"key": "a", "text": "Skips the current iteration"},
+        {"key": "b", "text": "Exits the loop"},
+        {"key": "c", "text": "Does nothing - placeholder statement"},
+        {"key": "d", "text": "Raises an exception"}
+      ],
+      "correct": "c",
+      "explanation": "'pass' is a null operation that does nothing. It's used as a placeholder when a statement is syntactically required but no action is needed."
+    },
+    {
+      "id": 9,
+      "text": "Which of the following is NOT a valid Python data type?",
+      "options": [
+        {"key": "a", "text": "set"},
+        {"key": "b", "text": "dict"},
+        {"key": "c", "text": "array"},
+        {"key": "d", "text": "bool"}
+      ],
+      "correct": "c",
+      "explanation": "'array' is not a built-in Python type - you need to import it from the array module. set, dict, and bool are all built-in data types."
+    },
+    {
+      "id": 10,
+      "text": "What is the correct way to create a dictionary in Python?",
+      "options": [
+        {"key": "a", "text": "dict = ['key': 'value']"},
+        {"key": "b", "text": "dict = {'key': 'value'}"},
+        {"key": "c", "text": "dict = ('key': 'value')"},
+        {"key": "d", "text": "dict = <'key': 'value'>"}
+      ],
+      "correct": "b",
+      "explanation": "Dictionaries use curly braces {} with key:value pairs. Square brackets are for lists, parentheses for tuples, and angle brackets aren't valid syntax."
+    },
+    {
+      "id": 11,
+      "text": "What is list slicing [1:4] equivalent to?",
+      "options": [
+        {"key": "a", "text": "Elements at index 1, 2, 3, 4"},
+        {"key": "b", "text": "Elements at index 1, 2, 3"},
+        {"key": "c", "text": "Elements at index 0, 1, 2, 3"},
+        {"key": "d", "text": "Elements at index 2, 3, 4"}
+      ],
+      "correct": "b",
+      "explanation": "Python slicing is inclusive of the start index and exclusive of the end index. [1:4] returns elements at indices 1, 2, and 3."
+    },
+    {
+      "id": 12,
+      "text": "Which exception is raised when you try to access a key that doesn't exist in a dictionary?",
+      "options": [
+        {"key": "a", "text": "ValueError"},
+        {"key": "b", "text": "KeyError"},
+        {"key": "c", "text": "IndexError"},
+        {"key": "d", "text": "AttributeError"}
+      ],
+      "correct": "b",
+      "explanation": "KeyError is raised when accessing a non-existent dictionary key. IndexError is for sequences, ValueError for wrong values, and AttributeError for missing attributes."
+    },
+    {
+      "id": 13,
+      "text": "What does the '__init__' method do in a Python class?",
+      "options": [
+        {"key": "a", "text": "Initializes class variables"},
+        {"key": "b", "text": "Constructor - called when object is created"},
+        {"key": "c", "text": "Destructor - called when object is deleted"},
+        {"key": "d", "text": "Imports the class"}
+      ],
+      "correct": "b",
+      "explanation": "__init__ is the constructor method, automatically called when creating a new instance. It initializes the object's state and attributes."
+    },
+    {
+      "id": 14,
+      "text": "Which operator is used for exponentiation in Python?",
+      "options": [
+        {"key": "a", "text": "^"},
+        {"key": "b", "text": "**"},
+        {"key": "c", "text": "%%"},
+        {"key": "d", "text": "//"}
+      ],
+      "correct": "b",
+      "explanation": "** is the exponentiation operator (2**3 = 8). ^ is bitwise XOR, // is floor division, and %% is not a valid Python operator."
+    },
+    {
+      "id": 15,
+      "text": "What is the purpose of the 'with' statement in Python?",
+      "options": [
+        {"key": "a", "text": "To import modules"},
+        {"key": "b", "text": "Automatic resource management (context manager)"},
+        {"key": "c", "text": "To define a variable"},
+        {"key": "d", "text": "To create a loop"}
+      ],
+      "correct": "b",
+      "explanation": "The 'with' statement provides context management, ensuring proper resource cleanup (like closing files) even if exceptions occur."
+    },
+    {
+      "id": 16,
+      "text": "What is the difference between '==' and 'is' in Python?",
+      "options": [
+        {"key": "a", "text": "No difference"},
+        {"key": "b", "text": "'==' checks value equality, 'is' checks identity"},
+        {"key": "c", "text": "'==' checks type, 'is' checks value"},
+        {"key": "d", "text": "'is' is faster than '=='"}
+      ],
+      "correct": "b",
+      "explanation": "== compares values (equality), while 'is' checks if two variables reference the exact same object in memory (identity)."
+    },
+    {
+      "id": 17,
+      "text": "Which built-in function returns the number of elements in a list?",
+      "options": [
+        {"key": "a", "text": "size()"},
+        {"key": "b", "text": "length()"},
+        {"key": "c", "text": "len()"},
+        {"key": "d", "text": "count()"}
+      ],
+      "correct": "c",
+      "explanation": "len() is the built-in function that returns the length of sequences. count() counts occurrences of an element, while size() and length() don't exist as built-ins."
+    },
+    {
+      "id": 18,
+      "text": "What is a lambda function in Python?",
+      "options": [
+        {"key": "a", "text": "A regular function with a special name"},
+        {"key": "b", "text": "An anonymous, single-expression function"},
+        {"key": "c", "text": "A built-in mathematical function"},
+        {"key": "d", "text": "A function that only works with lists"}
+      ],
+      "correct": "b",
+      "explanation": "Lambda functions are small anonymous functions defined with the 'lambda' keyword. They're limited to a single expression and return its result."
+    },
+    {
+      "id": 19,
+      "text": "What does 'PEP 8' refer to in Python?",
+      "options": [
+        {"key": "a", "text": "Python Enhancement Proposal for style guide"},
+        {"key": "b", "text": "Python version 8"},
+        {"key": "c", "text": "A Python module"},
+        {"key": "d", "text": "A debugging tool"}
+      ],
+      "correct": "a",
+      "explanation": "PEP 8 is the official Python style guide (Python Enhancement Proposal #8) that provides coding conventions for writing clean, readable Python code."
+    },
+    {
+      "id": 20,
+      "text": "Which of the following is used to handle exceptions in Python?",
+      "options": [
+        {"key": "a", "text": "try/catch"},
+        {"key": "b", "text": "try/except"},
+        {"key": "c", "text": "handle/error"},
+        {"key": "d", "text": "if/else"}
+      ],
+      "correct": "b",
+      "explanation": "Python uses try/except blocks for exception handling. try/catch is used in languages like Java and JavaScript, not Python."
+    }
+  ],
+  "tiers": [
+    {
+      "min": 90,
+      "title": "Python Expert",
+      "message": "Outstanding performance! You have a strong grasp of Python fundamentals, data structures, and OOP concepts. You're well-prepared for Python-based coding interviews.",
+      "icon": "emoji_events",
+      "color": "#ebcb8b"
+    },
+    {
+      "min": 75,
+      "title": "Strong Python Skills",
+      "message": "Well done! You have a solid understanding of Python. Review the questions you missed to strengthen your knowledge further.",
+      "icon": "verified",
+      "color": "#a3be8c"
+    },
+    {
+      "min": 60,
+      "title": "Intermediate Level",
+      "message": "You have a decent foundation in Python. Focus on practicing more with data structures, OOP concepts, and best practices to improve.",
+      "icon": "thumb_up",
+      "color": "#5e81ac"
+    },
+    {
+      "min": 40,
+      "title": "Beginner Level",
+      "message": "You're making progress! Spend more time studying Python basics, syntax, and common patterns. Practice is key to improvement.",
+      "icon": "lightbulb",
+      "color": "#d08770"
+    },
+    {
+      "min": 0,
+      "title": "Need More Practice",
+      "message": "Consider starting with Python fundamentals. Work through beginner tutorials and practice coding daily to build your skills.",
+      "icon": "school",
+      "color": "#bf616a"
+    }
+  ]
+}

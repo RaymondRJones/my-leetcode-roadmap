@@ -6,6 +6,7 @@ from flask import Blueprint, render_template, redirect, current_app
 from ..auth.access import get_current_user, has_premium_access, is_allowed_user
 from ..auth.decorators import login_required, premium_required, ai_access_required
 from ..models.course import get_sorted_courses
+from ..services.assessment_service import AssessmentService
 
 main_bp = Blueprint('main', __name__)
 
@@ -176,13 +177,15 @@ def about():
 @main_bp.route('/python-assessment')
 def python_assessment():
     """Python programming assessment quiz."""
-    return render_template('python_assessment.html')
+    quiz_data = AssessmentService.get_python_assessment()
+    return render_template('assessment_quiz.html', quiz=quiz_data)
 
 
 @main_bp.route('/java-assessment')
 def java_assessment():
     """Java programming assessment quiz."""
-    return render_template('java_assessment.html')
+    quiz_data = AssessmentService.get_java_assessment()
+    return render_template('assessment_quiz.html', quiz=quiz_data)
 
 
 @main_bp.route('/guides')
