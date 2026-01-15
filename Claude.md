@@ -149,9 +149,9 @@ leetcode-roadmap-generator/
 │
 ├── data files (JSON):
 │   ├── roadmap_data.json               # Advanced roadmap data
-│   ├── intermediate_roadmap_data.json  # Fortune500 data
+│   ├── intermediate_roadmap_data_v2.json # Fortune500 data (v2, used by app)
 │   ├── atcoder_beginner_problems.json  # AtCoder problems
-│   └── challenge_problems.json         # 28-day challenge problems
+│   └── challenge_problems.json         # 28-day challenge problems (from intermediate v2)
 │
 └── intermediate_roadmap_pdfs/          # PDF input directory
 ```
@@ -521,6 +521,8 @@ Procfile: `web: gunicorn app:app`
 
 A gamified 28-day LeetCode challenge with built-in Python code editor, progress tracking, achievements, and leaderboard.
 
+**Problem Source**: The 28 challenge problems are sourced from the first 28 days of `intermediate_roadmap_data_v2.json` (Month 1), providing a curated progression from easier problems to more advanced topics like graphs, trees, and dynamic programming.
+
 ### Challenge Routes
 | Route | Description |
 |-------|-------------|
@@ -550,7 +552,7 @@ A gamified 28-day LeetCode challenge with built-in Python code editor, progress 
     "enrolled": true,
     "start_date": "2025-01-15T00:00:00",
     "days_completed": [1, 2, 3],
-    "problems_solved": {"day_1": ["two-sum"], "day_2": ["valid-parentheses"]},
+    "problems_solved": {"day_1": ["concatenate-non-zero-digits-and-multiply-by-sum-i"], "day_2": ["available-captures-for-rook"]},
     "total_problems_solved": 2,
     "current_streak": 3,
     "best_streak": 3,
@@ -558,8 +560,8 @@ A gamified 28-day LeetCode challenge with built-in Python code editor, progress 
     "achievements": ["first_problem"],
     "last_activity_date": "2025-01-17T00:00:00",
     "activity_log": {
-      "2025-01-15": {"count": 1, "problems": ["two-sum"]},
-      "2025-01-16": {"count": 2, "problems": ["valid-parentheses", "bonus:reverse-string"]}
+      "2025-01-15": {"count": 1, "problems": ["concatenate-non-zero-digits-and-multiply-by-sum-i"]},
+      "2025-01-16": {"count": 2, "problems": ["available-captures-for-rook", "bonus:reverse-string"]}
     },
     "bonus_problems": [
       {"url": "https://leetcode.com/problems/reverse-string/", "name": "Reverse String", "added_at": "2025-01-16T00:00:00"}
