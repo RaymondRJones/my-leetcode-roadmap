@@ -180,21 +180,19 @@ class EmailService:
 
         Args:
             to: Recipient email address
-            product_name: Name of the purchased product (optional)
+            product_name: Name of the purchased product (optional, not used in email)
 
         Returns:
             dict with 'success' boolean and 'id' or 'error'
         """
-        product_info = f" ({product_name})" if product_name else ""
-
-        html = f"""
+        html = """
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <h1 style="color: #5E81AC; margin-bottom: 24px;">
                 Welcome to Your Software Engineering Journey! 🎉
             </h1>
 
             <p style="font-size: 16px; line-height: 1.6; color: #2E3440;">
-                Thank you for your purchase{product_info}! Your payment has been successfully processed,
+                Thank you for your purchase! Your payment has been successfully processed,
                 and your digital products are now available.
             </p>
 
@@ -206,7 +204,7 @@ class EmailService:
                     Click the button below to access your digital products.
                     <strong>Create an account using the same email you used for purchase.</strong>
                 </p>
-                <a href="https://leet-roadmap-2b0ad46df54e.herokuapp.com/"
+                <a href="https://raymondjones.dev/"
                    style="background-color: #5E81AC; color: white; padding: 14px 28px;
                           text-decoration: none; border-radius: 6px; display: inline-block;
                           font-weight: bold; font-size: 16px;">
