@@ -14,7 +14,7 @@
             <p class="lead mb-4" style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
                 Your privacy is important to us. This policy explains how we collect, use, and protect your information.
             </p>
-            <p class="text-muted"><strong>Last Updated:</strong> January 14, 2026</p>
+            <p class="text-muted"><strong>Last Updated:</strong> January 15, 2026</p>
         </div>
     </div>
 </div>
@@ -23,6 +23,31 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <div class="md-card p-5">
+
+            <!-- Data Privacy Commitment Banner -->
+            <div class="mb-5 p-4" style="background: linear-gradient(135deg, var(--nord14) 0%, var(--nord10) 100%); border-radius: 12px; color: white;">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="material-icons me-3" style="font-size: 48px;">verified_user</span>
+                    <div>
+                        <h3 class="mb-1" style="color: white;">Your Code Never Leaves Your Browser</h3>
+                        <p class="mb-0" style="opacity: 0.9;">All code execution happens locally on your device. We don't see, store, or transmit your solutions.</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-2">
+                        <span class="material-icons me-2" style="vertical-align: middle;">computer</span>
+                        <strong>100% Browser-Based</strong>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <span class="material-icons me-2" style="vertical-align: middle;">cloud_off</span>
+                        <strong>No Server Uploads</strong>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <span class="material-icons me-2" style="vertical-align: middle;">visibility_off</span>
+                        <strong>We Can't See Your Code</strong>
+                    </div>
+                </div>
+            </div>
 
             <section class="mb-5">
                 <h2 class="mb-3" style="color: var(--md-primary);">1. Information We Collect</h2>
@@ -63,7 +88,47 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">3. Third-Party Services</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">3. Code Editor & Practice Data (Important!)</h2>
+                <div class="p-3 mb-4" style="background: var(--nord6); border-radius: 8px; border-left: 4px solid var(--nord14);">
+                    <p class="mb-0"><strong>Key Point:</strong> Your code solutions are NEVER sent to our servers. They execute entirely in your browser.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4>How the Code Editor Works</h4>
+                    <p>Our code editor uses <strong>Pyodide</strong>, a technology that runs Python directly in your web browser using WebAssembly. This means:</p>
+                    <ul>
+                        <li><strong>No server communication</strong> - Your code never leaves your device</li>
+                        <li><strong>We cannot see your solutions</strong> - There's no way for us to access what you type</li>
+                        <li><strong>No code storage</strong> - Your solutions are not saved anywhere except your browser's localStorage</li>
+                        <li><strong>Instant execution</strong> - Tests run locally on your machine</li>
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <h4>What We Store Locally (On Your Device Only)</h4>
+                    <p>The following data is stored in your browser's localStorage and stays on YOUR device:</p>
+                    <ul>
+                        <li>Problem completion status (which problems you've solved)</li>
+                        <li>Streak tracking data (activity dates)</li>
+                        <li>Your preference settings</li>
+                    </ul>
+                    <p><strong>This data is NOT sent to our servers.</strong> You can clear it anytime by clearing your browser data.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4>What We Do NOT Collect</h4>
+                    <ul>
+                        <li><span class="material-icons me-2" style="color: var(--nord11); vertical-align: middle; font-size: 18px;">cancel</span> Your code solutions or attempts</li>
+                        <li><span class="material-icons me-2" style="color: var(--nord11); vertical-align: middle; font-size: 18px;">cancel</span> Test case results or error messages</li>
+                        <li><span class="material-icons me-2" style="color: var(--nord11); vertical-align: middle; font-size: 18px;">cancel</span> How long you spend on each problem</li>
+                        <li><span class="material-icons me-2" style="color: var(--nord11); vertical-align: middle; font-size: 18px;">cancel</span> Your typing patterns or code history</li>
+                        <li><span class="material-icons me-2" style="color: var(--nord11); vertical-align: middle; font-size: 18px;">cancel</span> Screenshots or recordings of your screen</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="mb-3" style="color: var(--md-primary);">4. Third-Party Services</h2>
                 <p>We use the following third-party services to operate our platform. By using our Service, you acknowledge and consent to the data practices of these providers:</p>
                 <ul>
                     <li><strong>Clerk (Authentication):</strong> Handles user authentication and account management. Their privacy policy applies to authentication data. <a href="https://clerk.com/privacy" target="_blank" style="color: var(--md-primary);">Clerk Privacy Policy</a></li>
@@ -75,7 +140,7 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">4. Information Sharing and Disclosure</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">5. Information Sharing and Disclosure</h2>
                 <p>We may share your information in the following limited circumstances:</p>
                 <ul>
                     <li><strong>Service Providers:</strong> With trusted third-party vendors who assist in operating our business (e.g., payment processors, hosting providers)</li>
@@ -88,7 +153,7 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">5. Data Retention</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">6. Data Retention</h2>
                 <p>We retain your personal information for as long as necessary to:</p>
                 <ul>
                     <li>Provide our services to you</li>
@@ -100,7 +165,7 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">6. Data Security</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">7. Data Security</h2>
                 <p>We implement appropriate technical and organizational measures to protect your personal information, including:</p>
                 <ul>
                     <li>Encryption of data in transit and at rest</li>
@@ -112,7 +177,7 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">7. Your Rights and Choices</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">8. Your Rights and Choices</h2>
                 <p>Depending on your location, you may have the following rights regarding your personal information:</p>
                 <ul>
                     <li><strong>Access:</strong> Request a copy of the personal information we hold about you</li>
@@ -125,7 +190,7 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">8. Cookies and Tracking</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">9. Cookies and Tracking</h2>
                 <p>We use cookies and similar technologies to:</p>
                 <ul>
                     <li>Remember your preferences and login status</li>
@@ -137,17 +202,17 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">9. Children's Privacy</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">10. Children's Privacy</h2>
                 <p>Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we discover we have collected such information, we will delete it promptly.</p>
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">10. International Users</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">11. International Users</h2>
                 <p>Our services are operated from the United States. If you are accessing our services from outside the US, your information may be transferred to and processed in the United States, which may have different privacy laws than your country.</p>
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">11. Changes to This Policy</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">12. Changes to This Policy</h2>
                 <p>We may update this Privacy Policy from time to time. We will notify you of material changes by:</p>
                 <ul>
                     <li>Posting the updated policy on our website</li>
@@ -158,12 +223,12 @@
             </section>
 
             <section class="mb-5">
-                <h2 class="mb-3" style="color: var(--md-primary);">12. Governing Law</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">13. Governing Law</h2>
                 <p><strong>This Privacy Policy is governed by the laws of the State of Florida, without regard to conflict of law principles. Any disputes arising from this policy shall be resolved in the courts of Florida.</strong></p>
             </section>
 
             <section>
-                <h2 class="mb-3" style="color: var(--md-primary);">13. Contact Information</h2>
+                <h2 class="mb-3" style="color: var(--md-primary);">14. Contact Information</h2>
                 <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
                 <div class="md-card p-3 mt-3" style="background-color: var(--md-surface);">
                     <p class="mb-2"><strong>Email:</strong> privacy@raymondsite.com</p>
@@ -172,6 +237,134 @@
                 </div>
             </section>
 
+        </div>
+    </div>
+</div>
+
+<!-- Privacy FAQ Section -->
+<div class="row mt-5">
+    <div class="col-lg-8 mx-auto">
+        <div class="md-card p-4">
+            <h3 class="text-center mb-4">
+                <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">help_outline</span>
+                Privacy FAQ
+            </h3>
+
+            <div class="accordion" id="privacyFaqAccordion">
+                <!-- FAQ 1 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq1" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>Is my code saved on your servers?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq1" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                <strong>No, absolutely not.</strong> All code execution happens directly in your browser using Pyodide (Python compiled to WebAssembly).
+                                Your code never leaves your device - we literally cannot see what you type. The only place your solutions exist is on your own computer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq2" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>Can you see my solutions or how I'm doing?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq2" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                <strong>No.</strong> We have no visibility into your code, your test results, or your progress.
+                                Your progress data (which problems you've completed) is stored only in your browser's localStorage - it never touches our servers.
+                                We designed it this way on purpose to protect your privacy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq3" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>What data DO you actually collect?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq3" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                We only collect what's necessary to run the service:
+                                <br><br>
+                                <strong>If you create an account:</strong> Email address and name (via Clerk authentication)
+                                <br>
+                                <strong>If you make a purchase:</strong> Payment processed by Stripe (we never see your card details)
+                                <br>
+                                <strong>Basic analytics:</strong> Page visits (not your code or solutions)
+                                <br><br>
+                                That's it. We don't track your coding activity, time spent on problems, or anything else.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq4" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>Will you sell my email or data to third parties?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq4" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                <strong>Never.</strong> We do not sell, rent, or trade your personal information to anyone.
+                                Your email is only used to communicate with you about your account and purchases.
+                                You can unsubscribe from promotional emails at any time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq5" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>How do I delete my data?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq5" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                <strong>For local progress data:</strong> Clear your browser's localStorage or use your browser's "Clear site data" feature.
+                                <br><br>
+                                <strong>For account data:</strong> Email us at privacy@raymondsite.com and we'll delete your account within 30 days.
+                                <br><br>
+                                Since your code is never stored on our servers, there's nothing for us to delete on that front.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="accordion-item" style="background: var(--nord6); border: none; margin-bottom: 8px; border-radius: 8px;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#privacyFaq6" style="background: var(--nord6); border-radius: 8px;">
+                            <strong>Is my payment information secure?</strong>
+                        </button>
+                    </h2>
+                    <div id="privacyFaq6" class="accordion-collapse collapse" data-bs-parent="#privacyFaqAccordion">
+                        <div class="accordion-body">
+                            <p class="mb-0">
+                                <strong>Yes.</strong> All payments are processed by Stripe, a PCI-DSS Level 1 certified payment processor (the highest level of security certification).
+                                We never see, store, or have access to your credit card number. Stripe handles everything.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
