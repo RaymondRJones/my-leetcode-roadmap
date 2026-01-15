@@ -12,7 +12,7 @@ A web-based platform for learning programming through curated problem roadmaps a
 
 - **Advanced Roadmap**: LeetCode problems organized by month and day
 - **Intermediate Roadmap (Fortune500)**: Mid-tier company interview prep
-- **Beginner Training**: AtCoder problems with AI-simplified explanations
+- **Beginner Training**: AtCoder problems with AI-simplified explanations and in-browser Python code editor
 - **System Design**: Architecture and design patterns
 - **28-Day Challenge**: Gamified coding challenge with activity tracking
 - **Assessments**: Python and Java skill evaluations
@@ -120,6 +120,7 @@ leetcode-roadmap-generator/
 │
 ├── scripts/
 │   ├── atcoder_scraper.py              # AtCoder scraper + ChatGPT
+│   ├── generate_beginner_testcases.py  # Generate test cases for beginner problems
 │   └── run_scraper.sh                  # Scraper execution script
 │
 ├── templates/                          # Jinja2 HTML templates
@@ -127,7 +128,9 @@ leetcode-roadmap-generator/
 │   ├── classroom.html                  # Homepage (9 course cards)
 │   ├── index.html                      # Advanced roadmap
 │   ├── intermediate.html               # Fortune500 roadmap
-│   ├── beginner.html                   # AtCoder problems
+│   ├── beginner.html                   # AtCoder problems grid
+│   ├── beginner/                       # Beginner training templates
+│   │   └── problem.html                # Interactive code editor page
 │   ├── month.html                      # Individual month view
 │   ├── complete_list.html              # Ray700 problem list
 │   ├── behavioral_guide.html           # Behavioral prep + AI feedback
@@ -239,7 +242,8 @@ python -m pytest tests/test_access.py::TestHasPremiumAccess -v
 |-------|-------------|
 | `GET /` | Classroom homepage |
 | `GET /landing` | Sales page |
-| `GET /beginner` | AtCoder problems |
+| `GET /beginner` | AtCoder problems grid |
+| `GET /beginner/problem/<id>` | Interactive problem editor with Pyodide |
 | `GET /intermediate` | Month 1 Fortune500 (free) |
 | `GET /python-assessment` | Python quiz |
 | `GET /java-assessment` | Java quiz |
@@ -461,7 +465,16 @@ class Course:
       "simplified": {
         "simplified_explanation": "...",
         "key_concepts": ["if-statements", "loops"]
-      }
+      },
+      "function_name": "contains_element",
+      "starter_code": "def contains_element(arr, x):\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "[3, 1, 4, 1, 5], 4",
+          "function_call": "contains_element([3, 1, 4, 1, 5], 4)",
+          "expected": "Yes"
+        }
+      ]
     }
   ]
 }
@@ -514,6 +527,46 @@ heroku config:set STRIPE_SECRET_KEY=...
 ```
 
 Procfile: `web: gunicorn app:app`
+
+---
+
+## Beginner Training Feature
+
+Interactive coding exercises for complete beginners using AtCoder problems with in-browser Python execution.
+
+### How It Works
+1. User browses 50 AtCoder problems on `/beginner` grid
+2. Clicks "Solve" to open `/beginner/problem/<id>` with Monaco editor
+3. Problems provide pre-defined function signatures (no input parsing needed)
+4. User writes solution and clicks "Run Tests" to execute against test cases
+5. Progress saved to localStorage (no login required)
+
+### Key Components
+- **Monaco Editor**: VS Code-like Python editor in browser
+- **Pyodide**: Python interpreter compiled to WebAssembly (runs in browser)
+- **Test Runner**: Executes user code against test cases with 5-second timeout
+- **Function Signatures**: Pre-defined so beginners focus on logic, not input parsing
+
+### Beginner Routes
+| Route | Description |
+|-------|-------------|
+| `GET /beginner` | Problem grid with 50 AtCoder problems |
+| `GET /beginner/problem/<id>` | Interactive editor with Pyodide |
+
+### Test Case Generation
+Test cases are auto-generated using OpenAI:
+```bash
+source venv/bin/activate
+python scripts/generate_beginner_testcases.py
+```
+
+### Template Files
+- `templates/beginner.html` - Problem grid with "Solve" buttons
+- `templates/beginner/problem.html` - Code editor page
+
+### localStorage Keys
+- `atcoder_progress` - Array of completed problem IDs
+- `atcoder_last_activity` - Last activity date for streak tracking
 
 ---
 

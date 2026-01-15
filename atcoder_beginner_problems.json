@@ -44,7 +44,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:10:54.462022"
+      "processed_at": "2025-08-09T14:10:54.462022",
+      "function_name": "contains_element",
+      "starter_code": "def contains_element(arr, x):\n    \"\"\"\n    Check if x is in arr.\n    Return 'Yes' if found, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "[3, 1, 4, 1, 5], 4",
+          "function_call": "contains_element([3, 1, 4, 1, 5], 4)",
+          "expected": "Yes"
+        },
+        {
+          "input": "[100, 100, 100, 100], 100",
+          "function_call": "contains_element([100, 100, 100, 100], 100)",
+          "expected": "Yes"
+        },
+        {
+          "input": "[2, 3, 5, 7, 11, 13], 1",
+          "function_call": "contains_element([2, 3, 5, 7, 11, 13], 1)",
+          "expected": "No"
+        }
+      ]
     },
     {
       "url": "https://atcoder.jp/contests/abc414/tasks/abc414_a",
@@ -84,7 +103,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:10:57.660063"
+      "processed_at": "2025-08-09T14:10:57.660063",
+      "function_name": "count_full_viewers",
+      "starter_code": "def count_full_viewers(stream_start, stream_end, listeners):\n    \"\"\"\n    Count how many listeners can watch the entire stream.\n    A listener can watch if their start <= stream_start and end >= stream_end.\n    \n    Args:\n        stream_start: Hour the stream starts (0-23)\n        stream_end: Hour the stream ends (0-23)\n        listeners: List of [start, end] pairs for each listener\n    \n    Returns:\n        Number of listeners who can watch the full stream\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "19, 22, [[17, 23], [20, 23], [19, 22], [0, 23], [12, 20]]",
+          "function_call": "count_full_viewers(19, 22, [[17, 23], [20, 23], [19, 22], [0, 23], [12, 20]])",
+          "expected": "3"
+        },
+        {
+          "input": "12, 13, [[0, 1], [0, 1], [0, 1]]",
+          "function_call": "count_full_viewers(12, 13, [[0, 1], [0, 1], [0, 1]])",
+          "expected": "0"
+        },
+        {
+          "input": "8, 14, [[5, 20], [14, 21], [9, 21], [5, 23], [8, 10], [0, 14], [3, 8], [2, 6], [0, 16], [5, 20]]",
+          "function_call": "count_full_viewers(8, 14, [[5, 20], [14, 21], [9, 21], [5, 23], [8, 10], [0, 14], [3, 8], [2, 6], [0, 16], [5, 20]])",
+          "expected": "5"
+        }
+      ]
     },
     {
       "url": "https://atcoder.jp/contests/abc413/tasks/abc413_a",
@@ -123,7 +161,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:01.837302"
+      "processed_at": "2025-08-09T14:11:01.837302",
+      "function_name": "fits_in_bag",
+      "starter_code": "def fits_in_bag(items, bag_size):\n    \"\"\"\n    Check if all items can fit in the bag.\n    Return 'Yes' if sum of items <= bag_size, 'No' otherwise.\n    \n    Args:\n        items: List of item sizes\n        bag_size: Maximum capacity of the bag\n    \n    Returns:\n        'Yes' if all items fit, 'No' otherwise\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "[3, 1, 4, 1, 5], 15",
+          "function_call": "fits_in_bag([3, 1, 4, 1, 5], 15)",
+          "expected": "Yes"
+        },
+        {
+          "input": "[3, 1, 4, 1, 5], 5",
+          "function_call": "fits_in_bag([3, 1, 4, 1, 5], 5)",
+          "expected": "No"
+        },
+        {
+          "input": "[100], 10000",
+          "function_call": "fits_in_bag([100], 10000)",
+          "expected": "Yes"
+        }
+      ]
     },
     {
       "url": "https://atcoder.jp/contests/abc412/tasks/abc412_a",
@@ -163,7 +220,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:04.732544"
+      "processed_at": "2025-08-09T14:11:04.732544",
+      "function_name": "count_exceeded_goals",
+      "starter_code": "def count_exceeded_goals(goals, actual):\n    \"\"\"\n    Count how many days Takahashi completed more tasks than his goal.\n    \n    Args:\n        goals: List of task goals for each day\n        actual: List of tasks actually completed each day\n    \n    Returns:\n        Number of days where actual > goal\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "[2, 5, 5, 6], [8, 5, 4, 7]",
+          "function_call": "count_exceeded_goals([2, 5, 5, 6], [8, 5, 4, 7])",
+          "expected": "2"
+        },
+        {
+          "input": "[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]",
+          "function_call": "count_exceeded_goals([1, 1, 1, 1, 1], [1, 1, 1, 1, 1])",
+          "expected": "0"
+        },
+        {
+          "input": "[1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]",
+          "function_call": "count_exceeded_goals([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1])",
+          "expected": "3"
+        }
+      ]
     },
     {
       "url": "https://atcoder.jp/contests/abc411/tasks/abc411_a",
@@ -202,7 +278,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:07.988662"
+      "processed_at": "2025-08-09T14:11:07.988662",
+      "starter_code": "def is_password_long_enough(password: str, min_length: int) -> str:\n    \"\"\"\n    Check if the password meets the minimum length requirement.\n    Return 'Yes' if the password length is at least min_length, 'No' otherwise.\n    \"\"\"\n    return 'Yes' if len(password) >= min_length else 'No'",
+      "test_cases": [
+        {
+          "input": "'chokudai', 5",
+          "function_call": "is_password_long_enough('chokudai', 5)",
+          "expected": "Yes"
+        },
+        {
+          "input": "'ac', 3",
+          "function_call": "is_password_long_enough('ac', 3)",
+          "expected": "No"
+        },
+        {
+          "input": "'atcoder', 7",
+          "function_call": "is_password_long_enough('atcoder', 7)",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "is_password_long_enough"
     },
     {
       "url": "https://atcoder.jp/contests/abc410/tasks/abc410_a",
@@ -242,7 +337,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:12.241157"
+      "processed_at": "2025-08-09T14:11:12.241157",
+      "starter_code": "def count_races_for_horse_age(ages, k):\n    \"\"\"\n    Count how many races a horse of age k can participate in.\n    ages: List of maximum ages allowed for each race.\n    k: Age of the horse.\n    Return the count of races the horse can enter.\n    \"\"\"\n    count = 0\n    for age in ages:\n        if age >= k:\n            count += 1\n    return count",
+      "test_cases": [
+        {
+          "input": "[3, 1, 4, 1, 5], 4",
+          "function_call": "count_races_for_horse_age([3, 1, 4, 1, 5], 4)",
+          "expected": 2
+        },
+        {
+          "input": "[1], 100",
+          "function_call": "count_races_for_horse_age([1], 100)",
+          "expected": 0
+        },
+        {
+          "input": "[18, 89, 31, 2, 15, 93, 64, 78, 58, 19, 79, 59, 24, 50, 30], 38",
+          "function_call": "count_races_for_horse_age([18, 89, 31, 2, 15, 93, 64, 78, 58, 19, 79, 59, 24, 50, 30], 38)",
+          "expected": 8
+        }
+      ],
+      "function_name": "count_races_for_horse_age"
     },
     {
       "url": "https://atcoder.jp/contests/abc409/tasks/abc409_a",
@@ -282,7 +396,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:15.179865"
+      "processed_at": "2025-08-09T14:11:15.179865",
+      "starter_code": "def check_conflict(T, A):\n    \"\"\"\n    Check if there is at least one item that both Takahashi and Aoki want.\n    Return 'Yes' if such an item exists, 'No' otherwise.\n    \"\"\"\n    for t, a in zip(T, A):\n        if t == 'o' and a == 'o':\n            return 'Yes'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "'oxoo', 'xoox'",
+          "function_call": "check_conflict('oxoo', 'xoox')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'xxxxx', 'ooooo'",
+          "function_call": "check_conflict('xxxxx', 'ooooo')",
+          "expected": "No"
+        },
+        {
+          "input": "'xoooxoxxxo', 'ooxooooxoo'",
+          "function_call": "check_conflict('xoooxoxxxo', 'ooxooooxoo')",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "check_conflict"
     },
     {
       "url": "https://atcoder.jp/contests/abc408/tasks/abc408_a",
@@ -322,7 +455,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:18.615011"
+      "processed_at": "2025-08-09T14:11:18.615011",
+      "starter_code": "def is_elder_awake(n, s, taps):\n    \"\"\"\n    Determine if the elder remains awake after being tapped on the shoulder N times.\n    The elder falls asleep if the time since the last tap exceeds S + 0.5 seconds.\n    Return 'Yes' if the elder stays awake, 'No' otherwise.\n    \"\"\"\n    last_tap_time = 0\n    for tap in taps:\n        if tap - last_tap_time > s + 0.5:\n            return 'No'\n        last_tap_time = tap\n    return 'Yes'",
+      "test_cases": [
+        {
+          "input": "5 10\n6 11 21 22 30",
+          "function_call": "is_elder_awake(5, 10, [6, 11, 21, 22, 30])",
+          "expected": "Yes"
+        },
+        {
+          "input": "2 100\n1 200",
+          "function_call": "is_elder_awake(2, 100, [1, 200])",
+          "expected": "No"
+        },
+        {
+          "input": "10 22\n47 81 82 95 117 146 165 209 212 215",
+          "function_call": "is_elder_awake(10, 22, [47, 81, 82, 95, 117, 146, 165, 209, 212, 215])",
+          "expected": "No"
+        }
+      ],
+      "function_name": "is_elder_awake"
     },
     {
       "url": "https://atcoder.jp/contests/abc407/tasks/abc407_a",
@@ -361,7 +513,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:21.568327"
+      "processed_at": "2025-08-09T14:11:21.568327",
+      "starter_code": "def closest_integer_division(a, b):\n    \"\"\"\n    Find the integer closest to A divided by B.\n    A is a positive integer and B is a positive odd integer.\n    Return the integer that minimizes the difference from A / B.\n    \"\"\"\n    return round(a / b)",
+      "test_cases": [
+        {
+          "input": "4, 7",
+          "function_call": "closest_integer_division(4, 7)",
+          "expected": 1
+        },
+        {
+          "input": "407, 29",
+          "function_call": "closest_integer_division(407, 29)",
+          "expected": 14
+        },
+        {
+          "input": "22, 11",
+          "function_call": "closest_integer_division(22, 11)",
+          "expected": 2
+        }
+      ],
+      "function_name": "closest_integer_division"
     },
     {
       "url": "https://atcoder.jp/contests/abc406/tasks/abc406_a",
@@ -401,7 +572,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:25.375619"
+      "processed_at": "2025-08-09T14:11:25.375619",
+      "starter_code": "def is_submission_before_deadline(A, B, C, D):\n    \"\"\"\n    Check if the submission time (C:D) is before the deadline (A:B).\n    Return 'Yes' if submitted before the deadline, 'No' otherwise.\n    \"\"\"\n    if (C < A) or (C == A and D < B):\n        return 'Yes'\n    else:\n        return 'No'",
+      "test_cases": [
+        {
+          "input": "22 40 22 30",
+          "function_call": "is_submission_before_deadline(22, 40, 22, 30)",
+          "expected": "Yes"
+        },
+        {
+          "input": "22 40 22 45",
+          "function_call": "is_submission_before_deadline(22, 40, 22, 45)",
+          "expected": "No"
+        },
+        {
+          "input": "12 0 11 30",
+          "function_call": "is_submission_before_deadline(12, 0, 11, 30)",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "is_submission_before_deadline"
     },
     {
       "url": "https://atcoder.jp/contests/abc405/tasks/abc405_a",
@@ -444,7 +634,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:29.704570"
+      "processed_at": "2025-08-09T14:11:29.704570",
+      "starter_code": "def is_rated_in_division(rating, division):\n    \"\"\"\n    Check if a person with the given rating is rated in the specified division.\n    Return 'Yes' if rated, 'No' otherwise.\n    \"\"\"\n    if division == 1:\n        return 'Yes' if 1600 <= rating <= 2999 else 'No'\n    elif division == 2:\n        return 'Yes' if 1200 <= rating <= 2399 else 'No'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "2000 1",
+          "function_call": "is_rated_in_division(2000, 1)",
+          "expected": "Yes"
+        },
+        {
+          "input": "1000 1",
+          "function_call": "is_rated_in_division(1000, 1)",
+          "expected": "No"
+        },
+        {
+          "input": "1500 2",
+          "function_call": "is_rated_in_division(1500, 2)",
+          "expected": "Yes"
+        },
+        {
+          "input": "2800 2",
+          "function_call": "is_rated_in_division(2800, 2)",
+          "expected": "No"
+        }
+      ],
+      "function_name": "is_rated_in_division"
     },
     {
       "url": "https://atcoder.jp/contests/abc404/tasks/abc404_a",
@@ -484,7 +698,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:32.439810"
+      "processed_at": "2025-08-09T14:11:32.439810",
+      "starter_code": "def find_missing_letter(s):\n    \"\"\"\n    Find one lowercase English letter that is not in the given string s.\n    Return any letter that is missing.\n    \"\"\"\n    alphabet = set('abcdefghijklmnopqrstuvwxyz')\n    present_letters = set(s)\n    missing_letters = alphabet - present_letters\n    return missing_letters.pop() if missing_letters else ''",
+      "test_cases": [
+        {
+          "input": "'a'",
+          "function_call": "find_missing_letter('a')",
+          "expected": "b"
+        },
+        {
+          "input": "'abcdfhijklmnopqrstuvwxyz'",
+          "function_call": "find_missing_letter('abcdfhijklmnopqrstuvwxyz')",
+          "expected": "e"
+        },
+        {
+          "input": "'qazplwsxokmedcijnrfvuhbgt'",
+          "function_call": "find_missing_letter('qazplwsxokmedcijnrfvuhbgt')",
+          "expected": "y"
+        }
+      ],
+      "function_name": "find_missing_letter"
     },
     {
       "url": "https://atcoder.jp/contests/abc403/tasks/abc403_a",
@@ -524,7 +757,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:35.855300"
+      "processed_at": "2025-08-09T14:11:35.855300",
+      "starter_code": "def odd_position_sum(arr):\n    \"\"\"\n    Calculate the sum of elements at odd positions in the list arr.\n    Positions are considered 1-based.\n    \"\"\"\n    return sum(arr[i] for i in range(0, len(arr), 2))",
+      "test_cases": [
+        {
+          "input": "[3, 1, 4, 1, 5, 9, 2]",
+          "function_call": "odd_position_sum([3, 1, 4, 1, 5, 9, 2])",
+          "expected": 14
+        },
+        {
+          "input": "[100]",
+          "function_call": "odd_position_sum([100])",
+          "expected": 100
+        },
+        {
+          "input": "[100, 10, 1, 10, 100, 10, 1, 10, 100, 10, 1, 10, 100, 10]",
+          "function_call": "odd_position_sum([100, 10, 1, 10, 100, 10, 1, 10, 100, 10, 1, 10, 100, 10])",
+          "expected": 403
+        }
+      ],
+      "function_name": "odd_position_sum"
     },
     {
       "url": "https://atcoder.jp/contests/abc402/tasks/abc402_a",
@@ -564,7 +816,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:39.375086"
+      "processed_at": "2025-08-09T14:11:39.375086",
+      "starter_code": "def extract_uppercase_letters(s):\n    \"\"\"\n    Extract uppercase letters from the given string s.\n    Return a string containing only the uppercase letters in their original order.\n    \"\"\"\n    return ''.join([char for char in s if char.isupper()])",
+      "test_cases": [
+        {
+          "input": "'AtCoderBeginnerContest'",
+          "function_call": "extract_uppercase_letters('AtCoderBeginnerContest')",
+          "expected": "ACBC"
+        },
+        {
+          "input": "'PaymentRequired'",
+          "function_call": "extract_uppercase_letters('PaymentRequired')",
+          "expected": "PR"
+        },
+        {
+          "input": "'program'",
+          "function_call": "extract_uppercase_letters('program')",
+          "expected": ""
+        }
+      ],
+      "function_name": "extract_uppercase_letters"
     },
     {
       "url": "https://atcoder.jp/contests/abc401/tasks/abc401_a",
@@ -603,7 +874,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:42.580089"
+      "processed_at": "2025-08-09T14:11:42.580089",
+      "starter_code": "def check_status_code(s):\n    \"\"\"\n    Check if the status code s is between 200 and 299.\n    Return 'Success' if it is, 'Failure' otherwise.\n    \"\"\"\n    if 200 <= s <= 299:\n        return 'Success'\n    else:\n        return 'Failure'",
+      "test_cases": [
+        {
+          "input": "200",
+          "function_call": "check_status_code(200)",
+          "expected": "Success"
+        },
+        {
+          "input": "401",
+          "function_call": "check_status_code(401)",
+          "expected": "Failure"
+        },
+        {
+          "input": "999",
+          "function_call": "check_status_code(999)",
+          "expected": "Failure"
+        }
+      ],
+      "function_name": "check_status_code"
     },
     {
       "url": "https://atcoder.jp/contests/abc400/tasks/abc400_a",
@@ -643,7 +933,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:45.599444"
+      "processed_at": "2025-08-09T14:11:45.599444",
+      "starter_code": "def calculate_columns(a):\n    \"\"\"\n    Calculate the number of columns B for a given number of rows A to arrange 400 people.\n    Return the number of columns if possible, otherwise return -1.\n    \"\"\"\n    if 400 % a == 0:\n        return 400 // a\n    else:\n        return -1",
+      "test_cases": [
+        {
+          "input": "10",
+          "function_call": "calculate_columns(10)",
+          "expected": "40"
+        },
+        {
+          "input": "11",
+          "function_call": "calculate_columns(11)",
+          "expected": "-1"
+        },
+        {
+          "input": "400",
+          "function_call": "calculate_columns(400)",
+          "expected": "1"
+        }
+      ],
+      "function_name": "calculate_columns"
     },
     {
       "url": "https://atcoder.jp/contests/abc399/tasks/abc399_a",
@@ -687,7 +996,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:48.723535"
+      "processed_at": "2025-08-09T14:11:48.723535",
+      "starter_code": "def hamming_distance(s, t):\n    \"\"\"\n    Calculate the Hamming distance between two strings s and t.\n    Return the count of positions where the characters differ.\n    \"\"\"\n    return sum(1 for a, b in zip(s, t) if a != b)",
+      "test_cases": [
+        {
+          "input": "'abcarc', 'agcahc'",
+          "function_call": "hamming_distance('abcarc', 'agcahc')",
+          "expected": 2
+        },
+        {
+          "input": "'atcoder', 'contest'",
+          "function_call": "hamming_distance('atcoder', 'contest')",
+          "expected": 7
+        },
+        {
+          "input": "'chokudai', 'chokudai'",
+          "function_call": "hamming_distance('chokudai', 'chokudai')",
+          "expected": 0
+        },
+        {
+          "input": "'vexknuampx', 'vzxikuamlx'",
+          "function_call": "hamming_distance('vexknuampx', 'vzxikuamlx')",
+          "expected": 4
+        }
+      ],
+      "function_name": "hamming_distance"
     },
     {
       "url": "https://atcoder.jp/contests/abc398/tasks/abc398_a",
@@ -723,7 +1056,46 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:52.264318"
+      "processed_at": "2025-08-09T14:11:52.264318",
+      "starter_code": "def create_palindrome(n):\n    \"\"\"\n    Create a palindrome string of length n using '-' and '='.\n    The string must contain either one '=' or two adjacent '=' characters.\n    \"\"\"\n    if n % 2 == 0:\n        return '-' * (n // 2 - 1) + '==' + '-' * (n // 2 - 1)\n    else:\n        return '-' * (n // 2) + '=' + '-' * (n // 2)",
+      "test_cases": [
+        {
+          "input": "4",
+          "function_call": "create_palindrome(4)",
+          "expected": "-==-"
+        },
+        {
+          "input": "7",
+          "function_call": "create_palindrome(7)",
+          "expected": "---=---"
+        },
+        {
+          "input": "1",
+          "function_call": "create_palindrome(1)",
+          "expected": "="
+        },
+        {
+          "input": "2",
+          "function_call": "create_palindrome(2)",
+          "expected": "=="
+        },
+        {
+          "input": "3",
+          "function_call": "create_palindrome(3)",
+          "expected": "-=-"
+        },
+        {
+          "input": "5",
+          "function_call": "create_palindrome(5)",
+          "expected": "----="
+        },
+        {
+          "input": "6",
+          "function_call": "create_palindrome(6)",
+          "expected": "---==="
+        }
+      ],
+      "function_name": "create_palindrome"
     },
     {
       "url": "https://atcoder.jp/contests/abc397/tasks/abc397_a",
@@ -763,7 +1135,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:56.404355"
+      "processed_at": "2025-08-09T14:11:56.404355",
+      "starter_code": "def classify_temperature(temperature):\n    \"\"\"\n    Classify the body temperature into categories:\n    1 for high fever (>= 38.0), 2 for fever (>= 37.5 and < 38.0), 3 for normal (< 37.5).\n    \"\"\"\n    if temperature >= 38.0:\n        return 1\n    elif temperature >= 37.5:\n        return 2\n    else:\n        return 3",
+      "test_cases": [
+        {
+          "input": "40.0",
+          "function_call": "classify_temperature(40.0)",
+          "expected": 1
+        },
+        {
+          "input": "37.7",
+          "function_call": "classify_temperature(37.7)",
+          "expected": 2
+        },
+        {
+          "input": "36.6",
+          "function_call": "classify_temperature(36.6)",
+          "expected": 3
+        }
+      ],
+      "function_name": "classify_temperature"
     },
     {
       "url": "https://atcoder.jp/contests/abc396/tasks/abc396_a",
@@ -811,7 +1202,36 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:11:59.289205"
+      "processed_at": "2025-08-09T14:11:59.289205",
+      "starter_code": "def check_triple_four(arr):\n    \"\"\"\n    Check if any number appears three times in a row in the list arr.\n    Return 'Yes' if found, 'No' otherwise.\n    \"\"\"\n    for i in range(len(arr) - 2):\n        if arr[i] == arr[i + 1] == arr[i + 2]:\n            return 'Yes'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "[1, 4, 4, 4, 2]",
+          "function_call": "check_triple_four([1, 4, 4, 4, 2])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[2, 4, 4, 2, 2, 4]",
+          "function_call": "check_triple_four([2, 4, 4, 2, 2, 4])",
+          "expected": "No"
+        },
+        {
+          "input": "[1, 4, 2, 5, 7, 7, 7, 2]",
+          "function_call": "check_triple_four([1, 4, 2, 5, 7, 7, 7, 2])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+          "function_call": "check_triple_four([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])",
+          "expected": "No"
+        },
+        {
+          "input": "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+          "function_call": "check_triple_four([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "check_triple_four"
     },
     {
       "url": "https://atcoder.jp/contests/abc395/tasks/abc395_a",
@@ -851,7 +1271,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:02.853711"
+      "processed_at": "2025-08-09T14:12:02.853711",
+      "starter_code": "def is_strictly_increasing(arr):\n    \"\"\"\n    Check if the list arr is strictly increasing.\n    Return 'Yes' if it is, 'No' otherwise.\n    \"\"\"\n    for i in range(len(arr) - 1):\n        if arr[i] >= arr[i + 1]:\n            return 'No'\n    return 'Yes'",
+      "test_cases": [
+        {
+          "input": "[1, 2, 5]",
+          "function_call": "is_strictly_increasing([1, 2, 5])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[3, 9, 5]",
+          "function_call": "is_strictly_increasing([3, 9, 5])",
+          "expected": "No"
+        },
+        {
+          "input": "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+          "function_call": "is_strictly_increasing([1, 1, 2, 3, 5, 8, 13, 21, 34, 55])",
+          "expected": "No"
+        }
+      ],
+      "function_name": "is_strictly_increasing"
     },
     {
       "url": "https://atcoder.jp/contests/abc394/tasks/abc394_a",
@@ -890,7 +1329,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:06.437521"
+      "processed_at": "2025-08-09T14:12:06.437521",
+      "starter_code": "def keep_only_twos(s):\n    \"\"\"\n    Remove all characters from the string s except for '2'.\n    Return the new string containing only '2's in the original order.\n    \"\"\"\n    return ''.join([char for char in s if char == '2'])",
+      "test_cases": [
+        {
+          "input": "'20250222'",
+          "function_call": "keep_only_twos('20250222')",
+          "expected": "22222"
+        },
+        {
+          "input": "'2'",
+          "function_call": "keep_only_twos('2')",
+          "expected": "2"
+        },
+        {
+          "input": "'22222000111222222'",
+          "function_call": "keep_only_twos('22222000111222222')",
+          "expected": "22222222222"
+        }
+      ],
+      "function_name": "keep_only_twos"
     },
     {
       "url": "https://atcoder.jp/contests/abc393/tasks/abc393_a",
@@ -925,7 +1383,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:09.714282"
+      "processed_at": "2025-08-09T14:12:09.714282",
+      "starter_code": "def find_poisonous_oyster(s1, s2):\n    \"\"\"\n    Determine which type of oyster causes sickness based on the input strings.\n    Return the number of the poisonous oyster.\n    \"\"\"\n    if s1 == 'sick' and s2 == 'fine':\n        return 2\n    elif s1 == 'fine' and s2 == 'sick':\n        return 3\n    elif s1 == 'fine' and s2 == 'fine':\n        return 4\n    else:\n        return 1",
+      "test_cases": [
+        {
+          "input": "'sick fine'",
+          "function_call": "find_poisonous_oyster('sick', 'fine')",
+          "expected": 2
+        },
+        {
+          "input": "'fine fine'",
+          "function_call": "find_poisonous_oyster('fine', 'fine')",
+          "expected": 4
+        },
+        {
+          "input": "'fine sick'",
+          "function_call": "find_poisonous_oyster('fine', 'sick')",
+          "expected": 3
+        },
+        {
+          "input": "'sick sick'",
+          "function_call": "find_poisonous_oyster('sick', 'sick')",
+          "expected": 1
+        }
+      ],
+      "function_name": "find_poisonous_oyster"
     },
     {
       "url": "https://atcoder.jp/contests/abc392/tasks/abc392_a",
@@ -961,7 +1443,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:13.151428"
+      "processed_at": "2025-08-09T14:12:13.151428",
+      "starter_code": "def can_multiply_to_equal_third(a, b, c):\n    \"\"\"\n    Check if any permutation of (a, b, c) can satisfy the equation B1 * B2 = B3.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    return 'Yes' if (a * b == c) or (a * c == b) or (b * c == a) else 'No'",
+      "test_cases": [
+        {
+          "input": "3, 15, 5",
+          "function_call": "can_multiply_to_equal_third(3, 15, 5)",
+          "expected": "Yes"
+        },
+        {
+          "input": "5, 3, 2",
+          "function_call": "can_multiply_to_equal_third(5, 3, 2)",
+          "expected": "No"
+        },
+        {
+          "input": "3, 3, 9",
+          "function_call": "can_multiply_to_equal_third(3, 3, 9)",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "can_multiply_to_equal_third"
     },
     {
       "url": "https://atcoder.jp/contests/abc391/tasks/abc391_a",
@@ -996,7 +1497,36 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:16.274871"
+      "processed_at": "2025-08-09T14:12:16.274871",
+      "starter_code": "def find_opposite_direction(direction):\n    \"\"\"\n    Find the opposite direction for the given direction.\n    Return the opposite direction as a string.\n    \"\"\"\n    opposite_directions = {\n        'N': 'S',\n        'S': 'N',\n        'E': 'W',\n        'W': 'E',\n        'NE': 'SW',\n        'SW': 'NE',\n        'NW': 'SE',\n        'SE': 'NW'\n    }\n    return opposite_directions[direction]",
+      "test_cases": [
+        {
+          "input": "'N'",
+          "function_call": "find_opposite_direction('N')",
+          "expected": "S"
+        },
+        {
+          "input": "'SE'",
+          "function_call": "find_opposite_direction('SE')",
+          "expected": "NW"
+        },
+        {
+          "input": "'W'",
+          "function_call": "find_opposite_direction('W')",
+          "expected": "E"
+        },
+        {
+          "input": "'NW'",
+          "function_call": "find_opposite_direction('NW')",
+          "expected": "SE"
+        },
+        {
+          "input": "'S'",
+          "function_call": "find_opposite_direction('S')",
+          "expected": "N"
+        }
+      ],
+      "function_name": "find_opposite_direction"
     },
     {
       "url": "https://atcoder.jp/contests/abc390/tasks/abc390_a",
@@ -1040,7 +1570,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:20.747245"
+      "processed_at": "2025-08-09T14:12:20.747245",
+      "starter_code": "def can_sort_with_one_swap(arr):\n    \"\"\"\n    Check if the array can be sorted in ascending order by swapping exactly one pair of adjacent elements.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "[1, 2, 4, 3, 5]",
+          "function_call": "can_sort_with_one_swap([1, 2, 4, 3, 5])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[5, 3, 2, 4, 1]",
+          "function_call": "can_sort_with_one_swap([5, 3, 2, 4, 1])",
+          "expected": "No"
+        },
+        {
+          "input": "[1, 2, 3, 4, 5]",
+          "function_call": "can_sort_with_one_swap([1, 2, 3, 4, 5])",
+          "expected": "No"
+        },
+        {
+          "input": "[2, 1, 3, 4, 5]",
+          "function_call": "can_sort_with_one_swap([2, 1, 3, 4, 5])",
+          "expected": "Yes"
+        }
+      ],
+      "function_name": "can_sort_with_one_swap"
     },
     {
       "url": "https://atcoder.jp/contests/abc389/tasks/abc389_a",
@@ -1075,7 +1629,21 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:24.866836"
+      "processed_at": "2025-08-09T14:12:24.866836",
+      "starter_code": "def multiply_from_string(s):\n    \"\"\"\n    Multiply the two numbers in the string s formatted as 'NxM'.\n    Return the product as an integer.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "'3x8'",
+          "function_call": "multiply_from_string('3x8')",
+          "expected": 24
+        },
+        {
+          "input": "'9x9'",
+          "function_call": "multiply_from_string('9x9')",
+          "expected": 81
+        }
+      ],
+      "function_name": "multiply_from_string"
     },
     {
       "url": "https://atcoder.jp/contests/abc388/tasks/abc388_a",
@@ -1110,7 +1678,21 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:28.486015"
+      "processed_at": "2025-08-09T14:12:28.486015",
+      "starter_code": "def combine_first_letter_with_upc(s):\n    \"\"\"\n    Combine the first letter of the input string s with 'UPC'.\n    Return the concatenated result.\n    \"\"\"\n    return s[0] + 'UPC'",
+      "test_cases": [
+        {
+          "input": "'Kyoto'",
+          "function_call": "combine_first_letter_with_upc('Kyoto')",
+          "expected": "KUPC"
+        },
+        {
+          "input": "'Tohoku'",
+          "function_call": "combine_first_letter_with_upc('Tohoku')",
+          "expected": "TUPC"
+        }
+      ],
+      "function_name": "combine_first_letter_with_upc"
     },
     {
       "url": "https://atcoder.jp/contests/abc387/tasks/abc387_a",
@@ -1155,7 +1737,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:34.247251"
+      "processed_at": "2025-08-09T14:12:34.247251",
+      "starter_code": "def square_of_sum(a, b):\n    \"\"\"\n    Calculate the square of the sum of two positive integers a and b.\n    Return the result as an integer.\n    \"\"\"\n    return (a + b) ** 2",
+      "test_cases": [
+        {
+          "input": "20, 25",
+          "function_call": "square_of_sum(20, 25)",
+          "expected": 2025
+        },
+        {
+          "input": "30, 25",
+          "function_call": "square_of_sum(30, 25)",
+          "expected": 3025
+        },
+        {
+          "input": "45, 11",
+          "function_call": "square_of_sum(45, 11)",
+          "expected": 3136
+        },
+        {
+          "input": "2025, 1111",
+          "function_call": "square_of_sum(2025, 1111)",
+          "expected": 9834496
+        }
+      ],
+      "function_name": "square_of_sum"
     },
     {
       "url": "https://atcoder.jp/contests/abc386/tasks/abc386_a",
@@ -1203,7 +1809,36 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:37.568556"
+      "processed_at": "2025-08-09T14:12:37.568556",
+      "starter_code": "def can_form_full_house(cards):\n    \"\"\"\n    Check if adding one card to the given four cards can form a Full House.\n    Return 'Yes' if it can, 'No' otherwise.\n    \"\"\"\n    from collections import Counter\n    count = Counter(cards)\n    values = list(count.values())\n    if 4 in values:\n        return 'No'\n    if 3 in values:\n        return 'Yes'\n    if values.count(2) >= 1:\n        return 'Yes'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "[7, 7, 7, 1]",
+          "function_call": "can_form_full_house([7, 7, 7, 1])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[13, 12, 11, 10]",
+          "function_call": "can_form_full_house([13, 12, 11, 10])",
+          "expected": "No"
+        },
+        {
+          "input": "[3, 3, 5, 5]",
+          "function_call": "can_form_full_house([3, 3, 5, 5])",
+          "expected": "Yes"
+        },
+        {
+          "input": "[8, 8, 8, 8]",
+          "function_call": "can_form_full_house([8, 8, 8, 8])",
+          "expected": "No"
+        },
+        {
+          "input": "[1, 3, 4, 1]",
+          "function_call": "can_form_full_house([1, 3, 4, 1])",
+          "expected": "No"
+        }
+      ],
+      "function_name": "can_form_full_house"
     },
     {
       "url": "https://atcoder.jp/contests/abc385/tasks/abc385_a",
@@ -1242,7 +1877,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:40.949585"
+      "processed_at": "2025-08-09T14:12:40.949585",
+      "starter_code": "def can_split_into_equal_groups(a, b, c):\n    \"\"\"\n    Determine if the numbers a, b, and c can be split into two or more groups with equal sums.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    total = a + b + c\n    if a == b or b == c or a == c:\n        return 'Yes'\n    if total % 2 == 0:\n        half = total // 2\n        if (a + b == half) or (a + c == half) or (b + c == half):\n            return 'Yes'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "3, 8, 5",
+          "function_call": "can_split_into_equal_groups(3, 8, 5)",
+          "expected": "Yes"
+        },
+        {
+          "input": "2, 2, 2",
+          "function_call": "can_split_into_equal_groups(2, 2, 2)",
+          "expected": "Yes"
+        },
+        {
+          "input": "1, 2, 4",
+          "function_call": "can_split_into_equal_groups(1, 2, 4)",
+          "expected": "No"
+        }
+      ],
+      "function_name": "can_split_into_equal_groups"
     },
     {
       "url": "https://atcoder.jp/contests/abc384/tasks/abc384_a",
@@ -1285,7 +1939,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:44.022297"
+      "processed_at": "2025-08-09T14:12:44.022297",
+      "starter_code": "def replace_characters(n, c1, c2, s):\n    \"\"\"\n    Replace every character in s that is not c1 with c2.\n    Return the modified string.\n    \"\"\"\n    return ''.join(c2 if char != c1 else char for char in s)",
+      "test_cases": [
+        {
+          "input": "3, 'b', 'g', 'abc'",
+          "function_call": "replace_characters(3, 'b', 'g', 'abc')",
+          "expected": "gbg"
+        },
+        {
+          "input": "1, 's', 'h', 's'",
+          "function_call": "replace_characters(1, 's', 'h', 's')",
+          "expected": "s"
+        },
+        {
+          "input": "7, 'd', 'a', 'atcoder'",
+          "function_call": "replace_characters(7, 'd', 'a', 'atcoder')",
+          "expected": "aaaadaa"
+        },
+        {
+          "input": "10, 'b', 'a', 'acaabcabba'",
+          "function_call": "replace_characters(10, 'b', 'a', 'acaabcabba')",
+          "expected": "aaaabaabba"
+        }
+      ],
+      "function_name": "replace_characters"
     },
     {
       "url": "https://atcoder.jp/contests/abc383/tasks/abc383_a",
@@ -1325,7 +2003,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:48.832239"
+      "processed_at": "2025-08-09T14:12:48.832239",
+      "starter_code": "def remaining_water_in_humidifier(n, additions):\n    \"\"\"\n    Calculate the remaining water in the humidifier after all additions.\n    Each addition is a tuple of (time, volume).\n    \"\"\"\n    current_water = 0\n    last_time = 0\n\n    for time, volume in additions:\n        # Water evaporates since the last addition\n        if last_time < time:\n            current_water -= (time - last_time)\n        current_water = max(0, current_water)  # Water can't be negative\n        current_water += volume\n        last_time = time\n\n    return current_water",
+      "test_cases": [
+        {
+          "input": "4, [(1, 3), (3, 1), (4, 4), (7, 1)]",
+          "function_call": "remaining_water_in_humidifier(4, [(1, 3), (3, 1), (4, 4), (7, 1)])",
+          "expected": 3
+        },
+        {
+          "input": "3, [(1, 8), (10, 11), (21, 5)]",
+          "function_call": "remaining_water_in_humidifier(3, [(1, 8), (10, 11), (21, 5)])",
+          "expected": 5
+        },
+        {
+          "input": "10, [(2, 1), (22, 10), (26, 17), (29, 2), (45, 20), (47, 32), (72, 12), (75, 1), (81, 31), (97, 7)]",
+          "function_call": "remaining_water_in_humidifier(10, [(2, 1), (22, 10), (26, 17), (29, 2), (45, 20), (47, 32), (72, 12), (75, 1), (81, 31), (97, 7)])",
+          "expected": 57
+        }
+      ],
+      "function_name": "remaining_water_in_humidifier"
     },
     {
       "url": "https://atcoder.jp/contests/abc382/tasks/abc382_a",
@@ -1365,7 +2062,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:53.379420"
+      "processed_at": "2025-08-09T14:12:53.379420",
+      "starter_code": "def count_empty_boxes_after_days(n, d, s):\n    \"\"\"\n    Count how many boxes will be empty after d days of eating cookies from n boxes.\n    Each box is represented by a string s, where '@' indicates a cookie and '.' indicates an empty box.\n    \"\"\"\n    # Count the number of cookies\n    cookie_count = s.count('@')\n    # Calculate the number of empty boxes after d days\n    empty_boxes = n - (cookie_count - d)\n    return empty_boxes",
+      "test_cases": [
+        {
+          "input": "5 2\n.@@.@",
+          "function_call": "count_empty_boxes_after_days(5, 2, '.@@.@')",
+          "expected": 4
+        },
+        {
+          "input": "3 3\n@@@",
+          "function_call": "count_empty_boxes_after_days(3, 3, '@@@')",
+          "expected": 3
+        },
+        {
+          "input": "10 4\n@@@.@@.@@.",
+          "function_call": "count_empty_boxes_after_days(10, 4, '@@@.@@.@@.')",
+          "expected": 7
+        }
+      ],
+      "function_name": "count_empty_boxes_after_days"
     },
     {
       "url": "https://atcoder.jp/contests/abc381/tasks/abc381_a",
@@ -1409,7 +2125,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:12:57.188682"
+      "processed_at": "2025-08-09T14:12:57.188682",
+      "starter_code": "def is_eleven_twenty_two_string(s):\n    \"\"\"\n    Check if the string s is an 11/22 string.\n    Return 'Yes' if it is, 'No' otherwise.\n    \"\"\"\n    n = len(s)\n    if n % 2 == 0:\n        return 'No'\n    mid = n // 2\n    if s[:mid] == '1' * mid and s[mid] == '/' and s[mid + 1:] == '2' * mid:\n        return 'Yes'\n    return 'No'",
+      "test_cases": [
+        {
+          "input": "'11/22'",
+          "function_call": "is_eleven_twenty_two_string('11/22')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'/'",
+          "function_call": "is_eleven_twenty_two_string('/')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'1/22'",
+          "function_call": "is_eleven_twenty_two_string('1/22')",
+          "expected": "No"
+        },
+        {
+          "input": "'22/11'",
+          "function_call": "is_eleven_twenty_two_string('22/11')",
+          "expected": "No"
+        }
+      ],
+      "function_name": "is_eleven_twenty_two_string"
     },
     {
       "url": "https://atcoder.jp/contests/abc380/tasks/abc380_a",
@@ -1453,7 +2193,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:02.991936"
+      "processed_at": "2025-08-09T14:13:02.991936",
+      "starter_code": "def check_digit_conditions(n):\n    \"\"\"\n    Check if the 6-digit number n has exactly one '1', two '2's, and three '3's.\n    Return 'Yes' if it does, 'No' otherwise.\n    \"\"\"\n    from collections import Counter\n    count = Counter(str(n))\n    return 'Yes' if count['1'] == 1 and count['2'] == 2 and count['3'] == 3 else 'No'",
+      "test_cases": [
+        {
+          "input": "'123233'",
+          "function_call": "check_digit_conditions(123233)",
+          "expected": "Yes"
+        },
+        {
+          "input": "'123234'",
+          "function_call": "check_digit_conditions(123234)",
+          "expected": "No"
+        },
+        {
+          "input": "'323132'",
+          "function_call": "check_digit_conditions(323132)",
+          "expected": "Yes"
+        },
+        {
+          "input": "'500000'",
+          "function_call": "check_digit_conditions(500000)",
+          "expected": "No"
+        }
+      ],
+      "function_name": "check_digit_conditions"
     },
     {
       "url": "https://atcoder.jp/contests/abc379/tasks/abc379_a",
@@ -1489,7 +2253,36 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:07.114668"
+      "processed_at": "2025-08-09T14:13:07.114668",
+      "starter_code": "def rearrange_digits(n):\n    \"\"\"\n    Rearrange the digits of a three-digit number n.\n    Return two integers formed by the arrangements bca and cab.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "379",
+          "function_call": "rearrange_digits(379)",
+          "expected": "793 937"
+        },
+        {
+          "input": "919",
+          "function_call": "rearrange_digits(919)",
+          "expected": "199 991"
+        },
+        {
+          "input": "123",
+          "function_call": "rearrange_digits(123)",
+          "expected": "231 312"
+        },
+        {
+          "input": "456",
+          "function_call": "rearrange_digits(456)",
+          "expected": "564 645"
+        },
+        {
+          "input": "789",
+          "function_call": "rearrange_digits(789)",
+          "expected": "897 978"
+        }
+      ],
+      "function_name": "rearrange_digits"
     },
     {
       "url": "https://atcoder.jp/contests/abc378/tasks/abc378_a",
@@ -1529,7 +2322,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:10.334729"
+      "processed_at": "2025-08-09T14:13:10.334729",
+      "starter_code": "def max_pairs_of_balls(colors):\n    \"\"\"\n    Calculate the maximum number of pairs of balls that can be removed.\n    Each pair consists of two balls of the same color.\n    \"\"\"\n    from collections import Counter\n    count = Counter(colors)\n    return sum(v // 2 for v in count.values())",
+      "test_cases": [
+        {
+          "input": "[2, 1, 2, 1]",
+          "function_call": "max_pairs_of_balls([2, 1, 2, 1])",
+          "expected": 2
+        },
+        {
+          "input": "[4, 4, 4, 1]",
+          "function_call": "max_pairs_of_balls([4, 4, 4, 1])",
+          "expected": 1
+        },
+        {
+          "input": "[1, 2, 3, 4]",
+          "function_call": "max_pairs_of_balls([1, 2, 3, 4])",
+          "expected": 0
+        }
+      ],
+      "function_name": "max_pairs_of_balls"
     },
     {
       "url": "https://atcoder.jp/contests/abc377/tasks/abc377_a",
@@ -1572,7 +2384,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:12.802115"
+      "processed_at": "2025-08-09T14:13:12.802115",
+      "starter_code": "def can_rearrange_to_abc(s):\n    \"\"\"\n    Check if the string s can be rearranged to form 'ABC'.\n    Return 'Yes' if it can, 'No' otherwise.\n    \"\"\"\n    return 'Yes' if sorted(s) == sorted('ABC') else 'No'",
+      "test_cases": [
+        {
+          "input": "'BAC'",
+          "function_call": "can_rearrange_to_abc('BAC')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'AAC'",
+          "function_call": "can_rearrange_to_abc('AAC')",
+          "expected": "No"
+        },
+        {
+          "input": "'ABC'",
+          "function_call": "can_rearrange_to_abc('ABC')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'ARC'",
+          "function_call": "can_rearrange_to_abc('ARC')",
+          "expected": "No"
+        }
+      ],
+      "function_name": "can_rearrange_to_abc"
     },
     {
       "url": "https://atcoder.jp/contests/abc376/tasks/abc376_a",
@@ -1612,7 +2448,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:16.682480"
+      "processed_at": "2025-08-09T14:13:16.682480",
+      "starter_code": "def count_candies_received(n, c, t):\n    \"\"\"\n    Count how many candies can be received based on button presses and time intervals.\n    :param n: Number of times the button is pressed\n    :param c: Minimum time interval required to receive a candy\n    :param t: List of times when the button is pressed\n    :return: Number of candies received\n    \"\"\"\n    candies = 0\n    last_time = -c  # Initialize last_time to allow the first candy\n\n    for time in t:\n        if time - last_time >= c:\n            candies += 1\n            last_time = time\n\n    return candies",
+      "test_cases": [
+        {
+          "input": "6 5\r\n1 3 7 8 10 12",
+          "function_call": "count_candies_received(6, 5, [1, 3, 7, 8, 10, 12])",
+          "expected": 3
+        },
+        {
+          "input": "3 2\r\n0 2 4",
+          "function_call": "count_candies_received(3, 2, [0, 2, 4])",
+          "expected": 3
+        },
+        {
+          "input": "10 3\r\n0 3 4 6 9 12 15 17 19 20",
+          "function_call": "count_candies_received(10, 3, [0, 3, 4, 6, 9, 12, 15, 17, 19, 20])",
+          "expected": 7
+        }
+      ],
+      "function_name": "count_candies_received"
     },
     {
       "url": "https://atcoder.jp/contests/abc375/tasks/abc375_a",
@@ -1652,7 +2507,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:20.689162"
+      "processed_at": "2025-08-09T14:13:20.689162",
+      "starter_code": "def count_seat_patterns(n, s):\n    \"\"\"\n    Count the number of times there is a person sitting in seat i and seat i + 2,\n    with an empty seat in between (seat i + 1).\n    \"\"\"\n    count = 0\n    for i in range(n - 2):\n        if s[i] == '#' and s[i + 1] == '.' and s[i + 2] == '#':\n            count += 1\n    return count",
+      "test_cases": [
+        {
+          "input": "6, '#.##.#'",
+          "function_call": "count_seat_patterns(6, '#.##.#')",
+          "expected": 2
+        },
+        {
+          "input": "1, '#'",
+          "function_call": "count_seat_patterns(1, '#')",
+          "expected": 0
+        },
+        {
+          "input": "9, '##.#.#.##'",
+          "function_call": "count_seat_patterns(9, '##.#.#.##')",
+          "expected": 3
+        }
+      ],
+      "function_name": "count_seat_patterns"
     },
     {
       "url": "https://atcoder.jp/contests/abc374/tasks/abc374_a",
@@ -1687,7 +2561,36 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:23.849730"
+      "processed_at": "2025-08-09T14:13:23.849730",
+      "starter_code": "def ends_with_san(s):\n    \"\"\"\n    Check if the string s ends with 'san'.\n    Return 'Yes' if it does, 'No' otherwise.\n    \"\"\"\n    return 'Yes' if s.endswith('san') else 'No'",
+      "test_cases": [
+        {
+          "input": "'takahashisan'",
+          "function_call": "ends_with_san('takahashisan')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'aokikun'",
+          "function_call": "ends_with_san('aokikun')",
+          "expected": "No"
+        },
+        {
+          "input": "'sanjay'",
+          "function_call": "ends_with_san('sanjay')",
+          "expected": "No"
+        },
+        {
+          "input": "'konnichiwasan'",
+          "function_call": "ends_with_san('konnichiwasan')",
+          "expected": "Yes"
+        },
+        {
+          "input": "'hello-san'",
+          "function_call": "ends_with_san('hello-san')",
+          "expected": "No"
+        }
+      ],
+      "function_name": "ends_with_san"
     },
     {
       "url": "https://atcoder.jp/contests/abc373/tasks/abc373_a",
@@ -1723,7 +2626,21 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:27.742023"
+      "processed_at": "2025-08-09T14:13:27.742023",
+      "starter_code": "def count_matching_word_lengths(words):\n    \"\"\"\n    Count how many words have a length that matches their position (1 to 12).\n    Return the count as an integer.\n    \"\"\"\n    count = 0\n    for i in range(12):\n        if len(words[i]) == i + 1:\n            count += 1\n    return count",
+      "test_cases": [
+        {
+          "input": "'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'",
+          "function_call": "count_matching_word_lengths(['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])",
+          "expected": 1
+        },
+        {
+          "input": "'ve', 'inrtfa', 'npccxva', 'djiq', 'lmbkktngaovl', 'mlfiv', 'fmbvcmuxuwggfq', 'qgmtwxmb', 'jii', 'ts', 'bfxrvs', 'eqvy'",
+          "function_call": "count_matching_word_lengths(['ve', 'inrtfa', 'npccxva', 'djiq', 'lmbkktngaovl', 'mlfiv', 'fmbvcmuxuwggfq', 'qgmtwxmb', 'jii', 'ts', 'bfxrvs', 'eqvy'])",
+          "expected": 2
+        }
+      ],
+      "function_name": "count_matching_word_lengths"
     },
     {
       "url": "https://atcoder.jp/contests/abc372/tasks/abc372_a",
@@ -1763,7 +2680,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:31.123904"
+      "processed_at": "2025-08-09T14:13:31.123904",
+      "starter_code": "def remove_dots(s):\n    \"\"\"\n    Remove all dots from the given string s.\n    Return the modified string without any dots.\n    \"\"\"\n    return s.replace('.', '')",
+      "test_cases": [
+        {
+          "input": "'.v.'",
+          "function_call": "remove_dots('.v.')",
+          "expected": "v"
+        },
+        {
+          "input": "'chokudai'",
+          "function_call": "remove_dots('chokudai')",
+          "expected": "chokudai"
+        },
+        {
+          "input": "'...'",
+          "function_call": "remove_dots('...')",
+          "expected": ""
+        }
+      ],
+      "function_name": "remove_dots"
     },
     {
       "url": "https://atcoder.jp/contests/abc371/tasks/abc371_a",
@@ -1798,7 +2734,21 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:34.508869"
+      "processed_at": "2025-08-09T14:13:34.508869",
+      "starter_code": "def find_second_oldest_brother(relations):\n    \"\"\"\n    Determine the second oldest brother based on the age relations.\n    relations is a string containing three characters ('<', '>') representing the age comparisons.\n    Return the name of the second oldest brother: 'A', 'B', or 'C'.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "'< < <'",
+          "function_call": "find_second_oldest_brother('< < <')",
+          "expected": "B"
+        },
+        {
+          "input": "'< < >'",
+          "function_call": "find_second_oldest_brother('< < >')",
+          "expected": "C"
+        }
+      ],
+      "function_name": "find_second_oldest_brother"
     },
     {
       "url": "https://atcoder.jp/contests/abc370/tasks/abc370_a",
@@ -1833,7 +2783,31 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:37.717371"
+      "processed_at": "2025-08-09T14:13:37.717371",
+      "starter_code": "def check_hand_position(L, R):\n    \"\"\"\n    Determine Snuke's intention based on the hands raised.\n    Return 'Yes' if only left hand is raised,\n    'No' if only right hand is raised,\n    and 'Invalid' if both hands or no hands are raised.\n    \"\"\"\n    if L == 1 and R == 0:\n        return 'Yes'\n    elif L == 0 and R == 1:\n        return 'No'\n    else:\n        return 'Invalid'",
+      "test_cases": [
+        {
+          "input": "1, 0",
+          "function_call": "check_hand_position(1, 0)",
+          "expected": "Yes"
+        },
+        {
+          "input": "0, 1",
+          "function_call": "check_hand_position(0, 1)",
+          "expected": "No"
+        },
+        {
+          "input": "1, 1",
+          "function_call": "check_hand_position(1, 1)",
+          "expected": "Invalid"
+        },
+        {
+          "input": "0, 0",
+          "function_call": "check_hand_position(0, 0)",
+          "expected": "Invalid"
+        }
+      ],
+      "function_name": "check_hand_position"
     },
     {
       "url": "https://atcoder.jp/contests/abc369/tasks/abc369_a",
@@ -1873,7 +2847,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:41.198193"
+      "processed_at": "2025-08-09T14:13:41.198193",
+      "starter_code": "def count_arithmetic_sequence_numbers(a, b):\n    \"\"\"\n    Count how many integers x can be arranged with a and b to form an arithmetic sequence.\n    Return the count of such integers.\n    \"\"\"\n    # Your code here\n    pass",
+      "test_cases": [
+        {
+          "input": "5, 7",
+          "function_call": "count_arithmetic_sequence_numbers(5, 7)",
+          "expected": 3
+        },
+        {
+          "input": "6, 1",
+          "function_call": "count_arithmetic_sequence_numbers(6, 1)",
+          "expected": 2
+        },
+        {
+          "input": "3, 3",
+          "function_call": "count_arithmetic_sequence_numbers(3, 3)",
+          "expected": 1
+        }
+      ],
+      "function_name": "count_arithmetic_sequence_numbers"
     },
     {
       "url": "https://atcoder.jp/contests/abc368/tasks/abc368_a",
@@ -1909,7 +2902,21 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:44.812480"
+      "processed_at": "2025-08-09T14:13:44.812480",
+      "starter_code": "def cut_cards(n, k, cards):\n    \"\"\"\n    Rearrange the stack of cards by moving the bottom k cards to the top.\n    Return the new order of cards from top to bottom as a space-separated string.\n    \"\"\"\n    return ' '.join(cards[-k:] + cards[:-k])",
+      "test_cases": [
+        {
+          "input": "5 3\r\n1 2 3 4 5",
+          "function_call": "cut_cards(5, 3, [1, 2, 3, 4, 5])",
+          "expected": "3 4 5 1 2"
+        },
+        {
+          "input": "6 2\r\n1 2 1 2 1 2",
+          "function_call": "cut_cards(6, 2, [1, 2, 1, 2, 1, 2])",
+          "expected": "1 2 1 2 1 2"
+        }
+      ],
+      "function_name": "cut_cards"
     },
     {
       "url": "https://atcoder.jp/contests/abc367/tasks/abc367_a",
@@ -1948,7 +2955,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:48.018186"
+      "processed_at": "2025-08-09T14:13:48.018186",
+      "starter_code": "def can_shout_love_for_takoyaki(a, b, c):\n    \"\"\"\n    Determine if Takahashi can shout his love for takoyaki at a o'clock given his sleep schedule.\n    Return 'Yes' if he can shout, 'No' otherwise.\n    \"\"\"\n    if b < c:\n        return 'Yes' if b <= a < c else 'No'\n    else:\n        return 'Yes' if a >= b or a < c else 'No'",
+      "test_cases": [
+        {
+          "input": "21 8 14",
+          "function_call": "can_shout_love_for_takoyaki(21, 8, 14)",
+          "expected": "Yes"
+        },
+        {
+          "input": "0 21 7",
+          "function_call": "can_shout_love_for_takoyaki(0, 21, 7)",
+          "expected": "No"
+        },
+        {
+          "input": "10 7 17",
+          "function_call": "can_shout_love_for_takoyaki(10, 7, 17)",
+          "expected": "No"
+        }
+      ],
+      "function_name": "can_shout_love_for_takoyaki"
     },
     {
       "url": "https://atcoder.jp/contests/abc366/tasks/abc366_a",
@@ -1988,7 +3014,26 @@
         ],
         "estimated_difficulty": 2
       },
-      "processed_at": "2025-08-09T14:13:51.986290"
+      "processed_at": "2025-08-09T14:13:51.986290",
+      "starter_code": "def is_election_decided(n, t, a):\n    \"\"\"\n    Determine if the election outcome is already decided.\n    Return 'Yes' if Takahashi's victory is certain, 'No' otherwise.\n    \"\"\"\n    remaining_votes = n - (t + a)\n    if t > a + remaining_votes:\n        return 'Yes'\n    else:\n        return 'No'",
+      "test_cases": [
+        {
+          "input": "7, 4, 2",
+          "function_call": "is_election_decided(7, 4, 2)",
+          "expected": "Yes"
+        },
+        {
+          "input": "99, 12, 48",
+          "function_call": "is_election_decided(99, 12, 48)",
+          "expected": "No"
+        },
+        {
+          "input": "1, 0, 0",
+          "function_call": "is_election_decided(1, 0, 0)",
+          "expected": "No"
+        }
+      ],
+      "function_name": "is_election_decided"
     }
   ]
 }

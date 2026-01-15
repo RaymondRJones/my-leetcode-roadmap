@@ -141,16 +141,24 @@ def beginner_view():
     return render_template('beginner.html', atcoder_data=roadmap_service.get_atcoder_problems())
 
 
-@main_bp.route('/problem/<int:problem_id>')
-def problem_detail(problem_id):
-    """Detailed view for a specific beginner problem."""
+@main_bp.route('/beginner/problem/<int:problem_id>')
+def beginner_problem_editor(problem_id):
+    """Interactive problem editor for beginner problems."""
     roadmap_service = current_app.roadmap
     problems = roadmap_service.get_atcoder_problems().get('problems', [])
+
     if 0 <= problem_id < len(problems):
         problem = problems[problem_id]
-        return render_template('problem_detail.html', problem=problem, problem_id=problem_id)
-    else:
-        return "Problem not found", 404
+        total_problems = len(problems)
+        return render_template(
+            'beginner/problem.html',
+            problem=problem,
+            problem_id=problem_id,
+            total_problems=total_problems,
+            prev_id=problem_id - 1 if problem_id > 0 else None,
+            next_id=problem_id + 1 if problem_id < total_problems - 1 else None
+        )
+    return "Problem not found", 404
 
 
 @main_bp.route('/roadmap')
