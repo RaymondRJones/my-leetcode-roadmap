@@ -44,13 +44,13 @@ COURSES: List[Course] = [
     ),
     Course(
         title='Fortune500 Roadmap',
-        description='Intermediate preparation for mid-tier companies. Month 1 is free, complete all 3 months to master mid-level interviews.',
+        description='Intermediate preparation for mid-tier companies. Master 3 months of curated problems for mid-level interviews.',
         route='/intermediate',
         icon='rocket_launch',
         label='LEVEL 2',
         image_url='/static/images/course-intermediate.jpg',
-        is_premium=True,
-        course_type='course-premium',
+        is_premium=False,
+        course_type='course-free',
         duration='3 months',
         problem_count='80 problems',
         level='Intermediate',
@@ -71,62 +71,6 @@ COURSES: List[Course] = [
         order=3
     ),
     Course(
-        title='FAANG+ Roadmap',
-        description="Raymond's exact path to top 2% on LeetCode. Advanced problems for FAANG and top-tier company preparation.",
-        route='/advanced',
-        icon='star',
-        label='LEVEL 3',
-        image_url='/static/images/course-advanced.jpg',
-        is_premium=True,
-        course_type='course-premium',
-        duration='6+ months',
-        problem_count='790+ problems',
-        level='Advanced',
-        order=4
-    ),
-    Course(
-        title='Ray700 Complete List',
-        description='Custom study plan generator with 700+ curated problems. Filter by difficulty, topics, and create your personalized roadmap.',
-        route='/complete-list',
-        icon='tune',
-        label='MASTER COLLECTION',
-        image_url='/static/images/course-ray700.jpg',
-        is_premium=True,
-        course_type='course-premium',
-        duration='Flexible',
-        problem_count='700+ problems',
-        level='All Levels',
-        order=5
-    ),
-    Course(
-        title='Resume + LinkedIn Guide',
-        description='My exact resume and LinkedIn profile that landed me offers at Fortune 1 companies. Step-by-step templates and strategies.',
-        route='/guides',
-        icon='description',
-        label='CAREER DOCS',
-        image_url='/static/images/course-resume.jpg',
-        is_premium=True,
-        course_type='course-premium',
-        duration='2-4 hours',
-        problem_count='Templates',
-        level='All Levels',
-        order=6
-    ),
-    Course(
-        title='System Design Guide',
-        description='Master system design interviews with real-world examples, architecture patterns, and scalability principles.',
-        route='/guides',
-        icon='account_tree',
-        label='ARCHITECTURE',
-        image_url='/static/images/course-system-design.jpg',
-        is_premium=True,
-        course_type='course-premium',
-        duration='4-8 weeks',
-        problem_count='Design patterns',
-        level='Advanced',
-        order=7
-    ),
-    Course(
         title='28-Day LeetCode Challenge',
         description='Transform your coding skills in 28 days. Solve curated problems, track progress, earn achievements, and compete on the leaderboard.',
         route='/challenge',
@@ -138,7 +82,7 @@ COURSES: List[Course] = [
         duration='28 days',
         problem_count='28 problems',
         level='All Levels',
-        order=8
+        order=4
     ),
     Course(
         title='Python Assessment',
@@ -152,7 +96,7 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
-        order=9
+        order=5
     ),
     Course(
         title='Java Assessment',
@@ -166,6 +110,62 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
+        order=6
+    ),
+    Course(
+        title='FAANG+ Roadmap',
+        description="Raymond's exact path to top 2% on LeetCode. Advanced problems for FAANG and top-tier company preparation.",
+        route='/advanced',
+        icon='star',
+        label='LEVEL 3',
+        image_url='/static/images/course-advanced.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='6+ months',
+        problem_count='790+ problems',
+        level='Advanced',
+        order=7
+    ),
+    Course(
+        title='Ray700 Complete List',
+        description='Custom study plan generator with 700+ curated problems. Filter by difficulty, topics, and create your personalized roadmap.',
+        route='/complete-list',
+        icon='tune',
+        label='MASTER COLLECTION',
+        image_url='/static/images/course-ray700.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='Flexible',
+        problem_count='700+ problems',
+        level='All Levels',
+        order=8
+    ),
+    Course(
+        title='Resume + LinkedIn Guide',
+        description='My exact resume and LinkedIn profile that landed me offers at Fortune 1 companies. Step-by-step templates and strategies.',
+        route='/guides',
+        icon='description',
+        label='CAREER DOCS',
+        image_url='/static/images/course-resume.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='2-4 hours',
+        problem_count='Templates',
+        level='All Levels',
+        order=9
+    ),
+    Course(
+        title='System Design Guide',
+        description='Master system design interviews with real-world examples, architecture patterns, and scalability principles.',
+        route='/guides',
+        icon='account_tree',
+        label='ARCHITECTURE',
+        image_url='/static/images/course-system-design.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='4-8 weeks',
+        problem_count='Design patterns',
+        level='Advanced',
         order=10
     ),
 ]
