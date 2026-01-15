@@ -24,6 +24,9 @@ class Config:
     # OpenAI
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
+    # Resend (Email)
+    RESEND_API_KEY = os.environ.get('RESEND_API_KEY')
+
     # Server
     PORT = int(os.environ.get('PORT', 5002))
 
