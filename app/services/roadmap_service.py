@@ -39,8 +39,8 @@ class RoadmapService:
 
     def _load_intermediate_roadmap_data(self):
         """Load intermediate roadmap data from JSON file."""
-        if os.path.exists('intermediate_roadmap_data.json'):
-            with open('intermediate_roadmap_data.json', 'r', encoding='utf-8') as f:
+        if os.path.exists('intermediate_roadmap_data_v2.json'):
+            with open('intermediate_roadmap_data_v2.json', 'r', encoding='utf-8') as f:
                 self.intermediate_roadmap_data = json.load(f)
         else:
             print("No intermediate roadmap data found. Run pdf analyzer for intermediate PDFs first.")
