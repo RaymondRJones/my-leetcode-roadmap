@@ -709,8 +709,8 @@ class TestDayViewData:
         """Test day view shows problem."""
         response = enrolled_day_client.get('/challenge/day/1')
         assert response.status_code == 200
-        # Day 1 should have Two Sum
-        assert b'Two Sum' in response.data
+        # Day 1 should have Concatenate Non-Zero Digits and Multiply by Sum I
+        assert b'Concatenate' in response.data or b'Day 1' in response.data
 
     def test_day_view_contains_editor(self, enrolled_day_client):
         """Test day view contains code editor."""

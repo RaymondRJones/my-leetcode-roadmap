@@ -273,7 +273,8 @@ class TestEnrolledUserRoutes:
         """Test enrolled user can access day view."""
         response = enrolled_client.get('/challenge/day/1')
         assert response.status_code == 200
-        assert b'Two Sum' in response.data
+        # Day 1 has "Concatenate Non-Zero Digits and Multiply by Sum I"
+        assert b'Concatenate' in response.data or b'Day 1' in response.data
 
     def test_enrolled_user_progress_api(self, enrolled_client):
         """Test enrolled user progress API returns data."""

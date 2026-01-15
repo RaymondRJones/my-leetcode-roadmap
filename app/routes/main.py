@@ -126,7 +126,7 @@ def intermediate_month_view(month_name):
         if not user:
             return redirect('/landing')
         if not has_premium_access(user) and not is_allowed_user(user):
-            return redirect('https://raymond-site.vercel.app/leetcode-roadmap')
+            return redirect('/landing')
 
     roadmap_service = current_app.roadmap
     ordered_data = roadmap_service.get_ordered_intermediate_roadmap_data()

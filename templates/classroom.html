@@ -6,11 +6,21 @@
 <!-- Course Cards Grid -->
 <div class="row">
     {% for course in courses %}
+    {% set is_locked = course.is_premium and not (has_premium or is_allowed) %}
     <div class="col-lg-4 col-md-6 mb-4">
-        <a href="{{ course.route }}" style="text-decoration: none; color: inherit;" aria-label="Go to {{ course.title }} course">
-            <div class="course-card {{ course.course_type }} fade-in-up h-100"
+        <a href="{{ '/landing' if is_locked else course.route }}" style="text-decoration: none; color: inherit;" aria-label="{{ 'Unlock ' if is_locked else 'Go to ' }}{{ course.title }} course">
+            <div class="course-card {{ course.course_type }} fade-in-up h-100 {% if is_locked %}locked-card{% endif %}"
                  style="animation-delay: {{ loop.index0 * 0.1 + 0.2 }}s;"
                  {% if course.is_premium %}data-protected="premium"{% endif %}>
+
+                {% if is_locked %}
+                <!-- Lock Overlay -->
+                <div class="course-lock-overlay">
+                    <div class="lock-icon-circle">
+                        <span class="material-icons">lock</span>
+                    </div>
+                </div>
+                {% endif %}
 
                 <!-- Course Image -->
                 <div class="course-card-image">
@@ -67,7 +77,10 @@
 
                     <!-- Call to Action Button -->
                     <button class="btn btn-primary w-100">
-                        {% if course.is_premium %}
+                        {% if is_locked %}
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">lock</span>
+                            Unlock Course
+                        {% elif course.is_premium %}
                             <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">lock_open</span>
                             View Course
                         {% else %}

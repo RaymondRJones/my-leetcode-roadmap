@@ -260,10 +260,14 @@
         }
 
         .course-card:nth-child(8) .course-card-image {
-            background: linear-gradient(135deg, #4c8ead 0%, #5e81ac 100%); /* Deep Blue for Python */
+            background: linear-gradient(135deg, #ebcb8b 0%, #a3be8c 100%); /* Gold-Green for Challenge */
         }
 
         .course-card:nth-child(9) .course-card-image {
+            background: linear-gradient(135deg, #4c8ead 0%, #5e81ac 100%); /* Deep Blue for Python */
+        }
+
+        .course-card:nth-child(10) .course-card-image {
             background: linear-gradient(135deg, #d08770 0%, #bf616a 100%); /* Orange-Red for Java */
         }
 
@@ -363,6 +367,91 @@
 
             .course-card-content {
                 padding: 20px;
+            }
+        }
+
+        /* Locked Course Card Overlay */
+        .course-card.locked-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .course-card.locked-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(46, 52, 64, 0.4);
+            border-radius: 16px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .course-card.locked-card:hover {
+            box-shadow: var(--md-elevation-4);
+            transform: translateY(-4px);
+        }
+
+        .course-card.locked-card:hover::after {
+            background: rgba(46, 52, 64, 0.3);
+        }
+
+        .course-lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .lock-icon-circle {
+            background: rgba(76, 86, 106, 0.95);
+            color: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(76, 86, 106, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .lock-icon-circle .material-icons {
+            font-size: 36px;
+        }
+
+        .course-card.locked-card:hover .lock-icon-circle {
+            transform: scale(1.1);
+        }
+
+        /* Mobile responsive adjustments for lock overlay */
+        @media (max-width: 768px) {
+            .lock-icon-circle {
+                width: 60px;
+                height: 60px;
+            }
+
+            .lock-icon-circle .material-icons {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .lock-icon-circle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .lock-icon-circle .material-icons {
+                font-size: 24px;
             }
         }
 

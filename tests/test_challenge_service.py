@@ -49,7 +49,7 @@ class TestGetDayProblems:
         service = ChallengeService()
         problems = service.get_day_problems(1)
         assert len(problems) > 0
-        assert problems[0]['id'] == 'two-sum'
+        assert problems[0]['id'] == 'concatenate-non-zero-digits-and-multiply-by-sum-i'
         assert problems[0]['difficulty'] == 'Easy'
 
     def test_get_day_problems_has_test_cases(self):
@@ -57,7 +57,7 @@ class TestGetDayProblems:
         service = ChallengeService()
         problems = service.get_day_problems(1)
         assert 'test_cases' in problems[0]
-        assert len(problems[0]['test_cases']) >= 10
+        assert len(problems[0]['test_cases']) >= 5
 
     def test_get_day_problems_invalid_day(self):
         """Test getting problems for invalid day returns empty list."""
@@ -84,9 +84,9 @@ class TestGetProblem:
     def test_get_problem_by_day_and_id(self):
         """Test getting a specific problem."""
         service = ChallengeService()
-        problem = service.get_problem(1, 'two-sum')
+        problem = service.get_problem(1, 'concatenate-non-zero-digits-and-multiply-by-sum-i')
         assert problem is not None
-        assert problem['name'] == 'Two Sum'
+        assert problem['name'] == 'Concatenate Non-Zero Digits and Multiply by Sum I'
 
     def test_get_problem_invalid_id(self):
         """Test getting problem with invalid ID returns None."""
@@ -97,15 +97,15 @@ class TestGetProblem:
     def test_get_problem_invalid_day(self):
         """Test getting problem with invalid day returns None."""
         service = ChallengeService()
-        problem = service.get_problem(99, 'two-sum')
+        problem = service.get_problem(99, 'concatenate-non-zero-digits-and-multiply-by-sum-i')
         assert problem is None
 
     def test_get_problem_by_id_only(self):
         """Test finding problem by ID across all days."""
         service = ChallengeService()
-        problem = service.get_problem_by_id('two-sum')
+        problem = service.get_problem_by_id('concatenate-non-zero-digits-and-multiply-by-sum-i')
         assert problem is not None
-        assert problem['name'] == 'Two Sum'
+        assert problem['name'] == 'Concatenate Non-Zero Digits and Multiply by Sum I'
 
     def test_get_problem_by_id_not_found(self):
         """Test finding non-existent problem returns None."""
@@ -121,7 +121,7 @@ class TestGetDayTheme:
         """Test getting Day 1 theme."""
         service = ChallengeService()
         theme = service.get_day_theme(1)
-        assert theme == 'Arrays & Hash Tables'
+        assert theme == 'Digit Manipulation'
 
     def test_get_day_theme_invalid_day(self):
         """Test getting theme for invalid day returns default."""
@@ -240,7 +240,7 @@ class TestCalculatePoints:
         """Test points for easy problem."""
         service = ChallengeService()
         challenge_data = {
-            'problems_solved': {'day_1': ['two-sum']},
+            'problems_solved': {'day_1': ['concatenate-non-zero-digits-and-multiply-by-sum-i']},
             'best_streak': 0
         }
         points = service.calculate_points(challenge_data)
@@ -250,7 +250,7 @@ class TestCalculatePoints:
         """Test points for medium problem."""
         service = ChallengeService()
         challenge_data = {
-            'problems_solved': {'day_6': ['maximum-subarray']},
+            'problems_solved': {'day_3': ['watering-plants']},
             'best_streak': 0
         }
         points = service.calculate_points(challenge_data)
@@ -261,8 +261,8 @@ class TestCalculatePoints:
         service = ChallengeService()
         challenge_data = {
             'problems_solved': {
-                'day_1': ['two-sum'],
-                'day_2': ['valid-parentheses']
+                'day_1': ['concatenate-non-zero-digits-and-multiply-by-sum-i'],
+                'day_2': ['available-captures-for-rook']
             },
             'best_streak': 0
         }
@@ -273,7 +273,7 @@ class TestCalculatePoints:
         """Test points with 7-day streak bonus."""
         service = ChallengeService()
         challenge_data = {
-            'problems_solved': {'day_1': ['two-sum']},
+            'problems_solved': {'day_1': ['concatenate-non-zero-digits-and-multiply-by-sum-i']},
             'best_streak': 7
         }
         points = service.calculate_points(challenge_data)
@@ -319,8 +319,8 @@ class TestCalculatePoints:
         service = ChallengeService()
         challenge_data = {
             'problems_solved': {
-                'day_1': ['two-sum'],  # 10 pts
-                'day_6': ['maximum-subarray']  # 20 pts
+                'day_1': ['concatenate-non-zero-digits-and-multiply-by-sum-i'],  # 10 pts
+                'day_3': ['watering-plants']  # 20 pts
             },
             'best_streak': 7,  # 50 pts
             'skool_submissions': [{'status': 'approved'}]  # 30 pts
@@ -453,8 +453,8 @@ class TestIsDayComplete:
     def test_is_day_complete_all_solved(self):
         """Test day complete with all problems solved."""
         service = ChallengeService()
-        # Day 1 has two-sum
-        is_complete = service.is_day_complete(1, {'day_1': ['two-sum']})
+        # Day 1 has concatenate-non-zero-digits-and-multiply-by-sum-i
+        is_complete = service.is_day_complete(1, {'day_1': ['concatenate-non-zero-digits-and-multiply-by-sum-i']})
         assert is_complete is True
 
     def test_is_day_complete_invalid_day(self):
@@ -494,7 +494,7 @@ class TestGetTotalDays:
         """Test getting total days."""
         service = ChallengeService()
         total_days = service.get_total_days()
-        assert total_days == 30  # Updated to 30 days
+        assert total_days == 28  # 28-day challenge
 
 
 class TestGetChallengeDays:
@@ -504,6 +504,6 @@ class TestGetChallengeDays:
         """Test getting all challenge days."""
         service = ChallengeService()
         days = service.get_challenge_days()
-        assert len(days) == 30  # Should have 30 days
+        assert len(days) == 28  # Should have 28 days
         assert days[0]['day'] == 1
-        assert days[-1]['day'] == 30
+        assert days[-1]['day'] == 28

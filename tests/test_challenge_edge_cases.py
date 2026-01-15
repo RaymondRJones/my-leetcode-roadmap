@@ -510,8 +510,8 @@ class TestGetDayProblemsValidation:
             assert 'test_cases' in problem
             assert len(problem['test_cases']) > 0
 
-    def test_all_30_days_have_problems(self, service):
-        """Test all 30 days have problems."""
-        for day in range(1, 31):
+    def test_all_28_days_have_problems(self, service):
+        """Test all 28 days have problems."""
+        for day in range(1, 29):
             problems = service.get_day_problems(day)
             assert len(problems) >= 1, f"Day {day} has no problems"

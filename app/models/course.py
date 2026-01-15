@@ -38,7 +38,7 @@ COURSES: List[Course] = [
         is_premium=False,
         course_type='course-free',
         duration='4-8 weeks',
-        problem_count='200+ problems',
+        problem_count='50 problems',
         level='Beginner',
         order=1
     ),
@@ -52,7 +52,7 @@ COURSES: List[Course] = [
         is_premium=True,
         course_type='course-premium',
         duration='3 months',
-        problem_count='300+ problems',
+        problem_count='80 problems',
         level='Intermediate',
         order=2
     ),
@@ -80,7 +80,7 @@ COURSES: List[Course] = [
         is_premium=True,
         course_type='course-premium',
         duration='6+ months',
-        problem_count='400+ problems',
+        problem_count='790+ problems',
         level='Advanced',
         order=4
     ),
@@ -127,6 +127,20 @@ COURSES: List[Course] = [
         order=7
     ),
     Course(
+        title='28-Day LeetCode Challenge',
+        description='Transform your coding skills in 28 days. Solve curated problems, track progress, earn achievements, and compete on the leaderboard.',
+        route='/challenge',
+        icon='emoji_events',
+        label='CHALLENGE',
+        image_url='/static/images/course-challenge.jpg',
+        is_premium=False,
+        course_type='course-free',
+        duration='28 days',
+        problem_count='28 problems',
+        level='All Levels',
+        order=8
+    ),
+    Course(
         title='Python Assessment',
         description='Test your Python knowledge with 20 multiple-choice questions. Evaluate your skills in syntax, data structures, and OOP concepts.',
         route='/python-assessment',
@@ -138,7 +152,7 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
-        order=8
+        order=9
     ),
     Course(
         title='Java Assessment',
@@ -152,7 +166,7 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
-        order=9
+        order=10
     ),
 ]
 
