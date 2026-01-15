@@ -9,9 +9,6 @@ from flask import current_app
 class EmailService:
     """Service for sending emails via Resend."""
 
-    # Default sender - update this when you have a verified domain
-    DEFAULT_FROM = "onboarding@resend.dev"
-
     @classmethod
     def _get_api_key(cls):
         """Get API key from app config or environment."""
@@ -20,6 +17,15 @@ class EmailService:
         except RuntimeError:
             # Outside of app context
             return os.environ.get('RESEND_API_KEY')
+
+    @classmethod
+    def _get_from_email(cls):
+        """Get FROM email from app config or environment."""
+        try:
+            return current_app.config.get('RESEND_FROM_EMAIL') or os.environ.get('RESEND_FROM_EMAIL', 'onboarding@resend.dev')
+        except RuntimeError:
+            # Outside of app context
+            return os.environ.get('RESEND_FROM_EMAIL', 'onboarding@resend.dev')
 
     @classmethod
     def send_email(cls, to: str, subject: str, html: str, from_email: str = None) -> dict:
@@ -43,7 +49,7 @@ class EmailService:
 
         try:
             result = resend.Emails.send({
-                "from": from_email or cls.DEFAULT_FROM,
+                "from": from_email or cls._get_from_email(),
                 "to": to,
                 "subject": subject,
                 "html": html
@@ -164,6 +170,80 @@ class EmailService:
         return cls.send_email(
             to=to,
             subject="You're enrolled in the 28-Day Challenge!",
+            html=html
+        )
+
+    @classmethod
+    def send_purchase_confirmation_email(cls, to: str, product_name: str = None) -> dict:
+        """
+        Send purchase confirmation email after successful Stripe payment.
+
+        Args:
+            to: Recipient email address
+            product_name: Name of the purchased product (optional)
+
+        Returns:
+            dict with 'success' boolean and 'id' or 'error'
+        """
+        product_info = f" ({product_name})" if product_name else ""
+
+        html = f"""
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h1 style="color: #5E81AC; margin-bottom: 24px;">
+                Welcome to Your Software Engineering Journey! 🎉
+            </h1>
+
+            <p style="font-size: 16px; line-height: 1.6; color: #2E3440;">
+                Thank you for your purchase{product_info}! Your payment has been successfully processed,
+                and your digital products are now available.
+            </p>
+
+            <div style="background-color: #ECEFF4; border-radius: 8px; padding: 24px; margin: 24px 0;">
+                <h2 style="color: #5E81AC; margin-top: 0; font-size: 18px;">
+                    📁 Access Your Products Immediately
+                </h2>
+                <p style="color: #4C566A; margin-bottom: 16px;">
+                    Click the button below to access your digital products.
+                    <strong>Create an account using the same email you used for purchase.</strong>
+                </p>
+                <a href="https://leet-roadmap-2b0ad46df54e.herokuapp.com/"
+                   style="background-color: #5E81AC; color: white; padding: 14px 28px;
+                          text-decoration: none; border-radius: 6px; display: inline-block;
+                          font-weight: bold; font-size: 16px;">
+                    👉 Access Your Digital Products
+                </a>
+            </div>
+
+            <div style="background-color: #FFF8E1; border-left: 4px solid #FFC107; padding: 16px; margin: 24px 0;">
+                <h3 style="color: #F57C00; margin-top: 0; font-size: 16px;">
+                    🔒 Important: Secure Your Access
+                </h3>
+                <ul style="color: #5D4037; margin-bottom: 0; padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Bookmark the site link</strong> - Save it to your browser favorites</li>
+                    <li><strong>Save this email</strong> - Keep it in a dedicated folder for future reference</li>
+                </ul>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #D8DEE9; margin: 32px 0;">
+
+            <p style="color: #4C566A; font-size: 14px;">
+                If you have any questions, just reply to this email. I'm here to help!
+            </p>
+
+            <p style="color: #2E3440; font-size: 16px;">
+                Best,<br>
+                <strong>Raymond</strong>
+            </p>
+
+            <p style="color: #8899A6; font-size: 12px; margin-top: 32px;">
+                Ray's LeetCode Roadmap | Software Engineering Interview Prep
+            </p>
+        </div>
+        """
+
+        return cls.send_email(
+            to=to,
+            subject="Welcome to Your Software Engineering Journey! 🎉",
             html=html
         )
 

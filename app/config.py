@@ -26,6 +26,7 @@ class Config:
 
     # Resend (Email)
     RESEND_API_KEY = os.environ.get('RESEND_API_KEY')
+    RESEND_FROM_EMAIL = os.environ.get('RESEND_FROM_EMAIL', 'onboarding@resend.dev')
 
     # Server
     PORT = int(os.environ.get('PORT', 5002))

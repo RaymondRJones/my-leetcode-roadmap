@@ -489,6 +489,21 @@ def stripe_webhook():
         if success:
             product_desc = stripe_service.get_product_description(product_id)
             print(f"Successfully provisioned {customer_email} with {product_desc}")
+
+            # Send purchase confirmation email
+            try:
+                from ..services.email_service import EmailService
+                email_result = EmailService.send_purchase_confirmation_email(
+                    to=customer_email,
+                    product_name=product_desc
+                )
+                if email_result['success']:
+                    print(f"Purchase confirmation email sent to {customer_email}")
+                else:
+                    print(f"Failed to send email: {email_result.get('error')}")
+            except Exception as email_error:
+                print(f"Email sending error (non-fatal): {str(email_error)}")
+
             return jsonify({
                 'status': 'success',
                 'email': customer_email,
