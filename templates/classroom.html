@@ -6,7 +6,7 @@
 <!-- Course Cards Grid -->
 <div class="row">
     {% for course in courses %}
-    {% set is_locked = course.is_premium and not (has_premium or is_allowed) %}
+    {% set is_locked = course.is_premium and not (has_premium or is_allowed or is_admin) %}
     <div class="col-lg-4 col-md-6 mb-4">
         <a href="{{ '/landing' if is_locked else course.route }}" style="text-decoration: none; color: inherit;" aria-label="{{ 'Unlock ' if is_locked else 'Go to ' }}{{ course.title }} course">
             <div class="course-card {{ course.course_type }} fade-in-up h-100 {% if is_locked %}locked-card{% endif %}"

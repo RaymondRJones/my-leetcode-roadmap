@@ -14,6 +14,7 @@ from .auth.access import (
     has_premium_access,
     has_ai_access,
     has_system_design_access,
+    has_guides_access,
     is_allowed_user,
     is_admin
 )
@@ -110,6 +111,7 @@ def _register_context_processor(app: Flask):
             'has_premium': has_premium_access(user) if user else False,
             'has_ai_access': has_ai_access(user) if user else False,
             'has_system_design_access': has_system_design_access(user) if user else False,
+            'has_guides_access': has_guides_access(user) if user else False,
             'is_allowed': is_allowed_user(user) if user else False,
             'is_admin': is_admin(user) if user else False,
             'clerk_publishable_key': app.config.get('CLERK_PUBLISHABLE_KEY')

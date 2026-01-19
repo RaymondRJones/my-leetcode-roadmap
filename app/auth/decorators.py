@@ -9,6 +9,7 @@ from .access import (
     has_premium_access,
     has_ai_access,
     has_system_design_access,
+    has_guides_access,
     is_allowed_user,
     is_admin
 )
@@ -33,7 +34,7 @@ def premium_required(f):
         if not user:
             return redirect('/landing')
 
-        if not has_premium_access(user) and not is_allowed_user(user):
+        if not has_premium_access(user) and not is_admin(user):
             return redirect('/landing')
 
         return f(*args, **kwargs)
@@ -48,7 +49,7 @@ def ai_access_required(f):
         if not user:
             return redirect('/landing')
 
-        if not has_ai_access(user) and not is_allowed_user(user):
+        if not has_ai_access(user) and not is_admin(user):
             return redirect('/landing')
 
         return f(*args, **kwargs)
@@ -63,7 +64,22 @@ def system_design_access_required(f):
         if not user:
             return redirect('/landing')
 
-        if not has_system_design_access(user) and not is_allowed_user(user):
+        if not has_system_design_access(user) and not is_admin(user):
+            return redirect('/landing')
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def guides_required(f):
+    """Require user to have guides access."""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = get_current_user()
+        if not user:
+            return redirect('/landing')
+
+        if not has_guides_access(user) and not is_admin(user):
             return redirect('/landing')
 
         return f(*args, **kwargs)

@@ -154,7 +154,8 @@ class ClerkService:
             revoked_metadata = {
                 'has_premium': False,
                 'has_ai_access': False,
-                'has_system_design_access': False
+                'has_system_design_access': False,
+                'has_guides_access': False
             }
             result = self.update_user_metadata(user['id'], revoked_metadata)
             if result:

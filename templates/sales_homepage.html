@@ -114,7 +114,7 @@
 
     <!-- Premium Content -->
     <div class="col-lg-4 col-md-6 mb-4">
-        {% set has_access = has_premium or is_allowed %}
+        {% set has_access = has_premium or is_allowed or is_admin %}
         <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
              {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.location.href='/landing'"{% else %}style="border: 2px solid var(--md-warning); margin-top: 16px;"{% endif %}>
 
@@ -171,7 +171,7 @@
     </div>
 
     <div class="col-lg-4 col-md-6 mb-4">
-        {% set has_access = has_premium or is_allowed %}
+        {% set has_access = has_premium or is_allowed or is_admin %}
         <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
              {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.location.href='/landing'"{% else %}style="border: 2px solid var(--md-error); margin-top: 16px;"{% endif %}>
 
@@ -228,7 +228,7 @@
     </div>
 
     <div class="col-lg-4 col-md-6 mb-4">
-        {% set has_access = has_system_design_access or is_allowed %}
+        {% set has_access = has_system_design_access or is_allowed or is_admin %}
         <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
              {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.location.href='/landing'"{% else %}style="border: 2px solid var(--md-primary); margin-top: 16px;"{% endif %}>
 
@@ -285,7 +285,7 @@
     </div>
 
     <div class="col-lg-4 col-md-6 mb-4">
-        {% set has_access = has_ai_access or is_allowed %}
+        {% set has_access = has_ai_access or is_allowed or is_admin %}
         <div class="md-card h-100 position-relative roadmap-panel {% if not has_access %}locked-panel{% endif %}"
              {% if not has_access %}style="border: 2px solid var(--md-outline); filter: grayscale(0.8); margin-top: 16px; cursor: pointer;" onclick="window.location.href='/landing'"{% else %}style="border: 2px solid var(--md-secondary); margin-top: 16px;"{% endif %}>
 
@@ -343,7 +343,7 @@
 </div>
 
 <!-- Get Full Access CTA -->
-{% if not (has_premium and has_ai_access and has_system_design_access) %}
+{% if not (has_premium and has_ai_access and has_system_design_access) and not is_admin %}
 <div class="row mt-5">
     <div class="col-12">
         <div class="md-card text-center p-5" style="background: linear-gradient(135deg, var(--md-primary), var(--md-secondary)); color: white;">

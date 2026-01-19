@@ -3,8 +3,8 @@ Main routes blueprint for pages.
 """
 from flask import Blueprint, render_template, redirect, current_app
 
-from ..auth.access import get_current_user, has_premium_access, is_allowed_user
-from ..auth.decorators import login_required, premium_required, ai_access_required
+from ..auth.access import get_current_user, has_premium_access, is_admin
+from ..auth.decorators import login_required, premium_required, ai_access_required, guides_required
 from ..models.course import get_sorted_courses
 from ..services.assessment_service import AssessmentService
 
@@ -126,7 +126,7 @@ def intermediate_month_view(month_name):
         user = get_current_user()
         if not user:
             return redirect('/landing')
-        if not has_premium_access(user) and not is_allowed_user(user):
+        if not has_premium_access(user) and not is_admin(user):
             return redirect('/landing')
 
     roadmap_service = current_app.roadmap
@@ -189,7 +189,7 @@ def java_assessment():
 
 
 @main_bp.route('/guides')
-@premium_required
+@guides_required
 def guides():
     """Guides landing page with all available guides."""
     return render_template('guides.html')

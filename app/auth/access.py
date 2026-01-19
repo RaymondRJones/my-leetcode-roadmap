@@ -35,25 +35,47 @@ def _get_metadata_value(user_data: dict, key: str, default=False):
     return public_metadata.get(key, default)
 
 
-def has_premium_access(user_data: Optional[dict]) -> bool:
-    """Check if user has premium access."""
+def _has_admin_flag(user_data: Optional[dict]) -> bool:
+    """Check if user has the is_admin flag set in metadata."""
     if not user_data:
         return False
+    return bool(_get_metadata_value(user_data, 'is_admin', False))
+
+
+def has_premium_access(user_data: Optional[dict]) -> bool:
+    """Check if user has premium access (or is admin)."""
+    if not user_data:
+        return False
+    if _has_admin_flag(user_data):
+        return True
     return bool(_get_metadata_value(user_data, 'has_premium', False))
 
 
 def has_ai_access(user_data: Optional[dict]) -> bool:
-    """Check if user has AI access."""
+    """Check if user has AI access (or is admin)."""
     if not user_data:
         return False
+    if _has_admin_flag(user_data):
+        return True
     return bool(_get_metadata_value(user_data, 'has_ai_access', False))
 
 
 def has_system_design_access(user_data: Optional[dict]) -> bool:
-    """Check if user has system design access."""
+    """Check if user has system design access (or is admin)."""
     if not user_data:
         return False
+    if _has_admin_flag(user_data):
+        return True
     return bool(_get_metadata_value(user_data, 'has_system_design_access', False))
+
+
+def has_guides_access(user_data: Optional[dict]) -> bool:
+    """Check if user has guides access (or is admin)."""
+    if not user_data:
+        return False
+    if _has_admin_flag(user_data):
+        return True
+    return bool(_get_metadata_value(user_data, 'has_guides_access', False))
 
 
 def is_allowed_user(user_data: Optional[dict]) -> bool:

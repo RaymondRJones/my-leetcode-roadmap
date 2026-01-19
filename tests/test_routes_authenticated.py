@@ -17,10 +17,11 @@ class TestAuthenticatedPremiumRoutes:
         response = authenticated_client.get('/complete-list')
         assert response.status_code == 200
 
-    def test_guides_accessible_with_premium(self, authenticated_client):
-        """Test that guides page is accessible with premium access."""
+    def test_guides_redirects_premium_without_guides_access(self, authenticated_client):
+        """Test that guides page redirects premium users without guides access."""
+        # authenticated_client has premium but not guides access
         response = authenticated_client.get('/guides')
-        assert response.status_code == 200
+        assert response.status_code == 302
 
     def test_intermediate_month_2_accessible_with_premium(self, authenticated_client):
         """Test that intermediate Month 2 is accessible with premium."""
@@ -92,6 +93,25 @@ class TestAllowedUserRoutes:
     def test_system_design_accessible_for_allowed_user(self, allowed_user_client):
         """Test that allowed users can access system design."""
         response = allowed_user_client.get('/system-design/')
+        assert response.status_code == 200
+
+
+class TestGuidesRoutesAuthenticated:
+    """Tests for guides routes with authenticated users."""
+
+    def test_guides_accessible_with_guides_access(self, guides_client):
+        """Test that guides page is accessible with guides access."""
+        response = guides_client.get('/guides')
+        assert response.status_code == 200
+
+    def test_guides_accessible_with_full_access(self, full_access_client):
+        """Test that guides page is accessible with full access."""
+        response = full_access_client.get('/guides')
+        assert response.status_code == 200
+
+    def test_guides_accessible_for_allowed_user(self, allowed_user_client):
+        """Test that allowed users can access guides."""
+        response = allowed_user_client.get('/guides')
         assert response.status_code == 200
 
 

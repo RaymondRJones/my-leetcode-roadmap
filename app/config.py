@@ -37,19 +37,29 @@ class Config:
             'has_premium': True,
             'has_ai_access': False,
             'has_system_design_access': False,
+            'has_guides_access': False,
             'description': 'Premium Only'
+        },
+        'prod_SzSs6oMiUWlWAn': {
+            'has_premium': True,
+            'has_ai_access': False,
+            'has_system_design_access': True,
+            'has_guides_access': False,
+            'description': 'Premium + System Design'
         },
         'prod_SzSqbijjdXdg2a': {
             'has_premium': True,
             'has_ai_access': False,
             'has_system_design_access': True,
-            'description': 'Premium + System Design'
+            'has_guides_access': True,
+            'description': 'Premium + System Design + Guides'
         },
-        'prod_SxymCQ9tLRKY3u': {
-            'has_premium': True,
-            'has_ai_access': False,
-            'has_system_design_access': True,
-            'description': 'Premium + System Design (Alternate)'
+        'prod_ToxWA5I9pXccTZ': {
+            'has_premium': False,
+            'has_ai_access': True,
+            'has_system_design_access': False,
+            'has_guides_access': False,
+            'description': 'Behavioral Guide + AI'
         }
     }
 

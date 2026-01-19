@@ -40,7 +40,8 @@ def mock_user_data():
         'private_metadata': {
             'has_premium': True,
             'has_ai_access': False,
-            'has_system_design_access': True
+            'has_system_design_access': True,
+            'has_guides_access': False
         },
         'public_metadata': {
             'has_premium': True
@@ -72,7 +73,8 @@ def mock_non_premium_user_data():
         'private_metadata': {
             'has_premium': False,
             'has_ai_access': False,
-            'has_system_design_access': False
+            'has_system_design_access': False,
+            'has_guides_access': False
         },
         'public_metadata': {}
     }
@@ -89,7 +91,8 @@ def mock_ai_user_data():
         'private_metadata': {
             'has_premium': True,
             'has_ai_access': True,
-            'has_system_design_access': False
+            'has_system_design_access': False,
+            'has_guides_access': False
         },
         'public_metadata': {}
     }
@@ -106,7 +109,8 @@ def mock_full_access_user_data():
         'private_metadata': {
             'has_premium': True,
             'has_ai_access': True,
-            'has_system_design_access': True
+            'has_system_design_access': True,
+            'has_guides_access': True
         },
         'public_metadata': {
             'has_premium': True
@@ -210,4 +214,31 @@ def admin_client(app, mock_admin_user_data):
     client = app.test_client()
     with client.session_transaction() as sess:
         sess['user'] = mock_admin_user_data
+    return client
+
+
+@pytest.fixture
+def mock_guides_user_data():
+    """Create mock data for a user with guides access."""
+    return {
+        'id': 'user_guides',
+        'email_addresses': [
+            {'email_address': 'guides_user@example.com'}
+        ],
+        'private_metadata': {
+            'has_premium': False,
+            'has_ai_access': False,
+            'has_system_design_access': False,
+            'has_guides_access': True
+        },
+        'public_metadata': {}
+    }
+
+
+@pytest.fixture
+def guides_client(app, mock_guides_user_data):
+    """Create test client with guides access user."""
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess['user'] = mock_guides_user_data
     return client

@@ -157,7 +157,7 @@ COURSES: List[Course] = [
     Course(
         title='System Design Guide',
         description='Master system design interviews with real-world examples, architecture patterns, and scalability principles.',
-        route='/guides',
+        route='/system-design/',
         icon='account_tree',
         label='ARCHITECTURE',
         image_url='/static/images/course-system-design.jpg',
