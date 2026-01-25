@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Classroom - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<!-- Course Cards Grid -->
+<div class="row">
+    {% for course in courses %}
+    {% set is_locked = course.is_premium and not (has_premium or is_allowed or is_admin) %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <a href="{{ '/landing' if is_locked else course.route }}" style="text-decoration: none; color: inherit;" aria-label="{{ 'Unlock ' if is_locked else 'Go to ' }}{{ course.title }} course">
+            <div class="course-card {{ course.course_type }} fade-in-up h-100 {% if is_locked %}locked-card{% endif %}"
+                 style="animation-delay: {{ loop.index0 * 0.1 + 0.2 }}s;"
+                 {% if course.is_premium %}data-protected="premium"{% endif %}>
+
+                {% if is_locked %}
+                <!-- Lock Overlay -->
+                <div class="course-lock-overlay">
+                    <div class="lock-icon-circle">
+                        <span class="material-icons">lock</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Course Image -->
+                <div class="course-card-image">
+                    {% if course.image_url %}
+                    <img src="{{ course.image_url }}" alt="{{ course.title }}" loading="lazy" onerror="this.style.display='none'">
+                    {% endif %}
+
+                    <!-- Material Design Icon Fallback -->
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 0;">
+                        <span class="material-icons" style="font-size: 120px; color: rgba(255, 255, 255, 0.9); margin-bottom: 16px;">{{ course.icon }}</span>
+                        <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 12px 24px; border-radius: 24px; border: 2px solid rgba(255, 255, 255, 0.3);">
+                            <span style="font-size: 1.5rem; font-weight: 600; color: white; letter-spacing: 1px;">{{ course.label }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Premium Badge -->
+                    {% if course.is_premium %}
+                    <div class="course-card-badge">
+                        <span class="material-icons" style="font-size: 14px;">workspace_premium</span>
+                        PREMIUM
+                    </div>
+                    {% else %}
+                    <div class="course-card-badge badge-free">
+                        <span class="material-icons" style="font-size: 14px;">verified</span>
+                        FREE
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Course Content -->
+                <div class="course-card-content">
+                    <h3 class="course-card-title">
+                        <span class="material-icons">{{ course.icon }}</span>
+                        {{ course.title }}
+                    </h3>
+
+                    <p class="course-card-description">{{ course.description }}</p>
+
+                    <!-- Course Metadata -->
+                    <div class="course-card-meta">
+                        <div class="course-card-meta-item">
+                            <span class="material-icons" style="font-size: 18px;">schedule</span>
+                            <span>{{ course.duration }}</span>
+                        </div>
+                        <div class="course-card-meta-item">
+                            <span class="material-icons" style="font-size: 18px;">assignment</span>
+                            <span>{{ course.problem_count }}</span>
+                        </div>
+                        <div class="course-card-meta-item">
+                            <span class="material-icons" style="font-size: 18px;">signal_cellular_alt</span>
+                            <span>{{ course.level }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Button -->
+                    <button class="btn btn-primary w-100">
+                        {% if is_locked %}
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">lock</span>
+                            Unlock Course
+                        {% elif course.is_premium %}
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">lock_open</span>
+                            View Course
+                        {% else %}
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">play_arrow</span>
+                            Start Learning
+                        {% endif %}
+                        <span class="material-icons" style="vertical-align: middle; margin-left: 8px; font-size: 18px;">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Help Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="md-card fade-in-up" style="animation-delay: {{ courses|length * 0.1 + 0.3 }}s;">
+            <div class="card-body text-center" style="padding: 32px;">
+                <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-bottom: 16px; display: inline-block;">help_outline</span>
+                <h4 class="mb-3" style="color: var(--md-on-surface);">Not sure where to start?</h4>
+                <p class="text-muted mb-3" style="max-width: 600px; margin: 0 auto;">
+                    <strong>Complete Beginner?</strong> Start with the Complete Beginner Roadmap<br>
+                    <strong>Know the basics?</strong> Jump to the Fortune500 Roadmap<br>
+                    <strong>Want to work at FAANG?</strong> Work through Fortune500 first, then tackle the FAANG+ Roadmap
+                </p>
+                <a href="/about" class="btn btn-outline-primary mt-3">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px; font-size: 18px;">person</span>
+                    Learn More About Ray's Journey
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -54,7 +54,7 @@ def create_clerk_user(email: str, metadata: dict):
     """Create a new Clerk user with default metadata."""
     payload = {
         "email_address": [email],
-        "public_metadata": metadata,
+        "private_metadata": metadata,
         "skip_password_checks": True,
         "skip_password_requirement": True,
         "password": "TempPassword123!",  # Temporary password for phantom user
@@ -70,7 +70,7 @@ def create_clerk_user(email: str, metadata: dict):
 
 def update_clerk_user_metadata(user_id: str, metadata: dict):
     """Update an existing Clerk user's metadata (merge instead of overwrite)."""
-    payload = {"public_metadata": metadata}
+    payload = {"private_metadata": metadata}
     resp = requests.patch(
         f"{CLERK_API_URL}/users/{user_id}", headers=HEADERS, json=payload
     )
@@ -87,7 +87,7 @@ def provision_user(email: str, metadata: dict):
     if user:
         user_id = user["id"]
         # Merge metadata with existing
-        current_md = user.get("public_metadata", {})
+        current_md = user.get("private_metadata", {})
         current_md.update(metadata)
         return update_clerk_user_metadata(user_id, current_md)
     else:

@@ -1,0 +1,561 @@
+{% extends "base.html" %}
+
+{% block title %}Challenge Calendar - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="mb-1">
+                <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">calendar_month</span>
+                28-Day Challenge
+            </h1>
+            <p class="text-muted mb-0">Track your daily progress through the challenge</p>
+        </div>
+        <a href="/challenge" class="btn btn-outline-primary">
+            <span class="material-icons me-1" style="vertical-align: middle;">arrow_back</span>
+            Back to Challenge
+        </a>
+    </div>
+
+    <!-- Stats Summary -->
+    <div class="row g-3 mb-5">
+        <div class="col-6 col-md-3">
+            <div class="md-card p-3 text-center">
+                <span class="material-icons mb-1" style="font-size: 28px; color: var(--nord12);">local_fire_department</span>
+                <h4 class="mb-0">{{ challenge_data.current_streak or 0 }}</h4>
+                <small class="text-muted">Current Streak</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="md-card p-3 text-center">
+                <span class="material-icons mb-1" style="font-size: 28px; color: var(--nord11);">whatshot</span>
+                <h4 class="mb-0">{{ challenge_data.best_streak or 0 }}</h4>
+                <small class="text-muted">Best Streak</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="md-card p-3 text-center">
+                <span class="material-icons mb-1" style="font-size: 28px; color: var(--nord13);">star</span>
+                <h4 class="mb-0">{{ challenge_data.points or 0 }}</h4>
+                <small class="text-muted">Total Points</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="md-card p-3 text-center">
+                <span class="material-icons mb-1" style="font-size: 28px; color: var(--nord14);">check_circle</span>
+                <h4 class="mb-0">{{ challenge_data.days_completed|length if challenge_data.days_completed else 0 }}/28</h4>
+                <small class="text-muted">Days Complete</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="md-card p-4 mb-5">
+        <!-- Month Header -->
+        <div class="text-center mb-4">
+            <h3 class="calendar-month-title mb-0">{{ calendar_title }}</h3>
+            <small class="text-muted">Your 28-Day Challenge</small>
+        </div>
+
+        <!-- Day of Week Headers -->
+        <div class="calendar-grid">
+            <div class="calendar-header">Sun</div>
+            <div class="calendar-header">Mon</div>
+            <div class="calendar-header">Tue</div>
+            <div class="calendar-header">Wed</div>
+            <div class="calendar-header">Thu</div>
+            <div class="calendar-header">Fri</div>
+            <div class="calendar-header">Sat</div>
+
+            <!-- Empty cells before start date -->
+            {% for i in range(start_weekday) %}
+            <div class="calendar-cell empty"></div>
+            {% endfor %}
+
+            <!-- Calendar Days 1-28 based on user's start date -->
+            {% for day_info in calendar_days %}
+            {% set is_completed = day_info.is_completed %}
+            {% set is_current = day_info.is_current %}
+            {% set is_locked = day_info.is_locked %}
+            {% set is_available = not is_locked and not is_completed and not is_current %}
+
+            {% if is_locked %}
+            <div class="calendar-cell locked" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Locked">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
+            </div>
+            {% elif is_current %}
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell current" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Today's Challenge">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
+                <span class="status-dot current-dot"></span>
+            </a>
+            {% elif is_completed %}
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell completed" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Completed">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
+                <span class="status-dot completed-dot"></span>
+            </a>
+            {% else %}
+            <a href="/challenge/day/{{ day_info.day }}" class="calendar-cell available" title="Problem {{ day_info.day }} ({{ day_info.month_short }} {{ day_info.date_display }}) - Available">
+                <span class="calendar-date-label">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+                <span class="calendar-day-number">Problem {{ day_info.day }}</span>
+                <span class="status-dot available-dot"></span>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="md-card p-4 mb-5">
+        <h6 class="mb-3">Legend</h6>
+        <div class="d-flex flex-wrap gap-4">
+            <div class="d-flex align-items-center">
+                <span class="status-dot completed-dot me-2" style="position: static;"></span>
+                <span class="small">Completed</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="status-dot current-dot me-2" style="position: static; animation: none;"></span>
+                <span class="small">Today's Challenge</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="status-dot available-dot me-2" style="position: static;"></span>
+                <span class="small">Available</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="legend-locked me-2"></span>
+                <span class="small">Locked</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bonus Problems -->
+    <div class="md-card p-4 mb-5">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle; color: var(--nord13);">add_circle</span>
+            Bonus Problems
+        </h5>
+        <p class="text-muted small mb-3">
+            Solved extra LeetCode problems outside the challenge? Log them here for bonus points!
+            Each bonus problem earns you <strong>5 points</strong>.
+        </p>
+
+        <!-- Submit Bonus Problem -->
+        <div class="row g-2 mb-4">
+            <div class="col-md-8">
+                <input type="url" id="bonusProblemUrl" class="form-control" placeholder="https://leetcode.com/problems/problem-name/">
+            </div>
+            <div class="col-md-4">
+                <button onclick="submitBonusProblem()" class="btn btn-outline-primary w-100">
+                    <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle;">add</span>
+                    Add Problem
+                </button>
+            </div>
+        </div>
+
+        <!-- Bonus Problems List -->
+        <div id="bonusProblemsContainer">
+            {% set bonus_problems = challenge_data.get('bonus_problems', []) %}
+            {% if bonus_problems %}
+            <h6 class="mb-2 text-muted">Your Bonus Problems ({{ bonus_problems|length }})</h6>
+            <div class="bonus-problems-list">
+                {% for problem in bonus_problems %}
+                <div class="bonus-problem-item d-flex align-items-center justify-content-between p-2 mb-2 rounded" style="background: var(--nord5);">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-2" style="color: var(--nord14); font-size: 18px;">check_circle</span>
+                        <a href="{{ problem.url }}" target="_blank" class="text-decoration-none">
+                            {{ problem.name or problem.url | replace('https://leetcode.com/problems/', '') | replace('/', '') }}
+                        </a>
+                    </div>
+                    <span class="badge bg-warning text-dark">+5 pts</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div id="noBonusProblems" class="text-center text-muted py-3">
+                <span class="material-icons mb-2" style="font-size: 32px; opacity: 0.5;">emoji_events</span>
+                <p class="mb-0 small">No bonus problems yet. Start adding some!</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="md-card p-4">
+        <h5 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">military_tech</span>
+            Your Achievements
+        </h5>
+        <div class="row g-3">
+            {% for achievement_id, achievement in achievements_config.items() %}
+            <div class="col-6 col-md-4">
+                <div class="achievement-badge {% if achievement_id in (challenge_data.achievements or []) %}unlocked{% endif %}" title="{{ achievement.description }}">
+                    <span class="material-icons achievement-icon">{{ achievement.icon }}</span>
+                    <span class="achievement-name">{{ achievement.name }}</span>
+                    <span class="achievement-desc">{{ achievement.description }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-month-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--md-on-surface);
+}
+
+/* Day of Week Headers */
+.calendar-header {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nord3);
+    text-transform: uppercase;
+    padding: 8px 0;
+    letter-spacing: 0.5px;
+}
+
+/* Calendar Cells */
+.calendar-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.2s ease;
+    min-height: 60px;
+}
+
+.calendar-cell.empty {
+    background: transparent;
+}
+
+/* Date Labels (actual calendar dates) */
+.calendar-date-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--nord3);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* Day Numbers - Challenge day number */
+.calendar-day-number {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--nord4);
+    transition: color 0.2s ease;
+}
+
+/* Status Dots */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* Completed - Green dot */
+.status-dot.completed-dot {
+    background: var(--nord14);
+    box-shadow: 0 0 0 2px rgba(163, 190, 140, 0.3);
+}
+
+/* Current - Blue pulsing dot */
+.status-dot.current-dot {
+    background: var(--md-primary);
+    box-shadow: 0 0 0 2px rgba(94, 129, 172, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 2px rgba(94, 129, 172, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(94, 129, 172, 0.1);
+    }
+}
+
+/* Available - Gray dot */
+.status-dot.available-dot {
+    background: var(--nord3);
+    opacity: 0.5;
+}
+
+/* Legend locked indicator */
+.legend-locked {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--nord4);
+    opacity: 0.3;
+}
+
+/* Completed days */
+.calendar-cell.completed {
+    cursor: pointer;
+}
+
+.calendar-cell.completed:hover {
+    background: rgba(163, 190, 140, 0.1);
+}
+
+.calendar-cell.completed .calendar-day-number {
+    color: var(--nord14);
+    font-weight: 600;
+}
+
+.calendar-cell.completed .calendar-date-label {
+    color: var(--nord14);
+    opacity: 0.8;
+}
+
+/* Current day */
+.calendar-cell.current {
+    cursor: pointer;
+    background: rgba(94, 129, 172, 0.08);
+    border: 2px solid var(--md-primary);
+}
+
+.calendar-cell.current:hover {
+    background: rgba(94, 129, 172, 0.15);
+}
+
+.calendar-cell.current .calendar-day-number {
+    color: var(--md-primary);
+    font-weight: 700;
+}
+
+.calendar-cell.current .calendar-date-label {
+    color: var(--md-primary);
+    opacity: 0.9;
+}
+
+/* Available days */
+.calendar-cell.available {
+    cursor: pointer;
+}
+
+.calendar-cell.available:hover {
+    background: rgba(76, 86, 106, 0.08);
+}
+
+.calendar-cell.available .calendar-day-number {
+    color: var(--nord3);
+}
+
+/* Locked days */
+.calendar-cell.locked {
+    cursor: not-allowed;
+}
+
+.calendar-cell.locked .calendar-day-number {
+    color: var(--nord4);
+    opacity: 0.5;
+}
+
+.calendar-cell.locked .calendar-date-label {
+    opacity: 0.4;
+}
+
+/* Achievement Badges */
+.achievement-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--nord5);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.achievement-badge.unlocked {
+    background: linear-gradient(135deg, var(--nord13), var(--nord12));
+}
+
+.achievement-badge .achievement-icon {
+    font-size: 32px;
+    color: var(--nord3);
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.achievement-badge.unlocked .achievement-icon {
+    color: white;
+    opacity: 1;
+}
+
+.achievement-badge .achievement-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--nord3);
+}
+
+.achievement-badge.unlocked .achievement-name {
+    color: white;
+}
+
+.achievement-badge .achievement-desc {
+    font-size: 0.7rem;
+    color: var(--nord3);
+    opacity: 0.7;
+    display: block;
+    margin-top: 4px;
+}
+
+.achievement-badge.unlocked .achievement-desc {
+    color: white;
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .calendar-cell {
+        min-height: 55px;
+    }
+
+    .calendar-day-number {
+        font-size: 0.75rem;
+    }
+
+    .calendar-date-label {
+        font-size: 0.55rem;
+    }
+
+    .status-dot {
+        width: 6px;
+        height: 6px;
+        bottom: 4px;
+    }
+
+    .calendar-header {
+        font-size: 0.6rem;
+    }
+}
+</style>
+
+<script>
+async function submitBonusProblem() {
+    const urlInput = document.getElementById('bonusProblemUrl');
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        alert('Please enter a LeetCode problem URL');
+        return;
+    }
+
+    if (!url.includes('leetcode.com/problems/')) {
+        alert('Please enter a valid LeetCode problem URL (e.g., https://leetcode.com/problems/two-sum/)');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/challenge/bonus-problem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            // Clear input
+            urlInput.value = '';
+
+            // Extract problem name from URL
+            const problemName = url.replace('https://leetcode.com/problems/', '').replace('/', '').replace(/-/g, ' ');
+
+            // Add to the list dynamically
+            const container = document.getElementById('bonusProblemsContainer');
+            const noBonusDiv = document.getElementById('noBonusProblems');
+
+            if (noBonusDiv) {
+                noBonusDiv.remove();
+                container.innerHTML = `
+                    <h6 class="mb-2 text-muted">Your Bonus Problems (<span id="bonusCount">1</span>)</h6>
+                    <div class="bonus-problems-list" id="bonusList"></div>
+                `;
+            }
+
+            const bonusList = document.getElementById('bonusList') || container.querySelector('.bonus-problems-list');
+            const countSpan = document.getElementById('bonusCount');
+            if (countSpan) {
+                countSpan.textContent = parseInt(countSpan.textContent) + 1;
+            }
+
+            const newItem = document.createElement('div');
+            newItem.className = 'bonus-problem-item d-flex align-items-center justify-content-between p-2 mb-2 rounded';
+            newItem.style.background = 'var(--nord5)';
+            newItem.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <span class="material-icons me-2" style="color: var(--nord14); font-size: 18px;">check_circle</span>
+                    <a href="${url}" target="_blank" class="text-decoration-none">${problemName}</a>
+                </div>
+                <span class="badge bg-warning text-dark">+5 pts</span>
+            `;
+            bonusList.appendChild(newItem);
+
+            // Show success message
+            showToast('Bonus problem added! +5 points', 'success');
+
+        } else if (data.status === 'already_added') {
+            alert('You have already added this problem.');
+        } else {
+            alert('Failed to add problem: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error submitting bonus problem:', error);
+        alert('Failed to add problem. Please try again.');
+    }
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        z-index: 1050;
+        animation: slideIn 0.3s ease;
+    `;
+    toast.style.background = type === 'success' ? 'var(--nord14)' : 'var(--nord11)';
+    toast.innerHTML = `
+        <span class="material-icons me-2" style="vertical-align: middle; font-size: 18px;">
+            ${type === 'success' ? 'check_circle' : 'error'}
+        </span>
+        ${message}
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'slideIn 0.3s ease reverse';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+</script>
+{% endblock %}

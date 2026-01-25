@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}Review Submissions - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="mb-1">
+                <span class="material-icons me-2" style="vertical-align: middle; color: var(--nord13);">assignment</span>
+                Skool Submissions
+            </h1>
+            <p class="text-muted mb-0">Review and approve participant Skool posts</p>
+        </div>
+        <a href="/challenge/admin" class="btn btn-outline-secondary">
+            <span class="material-icons me-1" style="vertical-align: middle;">arrow_back</span>
+            Back to Admin
+        </a>
+    </div>
+
+    <!-- Filter Tabs -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link active" href="#" data-filter="pending">
+                Pending
+                <span class="badge bg-warning text-dark ms-1" id="pendingCount">0</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-filter="approved">
+                Approved
+                <span class="badge bg-success ms-1" id="approvedCount">0</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-filter="rejected">
+                Rejected
+                <span class="badge bg-danger ms-1" id="rejectedCount">0</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-filter="all">All</a>
+        </li>
+    </ul>
+
+    <!-- Submissions List -->
+    <div class="md-card">
+        <div class="card-body">
+            <!-- Coming Soon Notice -->
+            <div class="text-center py-5">
+                <span class="material-icons mb-3" style="font-size: 64px; color: var(--nord4);">inbox</span>
+                <h4 class="mb-2">Submission Review Coming Soon</h4>
+                <p class="text-muted mb-0">
+                    Full submission management will be available soon.<br>
+                    Participants can submit Skool posts for bonus points.
+                </p>
+            </div>
+
+            <!-- Placeholder submission cards (hidden) -->
+            <div class="d-none" id="submissionsList">
+                <!-- Submission cards will be rendered here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Review Submission</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label text-muted">Submitted by</label>
+                    <p class="mb-0" id="modalUserEmail">-</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted">Day</label>
+                    <p class="mb-0" id="modalDay">-</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted">Skool Post URL</label>
+                    <p class="mb-0">
+                        <a href="#" id="modalUrl" target="_blank">View Post</a>
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted">Submitted At</label>
+                    <p class="mb-0" id="modalSubmittedAt">-</p>
+                </div>
+
+                <!-- Preview iframe (if Skool supports embedding) -->
+                <div class="border rounded p-3 bg-light text-center">
+                    <span class="material-icons mb-2" style="font-size: 48px; color: var(--nord4);">open_in_new</span>
+                    <p class="mb-0 text-muted">Click the link above to view the Skool post</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="rejectSubmission()">
+                    <span class="material-icons me-1" style="vertical-align: middle;">close</span>
+                    Reject
+                </button>
+                <button type="button" class="btn btn-success" onclick="approveSubmission()">
+                    <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+                    Approve (+30 pts)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentSubmission = null;
+
+// Load submissions
+async function loadSubmissions() {
+    try {
+        const response = await fetch('/api/challenge/admin/pending-submissions');
+        const data = await response.json();
+
+        if (data.submissions) {
+            renderSubmissions(data.submissions);
+            updateCounts(data.submissions);
+        }
+    } catch (error) {
+        console.error('Error loading submissions:', error);
+    }
+}
+
+function updateCounts(submissions) {
+    const pending = submissions.filter(s => s.status === 'pending').length;
+    const approved = submissions.filter(s => s.status === 'approved').length;
+    const rejected = submissions.filter(s => s.status === 'rejected').length;
+
+    document.getElementById('pendingCount').textContent = pending;
+    document.getElementById('approvedCount').textContent = approved;
+    document.getElementById('rejectedCount').textContent = rejected;
+}
+
+function renderSubmissions(submissions) {
+    const container = document.getElementById('submissionsList');
+    container.innerHTML = submissions.map(s => `
+        <div class="submission-card mb-3 p-4 border rounded ${getStatusClass(s.status)}" data-status="${s.status}">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <h6 class="mb-1">${s.userEmail || 'Anonymous'}</h6>
+                    <p class="text-muted small mb-2">Day ${s.day} | Submitted ${formatDate(s.submittedAt)}</p>
+                    <a href="${s.url}" target="_blank" class="small">
+                        <span class="material-icons me-1" style="font-size: 14px; vertical-align: middle;">link</span>
+                        View Skool Post
+                    </a>
+                </div>
+                <div>
+                    ${getStatusBadge(s.status)}
+                    ${s.status === 'pending' ? `
+                        <button class="btn btn-sm btn-outline-primary ms-2" onclick="openReview('${s.userId}', ${s.index})">
+                            Review
+                        </button>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function getStatusClass(status) {
+    switch (status) {
+        case 'approved': return 'bg-success bg-opacity-10';
+        case 'rejected': return 'bg-danger bg-opacity-10';
+        default: return '';
+    }
+}
+
+function getStatusBadge(status) {
+    switch (status) {
+        case 'approved':
+            return '<span class="badge bg-success">Approved</span>';
+        case 'rejected':
+            return '<span class="badge bg-danger">Rejected</span>';
+        default:
+            return '<span class="badge bg-warning text-dark">Pending</span>';
+    }
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '-';
+    const date = new Date(dateStr);
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+}
+
+function openReview(userId, index) {
+    // Store current submission for action
+    currentSubmission = { userId, index };
+
+    // Populate modal (in real implementation, fetch submission details)
+    document.getElementById('modalUserEmail').textContent = 'Loading...';
+    document.getElementById('modalDay').textContent = '-';
+    document.getElementById('modalUrl').href = '#';
+    document.getElementById('modalSubmittedAt').textContent = '-';
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+    modal.show();
+}
+
+async function approveSubmission() {
+    if (!currentSubmission) return;
+
+    try {
+        const response = await fetch('/api/challenge/admin/approve-submission', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: currentSubmission.userId,
+                submission_index: currentSubmission.index,
+                action: 'approve'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();
+            alert('Submission approved! User receives +30 points.');
+            loadSubmissions(); // Refresh list
+        } else {
+            alert('Failed to approve: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error approving:', error);
+        alert('Failed to approve. Please try again.');
+    }
+}
+
+async function rejectSubmission() {
+    if (!currentSubmission) return;
+
+    try {
+        const response = await fetch('/api/challenge/admin/approve-submission', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: currentSubmission.userId,
+                submission_index: currentSubmission.index,
+                action: 'reject'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();
+            alert('Submission rejected.');
+            loadSubmissions(); // Refresh list
+        } else {
+            alert('Failed to reject: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error rejecting:', error);
+        alert('Failed to reject. Please try again.');
+    }
+}
+
+// Filter tabs
+document.querySelectorAll('[data-filter]').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Update active tab
+        document.querySelectorAll('[data-filter]').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter cards
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.submission-card').forEach(card => {
+            if (filter === 'all' || card.dataset.status === filter) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Load data on page ready
+// loadSubmissions();
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{# TailwindCSS Navigation Component #}
+<nav class="sticky-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo/Brand -->
+            <a href="/" class="flex items-center gap-2 text-foreground font-semibold text-lg hover:text-primary transition-colors">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+                <span>Ray's Roadmap</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-1">
+                <a href="/" class="nav-link px-4 py-2 rounded-lg text-sm font-medium {% if request.endpoint == 'main.classroom' %}nav-link-active bg-background-elevated{% endif %}">
+                    Classroom
+                </a>
+                <a href="/about" class="nav-link px-4 py-2 rounded-lg text-sm font-medium {% if request.endpoint == 'main.about' %}nav-link-active bg-background-elevated{% endif %}">
+                    About
+                </a>
+                <a href="/coaching" class="nav-link px-4 py-2 rounded-lg text-sm font-medium {% if request.endpoint == 'main.coaching' %}nav-link-active bg-background-elevated{% endif %}">
+                    Coaching
+                </a>
+            </div>
+
+            <!-- Right Side Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle-btn" class="btn-secondary flex items-center gap-2 px-3 py-2 text-sm" title="Toggle theme">
+                    <!-- Sun icon (for switching to legacy/light) -->
+                    <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <!-- Moon icon (for switching to dark) -->
+                    <svg id="theme-icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                    <span id="theme-label" class="hidden sm:inline">Classic Mode</span>
+                </button>
+
+                <!-- User Info (shown when logged in) -->
+                <span data-user-info class="hidden text-sm text-foreground-muted"></span>
+
+                <!-- Auth Buttons -->
+                <button data-auth-button="sign-in" class="hidden btn-secondary text-sm">
+                    Sign In
+                </button>
+                <button data-auth-button="sign-up" class="hidden btn-primary text-sm">
+                    Sign Up
+                </button>
+                <button data-auth-button="sign-out" class="hidden btn-ghost text-sm text-danger hover:text-danger-hover">
+                    Sign Out
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden btn-ghost p-2 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pb-4">
+            <div class="flex flex-col gap-1 pt-4 border-t border-border">
+                <a href="/" class="nav-link px-4 py-3 rounded-lg text-sm font-medium {% if request.endpoint == 'main.classroom' %}nav-link-active bg-background-elevated{% endif %}">
+                    Classroom
+                </a>
+                <a href="/about" class="nav-link px-4 py-3 rounded-lg text-sm font-medium {% if request.endpoint == 'main.about' %}nav-link-active bg-background-elevated{% endif %}">
+                    About
+                </a>
+                <a href="/coaching" class="nav-link px-4 py-3 rounded-lg text-sm font-medium {% if request.endpoint == 'main.coaching' %}nav-link-active bg-background-elevated{% endif %}">
+                    Coaching
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+
+        menu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+    });
+</script>

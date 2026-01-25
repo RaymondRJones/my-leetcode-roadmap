@@ -1,0 +1,1535 @@
+{
+  "challenge_version": "2025-Q1-v2",
+  "total_days": 28,
+  "point_values": {
+    "easy": 10,
+    "medium": 20,
+    "hard": 40,
+    "streak_7": 50,
+    "streak_14": 100,
+    "streak_28": 250,
+    "skool_post_approved": 30,
+    "bonus_problem": 5
+  },
+  "achievements": {
+    "first_problem": {
+      "name": "First Steps",
+      "description": "Complete your first problem",
+      "icon": "school"
+    },
+    "streak_7": {
+      "name": "Week Warrior",
+      "description": "Maintain a 7-day streak",
+      "icon": "local_fire_department"
+    },
+    "streak_14": {
+      "name": "Fortnight Focus",
+      "description": "Maintain a 14-day streak",
+      "icon": "whatshot"
+    },
+    "streak_28": {
+      "name": "Challenge Champion",
+      "description": "Complete all 28 days",
+      "icon": "emoji_events"
+    },
+    "hard_problem": {
+      "name": "Hard Mode",
+      "description": "Solve a hard problem",
+      "icon": "psychology"
+    },
+    "community_star": {
+      "name": "Community Star",
+      "description": "Have 3 Skool posts approved",
+      "icon": "groups"
+    }
+  },
+  "days": [
+    {
+      "day": 1,
+      "theme": "Digit Manipulation",
+      "problems": [
+        {
+          "id": "concatenate-non-zero-digits-and-multiply-by-sum-i",
+          "name": "Concatenate Non-Zero Digits and Multiply by Sum I",
+          "url": "https://leetcode.com/problems/concatenate-non-zero-digits-and-multiply-by-sum-i/",
+          "difficulty": "Easy",
+          "topics": ["Math", "String"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "Given a positive integer `num`, concatenate all non-zero digits from `num` to form a new number, then return the product of this new number and the sum of all digits in `num`.\n\nFor example, if num = 1023, concatenate non-zero digits to get 123, and the sum of digits is 1+0+2+3 = 6, so return 123 * 6 = 738.",
+          "examples": [
+            {
+              "input": "num = 123",
+              "output": "738",
+              "explanation": "Non-zero digits concatenated: 123. Sum of digits: 1+2+3 = 6. Result: 123 * 6 = 738."
+            },
+            {
+              "input": "num = 1020",
+              "output": "36",
+              "explanation": "Non-zero digits concatenated: 12. Sum of digits: 1+0+2+0 = 3. Result: 12 * 3 = 36."
+            }
+          ],
+          "constraints": [
+            "1 <= num <= 10^9"
+          ],
+          "starter_code": "def concatenateAndMultiply(num):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "123",
+              "function_call": "concatenateAndMultiply(123)",
+              "expected": "738"
+            },
+            {
+              "input": "1020",
+              "function_call": "concatenateAndMultiply(1020)",
+              "expected": "36"
+            },
+            {
+              "input": "100",
+              "function_call": "concatenateAndMultiply(100)",
+              "expected": "1"
+            },
+            {
+              "input": "5",
+              "function_call": "concatenateAndMultiply(5)",
+              "expected": "25"
+            },
+            {
+              "input": "9090",
+              "function_call": "concatenateAndMultiply(9090)",
+              "expected": "1638"
+            },
+            {
+              "input": "102030",
+              "function_call": "concatenateAndMultiply(102030)",
+              "expected": "738"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "theme": "2D Array Traversal",
+      "problems": [
+        {
+          "id": "available-captures-for-rook",
+          "name": "Available Captures for Rook",
+          "url": "https://leetcode.com/problems/available-captures-for-rook/",
+          "difficulty": "Easy",
+          "topics": ["Array", "Matrix", "Simulation"],
+          "points": 10,
+          "estimated_time": 20,
+          "description": "You are given an 8x8 chessboard represented as a 2D array. The board contains:\n- 'R' for the white rook\n- 'B' for bishops\n- 'p' for black pawns\n- '.' for empty squares\n\nReturn the number of pawns the rook can capture in one move. The rook can move horizontally or vertically but is blocked by bishops.",
+          "examples": [
+            {
+              "input": "board = [['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','R','.','.','p'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']]",
+              "output": "1",
+              "explanation": "The rook can capture the pawn to its right."
+            }
+          ],
+          "constraints": [
+            "board.length == 8",
+            "board[i].length == 8",
+            "board[i][j] is either 'R', '.', 'B', or 'p'",
+            "There is exactly one cell with board[i][j] == 'R'"
+          ],
+          "starter_code": "def numRookCaptures(board):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','R','.','.','.','p'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']]",
+              "function_call": "numRookCaptures([['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','R','.','.','.','p'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']])",
+              "expected": "3"
+            },
+            {
+              "input": "[['.','.','.','.','.','.','.','.'],['.','p','p','p','p','p','.','.'],['.','p','p','B','p','p','.','.'],['.','p','B','R','B','p','.','.'],['.','p','p','B','p','p','.','.'],['.','p','p','p','p','p','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']]",
+              "function_call": "numRookCaptures([['.','.','.','.','.','.','.','.'],['.','p','p','p','p','p','.','.'],['.','p','p','B','p','p','.','.'],['.','p','B','R','B','p','.','.'],['.','p','p','B','p','p','.','.'],['.','p','p','p','p','p','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']])",
+              "expected": "0"
+            },
+            {
+              "input": "[['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','p','p','R','p','p','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']]",
+              "function_call": "numRookCaptures([['.','.','.','.','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','p','p','R','p','p','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','p','.','.','.','.'],['.','.','.','.','.','.','.','.'],['.','.','.','.','.','.','.','.']])",
+              "expected": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "theme": "Simulation",
+      "problems": [
+        {
+          "id": "watering-plants",
+          "name": "Watering Plants",
+          "url": "https://leetcode.com/problems/watering-plants/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Simulation"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "You want to water n plants in your garden with a watering can. The plants are arranged in a row and are labeled from 0 to n - 1 from left to right where the ith plant is located at x = i. You are initially at x = -1 (by the river) and can fill your watering can with water.\n\nEach plant requires a specific amount of water. You must water the plants in order from left to right. After watering the current plant, if you don't have enough water to completely water the next plant, return to x = -1 to refill.\n\nReturn the number of steps needed to water all the plants.",
+          "examples": [
+            {
+              "input": "plants = [2,2,3,3], capacity = 5",
+              "output": "14",
+              "explanation": "Start at the river, walk to plant 0 (1 step), water it. Walk to plant 1 (1 step), water it. Not enough for plant 2, return to river (2 steps), walk to plant 2 (3 steps), water it. Walk to plant 3 (1 step), water it. Total: 1+1+2+3+1+6 = 14 steps."
+            }
+          ],
+          "constraints": [
+            "n == plants.length",
+            "1 <= n <= 1000",
+            "1 <= plants[i] <= 10^6",
+            "max(plants[i]) <= capacity <= 10^9"
+          ],
+          "starter_code": "def wateringPlants(plants, capacity):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[2,2,3,3], 5",
+              "function_call": "wateringPlants([2,2,3,3], 5)",
+              "expected": "14"
+            },
+            {
+              "input": "[1,1,1,1,1], 3",
+              "function_call": "wateringPlants([1,1,1,1,1], 3)",
+              "expected": "9"
+            },
+            {
+              "input": "[7,7,7,7,7,7,7], 8",
+              "function_call": "wateringPlants([7,7,7,7,7,7,7], 8)",
+              "expected": "49"
+            },
+            {
+              "input": "[1], 1",
+              "function_call": "wateringPlants([1], 1)",
+              "expected": "1"
+            },
+            {
+              "input": "[3,2,4,2,1], 6",
+              "function_call": "wateringPlants([3,2,4,2,1], 6)",
+              "expected": "17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "theme": "String Manipulation",
+      "problems": [
+        {
+          "id": "generate-tag-for-video-caption",
+          "name": "Generate Tag for Video Caption",
+          "url": "https://leetcode.com/problems/generate-tag-for-video-caption/",
+          "difficulty": "Easy",
+          "topics": ["String"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "You are given a string `caption` representing a video caption. Return the tag for the caption following these rules:\n\n1. Convert the caption to lowercase.\n2. Remove all spaces.\n3. If the tag has more than 40 characters, keep only the first 40 characters.\n4. Add '#' at the beginning.\n\nNote: Only the first letter of each word should be capitalized (camelCase style after the first word).",
+          "examples": [
+            {
+              "input": "caption = \"Leetcode Daily Challenge\"",
+              "output": "\"#leetcodeDailyChallenge\"",
+              "explanation": "Convert to camelCase with first word lowercase, remove spaces, add #."
+            },
+            {
+              "input": "caption = \"A\"",
+              "output": "\"#a\"",
+              "explanation": "Single letter becomes lowercase with # prefix."
+            }
+          ],
+          "constraints": [
+            "1 <= caption.length <= 150",
+            "caption consists of English letters and spaces",
+            "caption starts with an English letter"
+          ],
+          "starter_code": "def generateTag(caption):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "\"Leetcode Daily Challenge\"",
+              "function_call": "generateTag(\"Leetcode Daily Challenge\")",
+              "expected": "\"#leetcodeDailyChallenge\""
+            },
+            {
+              "input": "\"A\"",
+              "function_call": "generateTag(\"A\")",
+              "expected": "\"#a\""
+            },
+            {
+              "input": "\"Hello World\"",
+              "function_call": "generateTag(\"Hello World\")",
+              "expected": "\"#helloWorld\""
+            },
+            {
+              "input": "\"this is a very long caption that exceeds forty characters easily\"",
+              "function_call": "generateTag(\"this is a very long caption that exceeds forty characters easily\")",
+              "expected": "\"#thisIsAVeryLongCaptionThatExceedsForty\""
+            },
+            {
+              "input": "\"Python Programming\"",
+              "function_call": "generateTag(\"Python Programming\")",
+              "expected": "\"#pythonProgramming\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "theme": "Hash Tables",
+      "problems": [
+        {
+          "id": "find-players-with-zero-or-one-losses",
+          "name": "Find Players With Zero or One Losses",
+          "url": "https://leetcode.com/problems/find-players-with-zero-or-one-losses/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Hash Table", "Sorting"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "You are given an integer array `matches` where matches[i] = [winner_i, loser_i] indicates that the player winner_i defeated player loser_i in a match.\n\nReturn a list answer of size 2 where:\n- answer[0] is a list of all players that have not lost any matches (sorted in ascending order)\n- answer[1] is a list of all players that have lost exactly one match (sorted in ascending order)\n\nYou should only consider the players that have played at least one match.",
+          "examples": [
+            {
+              "input": "matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]",
+              "output": "[[1,2,10],[4,5,7,8]]",
+              "explanation": "Players 1, 2, and 10 have not lost any matches. Players 4, 5, 7, and 8 each have lost exactly one match."
+            }
+          ],
+          "constraints": [
+            "1 <= matches.length <= 10^5",
+            "matches[i].length == 2",
+            "1 <= winner_i, loser_i <= 10^5",
+            "winner_i != loser_i"
+          ],
+          "starter_code": "def findWinners(matches):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]",
+              "function_call": "findWinners([[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]])",
+              "expected": "[[1, 2, 10], [4, 5, 7, 8]]"
+            },
+            {
+              "input": "[[2,3],[1,3],[5,4],[6,4]]",
+              "function_call": "findWinners([[2,3],[1,3],[5,4],[6,4]])",
+              "expected": "[[1, 2, 5, 6], []]"
+            },
+            {
+              "input": "[[1,2],[2,1]]",
+              "function_call": "findWinners([[1,2],[2,1]])",
+              "expected": "[[], [1, 2]]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "theme": "Array Processing",
+      "problems": [
+        {
+          "id": "slowest-key",
+          "name": "Slowest Key",
+          "url": "https://leetcode.com/problems/slowest-key/",
+          "difficulty": "Easy",
+          "topics": ["Array", "String"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "A newly designed keypad was tested, where a tester pressed a sequence of n keys, one at a time.\n\nYou are given a string `keysPressed` of length n, where keysPressed[i] was the ith key pressed in the testing sequence, and a sorted list `releaseTimes`, where releaseTimes[i] was the time the ith key was released. Both arrays are 0-indexed.\n\nThe 0th key was pressed at time 0, and every subsequent key was pressed at the release time of the previous key.\n\nThe duration of a keypress is releaseTimes[i] - releaseTimes[i-1] (or releaseTimes[0] for the first key).\n\nReturn the key with the longest duration. If there are multiple such keys, return the lexicographically largest one.",
+          "examples": [
+            {
+              "input": "releaseTimes = [9,29,49,50], keysPressed = \"cbcd\"",
+              "output": "\"c\"",
+              "explanation": "Keypress durations are: c=9, b=20, c=20, d=1. Both 'b' and 'c' have duration 20, but 'c' is lexicographically larger."
+            }
+          ],
+          "constraints": [
+            "releaseTimes.length == n",
+            "keysPressed.length == n",
+            "2 <= n <= 1000",
+            "1 <= releaseTimes[i] <= 10^9",
+            "releaseTimes[i] < releaseTimes[i+1]",
+            "keysPressed contains only lowercase English letters"
+          ],
+          "starter_code": "def slowestKey(releaseTimes, keysPressed):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[9,29,49,50], \"cbcd\"",
+              "function_call": "slowestKey([9,29,49,50], \"cbcd\")",
+              "expected": "\"c\""
+            },
+            {
+              "input": "[12,23,36,46,62], \"spuda\"",
+              "function_call": "slowestKey([12,23,36,46,62], \"spuda\")",
+              "expected": "\"a\""
+            },
+            {
+              "input": "[1,2], \"ab\"",
+              "function_call": "slowestKey([1,2], \"ab\")",
+              "expected": "\"b\""
+            },
+            {
+              "input": "[10,20,30], \"abc\"",
+              "function_call": "slowestKey([10,20,30], \"abc\")",
+              "expected": "\"c\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "theme": "Math & Logic",
+      "problems": [
+        {
+          "id": "moving-stones-until-consecutive",
+          "name": "Moving Stones Until Consecutive",
+          "url": "https://leetcode.com/problems/moving-stones-until-consecutive/",
+          "difficulty": "Medium",
+          "topics": ["Math", "Brainteaser"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "Three stones are on a number line at positions a, b, and c.\n\nEach turn, you pick up a stone at an endpoint (i.e., either the lowest or highest position stone), and move it to an unoccupied position between those endpoints. Formally, let's say the stones are currently at positions x, y, z with x < y < z. You pick up the stone at either position x or position z, and move that stone to an integer position k, with x < k < z and k != y.\n\nThe game ends when you cannot make any more moves, i.e., the stones are in consecutive positions.\n\nReturn an array answer of length 2 where:\n- answer[0] is the minimum number of moves\n- answer[1] is the maximum number of moves",
+          "examples": [
+            {
+              "input": "a = 1, b = 2, c = 5",
+              "output": "[1, 2]",
+              "explanation": "Move stone from 5 to 3 (1 move for min). For max, move 5 to 4, then 1 to 3 (2 moves)."
+            }
+          ],
+          "constraints": [
+            "1 <= a, b, c <= 100",
+            "a, b, and c have different values"
+          ],
+          "starter_code": "def numMovesStones(a, b, c):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "1, 2, 5",
+              "function_call": "numMovesStones(1, 2, 5)",
+              "expected": "[1, 2]"
+            },
+            {
+              "input": "4, 3, 2",
+              "function_call": "numMovesStones(4, 3, 2)",
+              "expected": "[0, 0]"
+            },
+            {
+              "input": "3, 5, 1",
+              "function_call": "numMovesStones(3, 5, 1)",
+              "expected": "[1, 2]"
+            },
+            {
+              "input": "1, 5, 10",
+              "function_call": "numMovesStones(1, 5, 10)",
+              "expected": "[2, 7]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "theme": "Sliding Window",
+      "problems": [
+        {
+          "id": "longest-even-odd-subarray-with-threshold",
+          "name": "Longest Even Odd Subarray With Threshold",
+          "url": "https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/",
+          "difficulty": "Easy",
+          "topics": ["Array", "Sliding Window"],
+          "points": 10,
+          "estimated_time": 20,
+          "description": "You are given a 0-indexed integer array `nums` and an integer `threshold`.\n\nFind the length of the longest subarray of nums starting at index l and ending at index r (0 <= l <= r < nums.length) that satisfies the following conditions:\n- nums[l] % 2 == 0\n- For all indices i in the range [l, r - 1], nums[i] % 2 != nums[i + 1] % 2\n- For all indices i in the range [l, r], nums[i] <= threshold\n\nReturn the length of the longest such subarray.",
+          "examples": [
+            {
+              "input": "nums = [3,2,5,4], threshold = 5",
+              "output": "3",
+              "explanation": "The subarray [2,5,4] starts with even, alternates parity, and all elements <= 5."
+            }
+          ],
+          "constraints": [
+            "1 <= nums.length <= 100",
+            "1 <= nums[i] <= 100",
+            "1 <= threshold <= 100"
+          ],
+          "starter_code": "def longestAlternatingSubarray(nums, threshold):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[3,2,5,4], 5",
+              "function_call": "longestAlternatingSubarray([3,2,5,4], 5)",
+              "expected": "3"
+            },
+            {
+              "input": "[1,2], 2",
+              "function_call": "longestAlternatingSubarray([1,2], 2)",
+              "expected": "1"
+            },
+            {
+              "input": "[2,3,4,5], 4",
+              "function_call": "longestAlternatingSubarray([2,3,4,5], 4)",
+              "expected": "3"
+            },
+            {
+              "input": "[1,1,1], 1",
+              "function_call": "longestAlternatingSubarray([1,1,1], 1)",
+              "expected": "0"
+            },
+            {
+              "input": "[2], 2",
+              "function_call": "longestAlternatingSubarray([2], 2)",
+              "expected": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "theme": "Graph Basics",
+      "problems": [
+        {
+          "id": "node-with-highest-edge-score",
+          "name": "Node With Highest Edge Score",
+          "url": "https://leetcode.com/problems/node-with-highest-edge-score/",
+          "difficulty": "Medium",
+          "topics": ["Graph", "Hash Table"],
+          "points": 20,
+          "estimated_time": 20,
+          "description": "You are given a directed graph with n nodes labeled from 0 to n - 1, where each node has exactly one outgoing edge.\n\nThe graph is represented by a 0-indexed integer array `edges` of length n, where edges[i] indicates that there is a directed edge from node i to node edges[i].\n\nThe edge score of a node i is the sum of the labels of all the nodes that have an edge pointing to node i.\n\nReturn the node with the highest edge score. If multiple nodes have the same edge score, return the node with the smallest index.",
+          "examples": [
+            {
+              "input": "edges = [1,0,0,0,0,7,7,5]",
+              "output": "7",
+              "explanation": "Node 7 has edge score = 5 + 6 = 11. Node 0 has score 1+2+3+4 = 10."
+            }
+          ],
+          "constraints": [
+            "n == edges.length",
+            "2 <= n <= 10^5",
+            "0 <= edges[i] < n",
+            "edges[i] != i"
+          ],
+          "starter_code": "def edgeScore(edges):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[1,0,0,0,0,7,7,5]",
+              "function_call": "edgeScore([1,0,0,0,0,7,7,5])",
+              "expected": "7"
+            },
+            {
+              "input": "[2,0,0,2]",
+              "function_call": "edgeScore([2,0,0,2])",
+              "expected": "0"
+            },
+            {
+              "input": "[1,0]",
+              "function_call": "edgeScore([1,0])",
+              "expected": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "theme": "Circular Array",
+      "problems": [
+        {
+          "id": "defuse-the-bomb",
+          "name": "Defuse the Bomb",
+          "url": "https://leetcode.com/problems/defuse-the-bomb/",
+          "difficulty": "Easy",
+          "topics": ["Array", "Sliding Window"],
+          "points": 10,
+          "estimated_time": 20,
+          "description": "You have a bomb to defuse, and your time is running out! Your informer will provide you with a circular array `code` of length n and a key k.\n\nTo decrypt the code, you must replace every number. All the numbers are replaced simultaneously.\n- If k > 0, replace the ith number with the sum of the next k numbers.\n- If k < 0, replace the ith number with the sum of the previous k numbers.\n- If k == 0, replace the ith number with 0.\n\nAs code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is code[n-1].\n\nReturn the decrypted code.",
+          "examples": [
+            {
+              "input": "code = [5,7,1,4], k = 3",
+              "output": "[12,10,16,13]",
+              "explanation": "Each number is replaced with sum of next 3 numbers (circular)."
+            }
+          ],
+          "constraints": [
+            "n == code.length",
+            "1 <= n <= 100",
+            "1 <= code[i] <= 100",
+            "-(n - 1) <= k <= n - 1"
+          ],
+          "starter_code": "def decrypt(code, k):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[5,7,1,4], 3",
+              "function_call": "decrypt([5,7,1,4], 3)",
+              "expected": "[12, 10, 16, 13]"
+            },
+            {
+              "input": "[1,2,3,4], 0",
+              "function_call": "decrypt([1,2,3,4], 0)",
+              "expected": "[0, 0, 0, 0]"
+            },
+            {
+              "input": "[2,4,9,3], -2",
+              "function_call": "decrypt([2,4,9,3], -2)",
+              "expected": "[12, 5, 6, 13]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "theme": "Greedy & Sorting",
+      "problems": [
+        {
+          "id": "maximum-sum-with-at-most-k-elements",
+          "name": "Maximum Sum With At Most K Elements",
+          "url": "https://leetcode.com/problems/maximum-sum-with-at-most-k-elements/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Greedy", "Sorting", "Heap"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "You are given a 2D integer array `grid` of size m x n and an integer `k`.\n\nYou need to select at most k elements from the grid such that you maximize the sum. You can select elements from any row and any column, but you can only select at most one element from each cell.\n\nReturn the maximum sum you can achieve by selecting at most k elements.",
+          "examples": [
+            {
+              "input": "grid = [[1,2],[3,4]], k = 3",
+              "output": "9",
+              "explanation": "Select 4, 3, and 2 for maximum sum of 9."
+            }
+          ],
+          "constraints": [
+            "m == grid.length",
+            "n == grid[i].length",
+            "1 <= m, n <= 100",
+            "1 <= grid[i][j] <= 10^6",
+            "1 <= k <= m * n"
+          ],
+          "starter_code": "def maxSum(grid, k):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[1,2],[3,4]], 3",
+              "function_call": "maxSum([[1,2],[3,4]], 3)",
+              "expected": "9"
+            },
+            {
+              "input": "[[5,1],[2,3]], 2",
+              "function_call": "maxSum([[5,1],[2,3]], 2)",
+              "expected": "8"
+            },
+            {
+              "input": "[[10]], 1",
+              "function_call": "maxSum([[10]], 1)",
+              "expected": "10"
+            },
+            {
+              "input": "[[1,2,3],[4,5,6]], 4",
+              "function_call": "maxSum([[1,2,3],[4,5,6]], 4)",
+              "expected": "18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "theme": "Graph - Topological Sort",
+      "problems": [
+        {
+          "id": "course-schedule",
+          "name": "Course Schedule",
+          "url": "https://leetcode.com/problems/course-schedule/",
+          "difficulty": "Medium",
+          "topics": ["Depth-First Search", "Graph", "Topological Sort"],
+          "points": 20,
+          "estimated_time": 30,
+          "description": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi before course ai.\n\nReturn true if you can finish all courses. Otherwise, return false.",
+          "examples": [
+            {
+              "input": "numCourses = 2, prerequisites = [[1,0]]",
+              "output": "True",
+              "explanation": "Take course 0 first, then course 1."
+            },
+            {
+              "input": "numCourses = 2, prerequisites = [[1,0],[0,1]]",
+              "output": "False",
+              "explanation": "Circular dependency - impossible to complete."
+            }
+          ],
+          "constraints": [
+            "1 <= numCourses <= 2000",
+            "0 <= prerequisites.length <= 5000",
+            "prerequisites[i].length == 2",
+            "0 <= ai, bi < numCourses",
+            "All pairs in prerequisites are unique"
+          ],
+          "starter_code": "def canFinish(numCourses, prerequisites):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "2, [[1,0]]",
+              "function_call": "canFinish(2, [[1,0]])",
+              "expected": "True"
+            },
+            {
+              "input": "2, [[1,0],[0,1]]",
+              "function_call": "canFinish(2, [[1,0],[0,1]])",
+              "expected": "False"
+            },
+            {
+              "input": "3, [[1,0],[2,1]]",
+              "function_call": "canFinish(3, [[1,0],[2,1]])",
+              "expected": "True"
+            },
+            {
+              "input": "4, [[1,0],[2,1],[3,2],[1,3]]",
+              "function_call": "canFinish(4, [[1,0],[2,1],[3,2],[1,3]])",
+              "expected": "False"
+            },
+            {
+              "input": "1, []",
+              "function_call": "canFinish(1, [])",
+              "expected": "True"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "theme": "Greedy Scheduling",
+      "problems": [
+        {
+          "id": "minimum-processing-time",
+          "name": "Minimum Processing Time",
+          "url": "https://leetcode.com/problems/minimum-processing-time/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Greedy", "Sorting"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "You have n processors, each with 4 cores. You are given an array `processorTime` representing the time at which each processor becomes available, and an array `tasks` of length n * 4 representing the time each task takes.\n\nEach core can only work on one task, and each task can only be assigned to one core.\n\nReturn the minimum time at which all tasks have been processed.",
+          "examples": [
+            {
+              "input": "processorTime = [8,10], tasks = [2,2,3,1,8,7,4,5]",
+              "output": "16",
+              "explanation": "Assign longer tasks to earlier processors for optimal scheduling."
+            }
+          ],
+          "constraints": [
+            "1 <= n == processorTime.length <= 25000",
+            "1 <= processorTime[i] <= 10^9",
+            "tasks.length == 4 * n",
+            "1 <= tasks[i] <= 10^9"
+          ],
+          "starter_code": "def minProcessingTime(processorTime, tasks):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[8,10], [2,2,3,1,8,7,4,5]",
+              "function_call": "minProcessingTime([8,10], [2,2,3,1,8,7,4,5])",
+              "expected": "16"
+            },
+            {
+              "input": "[10,20], [2,3,1,2,5,8,4,3]",
+              "function_call": "minProcessingTime([10,20], [2,3,1,2,5,8,4,3])",
+              "expected": "23"
+            },
+            {
+              "input": "[1], [1,1,1,1]",
+              "function_call": "minProcessingTime([1], [1,1,1,1])",
+              "expected": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "theme": "Math",
+      "problems": [
+        {
+          "id": "divisible-and-non-divisible-sums-difference",
+          "name": "Divisible and Non-divisible Sums Difference",
+          "url": "https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/",
+          "difficulty": "Easy",
+          "topics": ["Math"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "You are given positive integers n and m.\n\nDefine two integers:\n- num1 as the sum of all integers in the range [1, n] that are not divisible by m.\n- num2 as the sum of all integers in the range [1, n] that are divisible by m.\n\nReturn num1 - num2.",
+          "examples": [
+            {
+              "input": "n = 10, m = 3",
+              "output": "19",
+              "explanation": "num1 = 1+2+4+5+7+8+10 = 37. num2 = 3+6+9 = 18. Result = 37-18 = 19."
+            }
+          ],
+          "constraints": [
+            "1 <= n, m <= 1000"
+          ],
+          "starter_code": "def differenceOfSums(n, m):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "10, 3",
+              "function_call": "differenceOfSums(10, 3)",
+              "expected": "19"
+            },
+            {
+              "input": "5, 6",
+              "function_call": "differenceOfSums(5, 6)",
+              "expected": "15"
+            },
+            {
+              "input": "5, 1",
+              "function_call": "differenceOfSums(5, 1)",
+              "expected": "-15"
+            },
+            {
+              "input": "10, 10",
+              "function_call": "differenceOfSums(10, 10)",
+              "expected": "35"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "theme": "Backtracking",
+      "problems": [
+        {
+          "id": "word-search",
+          "name": "Word Search",
+          "url": "https://leetcode.com/problems/word-search/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Backtracking", "Matrix"],
+          "points": 20,
+          "estimated_time": 35,
+          "description": "Given an m x n grid of characters `board` and a string `word`, return true if word exists in the grid.\n\nThe word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.",
+          "examples": [
+            {
+              "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"",
+              "output": "True",
+              "explanation": "The word can be found by following adjacent cells."
+            }
+          ],
+          "constraints": [
+            "m == board.length",
+            "n == board[i].length",
+            "1 <= m, n <= 6",
+            "1 <= word.length <= 15",
+            "board and word consist of only lowercase and uppercase English letters"
+          ],
+          "starter_code": "def exist(board, word):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCCED\"",
+              "function_call": "exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCCED\")",
+              "expected": "True"
+            },
+            {
+              "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"SEE\"",
+              "function_call": "exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"SEE\")",
+              "expected": "True"
+            },
+            {
+              "input": "[[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCB\"",
+              "function_call": "exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCB\")",
+              "expected": "False"
+            },
+            {
+              "input": "[[\"A\"]], \"A\"",
+              "function_call": "exist([[\"A\"]], \"A\")",
+              "expected": "True"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "theme": "Two Pointers / Stack",
+      "problems": [
+        {
+          "id": "backspace-string-compare",
+          "name": "Backspace String Compare",
+          "url": "https://leetcode.com/problems/backspace-string-compare/",
+          "difficulty": "Easy",
+          "topics": ["Two Pointers", "String", "Stack"],
+          "points": 10,
+          "estimated_time": 20,
+          "description": "Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.\n\nNote that after backspacing an empty text, the text will continue empty.",
+          "examples": [
+            {
+              "input": "s = \"ab#c\", t = \"ad#c\"",
+              "output": "True",
+              "explanation": "Both become \"ac\"."
+            },
+            {
+              "input": "s = \"ab##\", t = \"c#d#\"",
+              "output": "True",
+              "explanation": "Both become \"\"."
+            }
+          ],
+          "constraints": [
+            "1 <= s.length, t.length <= 200",
+            "s and t only contain lowercase letters and '#' characters"
+          ],
+          "starter_code": "def backspaceCompare(s, t):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "\"ab#c\", \"ad#c\"",
+              "function_call": "backspaceCompare(\"ab#c\", \"ad#c\")",
+              "expected": "True"
+            },
+            {
+              "input": "\"ab##\", \"c#d#\"",
+              "function_call": "backspaceCompare(\"ab##\", \"c#d#\")",
+              "expected": "True"
+            },
+            {
+              "input": "\"a#c\", \"b\"",
+              "function_call": "backspaceCompare(\"a#c\", \"b\")",
+              "expected": "False"
+            },
+            {
+              "input": "\"a##c\", \"#a#c\"",
+              "function_call": "backspaceCompare(\"a##c\", \"#a#c\")",
+              "expected": "True"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "theme": "Binary Tree Validation",
+      "problems": [
+        {
+          "id": "validate-binary-tree-nodes",
+          "name": "Validate Binary Tree Nodes",
+          "url": "https://leetcode.com/problems/validate-binary-tree-nodes/",
+          "difficulty": "Medium",
+          "topics": ["Tree", "DFS", "BFS", "Union Find", "Graph"],
+          "points": 20,
+          "estimated_time": 30,
+          "description": "You have n binary tree nodes numbered from 0 to n - 1 where node i has two children leftChild[i] and rightChild[i]. Return true if and only if all the given nodes form exactly one valid binary tree.\n\nIf node i has no left child then leftChild[i] will equal -1, similarly for the right child.",
+          "examples": [
+            {
+              "input": "n = 4, leftChild = [1,-1,3,-1], rightChild = [2,-1,-1,-1]",
+              "output": "True",
+              "explanation": "Node 0 is root with children 1, 2. Node 1 has no children. Node 2 has left child 3."
+            }
+          ],
+          "constraints": [
+            "n == leftChild.length == rightChild.length",
+            "1 <= n <= 10^4",
+            "-1 <= leftChild[i], rightChild[i] < n"
+          ],
+          "starter_code": "def validateBinaryTreeNodes(n, leftChild, rightChild):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "4, [1,-1,3,-1], [2,-1,-1,-1]",
+              "function_call": "validateBinaryTreeNodes(4, [1,-1,3,-1], [2,-1,-1,-1])",
+              "expected": "True"
+            },
+            {
+              "input": "4, [1,-1,3,-1], [2,3,-1,-1]",
+              "function_call": "validateBinaryTreeNodes(4, [1,-1,3,-1], [2,3,-1,-1])",
+              "expected": "False"
+            },
+            {
+              "input": "2, [1,0], [-1,-1]",
+              "function_call": "validateBinaryTreeNodes(2, [1,0], [-1,-1])",
+              "expected": "False"
+            },
+            {
+              "input": "1, [-1], [-1]",
+              "function_call": "validateBinaryTreeNodes(1, [-1], [-1])",
+              "expected": "True"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "theme": "Stack Fundamentals",
+      "problems": [
+        {
+          "id": "valid-parentheses",
+          "name": "Valid Parentheses",
+          "url": "https://leetcode.com/problems/valid-parentheses/",
+          "difficulty": "Easy",
+          "topics": ["String", "Stack"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+          "examples": [
+            {
+              "input": "s = \"()\"",
+              "output": "True",
+              "explanation": "Simple valid parentheses."
+            },
+            {
+              "input": "s = \"()[]{}\"",
+              "output": "True",
+              "explanation": "All brackets properly matched."
+            },
+            {
+              "input": "s = \"(]\"",
+              "output": "False",
+              "explanation": "Mismatched bracket types."
+            }
+          ],
+          "constraints": [
+            "1 <= s.length <= 10^4",
+            "s consists of parentheses only '()[]{}'"
+          ],
+          "starter_code": "def isValid(s):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "\"()\"",
+              "function_call": "isValid(\"()\")",
+              "expected": "True"
+            },
+            {
+              "input": "\"()[]{}\"",
+              "function_call": "isValid(\"()[]{}\")",
+              "expected": "True"
+            },
+            {
+              "input": "\"(]\"",
+              "function_call": "isValid(\"(]\")",
+              "expected": "False"
+            },
+            {
+              "input": "\"{[]}\"",
+              "function_call": "isValid(\"{[]}\")",
+              "expected": "True"
+            },
+            {
+              "input": "\"([)]\"",
+              "function_call": "isValid(\"([)]\")",
+              "expected": "False"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "theme": "Hash Table Fundamentals",
+      "problems": [
+        {
+          "id": "two-sum",
+          "name": "Two Sum",
+          "url": "https://leetcode.com/problems/two-sum/",
+          "difficulty": "Easy",
+          "topics": ["Array", "Hash Table"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+          "examples": [
+            {
+              "input": "nums = [2,7,11,15], target = 9",
+              "output": "[0, 1]",
+              "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+            }
+          ],
+          "constraints": [
+            "2 <= nums.length <= 10^4",
+            "-10^9 <= nums[i] <= 10^9",
+            "-10^9 <= target <= 10^9",
+            "Only one valid answer exists."
+          ],
+          "starter_code": "def twoSum(nums, target):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[2, 7, 11, 15], 9",
+              "function_call": "twoSum([2, 7, 11, 15], 9)",
+              "expected": "[0, 1]"
+            },
+            {
+              "input": "[3, 2, 4], 6",
+              "function_call": "twoSum([3, 2, 4], 6)",
+              "expected": "[1, 2]"
+            },
+            {
+              "input": "[3, 3], 6",
+              "function_call": "twoSum([3, 3], 6)",
+              "expected": "[0, 1]"
+            },
+            {
+              "input": "[1, 2, 3, 4, 5], 9",
+              "function_call": "twoSum([1, 2, 3, 4, 5], 9)",
+              "expected": "[3, 4]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "theme": "Monotonic Stack",
+      "problems": [
+        {
+          "id": "buildings-with-an-ocean-view",
+          "name": "Buildings With an Ocean View",
+          "url": "https://leetcode.com/problems/buildings-with-an-ocean-view/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Stack", "Monotonic Stack"],
+          "points": 20,
+          "estimated_time": 20,
+          "description": "There are n buildings in a line. You are given an integer array `heights` of size n that represents the heights of the buildings.\n\nThe ocean is to the right of the buildings. A building has an ocean view if all the buildings to its right have a smaller height.\n\nReturn a list of indices (0-indexed) of buildings that have an ocean view, sorted in increasing order.",
+          "examples": [
+            {
+              "input": "heights = [4,2,3,1]",
+              "output": "[0,2,3]",
+              "explanation": "Buildings 0, 2, and 3 have an ocean view."
+            }
+          ],
+          "constraints": [
+            "1 <= heights.length <= 10^5",
+            "1 <= heights[i] <= 10^9"
+          ],
+          "starter_code": "def findBuildings(heights):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[4,2,3,1]",
+              "function_call": "findBuildings([4,2,3,1])",
+              "expected": "[0, 2, 3]"
+            },
+            {
+              "input": "[4,3,2,1]",
+              "function_call": "findBuildings([4,3,2,1])",
+              "expected": "[0, 1, 2, 3]"
+            },
+            {
+              "input": "[1,3,2,4]",
+              "function_call": "findBuildings([1,3,2,4])",
+              "expected": "[3]"
+            },
+            {
+              "input": "[2,2,2,2]",
+              "function_call": "findBuildings([2,2,2,2])",
+              "expected": "[3]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "theme": "Interval Scheduling",
+      "problems": [
+        {
+          "id": "meeting-rooms-ii",
+          "name": "Meeting Rooms II",
+          "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+          "difficulty": "Medium",
+          "topics": ["Array", "Two Pointers", "Greedy", "Sorting", "Heap"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "Given an array of meeting time intervals `intervals` where intervals[i] = [start_i, end_i], return the minimum number of conference rooms required.\n\nNote that [0, 30) and [30, 40) are non-overlapping, meaning 30 is not included in the first interval.",
+          "examples": [
+            {
+              "input": "intervals = [[0,30],[5,10],[15,20]]",
+              "output": "2",
+              "explanation": "Meeting [0,30] overlaps with both [5,10] and [15,20], so we need 2 rooms."
+            }
+          ],
+          "constraints": [
+            "1 <= intervals.length <= 10^4",
+            "0 <= start_i < end_i <= 10^6"
+          ],
+          "starter_code": "def minMeetingRooms(intervals):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[0,30],[5,10],[15,20]]",
+              "function_call": "minMeetingRooms([[0,30],[5,10],[15,20]])",
+              "expected": "2"
+            },
+            {
+              "input": "[[7,10],[2,4]]",
+              "function_call": "minMeetingRooms([[7,10],[2,4]])",
+              "expected": "1"
+            },
+            {
+              "input": "[[0,10],[10,20],[20,30]]",
+              "function_call": "minMeetingRooms([[0,10],[10,20],[20,30]])",
+              "expected": "1"
+            },
+            {
+              "input": "[[1,5],[2,6],[3,7],[4,8]]",
+              "function_call": "minMeetingRooms([[1,5],[2,6],[3,7],[4,8]])",
+              "expected": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "theme": "Binary Search + Sorting",
+      "problems": [
+        {
+          "id": "number-of-flowers-in-full-bloom",
+          "name": "Number of Flowers in Full Bloom",
+          "url": "https://leetcode.com/problems/number-of-flowers-in-full-bloom/",
+          "difficulty": "Hard",
+          "topics": ["Array", "Binary Search", "Sorting", "Prefix Sum"],
+          "points": 40,
+          "estimated_time": 45,
+          "description": "You are given a 0-indexed 2D integer array `flowers`, where flowers[i] = [start_i, end_i] means the ith flower will be in full bloom from start_i to end_i (inclusive). You are also given a 0-indexed integer array `people`, where people[i] is the time that the ith person will arrive to see the flowers.\n\nReturn an integer array answer of size n, where answer[i] is the number of flowers in full bloom when person i arrives.",
+          "examples": [
+            {
+              "input": "flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]",
+              "output": "[1,2,2,2]",
+              "explanation": "At time 2, flower 0 is blooming. At time 3, flowers 0,1 are blooming. Etc."
+            }
+          ],
+          "constraints": [
+            "1 <= flowers.length <= 5 * 10^4",
+            "flowers[i].length == 2",
+            "1 <= start_i <= end_i <= 10^9",
+            "1 <= people.length <= 5 * 10^4",
+            "1 <= people[i] <= 10^9"
+          ],
+          "starter_code": "def fullBloomFlowers(flowers, people):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[1,6],[3,7],[9,12],[4,13]], [2,3,7,11]",
+              "function_call": "fullBloomFlowers([[1,6],[3,7],[9,12],[4,13]], [2,3,7,11])",
+              "expected": "[1, 2, 2, 2]"
+            },
+            {
+              "input": "[[1,10],[3,3]], [3,3,2]",
+              "function_call": "fullBloomFlowers([[1,10],[3,3]], [3,3,2])",
+              "expected": "[2, 2, 1]"
+            },
+            {
+              "input": "[[1,2]], [1,2,3]",
+              "function_call": "fullBloomFlowers([[1,2]], [1,2,3])",
+              "expected": "[1, 1, 0]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "theme": "Dynamic Programming Basics",
+      "problems": [
+        {
+          "id": "climbing-stairs",
+          "name": "Climbing Stairs",
+          "url": "https://leetcode.com/problems/climbing-stairs/",
+          "difficulty": "Easy",
+          "topics": ["Math", "Dynamic Programming", "Memoization"],
+          "points": 10,
+          "estimated_time": 15,
+          "description": "You are climbing a staircase. It takes n steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+          "examples": [
+            {
+              "input": "n = 2",
+              "output": "2",
+              "explanation": "Two ways: 1+1 or 2."
+            },
+            {
+              "input": "n = 3",
+              "output": "3",
+              "explanation": "Three ways: 1+1+1, 1+2, or 2+1."
+            }
+          ],
+          "constraints": [
+            "1 <= n <= 45"
+          ],
+          "starter_code": "def climbStairs(n):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "2",
+              "function_call": "climbStairs(2)",
+              "expected": "2"
+            },
+            {
+              "input": "3",
+              "function_call": "climbStairs(3)",
+              "expected": "3"
+            },
+            {
+              "input": "4",
+              "function_call": "climbStairs(4)",
+              "expected": "5"
+            },
+            {
+              "input": "5",
+              "function_call": "climbStairs(5)",
+              "expected": "8"
+            },
+            {
+              "input": "1",
+              "function_call": "climbStairs(1)",
+              "expected": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "theme": "Tree Traversal - BFS",
+      "problems": [
+        {
+          "id": "binary-tree-vertical-order-traversal",
+          "name": "Binary Tree Vertical Order Traversal",
+          "url": "https://leetcode.com/problems/binary-tree-vertical-order-traversal/",
+          "difficulty": "Medium",
+          "topics": ["Tree", "BFS", "Hash Table", "Binary Tree"],
+          "points": 20,
+          "estimated_time": 30,
+          "description": "Given the root of a binary tree, return the vertical order traversal of its nodes' values. For each column from left to right, return the values of nodes in that column from top to bottom.\n\nIf two nodes are in the same row and column, the order should be from left to right.\n\nNote: For this problem, we provide the tree as a list in level order, where -1 represents null nodes.",
+          "examples": [
+            {
+              "input": "root = [3,9,20,-1,-1,15,7]",
+              "output": "[[9],[3,15],[20],[7]]",
+              "explanation": "Column -1: [9], Column 0: [3,15], Column 1: [20], Column 2: [7]"
+            }
+          ],
+          "constraints": [
+            "The number of nodes in the tree is in the range [0, 100]",
+            "-100 <= Node.val <= 100"
+          ],
+          "starter_code": "# Tree node is provided - implement the traversal\ndef verticalOrder(root):\n    # root is provided as a list in level order\n    # -1 represents null nodes\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[3,9,20,-1,-1,15,7]",
+              "function_call": "verticalOrder([3,9,20,-1,-1,15,7])",
+              "expected": "[[9], [3, 15], [20], [7]]"
+            },
+            {
+              "input": "[3,9,8,4,0,1,7]",
+              "function_call": "verticalOrder([3,9,8,4,0,1,7])",
+              "expected": "[[4], [9], [3, 0, 1], [8], [7]]"
+            },
+            {
+              "input": "[]",
+              "function_call": "verticalOrder([])",
+              "expected": "[]"
+            },
+            {
+              "input": "[1]",
+              "function_call": "verticalOrder([1])",
+              "expected": "[[1]]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "theme": "Binary Search Tree",
+      "problems": [
+        {
+          "id": "range-sum-of-bst",
+          "name": "Range Sum of BST",
+          "url": "https://leetcode.com/problems/range-sum-of-bst/",
+          "difficulty": "Easy",
+          "topics": ["Tree", "DFS", "Binary Search Tree", "Binary Tree"],
+          "points": 10,
+          "estimated_time": 20,
+          "description": "Given the root node of a binary search tree and two integers `low` and `high`, return the sum of values of all nodes with a value in the inclusive range [low, high].\n\nNote: For this problem, we provide the tree as a list in level order, where -1 represents null nodes.",
+          "examples": [
+            {
+              "input": "root = [10,5,15,3,7,-1,18], low = 7, high = 15",
+              "output": "32",
+              "explanation": "Nodes 7, 10, and 15 are in the range [7, 15]. 7 + 10 + 15 = 32."
+            }
+          ],
+          "constraints": [
+            "The number of nodes in the tree is in the range [1, 2 * 10^4]",
+            "1 <= Node.val <= 10^5",
+            "1 <= low <= high <= 10^5",
+            "All Node.val are unique"
+          ],
+          "starter_code": "def rangeSumBST(root, low, high):\n    # root is provided as a list in level order\n    # -1 represents null nodes\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[10,5,15,3,7,-1,18], 7, 15",
+              "function_call": "rangeSumBST([10,5,15,3,7,-1,18], 7, 15)",
+              "expected": "32"
+            },
+            {
+              "input": "[10,5,15,3,7,13,18,1,-1,6], 6, 10",
+              "function_call": "rangeSumBST([10,5,15,3,7,13,18,1,-1,6], 6, 10)",
+              "expected": "23"
+            },
+            {
+              "input": "[5], 5, 5",
+              "function_call": "rangeSumBST([5], 5, 5)",
+              "expected": "5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "theme": "BFS / Shortest Path",
+      "problems": [
+        {
+          "id": "the-maze-ii",
+          "name": "The Maze II",
+          "url": "https://leetcode.com/problems/the-maze-ii/",
+          "difficulty": "Medium",
+          "topics": ["DFS", "BFS", "Graph", "Heap", "Shortest Path"],
+          "points": 20,
+          "estimated_time": 35,
+          "description": "There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.\n\nGiven the maze, the ball's start position and the destination, return the shortest distance for the ball to stop at the destination. If the ball cannot stop at the destination, return -1.\n\nThe maze is represented by a binary 2D array. 0 means empty space and 1 means wall.",
+          "examples": [
+            {
+              "input": "maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]",
+              "output": "12",
+              "explanation": "The shortest path is 12 steps."
+            }
+          ],
+          "constraints": [
+            "m == maze.length",
+            "n == maze[i].length",
+            "1 <= m, n <= 100",
+            "maze[i][j] is 0 or 1",
+            "start.length == 2",
+            "destination.length == 2"
+          ],
+          "starter_code": "def shortestDistance(maze, start, destination):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "[[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], [0,4], [4,4]",
+              "function_call": "shortestDistance([[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], [0,4], [4,4])",
+              "expected": "12"
+            },
+            {
+              "input": "[[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], [0,4], [3,2]",
+              "function_call": "shortestDistance([[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], [0,4], [3,2])",
+              "expected": "-1"
+            },
+            {
+              "input": "[[0,0,0],[0,0,0],[0,0,0]], [0,0], [2,2]",
+              "function_call": "shortestDistance([[0,0,0],[0,0,0],[0,0,0]], [0,0], [2,2])",
+              "expected": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "theme": "BFS - Word Transformation",
+      "problems": [
+        {
+          "id": "word-ladder",
+          "name": "Word Ladder",
+          "url": "https://leetcode.com/problems/word-ladder/",
+          "difficulty": "Hard",
+          "topics": ["Hash Table", "String", "BFS"],
+          "points": 40,
+          "estimated_time": 40,
+          "description": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:\n\n- Every adjacent pair of words differs by a single letter.\n- Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.\n- sk == endWord\n\nGiven two words, beginWord and endWord, and a dictionary wordList, return the number of words in the shortest transformation sequence from beginWord to endWord, or 0 if no such sequence exists.",
+          "examples": [
+            {
+              "input": "beginWord = \"hit\", endWord = \"cog\", wordList = [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+              "output": "5",
+              "explanation": "hit -> hot -> dot -> dog -> cog"
+            }
+          ],
+          "constraints": [
+            "1 <= beginWord.length <= 10",
+            "endWord.length == beginWord.length",
+            "1 <= wordList.length <= 5000",
+            "wordList[i].length == beginWord.length",
+            "beginWord, endWord, and wordList[i] consist of lowercase English letters",
+            "beginWord != endWord",
+            "All the words in wordList are unique"
+          ],
+          "starter_code": "def ladderLength(beginWord, endWord, wordList):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]",
+              "function_call": "ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"])",
+              "expected": "5"
+            },
+            {
+              "input": "\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]",
+              "function_call": "ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"])",
+              "expected": "0"
+            },
+            {
+              "input": "\"a\", \"c\", [\"a\",\"b\",\"c\"]",
+              "function_call": "ladderLength(\"a\", \"c\", [\"a\",\"b\",\"c\"])",
+              "expected": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "theme": "Stack - Path Processing",
+      "problems": [
+        {
+          "id": "simplify-path",
+          "name": "Simplify Path",
+          "url": "https://leetcode.com/problems/simplify-path/",
+          "difficulty": "Medium",
+          "topics": ["String", "Stack"],
+          "points": 20,
+          "estimated_time": 25,
+          "description": "Given a string path, which is an absolute path (starting with a slash '/') to a file or directory in a Unix-style file system, convert it to the simplified canonical path.\n\nIn a Unix-style file system:\n- A period '.' refers to the current directory\n- A double period '..' refers to the parent directory\n- Multiple consecutive slashes '//' are treated as a single slash '/'\n\nThe canonical path should:\n- Start with a single slash '/'\n- Not end with a trailing slash '/'\n- Only contain directories on the path (no '.' or '..')",
+          "examples": [
+            {
+              "input": "path = \"/home/\"",
+              "output": "\"/home\"",
+              "explanation": "Remove trailing slash."
+            },
+            {
+              "input": "path = \"/../\"",
+              "output": "\"/\"",
+              "explanation": "Going up from root still stays at root."
+            },
+            {
+              "input": "path = \"/home//foo/\"",
+              "output": "\"/home/foo\"",
+              "explanation": "Multiple slashes treated as single slash."
+            }
+          ],
+          "constraints": [
+            "1 <= path.length <= 3000",
+            "path consists of English letters, digits, period '.', slash '/' or '_'",
+            "path is a valid absolute Unix path"
+          ],
+          "starter_code": "def simplifyPath(path):\n    # Your code here\n    pass",
+          "test_cases": [
+            {
+              "input": "\"/home/\"",
+              "function_call": "simplifyPath(\"/home/\")",
+              "expected": "\"/home\""
+            },
+            {
+              "input": "\"/../\"",
+              "function_call": "simplifyPath(\"/../\")",
+              "expected": "\"/\""
+            },
+            {
+              "input": "\"/home//foo/\"",
+              "function_call": "simplifyPath(\"/home//foo/\")",
+              "expected": "\"/home/foo\""
+            },
+            {
+              "input": "\"/a/./b/../../c/\"",
+              "function_call": "simplifyPath(\"/a/./b/../../c/\")",
+              "expected": "\"/c\""
+            },
+            {
+              "input": "\"/a/b/c\"",
+              "function_call": "simplifyPath(\"/a/b/c\")",
+              "expected": "\"/a/b/c\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

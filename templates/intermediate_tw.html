@@ -1,0 +1,196 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Fortune500 Roadmap - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+        </div>
+        <div>
+            <h1 class="text-3xl font-bold text-foreground">Fortune500 Roadmap</h1>
+            <p class="text-foreground-muted">Intermediate preparation for mid-tier companies</p>
+        </div>
+    </div>
+
+    <!-- Info Card -->
+    <div class="card p-6 mb-8">
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-foreground mb-2">Intermediate: Preparation for Mid-Tier Companies 2025</h3>
+                <p class="text-foreground-muted mb-3">
+                    This intermediate roadmap is designed for preparation for any mid-tier company in the USA for 2025.
+                    Start here if you have basic programming experience, or complete the Complete Beginner Roadmap first if you're new to programming.
+                </p>
+                <p class="text-sm text-foreground-subtle">
+                    <strong class="text-foreground">Next Step:</strong> For FAANG and top-tier companies, advance to the Advanced roadmap after mastering these problems.
+                    This intermediate level bridges the gap between beginner and advanced problem-solving.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if roadmap %}
+<!-- Statistics Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="stat-card">
+        <svg class="w-10 h-10 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span class="stat-value">{{ roadmap.keys() | length }}</span>
+        <span class="stat-label">Months</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-10 h-10 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        </svg>
+        {% set total_problems = [] %}
+        {% for month, days in roadmap.items() %}
+            {% for day in days %}
+                {% for problem in day.problems %}
+                    {% set _ = total_problems.append(problem) %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        <span class="stat-value">{{ total_problems|length }}</span>
+        <span class="stat-label">Problems</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-10 h-10 text-success mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span class="stat-value" id="totalCompleted">0</span>
+        <span class="stat-label">Completed</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-10 h-10 text-warning mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span class="stat-value" id="overallProgress">0%</span>
+        <span class="stat-label">Progress</span>
+    </div>
+</div>
+
+<!-- Months Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for month, days in roadmap.items() %}
+    {% set month_problems = [] %}
+    {% for day in days %}
+        {% for problem in day.problems %}
+            {% set _ = month_problems.append(problem) %}
+        {% endfor %}
+    {% endfor %}
+
+    <div class="card group hover:shadow-glow transition-all duration-300" style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+        <!-- Gradient top border -->
+        <div class="h-1 bg-gradient-to-r from-primary to-success -mx-6 -mt-6 mb-4 rounded-t-xl"></div>
+
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-foreground">Intermediate {{ month }}</h3>
+        </div>
+
+        <div class="space-y-2 mb-4">
+            <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                <svg class="w-4 h-4 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                {{ days|length }} days of practice
+            </div>
+            <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                <svg class="w-4 h-4 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                {{ month_problems|length }} problems to solve
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-4">
+            <div class="flex justify-between items-center text-sm mb-2">
+                <span class="text-foreground-muted">Progress</span>
+                <span id="intermediateMonthProgressText-{{ month.replace(' ', '') }}" class="text-primary font-medium">0 / {{ month_problems|length }}</span>
+            </div>
+            <div class="h-2 bg-background-secondary rounded-full overflow-hidden">
+                <div id="intermediateMonthProgress-{{ month.replace(' ', '') }}" class="h-full bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <a href="/intermediate/month/{{ month }}" class="btn-primary w-full flex items-center justify-center gap-2 group-hover:shadow-glow transition-all">
+            Start Intermediate {{ month }}
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<!-- No Data State -->
+<div class="empty-state">
+    <div class="empty-state-icon">
+        <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+    </div>
+    <h3 class="empty-state-title">No Intermediate Roadmap Data Found</h3>
+    <p class="empty-state-description">Please make sure your intermediate PDF files are in the intermediate_roadmap_pdfs directory and click the button below to analyze them.</p>
+    <button class="btn-primary mt-4" onclick="refreshData()">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+        </svg>
+        Analyze Intermediate PDFs
+    </button>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let totalCompleted = 0;
+    let totalProblems = 0;
+
+    {% for month, days in roadmap.items() %}
+    {% set month_problems = [] %}
+    {% for day in days %}
+        {% for problem in day.problems %}
+            {% set _ = month_problems.append(problem) %}
+        {% endfor %}
+    {% endfor %}
+
+    const monthTotal{{ month.replace(' ', '') }} = {{ month_problems|length }};
+    totalProblems += monthTotal{{ month.replace(' ', '') }};
+
+    const saved{{ month.replace(' ', '') }} = localStorage.getItem('progress_Intermediate {{ month }}');
+    if (saved{{ month.replace(' ', '') }}) {
+        const completed{{ month.replace(' ', '') }} = JSON.parse(saved{{ month.replace(' ', '') }}).length;
+        const percentage{{ month.replace(' ', '') }} = (completed{{ month.replace(' ', '') }} / monthTotal{{ month.replace(' ', '') }}) * 100;
+
+        document.getElementById('intermediateMonthProgress-{{ month.replace(' ', '') }}').style.width = percentage{{ month.replace(' ', '') }} + '%';
+        document.getElementById('intermediateMonthProgressText-{{ month.replace(' ', '') }}').textContent = `${completed{{ month.replace(' ', '') }}} / ${monthTotal{{ month.replace(' ', '') }}}`;
+
+        totalCompleted += completed{{ month.replace(' ', '') }};
+    }
+    {% endfor %}
+
+    // Update overall stats
+    document.getElementById('totalCompleted').textContent = totalCompleted;
+    document.getElementById('overallProgress').textContent = Math.round((totalCompleted / totalProblems) * 100) + '%';
+});
+</script>
+{% endblock %}

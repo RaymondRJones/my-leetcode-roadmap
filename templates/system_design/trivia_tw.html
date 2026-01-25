@@ -1,0 +1,546 @@
+{% extends 'base_tw.html' %}
+
+{% block title %}System Design - Trivia & Knowledge Checks{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+    <a href="/system-design" class="btn-secondary w-fit">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Roadmap
+    </a>
+    <div>
+        <h1 class="text-3xl font-bold text-foreground">Trivia & Knowledge Checks</h1>
+        <p class="text-foreground-muted mt-1">Master these fundamental concepts to ace the knowledge portion of your system design interview</p>
+    </div>
+</div>
+
+<!-- System Design Interview Process -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">The 4-Step Interview Framework</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">1</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Ask Clarifying Questions (5 mins)</h3>
+                <p class="text-foreground-muted text-sm mb-2">Gather requirements, understand scope, identify edge cases</p>
+                <ul class="text-foreground-subtle text-sm space-y-1">
+                    <li>Who's using it? What are they doing?</li>
+                    <li>How many users? What's the scale?</li>
+                    <li>What are the core features?</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-success flex items-center justify-center text-white font-bold">2</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">High-Level Design (5 mins)</h3>
+                <p class="text-foreground-muted text-sm mb-2">Draw basic architecture with major components</p>
+                <ul class="text-foreground-subtle text-sm space-y-1">
+                    <li>Client -> Load Balancer -> Servers -> Database</li>
+                    <li>Keep it simple at first</li>
+                    <li>Show data flow</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-warning flex items-center justify-center text-white font-bold">3</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Deep Dive Components (35 mins)</h3>
+                <p class="text-foreground-muted text-sm mb-2">Focus on specific parts - ask interviewer what they want to explore</p>
+                <ul class="text-foreground-subtle text-sm space-y-1">
+                    <li>Database schema design</li>
+                    <li>Caching strategies</li>
+                    <li>API design</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-danger flex items-center justify-center text-white font-bold">4</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Scale the Design (10 mins)</h3>
+                <p class="text-foreground-muted text-sm mb-2">Address bottlenecks and scaling issues</p>
+                <ul class="text-foreground-subtle text-sm space-y-1">
+                    <li>Load balancers, horizontal scaling</li>
+                    <li>Caching, database sharding</li>
+                    <li>Back-of-envelope calculations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+        <p class="text-foreground-muted text-sm">
+            <span class="text-primary font-semibold">Pro Tip:</span> Ask "What would you like me to focus on?" to guide the conversation toward the interviewer's interests.
+        </p>
+    </div>
+</div>
+
+<!-- Three Pillars of Good Systems -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Three Pillars of Good Systems (DDIA)</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card text-center">
+            <svg class="w-12 h-12 text-success mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+            <h3 class="font-semibold text-success mb-2">Reliability</h3>
+            <p class="text-foreground-muted text-sm mb-4">System continues to work correctly even when things go wrong (hardware failures, software bugs, human errors).</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Goal:</strong> Consistent behavior, fault tolerance, predictable error handling</p>
+            </div>
+        </div>
+        <div class="card text-center">
+            <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            <h3 class="font-semibold text-primary mb-2">Scalability</h3>
+            <p class="text-foreground-muted text-sm mb-4">System can handle increased load gracefully. Works for 1 user? Great! What about 1 million users?</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Challenge:</strong> The hardest part of system design - handling millions/billions of users</p>
+            </div>
+        </div>
+        <div class="card text-center">
+            <svg class="w-12 h-12 text-warning mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <h3 class="font-semibold text-warning mb-2">Maintainability</h3>
+            <p class="text-foreground-muted text-sm mb-4">System can evolve over time without becoming a spaghetti code nightmare. Easy to understand, modify, and extend.</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Goal:</strong> Clean code, good documentation, modular design</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Core Performance Concepts -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Core Performance Concepts</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                </svg>
+                Performance vs Scalability
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">
+                <strong>Performance:</strong> How fast a system responds to a single request.<br>
+                <strong>Scalability:</strong> How well a system handles increased load.
+            </p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Key Point:</strong> A system can be performant but not scalable, or scalable but not performant.</p>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Latency vs Throughput
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">
+                <strong>Latency:</strong> Time to process a single request.<br>
+                <strong>Throughput:</strong> Number of requests processed per unit time.
+            </p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Example:</strong> Highway analogy - latency is travel time, throughput is cars per hour.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scaling Concepts -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Scaling Your System</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                </svg>
+                Vertical Scaling (Scale Up)
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">Get a bigger, more powerful server - like upgrading your PC with better CPU, RAM, SSD.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="badge-easy">Simple</span>
+                <span class="badge-easy">No complexity</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="badge-hard">Hardware limits</span>
+                <span class="badge-hard">Single point of failure</span>
+            </div>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Analogy:</strong> One big armored dog vs many small dogs with armor</p>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+                Horizontal Scaling (Scale Out)
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">Add more servers - like having many smaller computers working together.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="badge-easy">No hardware limits</span>
+                <span class="badge-easy">Fault tolerant</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="badge-hard">More complex</span>
+                <span class="badge-hard">Distributed system challenges</span>
+            </div>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Key:</strong> This is what allows scaling to billions of users (Facebook, Google)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Caching Deep Dive -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Caching Strategies</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                What is Caching?
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">Store frequently accessed data in fast storage (usually memory) for O(1) retrieval.</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Example:</strong> Instead of loading Beyonce's profile from database every time, store it in cache after first request</p>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                Performance Impact
+            </h3>
+            <p class="text-foreground-muted text-sm mb-3">Transform O(n) database searches into O(1) hash table lookups.</p>
+            <div class="p-3 bg-success/10 rounded-lg border border-success/20">
+                <p class="text-success text-xs"><strong>Result:</strong> 10,000 requests for popular data -> 1 database hit + 9,999 cache hits</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load Balancing -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Load Balancing & Traffic Management</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">Highway Analogy</h3>
+            <p class="text-foreground-muted text-sm mb-3">Like highway lanes - when traffic gets heavy, you need multiple lanes (servers) to handle the load.</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Problem:</strong> Billions of users hitting one server = traffic jam</p>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">Load Balancing Algorithms</h3>
+            <ul class="text-foreground-muted text-sm space-y-2">
+                <li><strong>Round Robin:</strong> Take turns - server1, server2, server3...</li>
+                <li><strong>Least Loaded:</strong> Send to server with least traffic</li>
+                <li><strong>Random:</strong> Randomly distribute requests</li>
+                <li><strong>Weighted:</strong> More powerful servers get more traffic</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- CAP Theorem -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-warning/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">CAP Theorem (Pick 2 of 3)</h2>
+    </div>
+    <p class="text-foreground-muted mb-6">In any distributed system, you can only guarantee 2 out of 3:</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="p-4 border border-border rounded-lg text-center">
+            <svg class="w-10 h-10 text-success mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Consistency</h4>
+            <p class="text-foreground-subtle text-xs">All nodes see the same data simultaneously</p>
+        </div>
+        <div class="p-4 border border-border rounded-lg text-center">
+            <svg class="w-10 h-10 text-primary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Availability</h4>
+            <p class="text-foreground-subtle text-xs">System remains operational and responds</p>
+        </div>
+        <div class="p-4 border border-border rounded-lg text-center bg-background-secondary">
+            <svg class="w-10 h-10 text-warning mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Partition Tolerance</h4>
+            <p class="text-foreground-subtle text-xs">Works despite network failures</p>
+        </div>
+    </div>
+    <div class="p-4 bg-warning/10 rounded-lg border border-warning/20 mb-6">
+        <p class="text-foreground-muted text-sm">
+            <span class="text-warning font-semibold">Reality Check:</span> In distributed systems, partition tolerance is mandatory (networks always fail). So you really choose between Consistency vs Availability.
+        </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="text-center p-4 bg-success/10 rounded-lg">
+            <span class="inline-block px-3 py-1 bg-success/20 text-success rounded-full text-sm font-medium mb-2">CP Systems (Choose Consistency)</span>
+            <p class="text-foreground-muted text-sm">Banks, RDBMS - Better to be unavailable than wrong</p>
+        </div>
+        <div class="text-center p-4 bg-primary/10 rounded-lg">
+            <span class="inline-block px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium mb-2">AP Systems (Choose Availability)</span>
+            <p class="text-foreground-muted text-sm">DNS, Social Media - Better to show stale data than nothing</p>
+        </div>
+    </div>
+</div>
+
+<!-- Database Concepts -->
+<div class="mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-foreground">Database Concepts</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">SQL vs. NoSQL</h3>
+            <div class="space-y-4">
+                <div>
+                    <h4 class="text-success font-medium mb-2">SQL (ACID)</h4>
+                    <ul class="text-foreground-muted text-sm space-y-1">
+                        <li><strong>ACID compliance:</strong> Atomicity, Consistency, Isolation, Durability</li>
+                        <li>Complex queries & joins</li>
+                        <li>Structured data with schemas</li>
+                        <li><strong>Best for:</strong> Banks, financial systems, transactions</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-primary font-medium mb-2">NoSQL (BASE)</h4>
+                    <ul class="text-foreground-muted text-sm space-y-1">
+                        <li><strong>BASE:</strong> Basically Available, Soft state, Eventually consistent</li>
+                        <li>Horizontal scaling, flexible schema</li>
+                        <li>High performance, less complexity</li>
+                        <li><strong>Best for:</strong> Social media, content management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">Normalization vs. Denormalization</h3>
+            <p class="text-foreground-muted text-sm mb-3">
+                <strong>Normalized:</strong> Each piece of data stored once, linked by IDs<br>
+                <strong>Denormalized:</strong> Duplicate data for faster queries
+            </p>
+            <div class="p-3 bg-background-secondary rounded-lg mb-3">
+                <p class="text-foreground-subtle text-xs"><strong>Example:</strong> Store user's first name, last name in every order record vs linking to separate user table</p>
+            </div>
+            <p class="text-foreground-subtle text-sm"><strong>Trade-off:</strong> Storage space vs Query speed</p>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">Database Sharding & Federation</h3>
+            <p class="text-foreground-muted text-sm mb-3">Split database by data type or range to improve performance.</p>
+            <div class="text-foreground-muted text-sm mb-3">
+                <strong>Sharding examples:</strong>
+                <ul class="mt-1 space-y-1">
+                    <li>Users A-D -> Server 1</li>
+                    <li>Users E-H -> Server 2</li>
+                    <li>Or: Beyonce database, Shakira database</li>
+                </ul>
+            </div>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Benefit:</strong> Faster than O(n) search across entire dataset</p>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="font-semibold text-foreground mb-3">Column-Based Databases (OLAP)</h3>
+            <p class="text-foreground-muted text-sm mb-3">Store data by columns instead of rows for analytics workloads.</p>
+            <div class="p-3 bg-background-secondary rounded-lg">
+                <p class="text-foreground-subtle text-xs"><strong>Use case:</strong> When you frequently ask "show me all users from USA" - store that as a pre-computed column</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Replication -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Replication Strategies</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 border border-border rounded-lg text-center">
+            <svg class="w-10 h-10 text-primary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Master-Slave</h4>
+            <p class="text-foreground-subtle text-xs">One write node, multiple read replicas</p>
+        </div>
+        <div class="p-4 border border-border rounded-lg text-center">
+            <svg class="w-10 h-10 text-success mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Master-Master</h4>
+            <p class="text-foreground-subtle text-xs">Multiple write nodes with conflict resolution</p>
+        </div>
+        <div class="p-4 border border-border rounded-lg text-center">
+            <svg class="w-10 h-10 text-warning mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <h4 class="font-semibold text-foreground mb-1">Sync vs Async</h4>
+            <p class="text-foreground-subtle text-xs">Consistency vs Performance trade-off</p>
+        </div>
+    </div>
+</div>
+
+<!-- ACID Properties -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">ACID Properties</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">A</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Atomicity</h3>
+                <p class="text-foreground-muted text-sm">All operations in a transaction succeed or fail together. No partial states.</p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-success flex items-center justify-center text-white font-bold">C</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Consistency</h3>
+                <p class="text-foreground-muted text-sm">Database remains in valid state. Note: This term is often vague and overloaded.</p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-warning flex items-center justify-center text-white font-bold">I</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Isolation</h3>
+                <p class="text-foreground-muted text-sm">Concurrent transactions don't interfere. No race conditions or dirty reads.</p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-danger flex items-center justify-center text-white font-bold">D</span>
+            <div>
+                <h3 class="font-semibold text-foreground mb-1">Durability</h3>
+                <p class="text-foreground-muted text-sm">Committed data survives system failures. Persisted to non-volatile storage.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Study Strategy -->
+<div class="card">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Study Strategy</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h3 class="font-semibold text-primary mb-4">Learning Roadmap (Beginner -> Advanced)</h3>
+            <div class="space-y-4">
+                <div>
+                    <h4 class="text-success font-medium mb-2">1. Complete Beginner</h4>
+                    <ul class="text-foreground-muted text-sm space-y-1">
+                        <li><strong>Donnemartin System Design Primer</strong> (GitHub repo) - Start here!</li>
+                        <li>Gets you to "decent" interview level</li>
+                        <li>90% of the way to not being bad at system design</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-primary font-medium mb-2">2. Mid-Level Preparation</h4>
+                    <ul class="text-foreground-muted text-sm space-y-1">
+                        <li>Alex Xu System Design Interview V1 & V2</li>
+                        <li>Hacking the System Design Interview</li>
+                        <li><strong>DDIA Chapters 1-6</strong> (3-4 hours each)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-warning font-medium mb-2">3. Advanced (Upper-Level)</h4>
+                    <ul class="text-foreground-muted text-sm space-y-1">
+                        <li>Database Internals</li>
+                        <li>Understanding Distributed Systems</li>
+                        <li>Google academic papers & whitepapers</li>
+                        <li>Full DDIA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3 class="font-semibold text-primary mb-4">Study Strategy</h3>
+            <ul class="text-foreground-muted text-sm space-y-2">
+                <li><strong>Theory first approach</strong> - System design is like biology, not math</li>
+                <li>You can learn by watching lectures & reading (unlike algorithms)</li>
+                <li>Create flashcards for ACID, CAP, isolation levels</li>
+                <li>Draw diagrams explaining trade-offs</li>
+                <li>Practice explaining concepts out loud</li>
+                <li><strong>Do mock interviews</strong> - tons of nuance in what interviewers want</li>
+            </ul>
+            <div class="mt-4 p-4 bg-success/10 rounded-lg border border-success/20">
+                <p class="text-success text-sm"><strong>Success Path:</strong> Donnemartin -> Alex Xu V1 -> V2 -> DDIA (1-6) = Mid-level ready!</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+        <p class="text-foreground-muted text-sm">
+            <span class="text-primary font-semibold">Pro Tip:</span> Focus on understanding trade-offs rather than memorizing solutions. Interviewers want to see your reasoning process.
+        </p>
+    </div>
+</div>
+{% endblock %}

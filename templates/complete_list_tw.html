@@ -1,0 +1,917 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Custom Study Plan - LeetCode Question Generator{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground mb-3">Custom Study Plan Generator</h1>
+        <p class="text-foreground-muted text-lg max-w-2xl mx-auto">
+            Create a custom LeetCode study plan tailored to your schedule and preferences.
+            Adjust time commitment, select difficulty levels, and choose topics to generate your perfect roadmap.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-6">
+        <!-- Preferences Sidebar -->
+        <div class="lg:col-span-1">
+            <div class="card sticky top-6">
+                <div class="bg-gradient-to-r from-primary to-primary/70 rounded-t-xl px-6 py-4">
+                    <h5 class="text-white font-semibold flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Study Preferences
+                    </h5>
+                </div>
+                <div class="p-6">
+                    <!-- Schedule Section -->
+                    <div class="mb-6">
+                        <h6 class="text-primary font-medium mb-4 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Schedule
+                        </h6>
+
+                        <!-- Weeks Slider -->
+                        <div class="mb-4">
+                            <label class="text-sm text-foreground-muted block mb-2">
+                                Duration: <span id="weeksValue" class="text-primary font-semibold">8</span> weeks
+                            </label>
+                            <input type="range" id="weeks" name="weeks" min="1" max="26" value="8"
+                                   class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-primary">
+                            <div class="flex justify-between text-xs text-foreground-subtle mt-1">
+                                <span>1 week</span>
+                                <span>26 weeks</span>
+                            </div>
+                        </div>
+
+                        <!-- Hours per week Slider -->
+                        <div class="mb-4">
+                            <label class="text-sm text-foreground-muted block mb-2">
+                                Study Time: <span id="hoursValue" class="text-primary font-semibold">10</span> hours/week
+                            </label>
+                            <input type="range" id="hours" name="hours" min="1" max="40" value="10"
+                                   class="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-primary">
+                            <div class="flex justify-between text-xs text-foreground-subtle mt-1">
+                                <span>1 hour</span>
+                                <span>40 hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty Section -->
+                    <div class="mb-6">
+                        <h6 class="text-primary font-medium mb-4 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                            </svg>
+                            Difficulty Levels
+                        </h6>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="Easy" name="difficulty" value="Easy" checked
+                                       class="w-4 h-4 rounded border-border bg-background-secondary text-success focus:ring-success">
+                                <span class="badge-easy">Easy</span>
+                                <span class="text-foreground-subtle text-sm" id="easyCountText">(0 problems)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="Medium" name="difficulty" value="Medium" checked
+                                       class="w-4 h-4 rounded border-border bg-background-secondary text-warning focus:ring-warning">
+                                <span class="badge-medium">Medium</span>
+                                <span class="text-foreground-subtle text-sm" id="mediumCountText">(0 problems)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="Hard" name="difficulty" value="Hard" checked
+                                       class="w-4 h-4 rounded border-border bg-background-secondary text-danger focus:ring-danger">
+                                <span class="badge-hard">Hard</span>
+                                <span class="text-foreground-subtle text-sm" id="hardCountText">(0 problems)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Topics Section -->
+                    <div class="mb-6">
+                        <h6 class="text-primary font-medium mb-4 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            </svg>
+                            Topics
+                        </h6>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-foreground-muted" id="topicsStatus">All topics selected</span>
+                            <button onclick="openTopicsModal()" class="btn-secondary text-xs px-3 py-1">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button onclick="updateQuestionList()" class="btn-primary w-full py-3 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                        Generate Study Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+            <!-- Summary Statistics -->
+            <div id="summaryStats" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="stat-card">
+                    <svg class="w-10 h-10 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-primary" id="totalQuestions">0</div>
+                    <div class="text-foreground-subtle text-sm">Total Questions</div>
+                </div>
+                <div class="stat-card">
+                    <svg class="w-10 h-10 text-success mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-success" id="timeNeeded">0 hours</div>
+                    <div class="text-foreground-subtle text-sm">Study Time</div>
+                </div>
+                <div class="stat-card">
+                    <svg class="w-10 h-10 text-warning mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-warning" id="avgDifficulty">0.0</div>
+                    <div class="text-foreground-subtle text-sm">Avg Difficulty</div>
+                </div>
+                <div class="stat-card">
+                    <svg class="w-10 h-10 text-cyan-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-cyan-400" id="completedCount">0</div>
+                    <div class="text-foreground-subtle text-sm">Completed</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progressSection" class="hidden mb-6">
+                <div class="card p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h6 class="text-foreground font-medium">Overall Progress</h6>
+                        <span class="text-foreground-muted text-sm" id="progressText">0 / 0 completed</span>
+                    </div>
+                    <div class="w-full h-3 bg-background-secondary rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Plan Controls -->
+            <div id="planControls" class="hidden mb-6">
+                <div class="card p-4">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                        <div>
+                            <h6 class="text-foreground font-medium mb-2">Study Plan View</h6>
+                            <div class="flex gap-2 flex-wrap">
+                                <label class="cursor-pointer">
+                                    <input type="radio" class="hidden peer" name="grouping" id="groupByWeeks" value="weeks" checked>
+                                    <span class="px-4 py-2 rounded-lg border border-border bg-background-secondary text-foreground-muted text-sm peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">By Weeks</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" class="hidden peer" name="grouping" id="groupByDifficulty" value="difficulty">
+                                    <span class="px-4 py-2 rounded-lg border border-border bg-background-secondary text-foreground-muted text-sm peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">By Difficulty</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" class="hidden peer" name="grouping" id="groupByTopics" value="topics">
+                                    <span class="px-4 py-2 rounded-lg border border-border bg-background-secondary text-foreground-muted text-sm peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all">By Topics</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="showTopicsToggle" class="w-4 h-4 rounded border-border bg-background-secondary text-primary focus:ring-primary">
+                                <span class="text-foreground-muted text-sm">Show Topics</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions List -->
+            <div id="questionsList">
+                <!-- Default state -->
+                <div class="card text-center p-12" id="defaultState">
+                    <svg class="w-20 h-20 text-foreground-subtle mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h4 class="text-foreground-muted text-xl font-medium mb-2">Ready to Start Your Journey?</h4>
+                    <p class="text-foreground-subtle mb-6">Configure your study preferences and generate a personalized LeetCode study plan.</p>
+                    <button onclick="updateQuestionList()" class="btn-primary px-6 py-3">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Generate Study Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Topics Modal -->
+<div id="topicsModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen px-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" onclick="closeTopicsModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-background-elevated border border-border rounded-2xl shadow-xl max-w-3xl w-full max-h-[80vh] overflow-hidden">
+            <div class="px-6 py-4 border-b border-border flex justify-between items-center">
+                <h5 class="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                    </svg>
+                    Select Topics
+                </h5>
+                <button onclick="closeTopicsModal()" class="text-foreground-muted hover:text-foreground">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[60vh]">
+                <div class="flex gap-2 mb-4">
+                    <button onclick="selectAllTopics()" class="btn-secondary text-sm px-4 py-2">Select All</button>
+                    <button onclick="deselectAllTopics()" class="btn-secondary text-sm px-4 py-2">Deselect All</button>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-2" id="topicsGrid">
+                    <!-- Topics checkboxes will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-border flex justify-end gap-2">
+                <button onclick="closeTopicsModal()" class="btn-secondary px-4 py-2">Cancel</button>
+                <button onclick="applyTopicsFilter()" class="btn-primary px-4 py-2">Apply Topics</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<style>
+.toast-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #22C55E, #16A34A);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+    animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    z-index: 1000;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateX(100%); }
+}
+
+/* Week/Group Section Styles */
+.week-section {
+    background: #111113;
+    border: 1px solid #27272A;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.week-section:hover {
+    border-color: #3F3F46;
+}
+
+.week-header {
+    padding: 16px 20px;
+    background: #111113;
+    border-bottom: 1px solid #27272A;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+}
+
+.week-header:hover {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.week-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 180px;
+}
+
+.week-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #27272A;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.week-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3B82F6, #22C55E);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.week-content {
+    display: none;
+}
+
+.week-content.show {
+    display: block;
+}
+
+/* Question Item Styles */
+.question-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid #27272A;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s;
+}
+
+.question-item:last-child {
+    border-bottom: none;
+}
+
+.question-item:hover {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.question-item.completed {
+    background: rgba(34, 197, 94, 0.05);
+}
+
+.complete-button {
+    padding: 6px;
+    border: none;
+    background: transparent;
+    color: #71717A;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.complete-button:hover {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22C55E;
+}
+
+.complete-button.completed {
+    color: #22C55E;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .week-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .week-progress {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .question-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+</style>
+
+<script>
+// Question data from backend
+const questionData = {{ questions_data|tojson|safe }};
+
+// Global state
+let selectedQuestions = [];
+let completedQuestions = new Set();
+let currentGrouping = 'weeks';
+let currentWeeks = 8;
+let currentHours = 10;
+let selectedDifficulties = new Set(['Easy', 'Medium', 'Hard']);
+let selectedTopics = new Set();
+let showTopics = false;
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    console.log(`Loaded ${questionData.length} questions`);
+    initializeSliders();
+    initializeTopics();
+    initializeEventListeners();
+    loadCompletedQuestions();
+});
+
+function initializeSliders() {
+    const weeksSlider = document.getElementById('weeks');
+    const hoursSlider = document.getElementById('hours');
+
+    weeksSlider.addEventListener('input', function() {
+        currentWeeks = parseInt(this.value);
+        document.getElementById('weeksValue').textContent = currentWeeks;
+    });
+
+    hoursSlider.addEventListener('input', function() {
+        currentHours = parseInt(this.value);
+        document.getElementById('hoursValue').textContent = currentHours;
+    });
+
+    // Initialize difficulty checkboxes
+    document.querySelectorAll('input[name="difficulty"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                selectedDifficulties.add(this.value);
+            } else {
+                selectedDifficulties.delete(this.value);
+            }
+            updateDifficultyStats();
+        });
+    });
+}
+
+function initializeTopics() {
+    // Extract all unique topics from questions
+    const allTopics = [...new Set(questionData.flatMap(q => q.topics))].sort();
+    selectedTopics = new Set(allTopics);
+
+    // Populate topics grid in modal
+    const topicsGrid = document.getElementById('topicsGrid');
+    topicsGrid.innerHTML = '';
+
+    allTopics.forEach(topic => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-background-secondary transition-colors';
+        label.innerHTML = `
+            <input type="checkbox" value="${topic}" id="topic_${topic.replace(/\s+/g, '_')}" checked
+                   class="w-4 h-4 rounded border-border bg-background-secondary text-primary focus:ring-primary">
+            <span class="text-foreground-muted text-sm">${topic}</span>
+        `;
+        topicsGrid.appendChild(label);
+    });
+
+    updateDifficultyStats();
+}
+
+function updateDifficultyStats() {
+    const easyCount = questionData.filter(q => q.difficulty === 'Easy').length;
+    const mediumCount = questionData.filter(q => q.difficulty === 'Medium').length;
+    const hardCount = questionData.filter(q => q.difficulty === 'Hard').length;
+
+    document.getElementById('easyCountText').textContent = `(${easyCount} problems)`;
+    document.getElementById('mediumCountText').textContent = `(${mediumCount} problems)`;
+    document.getElementById('hardCountText').textContent = `(${hardCount} problems)`;
+}
+
+function initializeEventListeners() {
+    // Grouping radio buttons
+    document.querySelectorAll('input[name="grouping"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                currentGrouping = this.value;
+                renderQuestionsList();
+            }
+        });
+    });
+
+    // Show topics toggle
+    document.getElementById('showTopicsToggle').addEventListener('change', function() {
+        showTopics = this.checked;
+        renderQuestionsList();
+    });
+}
+
+function openTopicsModal() {
+    document.getElementById('topicsModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTopicsModal() {
+    document.getElementById('topicsModal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+function updateQuestionList() {
+    // Filter questions based on preferences
+    let filteredQuestions = questionData.filter(q => {
+        return selectedDifficulties.has(q.difficulty) &&
+               q.topics.some(topic => selectedTopics.has(topic));
+    });
+
+    // Calculate how many questions fit in the time budget
+    const totalMinutes = currentWeeks * currentHours * 60;
+    let selectedTime = 0;
+    selectedQuestions = [];
+
+    // Sort by difficulty
+    filteredQuestions.sort((a, b) => {
+        const difficultyOrder = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
+        return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
+    });
+
+    for (let question of filteredQuestions) {
+        if (selectedTime + question.time <= totalMinutes) {
+            selectedQuestions.push(question);
+            selectedTime += question.time;
+        }
+    }
+
+    // Update summary statistics
+    updateSummaryStats();
+
+    // Show sections
+    document.getElementById('defaultState').style.display = 'none';
+    document.getElementById('summaryStats').classList.remove('hidden');
+    document.getElementById('progressSection').classList.remove('hidden');
+    document.getElementById('planControls').classList.remove('hidden');
+
+    // Render questions list
+    renderQuestionsList();
+
+    // Update progress
+    updateProgress();
+}
+
+function updateSummaryStats() {
+    const totalQuestions = selectedQuestions.length;
+    const totalTime = selectedQuestions.reduce((sum, q) => sum + q.time, 0);
+    const easyCount = selectedQuestions.filter(q => q.difficulty === 'Easy').length;
+    const mediumCount = selectedQuestions.filter(q => q.difficulty === 'Medium').length;
+    const hardCount = selectedQuestions.filter(q => q.difficulty === 'Hard').length;
+
+    const avgDifficulty = selectedQuestions.length > 0 ?
+        (easyCount * 1 + mediumCount * 2 + hardCount * 3) / selectedQuestions.length : 0;
+
+    document.getElementById('totalQuestions').textContent = totalQuestions;
+    document.getElementById('timeNeeded').textContent = Math.ceil(totalTime / 60) + ' hours';
+    document.getElementById('avgDifficulty').textContent = avgDifficulty.toFixed(1);
+}
+
+function renderQuestionsList() {
+    const questionsList = document.getElementById('questionsList');
+
+    if (selectedQuestions.length === 0) {
+        questionsList.innerHTML = `
+            <div class="card text-center p-12">
+                <svg class="w-20 h-20 text-foreground-subtle mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <h4 class="text-foreground-muted text-xl font-medium mb-2">No Questions Found</h4>
+                <p class="text-foreground-subtle">Try adjusting your preferences to find questions that match your criteria.</p>
+            </div>
+        `;
+        return;
+    }
+
+    if (currentGrouping === 'weeks') {
+        renderByWeeks(questionsList);
+    } else if (currentGrouping === 'difficulty') {
+        renderByDifficulty(questionsList);
+    } else if (currentGrouping === 'topics') {
+        renderByTopics(questionsList);
+    }
+}
+
+function renderByWeeks(container) {
+    container.innerHTML = '';
+
+    const questionsPerWeek = Math.ceil(selectedQuestions.length / currentWeeks);
+
+    for (let week = 1; week <= currentWeeks; week++) {
+        const startIndex = (week - 1) * questionsPerWeek;
+        const endIndex = Math.min(startIndex + questionsPerWeek, selectedQuestions.length);
+        const weekQuestions = selectedQuestions.slice(startIndex, endIndex);
+
+        if (weekQuestions.length === 0) break;
+
+        const weekSection = createWeekSection(week, weekQuestions, startIndex);
+        container.appendChild(weekSection);
+    }
+}
+
+function renderByDifficulty(container) {
+    container.innerHTML = '';
+
+    const difficulties = ['Easy', 'Medium', 'Hard'];
+    difficulties.forEach(difficulty => {
+        const difficultyQuestions = selectedQuestions.filter(q => q.difficulty === difficulty);
+        if (difficultyQuestions.length > 0) {
+            const section = createDifficultySection(difficulty, difficultyQuestions);
+            container.appendChild(section);
+        }
+    });
+}
+
+function renderByTopics(container) {
+    container.innerHTML = '';
+
+    const topicGroups = {};
+    selectedQuestions.forEach(q => {
+        q.topics.forEach(topic => {
+            if (!topicGroups[topic]) {
+                topicGroups[topic] = [];
+            }
+            topicGroups[topic].push(q);
+        });
+    });
+
+    Object.entries(topicGroups).sort().forEach(([topic, questions]) => {
+        const section = createTopicSection(topic, questions);
+        container.appendChild(section);
+    });
+}
+
+function createWeekSection(weekNumber, questions, startIndex) {
+    const section = document.createElement('div');
+    section.className = 'week-section';
+
+    const completedInWeek = questions.filter(q => completedQuestions.has(q.id)).length;
+    const progressPercent = questions.length > 0 ? (completedInWeek / questions.length) * 100 : 0;
+
+    section.innerHTML = `
+        <div class="week-header" onclick="toggleWeek(${weekNumber})">
+            <h3 class="flex items-center gap-2 text-primary font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Week ${weekNumber}
+            </h3>
+            <div class="week-progress">
+                <span class="text-foreground-muted text-sm">${completedInWeek} / ${questions.length}</span>
+                <div class="week-progress-bar">
+                    <div class="week-progress-fill" style="width: ${progressPercent}%;"></div>
+                </div>
+                <svg class="w-5 h-5 text-foreground-muted transition-transform" id="week-${weekNumber}-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+        <div class="week-content" id="week-${weekNumber}-content">
+            ${questions.map((question, index) => createQuestionItem(question, startIndex + index + 1)).join('')}
+        </div>
+    `;
+
+    return section;
+}
+
+function createDifficultySection(difficulty, questions) {
+    const section = document.createElement('div');
+    section.className = 'week-section';
+
+    const completedInDifficulty = questions.filter(q => completedQuestions.has(q.id)).length;
+    const progressPercent = questions.length > 0 ? (completedInDifficulty / questions.length) * 100 : 0;
+    const badgeClass = difficulty.toLowerCase() === 'easy' ? 'badge-easy' : difficulty.toLowerCase() === 'medium' ? 'badge-medium' : 'badge-hard';
+
+    section.innerHTML = `
+        <div class="week-header" onclick="toggleDifficulty('${difficulty}')">
+            <h3 class="flex items-center gap-2 font-medium">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                </svg>
+                <span class="${badgeClass}">${difficulty}</span>
+            </h3>
+            <div class="week-progress">
+                <span class="text-foreground-muted text-sm">${completedInDifficulty} / ${questions.length}</span>
+                <div class="week-progress-bar">
+                    <div class="week-progress-fill" style="width: ${progressPercent}%;"></div>
+                </div>
+                <svg class="w-5 h-5 text-foreground-muted transition-transform" id="difficulty-${difficulty}-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+        <div class="week-content" id="difficulty-${difficulty}-content">
+            ${questions.map((question, index) => createQuestionItem(question, index + 1)).join('')}
+        </div>
+    `;
+
+    return section;
+}
+
+function createTopicSection(topic, questions) {
+    const section = document.createElement('div');
+    section.className = 'week-section';
+
+    const completedInTopic = questions.filter(q => completedQuestions.has(q.id)).length;
+    const progressPercent = questions.length > 0 ? (completedInTopic / questions.length) * 100 : 0;
+
+    section.innerHTML = `
+        <div class="week-header" onclick="toggleTopic('${topic}')">
+            <h3 class="flex items-center gap-2 text-primary font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                </svg>
+                ${topic}
+            </h3>
+            <div class="week-progress">
+                <span class="text-foreground-muted text-sm">${completedInTopic} / ${questions.length}</span>
+                <div class="week-progress-bar">
+                    <div class="week-progress-fill" style="width: ${progressPercent}%;"></div>
+                </div>
+                <svg class="w-5 h-5 text-foreground-muted transition-transform" id="topic-${topic.replace(/\s+/g, '_')}-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+        <div class="week-content" id="topic-${topic.replace(/\s+/g, '_')}-content">
+            ${questions.map((question, index) => createQuestionItem(question, index + 1)).join('')}
+        </div>
+    `;
+
+    return section;
+}
+
+function createQuestionItem(question, number) {
+    const isCompleted = completedQuestions.has(question.id);
+    const badgeClass = question.difficulty.toLowerCase() === 'easy' ? 'badge-easy' : question.difficulty.toLowerCase() === 'medium' ? 'badge-medium' : 'badge-hard';
+
+    return `
+        <div class="question-item ${isCompleted ? 'completed' : ''}">
+            <div class="text-foreground-muted font-semibold min-w-[32px] text-center">${number}</div>
+            <div class="flex-1 min-w-0">
+                <a href="${question.url}" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium block truncate">
+                    ${question.title}
+                </a>
+                <div class="flex items-center gap-2 text-sm mt-1">
+                    <span class="${badgeClass}">${question.difficulty}</span>
+                    <span class="text-foreground-subtle">•</span>
+                    <span class="text-foreground-muted">${question.time} mins</span>
+                    <span class="text-foreground-subtle">•</span>
+                    <span class="text-foreground-subtle">${question.source}</span>
+                </div>
+                ${showTopics ? `
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        ${question.topics.map(topic => `<span class="px-2 py-0.5 bg-background-secondary text-foreground-muted text-xs rounded">${topic}</span>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
+            <button class="complete-button ${isCompleted ? 'completed' : ''}"
+                    onclick="toggleComplete(${question.id})"
+                    aria-label="Mark ${question.title} as complete">
+                <svg class="w-6 h-6" fill="${isCompleted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${isCompleted ? 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' : 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'}"/>
+                </svg>
+            </button>
+        </div>
+    `;
+}
+
+// Event handlers for toggling sections
+function toggleWeek(weekNumber) {
+    const content = document.getElementById(`week-${weekNumber}-content`);
+    const icon = document.getElementById(`week-${weekNumber}-icon`);
+
+    if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        content.classList.add('show');
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
+function toggleDifficulty(difficulty) {
+    const content = document.getElementById(`difficulty-${difficulty}-content`);
+    const icon = document.getElementById(`difficulty-${difficulty}-icon`);
+
+    if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        content.classList.add('show');
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
+function toggleTopic(topic) {
+    const topicId = topic.replace(/\s+/g, '_');
+    const content = document.getElementById(`topic-${topicId}-content`);
+    const icon = document.getElementById(`topic-${topicId}-icon`);
+
+    if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        icon.style.transform = 'rotate(0deg)';
+    } else {
+        content.classList.add('show');
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
+function toggleComplete(questionId) {
+    if (completedQuestions.has(questionId)) {
+        completedQuestions.delete(questionId);
+    } else {
+        completedQuestions.add(questionId);
+        showCompletionAnimation();
+    }
+
+    saveCompletedQuestions();
+    updateProgress();
+    renderQuestionsList();
+}
+
+function showCompletionAnimation() {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Great job! Question completed!
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+        }
+    }, 3000);
+}
+
+function updateProgress() {
+    const completed = completedQuestions.size;
+    const total = selectedQuestions.length;
+    const progress = total > 0 ? (completed / total) * 100 : 0;
+
+    document.getElementById('completedCount').textContent = completed;
+    document.getElementById('progressText').textContent = `${completed} / ${total} completed`;
+    document.getElementById('progressBar').style.width = `${progress}%`;
+}
+
+// Topics modal functions
+function selectAllTopics() {
+    document.querySelectorAll('#topicsGrid input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = true;
+    });
+}
+
+function deselectAllTopics() {
+    document.querySelectorAll('#topicsGrid input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+}
+
+function applyTopicsFilter() {
+    selectedTopics.clear();
+    document.querySelectorAll('#topicsGrid input[type="checkbox"]:checked').forEach(checkbox => {
+        selectedTopics.add(checkbox.value);
+    });
+
+    // Update topics status
+    const allTopics = [...new Set(questionData.flatMap(q => q.topics))];
+    const statusText = selectedTopics.size === allTopics.length ?
+        'All topics selected' :
+        `${selectedTopics.size} of ${allTopics.length} topics selected`;
+    document.getElementById('topicsStatus').textContent = statusText;
+
+    closeTopicsModal();
+}
+
+// Local storage functions
+function saveCompletedQuestions() {
+    localStorage.setItem('completedQuestions', JSON.stringify([...completedQuestions]));
+}
+
+function loadCompletedQuestions() {
+    const saved = localStorage.getItem('completedQuestions');
+    if (saved) {
+        completedQuestions = new Set(JSON.parse(saved));
+    }
+}
+</script>
+{% endblock %}

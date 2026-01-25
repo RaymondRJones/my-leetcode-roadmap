@@ -36,6 +36,12 @@ async function initializeClerk() {
             hasPremiumAccess: () => {
                 const user = clerk.user;
                 if (!user) return false;
+
+                // Check private_metadata first (more secure), then fall back to public_metadata
+                if (user.privateMetadata?.has_premium === true) {
+                    return true;
+                }
+
                 return user.publicMetadata?.has_premium === true ||
                        user.publicMetadata?.premium === true ||
                        user.publicMetadata?.tier === 'premium' ||
@@ -49,6 +55,7 @@ async function initializeClerk() {
                     'raymond@example.com',
                 ];
                 return allowedEmails.includes(user.primaryEmailAddress?.emailAddress) ||
+                       user.privateMetadata?.specialAccess === true ||
                        user.publicMetadata?.specialAccess === true;
             },
             signIn: () => {
@@ -171,8 +178,7 @@ function updateNavigationAccess() {
             // User signed in but no premium access
             link.classList.add('nav-premium-required');
             link.setAttribute('data-original-href', link.href);
-            link.href = 'https://raymond-site.vercel.app/leetcode-roadmap';
-            link.setAttribute('target', '_blank');
+            link.href = '/landing';
             link.title = 'Premium access required';
 
             // Add visual indicator
@@ -227,6 +233,7 @@ async function sendAuthToBackend(user) {
                     first_name: user.firstName,
                     last_name: user.lastName,
                     public_metadata: user.publicMetadata,
+                    private_metadata: user.privateMetadata,
                     organization_memberships: user.organizationMemberships
                 }
             })
@@ -309,7 +316,7 @@ function protectPremiumLinks() {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Blocking access - no premium access');
-                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
+                window.location.href = '/landing';
                 return false;
             }
 
@@ -344,7 +351,7 @@ function protectPremiumLinks() {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Blocking access - no premium access');
-                window.open('https://raymond-site.vercel.app/leetcode-roadmap', '_blank');
+                window.location.href = '/landing';
                 return false;
             }
 

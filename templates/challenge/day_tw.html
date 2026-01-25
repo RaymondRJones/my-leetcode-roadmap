@@ -1,0 +1,416 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Day {{ day }} - 28-Day Challenge{% endblock %}
+
+{% block head %}
+<!-- Load Monaco Editor CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+{% endblock %}
+
+{% block content %}
+<!-- Load Pyodide for Python execution -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!-- Load Monaco Editor -->
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<!-- Header -->
+<div class="flex justify-between items-center mb-6">
+    <div>
+        <nav class="flex items-center gap-2 text-sm text-foreground-muted mb-2">
+            <a href="/challenge" class="hover:text-foreground transition-colors">Challenge</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <a href="/challenge/calendar" class="hover:text-foreground transition-colors">Calendar</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <span class="text-foreground">Day {{ day }}</span>
+        </nav>
+        <h2 class="text-2xl font-bold text-foreground flex items-center gap-2">
+            Day {{ day }}: {{ theme }}
+            {% if is_day_complete %}
+            <span class="badge-success">Completed</span>
+            {% endif %}
+        </h2>
+    </div>
+    <div class="flex gap-2">
+        {% if day > 1 %}
+        <a href="/challenge/day/{{ day - 1 }}" class="btn-secondary px-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </a>
+        {% endif %}
+        {% if day < 28 and day < current_day %}
+        <a href="/challenge/day/{{ day + 1 }}" class="btn-secondary px-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% if problem %}
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+    <!-- Problem Description Panel -->
+    <div class="lg:col-span-2">
+        <div class="card h-full">
+            <div class="flex justify-between items-start mb-4">
+                <h4 class="text-lg font-semibold text-foreground">{{ problem.name }}</h4>
+                <span class="{% if problem.difficulty == 'Easy' %}badge-easy{% elif problem.difficulty == 'Medium' %}badge-medium{% else %}badge-hard{% endif %}">
+                    {{ problem.difficulty }}
+                </span>
+            </div>
+
+            <p class="text-foreground-muted text-sm mb-4 flex items-center gap-4">
+                <span class="flex items-center gap-1">
+                    <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    {{ problem.points }} points
+                </span>
+                <span class="flex items-center gap-1">
+                    <svg class="w-4 h-4 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    ~{{ problem.estimated_time }} min
+                </span>
+            </p>
+
+            <hr class="border-border mb-4">
+
+            <h6 class="text-sm font-semibold text-foreground mb-3">Problem Description</h6>
+            <div class="text-foreground-muted text-sm mb-6 whitespace-pre-wrap">{{ problem.description }}</div>
+
+            <h6 class="text-sm font-semibold text-foreground mb-3">Examples</h6>
+            {% for example in problem.examples %}
+            <div class="bg-background-secondary rounded-lg p-4 mb-3">
+                <p class="text-sm mb-1"><strong class="text-foreground">Input:</strong> <code class="text-primary">{{ example.input }}</code></p>
+                <p class="text-sm mb-1"><strong class="text-foreground">Output:</strong> <code class="text-success">{{ example.output }}</code></p>
+                {% if example.explanation %}
+                <p class="text-sm text-foreground-muted mt-2"><strong class="text-foreground">Explanation:</strong> {{ example.explanation }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <h6 class="text-sm font-semibold text-foreground mb-3">Constraints</h6>
+            <ul class="text-sm text-foreground-muted space-y-1 mb-6">
+                {% for constraint in problem.constraints %}
+                <li><code class="text-foreground-subtle">{{ constraint }}</code></li>
+                {% endfor %}
+            </ul>
+
+            <a href="{{ problem.url }}" target="_blank" class="btn-secondary text-sm">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                View on LeetCode
+            </a>
+        </div>
+    </div>
+
+    <!-- Code Editor Panel -->
+    <div class="lg:col-span-3 space-y-6">
+        <div class="card">
+            <div class="flex justify-between items-center mb-4">
+                <h5 class="font-semibold text-foreground flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Python Editor
+                </h5>
+                <div id="pyodideStatus" class="text-foreground-muted text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Loading Python...
+                </div>
+            </div>
+
+            <!-- Code Editor (Monaco) -->
+            <div id="codeEditor" class="mb-4 rounded-lg overflow-hidden border border-border" style="height: 350px;"></div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3 mb-4">
+                <button id="runBtn" onclick="runCode()" class="btn-primary" disabled>
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                    </svg>
+                    Run Code
+                </button>
+                <button id="resetBtn" onclick="resetCode()" class="btn-secondary">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Reset
+                </button>
+                {% if problem.id in solved_ids %}
+                <span class="btn-success ml-auto pointer-events-none">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Completed
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Test Results -->
+            <div id="testResults" class="hidden">
+                <h6 class="text-sm font-semibold text-foreground mb-3">Test Results</h6>
+                <div id="testResultsContent"></div>
+            </div>
+        </div>
+
+        <!-- Skool Submission -->
+        <div class="card">
+            <h5 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                Share on Skool (Optional)
+            </h5>
+            <p class="text-foreground-muted text-sm mb-4">
+                Posted about your progress on Skool? Submit your post URL for bonus points!
+            </p>
+            <div class="flex gap-2">
+                <input type="url" id="skoolUrl" class="input flex-1" placeholder="https://www.skool.com/...">
+                <button onclick="submitSkool()" class="btn-secondary">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card p-8 text-center">
+    <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <p class="text-foreground-muted">No problems available for this day yet.</p>
+</div>
+{% endif %}
+
+<!-- Achievement Toast -->
+<div id="achievementToast" class="fixed bottom-4 right-4 hidden z-50">
+    <div class="bg-success text-white p-4 rounded-lg shadow-lg flex items-center gap-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+        </svg>
+        <div>
+            <p class="font-semibold">Achievement Unlocked!</p>
+            <p id="achievementToastBody" class="text-sm"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+let pyodide = null;
+let editor = null;
+const starterCode = {{ problem.starter_code | tojson if problem else '""' }};
+const testCases = {{ problem.test_cases | tojson if problem else '[]' }};
+const problemId = {{ problem.id | tojson if problem else '""' }};
+const day = {{ day }};
+const achievementsConfig = {{ achievements_config | tojson if achievements_config else '{}' }};
+
+// Initialize Monaco Editor with dark theme
+function initMonaco() {
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        monaco.editor.defineTheme('dark-theme', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [
+                { token: 'comment', foreground: '71717A', fontStyle: 'italic' },
+                { token: 'keyword', foreground: '3B82F6' },
+                { token: 'string', foreground: '22C55E' },
+                { token: 'number', foreground: 'F59E0B' },
+                { token: 'type', foreground: '8B5CF6' },
+                { token: 'function', foreground: '3B82F6' },
+            ],
+            colors: {
+                'editor.background': '#111113',
+                'editor.foreground': '#FAFAFA',
+                'editorLineNumber.foreground': '#71717A',
+                'editor.selectionBackground': '#3B82F640',
+                'editor.lineHighlightBackground': '#1A1A1D',
+            }
+        });
+
+        editor = monaco.editor.create(document.getElementById('codeEditor'), {
+            value: starterCode,
+            language: 'python',
+            theme: 'dark-theme',
+            fontSize: 14,
+            lineNumbers: 'on',
+            minimap: { enabled: false },
+            automaticLayout: true,
+            tabSize: 4,
+            insertSpaces: true,
+            wordWrap: 'on',
+            scrollBeyondLastLine: false,
+            renderLineHighlight: 'line',
+            padding: { top: 12, bottom: 12 },
+            fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
+        });
+    });
+}
+
+// Initialize Pyodide
+async function initPyodide() {
+    try {
+        pyodide = await loadPyodide();
+        document.getElementById('runBtn').disabled = false;
+        document.getElementById('pyodideStatus').innerHTML = `
+            <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-success">Python Ready</span>
+        `;
+    } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        document.getElementById('pyodideStatus').innerHTML = `
+            <svg class="w-4 h-4 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+            <span class="text-danger">Failed to load Python</span>
+        `;
+    }
+}
+
+function normalizeOutput(str) {
+    if (!str) return '';
+    let normalized = str.trim();
+    normalized = normalized.replace(/\[\s*/g, '[').replace(/\s*\]/g, ']');
+    normalized = normalized.replace(/\(\s*/g, '(').replace(/\s*\)/g, ')');
+    normalized = normalized.replace(/,\s*/g, ', ');
+    return normalized;
+}
+
+async function runCode() {
+    if (!pyodide || !editor) {
+        alert('Editor is still loading. Please wait.');
+        return;
+    }
+
+    const userCode = editor.getValue();
+    const resultsDiv = document.getElementById('testResults');
+    const resultsContent = document.getElementById('testResultsContent');
+
+    resultsDiv.classList.remove('hidden');
+    resultsContent.innerHTML = '<div class="flex items-center gap-2 text-foreground-muted"><svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Running tests...</div>';
+
+    let allPassed = true;
+    let results = [];
+    let passedCount = 0;
+    let failedCount = 0;
+
+    for (let i = 0; i < testCases.length; i++) {
+        const test = testCases[i];
+        let passed = false;
+        let actual = '';
+
+        try {
+            pyodide.runPython(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`);
+            const fullCode = `${userCode}\n\nresult = ${test.function_call}\nprint(result)`;
+            pyodide.runPython(fullCode);
+            actual = pyodide.runPython("sys.stdout.getvalue()").trim();
+            passed = normalizeOutput(actual) === normalizeOutput(test.expected);
+        } catch (error) {
+            actual = `Error: ${error.message}`;
+            passed = false;
+        }
+
+        if (!passed) { allPassed = false; failedCount++; } else { passedCount++; }
+        results.push({ test, passed, actual, index: i + 1 });
+    }
+
+    let resultsHTML = '';
+    if (allPassed) {
+        resultsHTML = `<div class="p-4 bg-success/10 border border-success/30 rounded-lg flex items-center gap-2 text-success"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>All ${testCases.length} test cases passed!</strong></div>`;
+    } else {
+        resultsHTML = `<div class="p-4 bg-warning/10 border border-warning/30 rounded-lg flex items-center gap-2 text-warning mb-4"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg><strong>${passedCount}/${testCases.length} test cases passed</strong> - ${failedCount} failed</div>`;
+        const failedTests = results.filter(r => !r.passed).slice(0, 3);
+        for (const result of failedTests) {
+            resultsHTML += `<div class="p-4 bg-danger/10 border border-danger/30 rounded-lg mb-2"><div class="flex justify-between items-center mb-2"><strong class="text-foreground">Test ${result.index}</strong><span class="badge-danger">FAILED</span></div><div class="text-sm space-y-1 text-foreground-muted"><p><strong class="text-foreground">Input:</strong> <code class="text-primary">${result.test.input}</code></p><p><strong class="text-foreground">Expected:</strong> <code class="text-success">${result.test.expected}</code></p><p><strong class="text-foreground">Actual:</strong> <code class="text-danger">${result.actual}</code></p></div></div>`;
+        }
+    }
+    resultsContent.innerHTML = resultsHTML;
+
+    if (allPassed) {
+        resultsContent.innerHTML += `<div class="mt-4 p-4 bg-primary/10 border border-primary/30 rounded-lg flex items-center gap-2 text-primary"><svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>Saving your progress...</div>`;
+        await markComplete();
+    }
+}
+
+function resetCode() {
+    if (confirm('Reset code to the original starter code?') && editor) {
+        editor.setValue(starterCode);
+    }
+}
+
+async function markComplete() {
+    const resultsContent = document.getElementById('testResultsContent');
+    try {
+        const response = await fetch('/api/challenge/complete-problem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ day: day, problem_id: problemId })
+        });
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            const infoAlert = resultsContent.querySelector('.bg-primary\\/10');
+            if (infoAlert) {
+                infoAlert.className = 'mt-4 p-4 bg-success/10 border border-success/30 rounded-lg flex items-center gap-2 text-success';
+                infoAlert.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>Problem completed!</strong> You earned ${data.challenge.points || 10} points. <a href="/challenge/calendar" class="underline ml-2">View Calendar</a>`;
+            }
+            if (data.new_achievements && data.new_achievements.length > 0) {
+                for (const achievementId of data.new_achievements) {
+                    const achievement = achievementsConfig[achievementId];
+                    if (achievement) showAchievementToast(achievement.name);
+                }
+            }
+            document.getElementById('runBtn').disabled = true;
+            document.getElementById('runBtn').innerHTML = '<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Completed';
+        }
+    } catch (error) {
+        console.error('Error marking complete:', error);
+    }
+}
+
+async function submitSkool() {
+    const url = document.getElementById('skoolUrl').value;
+    if (!url) { alert('Please enter your Skool post URL'); return; }
+    try {
+        const response = await fetch('/api/challenge/submit-skool', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ day: day, url: url })
+        });
+        const data = await response.json();
+        if (data.status === 'success') {
+            document.getElementById('skoolUrl').value = '';
+            alert('Skool post submitted for review!');
+        } else { alert('Failed to submit: ' + (data.error || 'Unknown error')); }
+    } catch (error) { alert('Failed to submit. Please try again.'); }
+}
+
+function showAchievementToast(name) {
+    const toast = document.getElementById('achievementToast');
+    document.getElementById('achievementToastBody').textContent = name + ' unlocked!';
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 5000);
+}
+
+initMonaco();
+initPyodide();
+</script>
+{% endblock %}

@@ -1,0 +1,500 @@
+{% extends "base.html" %}
+
+{% block title %}{{ problem.title }} - Beginner Training{% endblock %}
+
+{% block content %}
+<!-- Load Pyodide for Python execution -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+<!-- Load Monaco Editor -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/beginner">Beginner Training</a></li>
+                    <li class="breadcrumb-item active">{{ problem.title }}</li>
+                </ol>
+            </nav>
+            <h2 class="mb-0">
+                {{ problem.title }}
+                <span class="badge bg-info ms-2">{{ problem.contest }}</span>
+                <span id="completedBadge" class="badge bg-success ms-2 d-none">Completed</span>
+            </h2>
+        </div>
+        <div class="d-flex gap-2">
+            {% if prev_id is not none %}
+            <a href="/beginner/problem/{{ prev_id }}" class="btn btn-outline-secondary">
+                <span class="material-icons" style="vertical-align: middle;">arrow_back</span>
+            </a>
+            {% endif %}
+            <a href="/beginner" class="btn btn-outline-primary">
+                <span class="material-icons" style="vertical-align: middle;">apps</span>
+                All Problems
+            </a>
+            {% if next_id is not none %}
+            <a href="/beginner/problem/{{ next_id }}" class="btn btn-outline-secondary">
+                <span class="material-icons" style="vertical-align: middle;">arrow_forward</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Problem Description Panel -->
+        <div class="col-lg-5">
+            <div class="md-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="mb-0">Problem {{ problem_id + 1 }} of {{ total_problems }}</h4>
+                        {% set difficulty = problem.simplified.estimated_difficulty if problem.simplified else 2 %}
+                        <span class="badge {% if difficulty <= 2 %}bg-success{% elif difficulty == 3 %}bg-warning text-dark{% else %}bg-danger{% endif %}">
+                            {% if difficulty <= 2 %}Easy{% elif difficulty == 3 %}Medium{% else %}Hard{% endif %}
+                        </span>
+                    </div>
+
+                    <hr>
+
+                    <!-- Simplified Explanation -->
+                    <div class="alert alert-info mb-4">
+                        <h6 class="mb-2">
+                            <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle;">lightbulb</span>
+                            What to do
+                        </h6>
+                        <p class="mb-0">{{ problem.simplified.simplified_explanation if problem.simplified else 'Solve the problem as described.' }}</p>
+                    </div>
+
+                    <!-- Key Concepts -->
+                    <h6 class="mb-3">Key Concepts</h6>
+                    <div class="mb-4">
+                        {% set concepts = problem.simplified.key_concepts if problem.simplified else [] %}
+                        {% for concept in concepts %}
+                        <span class="badge bg-primary me-1 mb-1">{{ concept }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Example Test Cases -->
+                    <h6 class="mb-3">Examples</h6>
+                    {% if problem.test_cases %}
+                    {% for test_case in problem.test_cases[:2] %}
+                    <div class="bg-light rounded p-3 mb-3">
+                        <p class="mb-1"><strong>Input:</strong> <code>{{ test_case.input }}</code></p>
+                        <p class="mb-0"><strong>Output:</strong> <code>{{ test_case.expected }}</code></p>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="text-muted">No examples available yet.</p>
+                    {% endif %}
+
+                    <!-- External Links -->
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="https://leetcode.com/playground/new/empty" target="_blank" class="btn btn-outline-secondary btn-sm">
+                            <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle;">code</span>
+                            LeetCode Playground
+                        </a>
+                        <a href="{{ problem.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle;">open_in_new</span>
+                            View on AtCoder
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Editor Panel -->
+        <div class="col-lg-7">
+            <div class="md-card">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">
+                            <span class="material-icons me-2" style="vertical-align: middle;">code</span>
+                            Python Editor
+                        </h5>
+                        <div id="pyodideStatus" class="text-muted small">
+                            <span class="spinner-border spinner-border-sm me-1"></span>
+                            Loading Python...
+                        </div>
+                    </div>
+
+                    <!-- Code Editor (Monaco) -->
+                    <div id="codeEditor" class="mb-3" style="height: 350px; border: 1px solid var(--md-outline); border-radius: 8px; overflow: hidden;"></div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-2 mb-3">
+                        <button id="runBtn" onclick="runCode()" class="btn btn-primary" disabled>
+                            <span class="material-icons me-1" style="vertical-align: middle;">play_arrow</span>
+                            Run Tests
+                        </button>
+                        <button id="resetBtn" onclick="resetCode()" class="btn btn-outline-secondary">
+                            <span class="material-icons me-1" style="vertical-align: middle;">refresh</span>
+                            Reset
+                        </button>
+                        <button id="markCompleteBtn" onclick="markAsComplete()" class="btn btn-outline-success ms-auto">
+                            <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+                            Mark Complete
+                        </button>
+                    </div>
+
+                    <!-- Test Results -->
+                    <div id="testResults" class="d-none">
+                        <h6 class="mb-3">Test Results</h6>
+                        <div id="testResultsContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Card -->
+            <div class="md-card mt-4">
+                <div class="card-body p-4">
+                    <h6 class="mb-3">
+                        <span class="material-icons me-2" style="vertical-align: middle;">tips_and_updates</span>
+                        Tips for Beginners
+                    </h6>
+                    <ul class="mb-0 small text-muted">
+                        <li>Focus on understanding the logic, not memorizing syntax</li>
+                        <li>Use print statements to debug your code</li>
+                        <li>Don't worry about input parsing - the function handles that for you</li>
+                        <li>If stuck, try writing out your solution on paper first</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+    <div id="successToast" class="toast" role="alert">
+        <div class="toast-header bg-success text-white">
+            <span class="material-icons me-2">celebration</span>
+            <strong class="me-auto">Problem Solved!</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="successToastBody">
+            Great job! You've completed this problem.
+        </div>
+    </div>
+</div>
+
+<script>
+let pyodide = null;
+let editor = null;
+const problemId = {{ problem_id }};
+const starterCode = {{ problem.starter_code | tojson if problem.starter_code else '"# No starter code available\\npass"' }};
+const testCases = {{ problem.test_cases | tojson if problem.test_cases else '[]' }};
+
+// Local storage key for progress
+const STORAGE_KEY = 'atcoder_progress';
+
+// Check if problem is already completed
+function isCompleted() {
+    try {
+        const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        return progress.includes(problemId);
+    } catch {
+        return false;
+    }
+}
+
+// Mark problem as complete in localStorage
+function saveCompletion() {
+    try {
+        let progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (!progress.includes(problemId)) {
+            progress.push(problemId);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        }
+        // Update last activity date for streak tracking
+        localStorage.setItem('atcoder_last_activity', new Date().toDateString());
+    } catch (e) {
+        console.error('Failed to save progress:', e);
+    }
+}
+
+// Update UI for completed state
+function updateCompletedState() {
+    if (isCompleted()) {
+        document.getElementById('completedBadge').classList.remove('d-none');
+        document.getElementById('markCompleteBtn').innerHTML = `
+            <span class="material-icons me-1" style="vertical-align: middle;">check</span>
+            Completed
+        `;
+        document.getElementById('markCompleteBtn').classList.remove('btn-outline-success');
+        document.getElementById('markCompleteBtn').classList.add('btn-success');
+    }
+}
+
+// Mark as complete manually
+function markAsComplete() {
+    saveCompletion();
+    updateCompletedState();
+    showSuccessToast();
+}
+
+// Initialize Monaco Editor
+function initMonaco() {
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        // Define a custom Nord-inspired theme
+        monaco.editor.defineTheme('nord-theme', {
+            base: 'vs',
+            inherit: true,
+            rules: [
+                { token: 'comment', foreground: '616E88', fontStyle: 'italic' },
+                { token: 'keyword', foreground: '81A1C1' },
+                { token: 'string', foreground: 'A3BE8C' },
+                { token: 'number', foreground: 'B48EAD' },
+                { token: 'type', foreground: '8FBCBB' },
+                { token: 'function', foreground: '88C0D0' },
+                { token: 'variable', foreground: 'D8DEE9' },
+            ],
+            colors: {
+                'editor.background': '#ECEFF4',
+                'editor.foreground': '#2E3440',
+                'editorLineNumber.foreground': '#4C566A',
+                'editor.selectionBackground': '#88C0D040',
+                'editor.lineHighlightBackground': '#E5E9F020',
+            }
+        });
+
+        editor = monaco.editor.create(document.getElementById('codeEditor'), {
+            value: starterCode,
+            language: 'python',
+            theme: 'nord-theme',
+            fontSize: 14,
+            lineNumbers: 'on',
+            minimap: { enabled: false },
+            automaticLayout: true,
+            tabSize: 4,
+            insertSpaces: true,
+            wordWrap: 'on',
+            scrollBeyondLastLine: false,
+            renderLineHighlight: 'line',
+            padding: { top: 12, bottom: 12 },
+            fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace",
+            fontLigatures: true,
+        });
+    });
+}
+
+// Initialize Pyodide
+async function initPyodide() {
+    try {
+        pyodide = await loadPyodide();
+        document.getElementById('runBtn').disabled = false;
+        document.getElementById('pyodideStatus').innerHTML = `
+            <span class="text-success">
+                <span class="material-icons" style="font-size: 16px; vertical-align: middle;">check_circle</span>
+                Python Ready
+            </span>
+        `;
+    } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        document.getElementById('pyodideStatus').innerHTML = `
+            <span class="text-danger">
+                <span class="material-icons" style="font-size: 16px; vertical-align: middle;">error</span>
+                Failed to load Python
+            </span>
+        `;
+    }
+}
+
+// Normalize output for comparison
+function normalizeOutput(str) {
+    if (!str) return '';
+    // Convert to string if not already
+    let normalized = String(str).trim();
+    // Remove any carriage returns
+    normalized = normalized.replace(/\r/g, '');
+    // Normalize list/tuple formatting
+    normalized = normalized.replace(/\[\s*/g, '[').replace(/\s*\]/g, ']');
+    normalized = normalized.replace(/\(\s*/g, '(').replace(/\s*\)/g, ')');
+    normalized = normalized.replace(/,\s*/g, ', ');
+    return normalized;
+}
+
+// Run code against test cases
+async function runCode() {
+    if (!pyodide) {
+        alert('Python is still loading. Please wait.');
+        return;
+    }
+
+    if (!editor) {
+        alert('Editor is still loading. Please wait.');
+        return;
+    }
+
+    const userCode = editor.getValue();
+    const resultsDiv = document.getElementById('testResults');
+    const resultsContent = document.getElementById('testResultsContent');
+
+    resultsDiv.classList.remove('d-none');
+
+    // Check if we have test cases
+    if (!testCases || testCases.length === 0) {
+        resultsContent.innerHTML = `
+            <div class="alert alert-warning">
+                <span class="material-icons me-2" style="vertical-align: middle;">warning</span>
+                No test cases available for this problem yet. You can still mark it complete manually.
+            </div>
+        `;
+        return;
+    }
+
+    resultsContent.innerHTML = '<div class="text-center"><span class="spinner-border spinner-border-sm"></span> Running tests...</div>';
+
+    // Small delay to allow UI to update before blocking execution
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    let allPassed = true;
+    let results = [];
+    let passedCount = 0;
+    let failedCount = 0;
+
+    for (let i = 0; i < testCases.length; i++) {
+        const test = testCases[i];
+        let passed = false;
+        let actual = '';
+
+        try {
+            // Reset stdout
+            await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`);
+
+            // Run user code + test with timeout
+            const fullCode = `${userCode}
+
+# Run test
+result = ${test.function_call}
+print(result)
+`;
+
+            // Create a timeout promise
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error('Test timed out (5 seconds)')), 5000);
+            });
+
+            // Race between execution and timeout
+            await Promise.race([
+                pyodide.runPythonAsync(fullCode),
+                timeoutPromise
+            ]);
+
+            actual = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+            actual = String(actual).trim();
+
+            // Normalize both actual and expected for comparison
+            const normalizedActual = normalizeOutput(actual);
+            const normalizedExpected = normalizeOutput(test.expected);
+            passed = normalizedActual === normalizedExpected;
+
+        } catch (error) {
+            actual = `Error: ${error.message}`;
+            passed = false;
+        }
+
+        if (!passed) {
+            allPassed = false;
+            failedCount++;
+        } else {
+            passedCount++;
+        }
+
+        results.push({ test, passed, actual, index: i + 1 });
+
+        // Allow UI to breathe between tests
+        await new Promise(resolve => setTimeout(resolve, 10));
+    }
+
+    // Build results HTML
+    let resultsHTML = '';
+
+    if (allPassed) {
+        resultsHTML = `
+            <div class="alert alert-success mb-3">
+                <span class="material-icons me-2" style="vertical-align: middle;">check_circle</span>
+                <strong>All ${testCases.length} test cases passed!</strong>
+            </div>
+        `;
+        // Auto-mark as complete
+        saveCompletion();
+        updateCompletedState();
+        showSuccessToast();
+    } else {
+        resultsHTML = `
+            <div class="alert alert-warning mb-3">
+                <span class="material-icons me-2" style="vertical-align: middle;">warning</span>
+                <strong>${passedCount}/${testCases.length} test cases passed</strong> - ${failedCount} failed
+            </div>
+        `;
+
+        // Show up to 3 failed test cases
+        const failedTests = results.filter(r => !r.passed);
+        const testsToShow = failedTests.slice(0, 3);
+
+        for (const result of testsToShow) {
+            resultsHTML += `
+                <div class="mb-2 p-3 rounded bg-danger bg-opacity-10">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>Test ${result.index}</strong>
+                        <span class="badge bg-danger">FAILED</span>
+                    </div>
+                    <div class="small">
+                        <p class="mb-1"><strong>Input:</strong> <code>${result.test.input}</code></p>
+                        <p class="mb-1"><strong>Expected:</strong> <code>${result.test.expected}</code></p>
+                        <p class="mb-0"><strong>Actual:</strong> <code>${result.actual}</code></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (failedTests.length > 3) {
+            resultsHTML += `
+                <div class="text-muted small mt-2">
+                    <span class="material-icons me-1" style="font-size: 14px; vertical-align: middle;">more_horiz</span>
+                    ${failedTests.length - 3} more failed test(s) not shown
+                </div>
+            `;
+        }
+    }
+
+    resultsContent.innerHTML = resultsHTML;
+}
+
+// Reset code to starter
+function resetCode() {
+    if (confirm('Reset code to the original starter code?')) {
+        if (editor) {
+            editor.setValue(starterCode);
+        }
+    }
+}
+
+// Show success toast
+function showSuccessToast() {
+    const toast = document.getElementById('successToast');
+    if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+    } else {
+        // Fallback: manually show toast
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+}
+
+// Initialize on page load
+initMonaco();
+initPyodide();
+updateCompletedState();
+</script>
+{% endblock %}

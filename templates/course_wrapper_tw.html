@@ -1,0 +1,198 @@
+{% extends "base_tw.html" %}
+
+{% block title %}{{ course.title }} - Ray's Roadmap{% endblock %}
+
+{% block content %}
+<div class="flex flex-col lg:flex-row gap-6">
+    <!-- Left Sidebar Navigation -->
+    <div class="lg:w-72 flex-shrink-0">
+        <div class="card lg:sticky lg:top-24">
+            <div class="border-b border-border px-4 py-3 flex items-center gap-2">
+                {% if course.icon == 'school' %}
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+                </svg>
+                {% else %}
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                {% endif %}
+                <span class="font-medium text-foreground text-sm">{{ course.title }}</span>
+            </div>
+            <nav class="py-2">
+                {% for video in course.videos %}
+                <a href="#"
+                   class="course-nav-link flex items-center gap-3 px-4 py-3 text-sm transition-all border-l-2 {% if loop.first %}border-primary bg-primary/10 text-primary font-medium{% else %}border-transparent text-foreground-muted hover:text-foreground hover:bg-background-elevated{% endif %}"
+                   data-part="{{ video.part }}"
+                   onclick="showPart({{ video.part }}); return false;">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    {{ video.title }}
+                </a>
+                {% endfor %}
+                <div class="border-t border-border mt-2 pt-2">
+                    <a href="{{ course.practice_url }}"
+                       class="flex items-center gap-3 px-4 py-3 text-sm text-success hover:bg-success/10 transition-all border-l-2 border-transparent">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                        {{ course.practice_label }}
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Right Content Area -->
+    <div class="flex-1 min-w-0">
+        <!-- Course Header -->
+        <div class="card mb-6">
+            <div class="flex items-start gap-4">
+                <div class="p-3 rounded-xl bg-primary/20">
+                    {% if course.icon == 'school' %}
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+                    </svg>
+                    {% else %}
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    {% endif %}
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-foreground mb-1">{{ course.title }}</h1>
+                    <p class="text-foreground-muted">{{ course.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Content Sections -->
+        <div class="card">
+            {% for video in course.videos %}
+            <div class="video-section {% if not loop.first %}hidden{% endif %}" id="part-{{ video.part }}">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="badge-primary">{{ video.part }}/{{ course.videos|length }}</span>
+                    <h3 class="text-xl font-semibold text-foreground">{{ video.title }}</h3>
+                </div>
+                <div class="relative pb-[56.25%] rounded-xl overflow-hidden bg-background-secondary mb-6">
+                    <iframe
+                        class="absolute inset-0 w-full h-full"
+                        src="https://www.loom.com/embed/{{ video.loom_id }}"
+                        frameborder="0"
+                        webkitallowfullscreen
+                        mozallowfullscreen
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between items-center">
+                    {% if not loop.first %}
+                    <button class="btn-secondary flex items-center gap-2" onclick="showPart({{ video.part - 1 }})">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Previous
+                    </button>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+
+                    {% if not loop.last %}
+                    <button class="btn-primary flex items-center gap-2" onclick="showPart({{ video.part + 1 }})">
+                        Next
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    {% else %}
+                    <a href="{{ course.practice_url }}" class="btn-success flex items-center gap-2">
+                        {{ course.practice_label }}
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="card mt-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm text-foreground-muted">Course Progress</span>
+                <span class="badge-primary" id="progress-badge">1 / {{ course.videos|length }}</span>
+            </div>
+            <div class="h-2 bg-background-secondary rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500" style="width: {{ 100 / course.videos|length }}%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const STORAGE_KEY = '{{ course_type }}_course_progress';
+const totalParts = {{ course.videos|length }};
+
+function showPart(partNumber) {
+    // Hide all video sections
+    document.querySelectorAll('.video-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // Show selected section
+    const targetSection = document.getElementById('part-' + partNumber);
+    if (targetSection) {
+        targetSection.classList.remove('hidden');
+    }
+
+    // Update navigation active state
+    document.querySelectorAll('.course-nav-link').forEach(link => {
+        const linkPart = parseInt(link.dataset.part);
+        if (linkPart === partNumber) {
+            link.classList.remove('border-transparent', 'text-foreground-muted', 'hover:text-foreground', 'hover:bg-background-elevated');
+            link.classList.add('border-primary', 'bg-primary/10', 'text-primary', 'font-medium');
+        } else {
+            link.classList.add('border-transparent', 'text-foreground-muted', 'hover:text-foreground', 'hover:bg-background-elevated');
+            link.classList.remove('border-primary', 'bg-primary/10', 'text-primary', 'font-medium');
+        }
+    });
+
+    // Update progress bar
+    const progressBar = document.getElementById('progress-bar');
+    const progressBadge = document.getElementById('progress-badge');
+    const percentage = (partNumber / totalParts) * 100;
+
+    if (progressBar) {
+        progressBar.style.width = percentage + '%';
+    }
+    if (progressBadge) {
+        progressBadge.textContent = partNumber + ' / ' + totalParts;
+    }
+
+    // Save progress to localStorage
+    localStorage.setItem(STORAGE_KEY, partNumber);
+
+    // Scroll to top of content on mobile
+    if (window.innerWidth < 1024) {
+        document.querySelector('.video-section:not(.hidden)').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Restore progress on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedPart = localStorage.getItem(STORAGE_KEY);
+    if (savedPart && parseInt(savedPart) >= 1 && parseInt(savedPart) <= totalParts) {
+        showPart(parseInt(savedPart));
+    }
+});
+</script>
+{% endblock %}

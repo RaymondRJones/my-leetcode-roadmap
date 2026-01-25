@@ -1,0 +1,706 @@
+{% extends "base.html" %}
+
+{% block title %}28-Day Challenge - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    {% if not enrolled %}
+    <!-- Hero Section for Non-Enrolled Users -->
+    <div class="text-center mb-5">
+        <div class="mb-4">
+            <span class="material-icons" style="font-size: 64px; color: var(--md-primary);">emoji_events</span>
+        </div>
+        <h1 class="display-4 mb-3">28-Day LeetCode Challenge</h1>
+        <p class="lead text-muted mb-4">
+            Transform your coding skills in just 28 days. Solve curated problems,
+            track your progress, earn achievements, and compete on the leaderboard.
+        </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord10);">code</span>
+                <h5>Built-in Code Editor</h5>
+                <p class="text-muted mb-0">Write and test Python code directly in your browser with instant feedback.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord12);">local_fire_department</span>
+                <h5>Streak Tracking</h5>
+                <p class="text-muted mb-0">Build consistency with daily streaks and earn bonus points for maintaining them.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="md-card h-100 p-4 text-center">
+                <span class="material-icons mb-3" style="font-size: 48px; color: var(--nord14);">military_tech</span>
+                <h5>Achievements & Points</h5>
+                <p class="text-muted mb-0">Unlock achievements, earn points, and climb the leaderboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Points System -->
+    <div class="md-card p-4 mb-5">
+        <h4 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">star</span>
+            Points System
+        </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-muted mb-3">Problem Points</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="badge bg-success me-2">Easy</span>
+                        {{ point_values.easy }} points per problem
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-warning text-dark me-2">Medium</span>
+                        {{ point_values.medium }} points per problem
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-danger me-2">Hard</span>
+                        {{ point_values.hard }} points per problem
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-muted mb-3">Streak Bonuses</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord12);">local_fire_department</span>
+                        7-day streak: +{{ point_values.streak_7 }} bonus
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord11);">whatshot</span>
+                        14-day streak: +{{ point_values.streak_14 }} bonus
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle; color: var(--nord13);">emoji_events</span>
+                        28-day completion: +{{ point_values.streak_28 }} bonus
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+        {% if is_authenticated %}
+        <button onclick="enrollInChallenge()" class="btn btn-lg px-5 py-3" style="background: var(--md-primary); color: white;">
+            <span class="material-icons me-2" style="vertical-align: middle;">rocket_launch</span>
+            Start the Challenge
+        </button>
+        {% else %}
+        <a href="/auth/login" class="btn btn-lg px-5 py-3" style="background: var(--md-primary); color: white;">
+            <span class="material-icons me-2" style="vertical-align: middle;">login</span>
+            Sign In to Start
+        </a>
+        {% endif %}
+    </div>
+
+    {% else %}
+    <!-- Dashboard for Enrolled Users -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">
+            <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">emoji_events</span>
+            28-Day Challenge
+        </h1>
+        <a href="/challenge/calendar" class="btn btn-outline-primary">
+            <span class="material-icons me-1" style="vertical-align: middle;">calendar_month</span>
+            View Calendar
+        </a>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord12);">local_fire_department</span>
+                <h2 class="mb-1">{{ challenge_data.current_streak or 0 }}</h2>
+                <p class="text-muted mb-0">Current Streak</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord13);">star</span>
+                <h2 class="mb-1">{{ challenge_data.points or 0 }}</h2>
+                <p class="text-muted mb-0">Total Points</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord14);">check_circle</span>
+                <h2 class="mb-1">{{ challenge_data.total_problems_solved or 0 }}</h2>
+                <p class="text-muted mb-0">Problems Solved</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="md-card p-4 text-center">
+                <span class="material-icons mb-2" style="font-size: 36px; color: var(--nord10);">calendar_today</span>
+                <h2 class="mb-1">{{ challenge_data.days_completed|length or 0 }}/28</h2>
+                <p class="text-muted mb-0">Days Completed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Challenge Rules -->
+    <div class="md-card p-4 mb-4">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle;">rule</span>
+            Challenge Rules
+        </h5>
+        <ul class="mb-0">
+            <li>Solve at least <strong>1 LeetCode problem per day</strong></li>
+            <li>Build a <strong>7-day streak</strong>, then extend to <strong>28 days</strong></li>
+            <li>Solve ANY problem you want - not limited to the calendar problems</li>
+        </ul>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Challenge Progress</h5>
+            <span class="text-muted">{{ ((challenge_data.days_completed|length or 0) / 28 * 100)|round|int }}% Complete</span>
+        </div>
+        <div class="progress" style="height: 12px; border-radius: 6px;">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{ ((challenge_data.days_completed|length or 0) / 28 * 100)|round|int }}%; background: var(--md-primary);">
+            </div>
+        </div>
+    </div>
+
+    <!-- Mini Calendar -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">calendar_month</span>
+                Your 28-Day Calendar
+            </h5>
+            <a href="/challenge/calendar" class="btn btn-sm btn-outline-primary">
+                Full Calendar <span class="material-icons" style="font-size: 16px; vertical-align: middle;">arrow_forward</span>
+            </a>
+        </div>
+        <div class="mini-calendar-grid">
+            {% for day in range(1, 29) %}
+            <a href="/challenge/day/{{ day }}" class="mini-cal-day {{ 'completed' if day in days_completed else ('current' if day == current_day else ('available' if day < current_day else 'locked')) }}" title="Day {{ day }}{% if day in days_completed %} - Completed{% elif day == current_day %} - Today{% elif day < current_day %} - Available{% else %} - Locked{% endif %}">
+                {{ day }}
+            </a>
+            {% endfor %}
+        </div>
+        <div class="mt-3 text-center">
+            <small class="text-muted">
+                <span class="mini-cal-legend completed"></span> Completed
+                <span class="mini-cal-legend current ms-3"></span> Current
+                <span class="mini-cal-legend available ms-3"></span> Available
+                <span class="mini-cal-legend locked ms-3"></span> Locked
+            </small>
+        </div>
+    </div>
+
+    <style>
+    .mini-calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+    .mini-cal-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .mini-cal-day:hover:not(.locked) {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .mini-cal-day.completed { background: var(--nord14); color: white; }
+    .mini-cal-day.current { background: var(--md-primary); color: white; box-shadow: 0 0 0 2px var(--md-primary), 0 0 0 4px rgba(76, 110, 245, 0.3); }
+    .mini-cal-day.available { background: var(--nord6); color: var(--nord3); }
+    .mini-cal-day.locked { background: var(--nord5); color: var(--nord4); opacity: 0.5; pointer-events: none; }
+    .mini-cal-legend {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    .mini-cal-legend.completed { background: var(--nord14); }
+    .mini-cal-legend.current { background: var(--md-primary); }
+    .mini-cal-legend.available { background: var(--nord6); }
+    .mini-cal-legend.locked { background: var(--nord5); opacity: 0.5; }
+    </style>
+
+    <!-- Activity Heatmap -->
+    <div class="md-card p-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">insights</span>
+                Activity Tracker
+            </h5>
+            <div class="d-flex align-items-center gap-2">
+                <small class="text-muted">Less</small>
+                <div class="d-flex gap-1">
+                    <div class="heatmap-legend-cell" style="background: var(--nord6);"></div>
+                    <div class="heatmap-legend-cell" style="background: #c6e48b;"></div>
+                    <div class="heatmap-legend-cell" style="background: #7bc96f;"></div>
+                    <div class="heatmap-legend-cell" style="background: #239a3b;"></div>
+                    <div class="heatmap-legend-cell" style="background: #196127;"></div>
+                </div>
+                <small class="text-muted">More</small>
+            </div>
+        </div>
+        <div class="heatmap-wrapper">
+            <div class="heatmap-container" id="activityHeatmap"></div>
+        </div>
+        <div class="mt-3 text-center">
+            <small class="text-muted" id="heatmapSummary"></small>
+        </div>
+    </div>
+
+    <style>
+    .heatmap-wrapper {
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    .heatmap-container {
+        display: grid;
+        grid-template-columns: repeat(53, 12px);
+        grid-template-rows: repeat(7, 12px);
+        gap: 2px;
+        width: fit-content;
+    }
+    .heatmap-cell {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        background: var(--nord6);
+        cursor: pointer;
+    }
+    .heatmap-cell:hover {
+        outline: 1px solid var(--nord4);
+    }
+    .heatmap-cell[data-count="1"] { background: #c6e48b; }
+    .heatmap-cell[data-count="2"] { background: #7bc96f; }
+    .heatmap-cell[data-count="3"] { background: #239a3b; }
+    .heatmap-cell[data-count="4"] { background: #196127; }
+    .heatmap-legend-cell {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+    }
+    </style>
+
+    <!-- Progress Trackers Dashboard -->
+    <div class="md-card p-4 mb-4">
+        <h5 class="mb-3">
+            <span class="material-icons me-2" style="vertical-align: middle;">track_changes</span>
+            Progress Trackers
+        </h5>
+        <div class="row g-3">
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">fiber_new</span>
+                    <div class="tracker-value">{{ trackers.new_problems or 0 }}</div>
+                    <small>New Problems</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">replay</span>
+                    <div class="tracker-value">{{ trackers.revised_problems or 0 }}</div>
+                    <small>Revised</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">commit</span>
+                    <div class="tracker-value">{{ trackers.github_commits or 0 }}</div>
+                    <small>GitHub Commits</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">forum</span>
+                    <div class="tracker-value">{{ trackers.skool_activity or 0 }}</div>
+                    <small>Skool Activity</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">comment</span>
+                    <div class="tracker-value">{{ trackers.comments_done or 0 }}</div>
+                    <small>Comments</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">share</span>
+                    <div class="tracker-value">{{ trackers.social_posts or 0 }}</div>
+                    <small>Social Posts</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">record_voice_over</span>
+                    <div class="tracker-value">{{ trackers.mock_interviews or 0 }}</div>
+                    <small>Mock Interviews</small>
+                </div>
+            </div>
+            <div class="col-4 col-md-3">
+                <div class="tracker-card text-center p-2 rounded">
+                    <span class="material-icons">leaderboard</span>
+                    <div class="tracker-value">{{ '{:,}'.format(trackers.leetcode_rank) if trackers.leetcode_rank else '-' }}</div>
+                    <small>LeetCode Rank</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .tracker-card {
+        background: var(--nord6);
+        transition: transform 0.1s;
+    }
+    .tracker-card:hover {
+        transform: translateY(-2px);
+    }
+    .tracker-card .material-icons {
+        font-size: 24px;
+        color: var(--md-primary);
+        display: block;
+        margin-bottom: 4px;
+    }
+    .tracker-value {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--nord3);
+    }
+    .tracker-card small {
+        color: var(--nord4);
+        font-size: 0.7rem;
+    }
+    </style>
+
+    <!-- Daily Activity Log -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3" data-bs-toggle="collapse" data-bs-target="#dailyLogForm" style="cursor: pointer;">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">edit_note</span>
+                Log Today's Activity
+            </h5>
+            <span class="material-icons text-muted" id="collapseIcon">expand_more</span>
+        </div>
+
+        <div class="collapse" id="dailyLogForm">
+            <form id="trackerForm">
+                <div class="row g-3">
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">New LeetCode Problems</label>
+                        <input type="number" class="form-control" name="new_problems"
+                               value="{{ todays_entry.new_problems or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">Revised Problems</label>
+                        <input type="number" class="form-control" name="revised_problems"
+                               value="{{ todays_entry.revised_problems or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">GitHub Commits</label>
+                        <input type="number" class="form-control" name="github_commits"
+                               value="{{ todays_entry.github_commits or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">Skool Activity</label>
+                        <input type="number" class="form-control" name="skool_activity"
+                               value="{{ todays_entry.skool_activity or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">Comments Done</label>
+                        <input type="number" class="form-control" name="comments_done"
+                               value="{{ todays_entry.comments_done or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">Social Posts</label>
+                        <input type="number" class="form-control" name="social_posts"
+                               value="{{ todays_entry.social_posts or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">Mock Interviews</label>
+                        <input type="number" class="form-control" name="mock_interviews"
+                               value="{{ todays_entry.mock_interviews or 0 }}" min="0">
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label small">LeetCode Rank</label>
+                        <input type="number" class="form-control" name="leetcode_rank"
+                               value="{{ todays_entry.leetcode_rank or '' }}" min="1" placeholder="Optional">
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary" id="saveTrackerBtn">
+                        <span class="material-icons me-1" style="font-size: 18px; vertical-align: middle;">save</span>
+                        Save Today's Progress
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Solved Problems List -->
+    <div class="md-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+                <span class="material-icons me-2" style="vertical-align: middle;">checklist</span>
+                Problems Solved ({{ solved_problems|length }})
+            </h5>
+        </div>
+        {% if solved_problems %}
+        <div class="solved-problems-list" style="max-height: 250px; overflow-y: auto;">
+            {% for problem in solved_problems %}
+            <div class="d-flex align-items-center justify-content-between p-2 mb-1 rounded" style="background: var(--nord6);">
+                <div class="d-flex align-items-center">
+                    <span class="material-icons me-2 text-success" style="font-size: 18px;">check_circle</span>
+                    <a href="{{ problem.url }}" target="_blank" class="text-decoration-none">{{ problem.name }}</a>
+                </div>
+                <div>
+                    <span class="badge {{ 'bg-success' if problem.difficulty == 'Easy' else ('bg-warning text-dark' if problem.difficulty == 'Medium' else ('bg-info' if problem.difficulty == 'Bonus' else 'bg-danger')) }}">
+                        {{ problem.difficulty }}
+                    </span>
+                    <span class="badge bg-secondary">{{ problem.type }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted mb-0">No problems solved yet. Start your challenge!</p>
+        {% endif %}
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <a href="/challenge/day/{{ [challenge_data.days_completed|length + 1, 28]|min }}" class="text-decoration-none">
+                <div class="md-card p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-3" style="font-size: 48px; color: var(--md-primary);">play_circle</span>
+                        <div>
+                            <h5 class="mb-1">Continue Challenge</h5>
+                            <p class="text-muted mb-0">Go to Day {{ [challenge_data.days_completed|length + 1, 28]|min }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="/challenge/leaderboard" class="text-decoration-none">
+                <div class="md-card p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <span class="material-icons me-3" style="font-size: 48px; color: var(--nord13);">leaderboard</span>
+                        <div>
+                            <h5 class="mb-1">
+                                Leaderboard
+                                <span class="badge bg-secondary ms-2" style="font-size: 0.6rem; vertical-align: middle;">Coming Soon</span>
+                            </h5>
+                            <p class="text-muted mb-0">See how you rank against others</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="md-card p-4">
+        <h5 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">military_tech</span>
+            Achievements
+        </h5>
+        <div class="row g-3">
+            {% for achievement_id, achievement in achievements_config.items() %}
+            <div class="col-md-4">
+                <div class="d-flex align-items-center p-3 rounded {% if achievement_id in (challenge_data.achievements or []) %}bg-success bg-opacity-10{% else %}bg-light{% endif %}">
+                    <span class="material-icons me-3" style="font-size: 40px; color: {% if achievement_id in (challenge_data.achievements or []) %}var(--nord14){% else %}var(--nord4){% endif %};">
+                        {{ achievement.icon }}
+                    </span>
+                    <div>
+                        <p class="mb-0 fw-bold {% if achievement_id not in (challenge_data.achievements or []) %}text-muted{% endif %}">
+                            {{ achievement.name }}
+                        </p>
+                        <small class="text-muted">{{ achievement.description }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+async function enrollInChallenge() {
+    try {
+        const response = await fetch('/api/challenge/enroll', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            window.location.reload();
+        } else {
+            alert('Failed to enroll: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error enrolling:', error);
+        alert('Failed to enroll. Please try again.');
+    }
+}
+
+{% if enrolled %}
+// Daily tracker form submission
+(function() {
+    const trackerForm = document.getElementById('trackerForm');
+    const collapseIcon = document.getElementById('collapseIcon');
+    const dailyLogForm = document.getElementById('dailyLogForm');
+
+    // Toggle collapse icon
+    if (dailyLogForm && collapseIcon) {
+        dailyLogForm.addEventListener('shown.bs.collapse', function() {
+            collapseIcon.textContent = 'expand_less';
+        });
+        dailyLogForm.addEventListener('hidden.bs.collapse', function() {
+            collapseIcon.textContent = 'expand_more';
+        });
+    }
+
+    if (trackerForm) {
+        trackerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const saveBtn = document.getElementById('saveTrackerBtn');
+            const originalBtnContent = saveBtn.innerHTML;
+
+            // Disable button during submission
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
+
+            const formData = new FormData(trackerForm);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                // Parse as int, allow empty string for leetcode_rank
+                if (key === 'leetcode_rank') {
+                    data[key] = value ? parseInt(value, 10) : null;
+                } else {
+                    data[key] = value ? parseInt(value, 10) : 0;
+                }
+            });
+
+            try {
+                const response = await fetch('/api/challenge/log-activity', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    // Reload to show updated totals
+                    window.location.reload();
+                } else {
+                    alert('Failed to save: ' + (result.error || 'Unknown error'));
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = originalBtnContent;
+                }
+            } catch (error) {
+                console.error('Error saving tracker data:', error);
+                alert('Failed to save. Please try again.');
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalBtnContent;
+            }
+        });
+    }
+})();
+{% endif %}
+
+{% if enrolled and heatmap_data %}
+// Render activity heatmap
+(function() {
+    const heatmapData = {{ heatmap_data | tojson }};
+    const container = document.getElementById('activityHeatmap');
+
+    if (!container || !heatmapData.length) return;
+
+    let totalProblems = 0;
+    let activeDays = 0;
+
+    // Organize data by week columns (Sunday = 0)
+    // Grid is 7 rows (days) × 53 columns (weeks)
+    // Fill column by column, starting from oldest date
+
+    // Find the first Sunday on or before the start date
+    const startDate = new Date(heatmapData[0].date);
+    const startDayOfWeek = startDate.getDay(); // 0 = Sunday
+
+    // Create a map of date -> data
+    const dateMap = {};
+    heatmapData.forEach(day => {
+        dateMap[day.date] = day;
+        totalProblems += day.count;
+        if (day.count > 0) activeDays++;
+    });
+
+    // Generate 53 weeks worth of cells
+    const today = new Date();
+    const endDate = new Date(today);
+
+    // Start 52 weeks ago, on a Sunday
+    const gridStartDate = new Date(today);
+    gridStartDate.setDate(gridStartDate.getDate() - 364);
+    // Adjust to the previous Sunday
+    while (gridStartDate.getDay() !== 0) {
+        gridStartDate.setDate(gridStartDate.getDate() - 1);
+    }
+
+    // Create cells for each position in the grid
+    for (let week = 0; week < 53; week++) {
+        for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+            const cellDate = new Date(gridStartDate);
+            cellDate.setDate(gridStartDate.getDate() + (week * 7) + dayOfWeek);
+
+            const dateStr = cellDate.toISOString().split('T')[0];
+            const dayData = dateMap[dateStr] || { count: 0 };
+
+            const cell = document.createElement('div');
+            cell.className = 'heatmap-cell';
+            cell.setAttribute('data-count', Math.min(dayData.count, 4));
+            cell.setAttribute('data-date', dateStr);
+
+            // Format date for tooltip
+            const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+            const formattedDate = cellDate.toLocaleDateString('en-US', options);
+            cell.title = `${formattedDate}: ${dayData.count} problem${dayData.count !== 1 ? 's' : ''}`;
+
+            container.appendChild(cell);
+        }
+    }
+
+    // Update summary
+    const summaryEl = document.getElementById('heatmapSummary');
+    if (summaryEl) {
+        summaryEl.textContent = `${totalProblems} problem${totalProblems !== 1 ? 's' : ''} solved across ${activeDays} day${activeDays !== 1 ? 's' : ''} in the past year`;
+    }
+})();
+{% endif %}
+</script>
+{% endblock %}

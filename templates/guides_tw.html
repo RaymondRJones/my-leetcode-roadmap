@@ -1,0 +1,608 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Guides - Ray's Roadmap{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+            <h1 class="text-3xl font-bold text-foreground flex items-center gap-3 mb-2">
+                <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                Interview Prep Guides
+            </h1>
+            <p class="text-foreground-muted">Master every aspect of your tech interview journey with curated resources, video tutorials, and hands-on practice.</p>
+        </div>
+        <!-- Progress Card -->
+        <div class="card p-4 min-w-[200px]">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm text-foreground-muted">Your Progress</span>
+                <span class="badge-primary" id="progress-badge">0 / 5 Started</span>
+            </div>
+            <div class="h-2 bg-background-secondary rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Navigation Pills -->
+<div class="flex flex-wrap gap-2 justify-center mb-8">
+    <button class="nav-pill active px-4 py-2 rounded-full border-2 border-border bg-background-elevated text-foreground font-medium text-sm transition-all hover:border-primary flex items-center gap-2" data-filter="all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+        </svg>
+        All Guides
+    </button>
+    <button class="nav-pill px-4 py-2 rounded-full border-2 border-border bg-background-elevated text-foreground-muted font-medium text-sm transition-all hover:border-primary hover:text-foreground flex items-center gap-2" data-filter="technical">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+        </svg>
+        Technical
+    </button>
+    <button class="nav-pill px-4 py-2 rounded-full border-2 border-border bg-background-elevated text-foreground-muted font-medium text-sm transition-all hover:border-primary hover:text-foreground flex items-center gap-2" data-filter="career">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Career
+    </button>
+    <button class="nav-pill px-4 py-2 rounded-full border-2 border-border bg-background-elevated text-foreground-muted font-medium text-sm transition-all hover:border-primary hover:text-foreground flex items-center gap-2" data-filter="soft-skills">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        Soft Skills
+    </button>
+</div>
+
+<!-- Learning Path Timeline -->
+<div class="card p-6 mb-8">
+    <div class="flex items-center gap-3 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+        </svg>
+        <h5 class="font-semibold text-foreground">Recommended Learning Path</h5>
+        <span class="ml-auto text-xs text-foreground-subtle bg-background-secondary px-3 py-1 rounded-full">Follow this order for best results</span>
+    </div>
+    <div class="flex items-center justify-between overflow-x-auto pb-2 gap-0">
+        <div class="path-step flex items-center flex-1 min-w-0" data-step="1">
+            <div class="step-marker w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-glow">1</div>
+            <div class="ml-2 hidden sm:flex flex-col min-w-0">
+                <span class="font-medium text-sm text-foreground truncate">Resume & LinkedIn</span>
+                <span class="text-xs text-foreground-subtle">Build your foundation</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-border mx-2 min-w-[20px]"></div>
+        </div>
+        <div class="path-step flex items-center flex-1 min-w-0" data-step="2">
+            <div class="step-marker w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-glow">2</div>
+            <div class="ml-2 hidden sm:flex flex-col min-w-0">
+                <span class="font-medium text-sm text-foreground truncate">Job Search Strategy</span>
+                <span class="text-xs text-foreground-subtle">Learn the process</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-border mx-2 min-w-[20px]"></div>
+        </div>
+        <div class="path-step flex items-center flex-1 min-w-0" data-step="3">
+            <div class="step-marker w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-glow">3</div>
+            <div class="ml-2 hidden sm:flex flex-col min-w-0">
+                <span class="font-medium text-sm text-foreground truncate">LeetCode Practice</span>
+                <span class="text-xs text-foreground-subtle">Build coding skills</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-border mx-2 min-w-[20px]"></div>
+        </div>
+        <div class="path-step flex items-center flex-1 min-w-0" data-step="4">
+            <div class="step-marker w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-glow">4</div>
+            <div class="ml-2 hidden sm:flex flex-col min-w-0">
+                <span class="font-medium text-sm text-foreground truncate">System Design</span>
+                <span class="text-xs text-foreground-subtle">Master architecture</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-border mx-2 min-w-[20px]"></div>
+        </div>
+        <div class="path-step flex items-center min-w-0" data-step="5">
+            <div class="step-marker w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm flex-shrink-0 shadow-glow">5</div>
+            <div class="ml-2 hidden sm:flex flex-col min-w-0">
+                <span class="font-medium text-sm text-foreground truncate">Behavioral Prep</span>
+                <span class="text-xs text-foreground-subtle">Tell your story</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Guides Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Resume + LinkedIn Guide -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="resume">
+        <div class="card h-full flex flex-col overflow-hidden">
+            <div class="h-24 bg-gradient-to-br from-green-500 to-green-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">1</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <div class="ml-auto flex flex-col gap-1">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/20 text-white flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        30 min
+                    </span>
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/30 text-white font-semibold">Essential</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-resume">
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">Resume + LinkedIn Guide</h4>
+                <p class="text-sm text-foreground-muted mb-4">My exact resume that landed offers at top tech</p>
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        My exact resume template
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Video breakdown & analysis
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        LinkedIn optimization tips
+                    </div>
+                </div>
+                <div class="mt-auto flex gap-2">
+                    <a href="https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit?tab=t.0" target="_blank" class="btn-success text-sm flex-1 flex items-center justify-center gap-2" onclick="markStarted('resume')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        View Resume
+                    </a>
+                    <button class="btn-secondary text-sm flex items-center gap-2" onclick="toggleVideo('resumeVideo', this); markStarted('resume');">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="button-text">Watch</span>
+                    </button>
+                </div>
+                <div id="resumeVideo" class="hidden mt-4 animate-fade-in">
+                    <div class="relative pb-[56.25%] rounded-lg overflow-hidden bg-background-secondary">
+                        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/xX3riyhZEdk?start=1171" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 Hour Job Course -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="job-course">
+        <div class="card h-full flex flex-col overflow-hidden">
+            <div class="h-24 bg-gradient-to-br from-amber-500 to-amber-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">2</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <div class="ml-auto flex flex-col gap-1">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/20 text-white flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        2 hrs
+                    </span>
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/30 text-white font-semibold">Comprehensive</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-job-course">
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">Complete Job Search Guide 2026</h4>
+                <p class="text-sm text-foreground-muted mb-4">Everything I learned landing multiple job offers</p>
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Job search strategy
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Resume and LinkedIn optimization
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Technical / Coding interview prep
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <button class="btn-warning w-full text-sm flex items-center justify-center gap-2" onclick="toggleVideo('jobCourseVideo', this); markStarted('job-course');">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="button-text">Watch Full Course</span>
+                    </button>
+                </div>
+                <div id="jobCourseVideo" class="hidden mt-4 animate-fade-in">
+                    <div class="relative pb-[56.25%] rounded-lg overflow-hidden bg-background-secondary">
+                        <iframe class="absolute inset-0 w-full h-full" src="https://www.loom.com/embed/afc5bcb3e0e34977ad93ceb17848fcee?sid=bb4e0f27-f7bb-4ec2-8a96-d118f1b5d70f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LeetCode Solutions - Featured -->
+    <div class="guide-card-wrapper featured" data-category="technical" data-guide-id="leetcode">
+        <div class="card h-full flex flex-col overflow-hidden relative">
+            <div class="absolute top-3 right-3 z-10 bg-warning text-background px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                Featured
+            </div>
+            <div class="h-24 bg-gradient-to-br from-red-500 to-red-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">3</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </div>
+                <div class="ml-auto flex flex-col gap-1">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/20 text-white flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        100+ hrs
+                    </span>
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/30 text-white font-semibold">Most Popular</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-leetcode">
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">100+ Hours of LeetCode Solutions</h4>
+                <p class="text-sm text-foreground-muted mb-4">Live coding sessions before I got my Walmart offer</p>
+                <div class="flex justify-around p-3 bg-background-secondary rounded-lg mb-4">
+                    <div class="text-center">
+                        <span class="block text-xl font-bold text-primary">100+</span>
+                        <span class="text-xs text-foreground-subtle uppercase tracking-wide">Videos</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-xl font-bold text-primary">All</span>
+                        <span class="text-xs text-foreground-subtle uppercase tracking-wide">Levels</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-xl font-bold text-primary">Live</span>
+                        <span class="text-xs text-foreground-subtle uppercase tracking-wide">Solving</span>
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    <a href="https://www.youtube.com/playlist?list=PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK" target="_blank" class="btn-danger w-full text-sm flex items-center justify-center gap-2" onclick="markStarted('leetcode')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        Open YouTube Playlist
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Design Guide -->
+    <div class="guide-card-wrapper" data-category="technical" data-guide-id="system-design">
+        <div class="card h-full flex flex-col overflow-hidden">
+            <div class="h-24 bg-gradient-to-br from-blue-500 to-blue-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">4</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    </svg>
+                </div>
+                <div class="ml-auto flex flex-col gap-1">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/20 text-white flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        10+ hrs
+                    </span>
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/30 text-white font-semibold">Advanced</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-system-design">
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">System Design Roadmap</h4>
+                <p class="text-sm text-foreground-muted mb-4">Master large-scale systems architecture</p>
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Real-life design problems
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        System design trivia & concepts
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Low-level design patterns
+                    </div>
+                </div>
+                <div class="mt-auto flex gap-2">
+                    <a href="/system-design" class="btn-primary text-sm flex-1 flex items-center justify-center gap-2" onclick="markStarted('system-design')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                        Start
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1yzSVJ42p0YiaFft9O_2cVfSLwEX56vcm?usp=sharing" target="_blank" class="btn-secondary text-sm flex items-center gap-2" onclick="markStarted('system-design')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+                        Notes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Behavioral Interview Guide -->
+    <div class="guide-card-wrapper" data-category="soft-skills" data-guide-id="behavioral">
+        <div class="card h-full flex flex-col overflow-hidden {% if not (has_ai_access or is_admin) %}opacity-75{% endif %}">
+            <div class="h-24 bg-gradient-to-br from-purple-500 to-purple-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">5</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <div class="ml-auto flex flex-col gap-1">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/20 text-white flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        5+ hrs
+                    </span>
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/90 text-purple-700 font-semibold">Premium</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-behavioral">
+                    {% if has_ai_access or is_admin %}
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                    {% else %}
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    {% endif %}
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">Behavioral Interview Guide</h4>
+                <p class="text-sm text-foreground-muted mb-4">AI-powered STAR story practice & feedback</p>
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        50+ behavioral questions
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        AI feedback system
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-foreground-muted">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Amazon Leadership Principles
+                    </div>
+                </div>
+                <div class="mt-auto">
+                    {% if has_ai_access or is_admin %}
+                    <a href="https://behavioral-ai.vercel.app/" target="_blank" class="w-full text-sm flex items-center justify-center gap-2 btn bg-purple-600 text-white hover:bg-purple-700 focus:ring-purple-500" onclick="markStarted('behavioral')">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        Launch AI Practice
+                    </a>
+                    {% else %}
+                    <a href="/landing" class="btn-secondary w-full text-sm flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Unlock Access
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Resources Card -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="resources">
+        <div class="card h-full flex flex-col overflow-hidden">
+            <div class="h-24 bg-gradient-to-br from-cyan-500 to-cyan-700 p-4 flex items-start gap-4 -mx-6 -mt-6 mb-4">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold text-sm">+</div>
+                <div class="p-3 bg-white/20 rounded-xl">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                    </svg>
+                </div>
+                <div class="ml-auto">
+                    <span class="text-xs px-2 py-1 rounded-full bg-white/30 text-white font-semibold">Bonus</span>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col relative">
+                <div class="absolute top-0 right-0" id="status-resources">
+                    <svg class="w-5 h-5 text-foreground-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-foreground pr-8 mb-1">Additional Resources</h4>
+                <p class="text-sm text-foreground-muted mb-4">Extra tools and links to accelerate your prep</p>
+                <div class="space-y-2">
+                    <a href="/coaching" class="flex items-center gap-3 p-3 bg-background-secondary rounded-lg hover:bg-background-hover transition-all group" onclick="markStarted('resources')">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <div class="flex-1">
+                            <span class="block text-sm font-medium text-foreground">1-1 Coaching</span>
+                            <span class="block text-xs text-foreground-subtle">Personalized guidance</span>
+                        </div>
+                        <svg class="w-4 h-4 text-foreground-subtle group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="/advanced" class="flex items-center gap-3 p-3 bg-background-secondary rounded-lg hover:bg-background-hover transition-all group" onclick="markStarted('resources')">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                        <div class="flex-1">
+                            <span class="block text-sm font-medium text-foreground">Advanced Roadmap</span>
+                            <span class="block text-xs text-foreground-subtle">5-month LeetCode plan</span>
+                        </div>
+                        <svg class="w-4 h-4 text-foreground-subtle group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="/challenge" class="flex items-center gap-3 p-3 bg-background-secondary rounded-lg hover:bg-background-hover transition-all group" onclick="markStarted('resources')">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                        <div class="flex-1">
+                            <span class="block text-sm font-medium text-foreground">28-Day Challenge</span>
+                            <span class="block text-xs text-foreground-subtle">Gamified learning</span>
+                        </div>
+                        <svg class="w-4 h-4 text-foreground-subtle group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom CTA -->
+<div class="mt-12">
+    <div class="card p-8 text-center bg-gradient-to-br from-background-elevated to-background-secondary">
+        <h3 class="text-2xl font-bold text-foreground mb-2">Ready to Land Your Dream Job?</h3>
+        <p class="text-foreground-muted mb-6">Start with the recommended path or jump to any guide that fits your needs.</p>
+        <div class="flex justify-center gap-3 flex-wrap">
+            <a href="/system-design" class="btn-primary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                System Design
+            </a>
+            <a href="/coaching" class="btn-secondary flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                Get Coaching
+            </a>
+            <a href="/" class="btn-ghost flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Back to Classroom
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Guide progress tracking
+const STORAGE_KEY = 'guides_progress';
+
+function getProgress() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+}
+
+function saveProgress(progress) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+
+function markStarted(guideId) {
+    const progress = getProgress();
+    if (!progress[guideId]) {
+        progress[guideId] = {
+            started: true,
+            startedAt: new Date().toISOString()
+        };
+        saveProgress(progress);
+        updateUI();
+    }
+}
+
+function updateUI() {
+    const progress = getProgress();
+    const guideIds = ['resume', 'job-course', 'leetcode', 'system-design', 'behavioral', 'resources'];
+    let startedCount = 0;
+
+    guideIds.forEach(id => {
+        const statusEl = document.getElementById(`status-${id}`);
+        if (progress[id] && progress[id].started && id !== 'behavioral') {
+            startedCount++;
+            if (statusEl) {
+                statusEl.innerHTML = '<svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>';
+            }
+        }
+    });
+
+    // Update progress bar
+    const progressBar = document.getElementById('progress-bar');
+    const progressBadge = document.getElementById('progress-badge');
+    const percentage = (startedCount / 5) * 100;
+
+    if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+    }
+    if (progressBadge) {
+        progressBadge.textContent = `${startedCount} / 5 Started`;
+    }
+
+    // Update learning path
+    updateLearningPath(progress);
+}
+
+function updateLearningPath(progress) {
+    const pathOrder = ['resume', 'job-course', 'leetcode', 'system-design', 'behavioral'];
+
+    pathOrder.forEach((id, index) => {
+        const stepEl = document.querySelector(`.path-step[data-step="${index + 1}"]`);
+        if (stepEl && progress[id] && progress[id].started) {
+            const marker = stepEl.querySelector('.step-marker');
+            if (marker) {
+                marker.innerHTML = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>';
+                marker.classList.remove('bg-primary');
+                marker.classList.add('bg-success');
+            }
+        }
+    });
+}
+
+// Video toggle
+function toggleVideo(videoId, button) {
+    const videoContainer = document.getElementById(videoId);
+    const buttonText = button.querySelector('.button-text');
+
+    if (videoContainer.classList.contains('hidden')) {
+        // Close other videos in the same card
+        const card = button.closest('.card');
+        const otherVideos = card.querySelectorAll('[id$="Video"]');
+        otherVideos.forEach(v => {
+            if (v.id !== videoId) v.classList.add('hidden');
+        });
+
+        videoContainer.classList.remove('hidden');
+        if (buttonText) buttonText.textContent = 'Hide';
+
+        setTimeout(() => {
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        videoContainer.classList.add('hidden');
+        if (buttonText) {
+            buttonText.textContent = buttonText.textContent.includes('Course') ? 'Watch Full Course' : 'Watch';
+        }
+    }
+}
+
+// Category filtering
+document.querySelectorAll('.nav-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+
+        // Update active state
+        document.querySelectorAll('.nav-pill').forEach(p => {
+            p.classList.remove('bg-primary', 'text-white', 'border-primary');
+            p.classList.add('bg-background-elevated', 'text-foreground-muted', 'border-border');
+        });
+        this.classList.add('bg-primary', 'text-white', 'border-primary');
+        this.classList.remove('bg-background-elevated', 'text-foreground-muted', 'border-border');
+
+        // Filter cards
+        document.querySelectorAll('.guide-card-wrapper').forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', updateUI);
+</script>
+
+<style>
+/* Warning button style */
+.btn-warning {
+    @apply btn bg-warning text-background hover:bg-warning-hover focus:ring-warning;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Leaderboard - 28-Day Challenge{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="mb-1">
+                <span class="material-icons me-2" style="vertical-align: middle; color: var(--nord13);">leaderboard</span>
+                Challenge Leaderboard
+            </h1>
+            <p class="text-muted mb-0">See how you rank against other challengers</p>
+        </div>
+        <a href="/challenge" class="btn btn-outline-primary">
+            <span class="material-icons me-1" style="vertical-align: middle;">arrow_back</span>
+            Back to Challenge
+        </a>
+    </div>
+
+    <!-- Your Stats Card (if enrolled) -->
+    {% if is_enrolled %}
+    <div class="md-card p-4 mb-5" style="border-left: 4px solid var(--md-primary);">
+        <h5 class="mb-3">Your Stats</h5>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="text-center">
+                    <span class="material-icons mb-1" style="font-size: 24px; color: var(--nord13);">star</span>
+                    <h4 class="mb-0">{{ challenge_data.points or 0 }}</h4>
+                    <small class="text-muted">Points</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="text-center">
+                    <span class="material-icons mb-1" style="font-size: 24px; color: var(--nord12);">local_fire_department</span>
+                    <h4 class="mb-0">{{ challenge_data.best_streak or 0 }}</h4>
+                    <small class="text-muted">Best Streak</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="text-center">
+                    <span class="material-icons mb-1" style="font-size: 24px; color: var(--nord14);">check_circle</span>
+                    <h4 class="mb-0">{{ challenge_data.total_problems_solved or 0 }}</h4>
+                    <small class="text-muted">Problems</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="text-center">
+                    <span class="material-icons mb-1" style="font-size: 24px; color: var(--nord10);">military_tech</span>
+                    <h4 class="mb-0">{{ challenge_data.achievements|length if challenge_data.achievements else 0 }}</h4>
+                    <small class="text-muted">Achievements</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Leaderboard Table -->
+    <div class="md-card">
+        <div class="card-body p-0">
+            <!-- Coming Soon Notice -->
+            <div class="text-center py-5">
+                <span class="material-icons mb-3" style="font-size: 64px; color: var(--nord4);">emoji_events</span>
+                <h4 class="mb-2">Leaderboard Coming Soon</h4>
+                <p class="text-muted mb-4">
+                    We're working on bringing you a competitive leaderboard.<br>
+                    Keep solving problems to build your score!
+                </p>
+                {% if not is_enrolled %}
+                <a href="/challenge" class="btn btn-primary">
+                    <span class="material-icons me-1" style="vertical-align: middle;">rocket_launch</span>
+                    Join the Challenge
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Placeholder for future leaderboard -->
+            <div class="d-none">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4" style="width: 60px;">Rank</th>
+                            <th>Challenger</th>
+                            <th class="text-center">Points</th>
+                            <th class="text-center">Streak</th>
+                            <th class="text-center">Problems</th>
+                            <th class="text-center">Achievements</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- Leaderboard rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- How Points Work -->
+    <div class="md-card p-4 mt-5">
+        <h5 class="mb-4">
+            <span class="material-icons me-2" style="vertical-align: middle;">help_outline</span>
+            How Points Work
+        </h5>
+        <div class="row">
+            <div class="col-md-4">
+                <h6 class="text-muted mb-3">Problem Difficulty</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="badge bg-success me-2">Easy</span> 10 points
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-warning text-dark me-2">Medium</span> 20 points
+                    </li>
+                    <li class="mb-2">
+                        <span class="badge bg-danger me-2">Hard</span> 40 points
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-muted mb-3">Streak Bonuses</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle; color: var(--nord12);">local_fire_department</span>
+                        7-day streak: +50 points
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle; color: var(--nord11);">whatshot</span>
+                        14-day streak: +100 points
+                    </li>
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle; color: var(--nord13);">emoji_events</span>
+                        28-day completion: +250 points
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-muted mb-3">Community Bonus</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <span class="material-icons me-1" style="font-size: 16px; vertical-align: middle; color: var(--nord15);">share</span>
+                        Approved Skool post: +30 points
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Future: Load leaderboard data
+async function loadLeaderboard() {
+    try {
+        const response = await fetch('/api/challenge/leaderboard');
+        const data = await response.json();
+
+        if (data.leaderboard && data.leaderboard.length > 0) {
+            renderLeaderboard(data.leaderboard);
+        }
+    } catch (error) {
+        console.error('Error loading leaderboard:', error);
+    }
+}
+
+function renderLeaderboard(leaderboard) {
+    const tbody = document.getElementById('leaderboardBody');
+    tbody.innerHTML = leaderboard.map((entry, index) => `
+        <tr class="${entry.isCurrentUser ? 'table-primary' : ''}">
+            <td class="ps-4">
+                ${index < 3 ? getRankBadge(index + 1) : index + 1}
+            </td>
+            <td>
+                <strong>${entry.name || 'Anonymous'}</strong>
+            </td>
+            <td class="text-center">${entry.points}</td>
+            <td class="text-center">${entry.bestStreak}</td>
+            <td class="text-center">${entry.problemsSolved}</td>
+            <td class="text-center">${entry.achievements}</td>
+        </tr>
+    `).join('');
+}
+
+function getRankBadge(rank) {
+    const colors = ['#ffd700', '#c0c0c0', '#cd7f32'];
+    return `
+        <span class="badge" style="background: ${colors[rank-1]}; color: #333; font-size: 14px;">
+            ${rank}
+        </span>
+    `;
+}
+
+// Load on page ready
+// loadLeaderboard();
+</script>
+{% endblock %}

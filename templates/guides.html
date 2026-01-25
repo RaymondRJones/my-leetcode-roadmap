@@ -3,70 +3,226 @@
 {% block title %}Guides - Ray's Roadmap{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="row mb-5">
-    <div class="col-12">
-        <div class="text-center">
-            <h1 class="display-3 mb-4" style="font-weight: 300;">
-                <span class="material-icons" style="vertical-align: middle; margin-right: 16px; font-size: 4rem; color: var(--md-primary);">school</span>
-                Complete Interview Guides
+<!-- Hero Section with Progress Overview -->
+<div class="guides-hero mb-4">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <h1 class="display-4 mb-3" style="font-weight: 400;">
+                <span class="material-icons" style="vertical-align: middle; margin-right: 12px; font-size: 3rem; color: var(--md-primary);">menu_book</span>
+                Interview Prep Guides
             </h1>
-            <p class="lead mb-4" style="font-size: 1.4rem; max-width: 800px; margin: 0 auto;">
-                Everything you need to land your dream tech job - from behavioral interviews to system design mastery.
+            <p class="lead text-muted mb-0" style="font-size: 1.15rem;">
+                Master every aspect of your tech interview journey with curated resources, video tutorials, and hands-on practice.
             </p>
+        </div>
+        <div class="col-lg-4 mt-3 mt-lg-0">
+            <div class="progress-overview md-card p-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-muted" style="font-size: 0.85rem;">Your Progress</span>
+                    <span class="badge bg-primary" id="progress-badge">0 / 6 Started</span>
+                </div>
+                <div class="progress" style="height: 8px; border-radius: 4px;">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%; background: linear-gradient(90deg, var(--md-primary), var(--md-secondary));" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Main Guides Section -->
-<div class="row" style="margin-top: 16px;">
-    <!-- 2 Hour Course on Landing a Job -->
-    <div class="col-lg-6 col-md-6 mb-4">
-        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-warning); margin-top: 16px;">
-            <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="material-icons" style="font-size: 48px; color: var(--md-warning); margin-right: 16px;">work</span>
-                    <div>
-                        <h4 class="mb-1">The 2 Hours Complete Guide on Getting a Job in 2026</h4>
-                        <small class="text-muted">Complete job search strategy</small>
+<!-- Quick Navigation Pills -->
+<div class="quick-nav mb-4">
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+        <button class="nav-pill active" data-filter="all">
+            <span class="material-icons" style="font-size: 18px;">apps</span>
+            All Guides
+        </button>
+        <button class="nav-pill" data-filter="technical">
+            <span class="material-icons" style="font-size: 18px;">code</span>
+            Technical
+        </button>
+        <button class="nav-pill" data-filter="career">
+            <span class="material-icons" style="font-size: 18px;">work</span>
+            Career
+        </button>
+        <button class="nav-pill" data-filter="soft-skills">
+            <span class="material-icons" style="font-size: 18px;">psychology</span>
+            Soft Skills
+        </button>
+    </div>
+</div>
+
+<!-- Learning Path Timeline -->
+<div class="learning-path mb-5">
+    <div class="md-card p-4">
+        <div class="d-flex align-items-center mb-3">
+            <span class="material-icons text-primary" style="margin-right: 8px;">route</span>
+            <h5 class="mb-0">Recommended Learning Path</h5>
+            <span class="badge bg-light text-muted ms-auto" style="font-size: 0.75rem;">Follow this order for best results</span>
+        </div>
+        <div class="path-timeline">
+            <div class="path-step" data-step="1">
+                <div class="step-marker">1</div>
+                <div class="step-content">
+                    <span class="step-title">Resume & LinkedIn</span>
+                    <span class="step-desc">Build your foundation</span>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            <div class="path-step" data-step="2">
+                <div class="step-marker">2</div>
+                <div class="step-content">
+                    <span class="step-title">Job Search Strategy</span>
+                    <span class="step-desc">Learn the process</span>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            <div class="path-step" data-step="3">
+                <div class="step-marker">3</div>
+                <div class="step-content">
+                    <span class="step-title">LeetCode Practice</span>
+                    <span class="step-desc">Build coding skills</span>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            <div class="path-step" data-step="4">
+                <div class="step-marker">4</div>
+                <div class="step-content">
+                    <span class="step-title">System Design</span>
+                    <span class="step-desc">Master architecture</span>
+                </div>
+                <div class="step-connector"></div>
+            </div>
+            <div class="path-step" data-step="5">
+                <div class="step-marker">5</div>
+                <div class="step-content">
+                    <span class="step-title">Behavioral Prep</span>
+                    <span class="step-desc">Tell your story</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Guides Grid -->
+<div class="guides-grid">
+    <!-- Resume + LinkedIn Guide -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="resume">
+        <div class="guide-card md-card h-100">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord14), #8fb380);">
+                <div class="guide-number">1</div>
+                <div class="guide-icon">
+                    <span class="material-icons">article</span>
+                </div>
+                <div class="guide-badges">
+                    <span class="badge-time"><span class="material-icons">schedule</span> 30 min</span>
+                    <span class="badge-type">Essential</span>
+                </div>
+            </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-resume">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </div>
+                <h4 class="guide-title">Resume + LinkedIn Guide</h4>
+                <p class="guide-subtitle">My exact resume that landed offers at top tech</p>
+
+                <div class="guide-features">
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>My exact resume template</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Video breakdown & analysis</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>LinkedIn optimization tips</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>ATS-friendly formatting</span>
                     </div>
                 </div>
 
-                <p class="mb-3">Complete crash course covering the entire job search process from applications to offers. Everything I learned landing multiple job offers.</p>
+                <div class="guide-actions">
+                    <a href="https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit?tab=t.0" target="_blank" class="btn btn-success btn-sm" onclick="markStarted('resume')">
+                        <span class="material-icons">description</span>
+                        View Resume
+                    </a>
+                    <button class="btn btn-outline-success btn-sm" onclick="toggleVideo('resumeVideo', this); markStarted('resume');">
+                        <span class="material-icons">play_arrow</span>
+                        <span class="button-text">Watch Video</span>
+                    </button>
+                </div>
 
-                <div class="features-list mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Job search strategy</small>
+                <div id="resumeVideo" class="video-container" style="display: none;">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/xX3riyhZEdk?start=1171"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
                     </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Resume and LinkedIn optimization</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 Hour Job Course -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="job-course">
+        <div class="guide-card md-card h-100">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord13), #d9b86a);">
+                <div class="guide-number">2</div>
+                <div class="guide-icon">
+                    <span class="material-icons">work</span>
+                </div>
+                <div class="guide-badges">
+                    <span class="badge-time"><span class="material-icons">schedule</span> 2 hrs</span>
+                    <span class="badge-type">Comprehensive</span>
+                </div>
+            </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-job-course">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </div>
+                <h4 class="guide-title">Complete Job Search Guide 2026</h4>
+                <p class="guide-subtitle">Everything I learned landing multiple job offers</p>
+
+                <div class="guide-features">
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Job search strategy</span>
                     </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Technical / Coding interview prep</small>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Resume and LinkedIn optimization</span>
                     </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-warning" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>System Design interview strategies</small>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Technical / Coding interview prep</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>System Design interview strategies</span>
                     </div>
                 </div>
 
-                <button class="btn btn-warning w-100" onclick="toggleVideo('jobCourseVideo', this)">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">play_arrow</span>
-                    <span class="button-text">Watch Course</span>
-                </button>
+                <div class="guide-actions">
+                    <button class="btn btn-warning btn-sm w-100" onclick="toggleVideo('jobCourseVideo', this); markStarted('job-course');">
+                        <span class="material-icons">play_arrow</span>
+                        <span class="button-text">Watch Full Course</span>
+                    </button>
+                </div>
 
-                <div id="jobCourseVideo" class="video-container" style="display: none; margin-top: 16px;">
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                        <iframe 
+                <div id="jobCourseVideo" class="video-container" style="display: none;">
+                    <div class="video-wrapper">
+                        <iframe
                             src="https://www.loom.com/embed/afc5bcb3e0e34977ad93ceb17848fcee?sid=bb4e0f27-f7bb-4ec2-8a96-d118f1b5d70f"
                             frameborder="0"
                             webkitallowfullscreen
                             mozallowfullscreen
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                            allowfullscreen>
                         </iframe>
                     </div>
                 </div>
@@ -74,197 +230,134 @@
         </div>
     </div>
 
-    <!-- Resume + LinkedIn Guide -->
-    <div class="col-lg-6 col-md-6 mb-4">
-        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-success); margin-top: 16px;">
-            <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="material-icons" style="font-size: 48px; color: var(--md-success); margin-right: 16px;">article</span>
-                    <div>
-                        <h4 class="mb-1">Resume + LinkedIn Guide (My Exact Resume)</h4>
-                        <small class="text-muted">Proven templates & strategies</small>
-                    </div>
+    <!-- LeetCode Solutions - Featured -->
+    <div class="guide-card-wrapper featured" data-category="technical" data-guide-id="leetcode">
+        <div class="guide-card md-card h-100">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord11), #a8525a);">
+                <div class="guide-number">3</div>
+                <div class="guide-icon">
+                    <span class="material-icons">code</span>
                 </div>
-
-                <p class="mb-3">Get my exact resume template that landed me offers at top tech companies, plus a detailed video breakdown of what makes it effective.</p>
-
-                <div class="features-list mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>My exact resume template</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Video breakdown & analysis</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>LinkedIn optimization tips</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-success" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>ATS-friendly formatting</small>
-                    </div>
+                <div class="guide-badges">
+                    <span class="badge-time"><span class="material-icons">schedule</span> 100+ hrs</span>
+                    <span class="badge-type">Most Popular</span>
                 </div>
-
-                <div class="row g-2 mb-3">
-                    <div class="col-6">
-                        <a href="https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit?tab=t.0" target="_blank" class="btn btn-success w-100">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">description</span>
-                            My Resume
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-outline-success w-100" onclick="toggleVideo('resumeVideo', this)">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">play_arrow</span>
-                            <span class="button-text">Video Guide</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="resumeVideo" class="video-container" style="display: none; margin-top: 8px;">
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                        <iframe 
-                            src="https://www.youtube.com/embed/xX3riyhZEdk?start=1171"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
-                        </iframe>
-                    </div>
+                <div class="featured-ribbon">
+                    <span class="material-icons">star</span>
+                    Featured
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-leetcode">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </div>
+                <h4 class="guide-title">100+ Hours of LeetCode Solutions</h4>
+                <p class="guide-subtitle">Live coding sessions before I got my Walmart offer</p>
 
-    <!-- LeetCode Solutions -->
-    <div class="col-12 mb-4">
-        <div class="md-card position-relative guide-panel" style="border: 2px solid var(--md-error); margin-top: 16px;">
-            <div class="card-body p-4">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="d-flex align-items-center mb-3">
-                            <span class="material-icons" style="font-size: 48px; color: var(--md-error); margin-right: 16px;">code</span>
-                            <div>
-                                <h4 class="mb-1">100+ Hours of Live LeetCode Problems Before I Got My Walmart Offer</h4>
-                                <small class="text-muted">Comprehensive problem-solving mastery</small>
-                            </div>
-                        </div>
-
-                        <p class="mb-3">Comprehensive video playlist covering 100+ LeetCode problems with detailed explanations, multiple approaches, and strategic thinking for technical interviews.</p>
-
-                        <div class="features-list mb-4">
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="material-icons text-danger" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                                <small>100+ detailed problem solutions</small>
-                            </div>
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="material-icons text-danger" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                                <small>Multiple solution approaches</small>
-                            </div>
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="material-icons text-danger" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                                <small>Time & space complexity analysis</small>
-                            </div>
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="material-icons text-danger" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                                <small>Interview strategy & patterns</small>
-                            </div>
-                        </div>
+                <div class="guide-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">100+</span>
+                        <span class="stat-label">Videos</span>
                     </div>
-                    <div class="col-md-4 text-center d-flex flex-column justify-content-center">
-                        <div class="mb-3">
-                            <span class="badge" style="background-color: var(--md-error); color: white; font-size: 0.9rem; padding: 8px 16px;">100+ Videos</span>
-                        </div>
-                        <div>
-                            <span class="badge" style="border: 2px solid var(--md-error); color: var(--md-error); background: transparent; font-size: 0.9rem; padding: 8px 16px;">All Difficulty Levels</span>
-                        </div>
+                    <div class="stat-item">
+                        <span class="stat-value">All</span>
+                        <span class="stat-label">Difficulty Levels</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Live</span>
+                        <span class="stat-label">Problem Solving</span>
                     </div>
                 </div>
 
-                <a href="https://www.youtube.com/playlist?list=PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK" target="_blank" class="btn btn-danger w-100">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">open_in_new</span>
-                    Open Full Playlist on YouTube
-                </a>
+                <div class="guide-features compact">
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Detailed problem explanations</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Multiple solution approaches</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Time & space complexity analysis</span>
+                    </div>
+                </div>
+
+                <div class="guide-actions">
+                    <a href="https://www.youtube.com/playlist?list=PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK" target="_blank" class="btn btn-danger w-100" onclick="markStarted('leetcode')">
+                        <span class="material-icons">open_in_new</span>
+                        Open YouTube Playlist
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- System Design Guide -->
-    <div class="col-lg-6 col-md-6 mb-4">
-        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-primary); margin-top: 16px;">
-            <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="material-icons" style="font-size: 48px; color: var(--md-primary); margin-right: 16px;">architecture</span>
-                    <div>
-                        <h4 class="mb-1">System Design Roadmap</h4>
-                        <small class="text-muted">Master large-scale systems</small>
+    <div class="guide-card-wrapper" data-category="technical" data-guide-id="system-design">
+        <div class="guide-card md-card h-100">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord10), #4d6d94);">
+                <div class="guide-number">4</div>
+                <div class="guide-icon">
+                    <span class="material-icons">architecture</span>
+                </div>
+                <div class="guide-badges">
+                    <span class="badge-time"><span class="material-icons">schedule</span> 10+ hrs</span>
+                    <span class="badge-type">Advanced</span>
+                </div>
+            </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-system-design">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </div>
+                <h4 class="guide-title">System Design Roadmap</h4>
+                <p class="guide-subtitle">Master large-scale systems architecture</p>
+
+                <div class="guide-features">
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Real-life design problems</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>System design trivia & concepts</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Low-level design patterns</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Scalability & architecture</span>
                     </div>
                 </div>
 
-                <p class="mb-3">Comprehensive system design preparation covering real-world problems, trivia, and low-level design patterns. From beginner to advanced concepts.</p>
-
-                <div class="features-list mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Real-life design problems</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>System design trivia & concepts</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Low-level design patterns</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-primary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Scalability & architecture</small>
-                    </div>
-                </div>
-
-                <div class="d-grid gap-2 mb-3">
-                    <a href="/system-design" class="btn btn-primary">
-                        <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">architecture</span>
-                        Start System Design
+                <div class="guide-actions">
+                    <a href="/system-design" class="btn btn-primary btn-sm" onclick="markStarted('system-design')">
+                        <span class="material-icons">architecture</span>
+                        Start Learning
                     </a>
-                    <div class="btn-group" role="group">
-                        <a href="https://drive.google.com/drive/folders/1yzSVJ42p0YiaFft9O_2cVfSLwEX56vcm?usp=sharing" target="_blank" class="btn btn-outline-primary btn-sm">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">folder</span>
-                            My Notes
+                    <div class="btn-group btn-group-sm">
+                        <a href="https://drive.google.com/drive/folders/1yzSVJ42p0YiaFft9O_2cVfSLwEX56vcm?usp=sharing" target="_blank" class="btn btn-outline-primary" onclick="markStarted('system-design')">
+                            <span class="material-icons">folder</span>
+                            Notes
                         </a>
-                        <button class="btn btn-outline-primary btn-sm" onclick="toggleVideo('systemDesignOverview', this)">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">play_circle</span>
+                        <button class="btn btn-outline-primary" onclick="toggleVideo('systemDesignOverview', this); markStarted('system-design');">
+                            <span class="material-icons">play_arrow</span>
                             <span class="button-text">Overview</span>
                         </button>
-                        <button class="btn btn-outline-primary btn-sm" onclick="toggleVideo('systemDesignInterview', this)">
-                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 14px;">video_library</span>
-                            <span class="button-text">Tips</span>
-                        </button>
                     </div>
                 </div>
 
-                <div id="systemDesignOverview" class="video-container" style="display: none; margin-bottom: 12px;">
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                        <iframe 
+                <div id="systemDesignOverview" class="video-container" style="display: none;">
+                    <div class="video-wrapper">
+                        <iframe
                             src="https://www.loom.com/embed/ae85749ddfb542c9ba3cbfa0957fbcb2"
                             frameborder="0"
                             webkitallowfullscreen
                             mozallowfullscreen
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div id="systemDesignInterview" class="video-container" style="display: none; margin-bottom: 12px;">
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                        <iframe 
-                            src="https://www.youtube.com/embed/UuAlnzAxEzs"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;">
+                            allowfullscreen>
                         </iframe>
                     </div>
                 </div>
@@ -273,200 +366,745 @@
     </div>
 
     <!-- Behavioral Interview Guide -->
-    <div class="col-lg-6 col-md-6 mb-4">
-        <div class="md-card h-100 position-relative guide-panel" style="border: 2px solid var(--md-secondary); margin-top: 16px; opacity: 0.9;">
-            <div class="card-body p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <span class="material-icons" style="font-size: 48px; color: var(--md-secondary); margin-right: 16px;">psychology</span>
-                    <div>
-                        <h4 class="mb-1">Behavioral Interview Guide</h4>
-                        <small class="text-muted">
-                            <span class="badge bg-warning text-dark">Coming Soon</span>
-                            AI-powered interview prep
-                        </small>
+    <div class="guide-card-wrapper" data-category="soft-skills" data-guide-id="behavioral">
+        <div class="guide-card md-card h-100 {% if not (has_ai_access or is_admin) %}coming-soon-card{% endif %}">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord15), #9a7a93);">
+                <div class="guide-number">5</div>
+                <div class="guide-icon">
+                    <span class="material-icons">psychology</span>
+                </div>
+                <div class="guide-badges">
+                    <span class="badge-time"><span class="material-icons">schedule</span> 5+ hrs</span>
+                    {% if has_ai_access or is_admin %}
+                    <span class="badge-type">Premium</span>
+                    {% else %}
+                    <span class="badge-type coming-soon-badge">Premium</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-behavioral">
+                    {% if has_ai_access or is_admin %}
+                    <span class="material-icons">radio_button_unchecked</span>
+                    {% else %}
+                    <span class="material-icons">lock</span>
+                    {% endif %}
+                </div>
+                <h4 class="guide-title">Behavioral Interview Guide</h4>
+                <p class="guide-subtitle">AI-powered STAR story practice & feedback</p>
+
+                <div class="guide-features">
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>50+ behavioral questions</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>AI feedback system</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>STAR method framework</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons">check</span>
+                        <span>Amazon Leadership Principles</span>
                     </div>
                 </div>
 
-                <p class="mb-3">Master behavioral interviews with AI-powered feedback using Amazon's Leadership Principles. Practice your STAR stories and get personalized coaching.</p>
-
-                <div class="features-list mb-4">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>50+ behavioral questions</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>AI feedback system</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>STAR method framework</small>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="material-icons text-secondary" style="font-size: 18px; margin-right: 8px;">check_circle</span>
-                        <small>Amazon Leadership Principles</small>
-                    </div>
+                <div class="guide-actions">
+                    {% if has_ai_access or is_admin %}
+                    <a href="https://behavioral-ai.vercel.app/" target="_blank" class="btn btn-purple btn-sm w-100" onclick="markStarted('behavioral')">
+                        <span class="material-icons">psychology</span>
+                        Launch AI Practice
+                    </a>
+                    {% else %}
+                    <a href="/landing" class="btn btn-outline-secondary btn-sm w-100">
+                        <span class="material-icons">lock</span>
+                        Unlock Access
+                    </a>
+                    {% endif %}
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <button class="btn btn-secondary w-100" disabled>
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">smart_toy</span>
-                    Coming Soon
-                </button>
+    <!-- Additional Resources Card -->
+    <div class="guide-card-wrapper" data-category="career" data-guide-id="resources">
+        <div class="guide-card md-card h-100">
+            <div class="guide-card-header" style="background: linear-gradient(135deg, var(--nord8), #70a8b8);">
+                <div class="guide-number">+</div>
+                <div class="guide-icon">
+                    <span class="material-icons">library_books</span>
+                </div>
+                <div class="guide-badges">
+                    <span class="badge-type">Bonus</span>
+                </div>
+            </div>
+            <div class="guide-card-body">
+                <div class="guide-status" id="status-resources">
+                    <span class="material-icons">radio_button_unchecked</span>
+                </div>
+                <h4 class="guide-title">Additional Resources</h4>
+                <p class="guide-subtitle">Extra tools and links to accelerate your prep</p>
+
+                <div class="resource-links">
+                    <a href="/coaching" class="resource-link" onclick="markStarted('resources')">
+                        <span class="material-icons">groups</span>
+                        <div>
+                            <span class="resource-title">1-1 Coaching</span>
+                            <span class="resource-desc">Personalized guidance</span>
+                        </div>
+                        <span class="material-icons arrow">chevron_right</span>
+                    </a>
+                    <a href="/advanced" class="resource-link" onclick="markStarted('resources')">
+                        <span class="material-icons">trending_up</span>
+                        <div>
+                            <span class="resource-title">Advanced Roadmap</span>
+                            <span class="resource-desc">5-month LeetCode plan</span>
+                        </div>
+                        <span class="material-icons arrow">chevron_right</span>
+                    </a>
+                    <a href="/intermediate" class="resource-link" onclick="markStarted('resources')">
+                        <span class="material-icons">business</span>
+                        <div>
+                            <span class="resource-title">Fortune 500 Prep</span>
+                            <span class="resource-desc">Mid-tier company focus</span>
+                        </div>
+                        <span class="material-icons arrow">chevron_right</span>
+                    </a>
+                    <a href="/challenge" class="resource-link" onclick="markStarted('resources')">
+                        <span class="material-icons">emoji_events</span>
+                        <div>
+                            <span class="resource-title">28-Day Challenge</span>
+                            <span class="resource-desc">Gamified learning</span>
+                        </div>
+                        <span class="material-icons arrow">chevron_right</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Bottom CTA -->
+<div class="bottom-cta mt-5">
+    <div class="md-card p-4 text-center" style="background: linear-gradient(135deg, var(--nord0), var(--nord1)); color: white;">
+        <h3 class="mb-2">Ready to Land Your Dream Job?</h3>
+        <p class="mb-4 opacity-75">Start with the recommended path or jump to any guide that fits your needs.</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="/system-design" class="btn btn-light">
+                <span class="material-icons">architecture</span>
+                System Design
+            </a>
+            <a href="/coaching" class="btn btn-outline-light">
+                <span class="material-icons">support_agent</span>
+                Get Coaching
+            </a>
+            <a href="/" class="btn btn-outline-light">
+                <span class="material-icons">home</span>
+                Back to Classroom
+            </a>
+        </div>
+    </div>
+</div>
+
 <style>
-.video-container {
-    animation: expandCard 0.3s ease-out;
-    transform-origin: top;
+/* Quick Navigation Pills */
+.quick-nav {
+    padding: 16px 0;
 }
 
-@keyframes expandCard {
-    from {
-        opacity: 0;
-        transform: scaleY(0);
-    }
-    to {
-        opacity: 1;
-        transform: scaleY(1);
-    }
+.nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 2px solid var(--md-outline);
+    border-radius: 24px;
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.md-card {
+.nav-pill:hover {
+    border-color: var(--md-primary);
+    color: var(--md-primary);
+}
+
+.nav-pill.active {
+    background: var(--md-primary);
+    border-color: var(--md-primary);
+    color: white;
+}
+
+/* Learning Path Timeline */
+.path-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding: 16px 0;
+    gap: 0;
+}
+
+.path-step {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.step-marker {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--md-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(94, 129, 172, 0.3);
+}
+
+.step-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    min-width: 0;
+}
+
+.step-title {
+    font-weight: 500;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.step-desc {
+    font-size: 0.75rem;
+    color: var(--md-on-surface-variant);
+    white-space: nowrap;
+}
+
+.step-connector {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--md-primary), var(--md-outline));
+    margin: 0 8px;
+    min-width: 20px;
+}
+
+.path-step:last-child .step-connector {
+    display: none;
+}
+
+/* Guides Grid */
+.guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.guide-card-wrapper.featured {
+    grid-column: span 1;
+}
+
+/* Guide Card */
+.guide-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
-</style>
 
-<script>
-function toggleVideo(videoId, button) {
-    const videoContainer = document.getElementById(videoId);
-    const card = videoContainer.closest('.md-card');
-    const buttonText = button.querySelector('.button-text');
-    const icon = button.querySelector('.material-icons');
-    
-    if (videoContainer.style.display === 'none') {
-        // Close any other open videos in the same card
-        const allVideosInCard = card.querySelectorAll('.video-container');
-        allVideosInCard.forEach(video => {
-            if (video.id !== videoId && video.style.display !== 'none') {
-                video.style.display = 'none';
-                // Reset the button for the closed video
-                const otherButtons = card.querySelectorAll('button');
-                otherButtons.forEach(btn => {
-                    const btnText = btn.querySelector('.button-text');
-                    const btnIcon = btn.querySelector('.material-icons');
-                    if (btnText && btnText.textContent.includes('Hide')) {
-                        btnText.textContent = btnText.textContent.replace('Hide', 'Watch').replace('Close', 'Watch');
-                        if (btnIcon) btnIcon.textContent = 'play_arrow';
-                    }
-                });
-            }
-        });
-        
-        // Show the video
-        videoContainer.style.display = 'block';
-        if (buttonText) {
-            if (buttonText.textContent.includes('Course')) {
-                buttonText.textContent = 'Hide Course';
-            } else if (buttonText.textContent.includes('Guide')) {
-                buttonText.textContent = 'Hide Guide';
-            } else if (buttonText.textContent.includes('Overview')) {
-                buttonText.textContent = 'Close';
-            } else if (buttonText.textContent.includes('Tips')) {
-                buttonText.textContent = 'Close';
-            }
-        }
-        if (icon) icon.textContent = 'expand_less';
-        
-        // Smooth scroll to video
-        setTimeout(() => {
-            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
-    } else {
-        // Hide the video
-        videoContainer.style.display = 'none';
-        if (buttonText) {
-            if (buttonText.textContent.includes('Hide')) {
-                buttonText.textContent = buttonText.textContent.replace('Hide', 'Watch');
-            } else {
-                buttonText.textContent = buttonText.textContent.replace('Close', buttonText.textContent.includes('Overview') ? 'Overview' : 'Tips');
-            }
-        }
-        if (icon) icon.textContent = 'play_arrow';
-    }
-}
-</script>
-
-<!-- Call to Action -->
-<div class="row mt-5">
-    <div class="col-12">
-        <div class="md-card text-center p-5" style="background: linear-gradient(135deg, var(--md-primary), var(--md-secondary)); color: white;">
-            <h2 class="mb-3">🚀 Ready to Start Your Journey?</h2>
-            <p class="lead mb-4">Choose any guide above to begin mastering your interview skills and landing your dream job.</p>
-
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="/behavioral-guide" class="btn btn-light" style="color: var(--md-primary); font-weight: 500;">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">psychology</span>
-                    Start with Behavioral
-                </a>
-                <a href="/system-design" class="btn btn-light" style="color: var(--md-primary); font-weight: 500;">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">architecture</span>
-                    Start with System Design
-                </a>
-                <a href="/" class="btn btn-outline-light">
-                    <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">home</span>
-                    Back to Roadmap
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-.guide-panel {
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-
-.guide-panel:hover {
+.guide-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--md-elevation-4);
 }
 
-.features-list {
-    min-height: 120px;
+.guide-card-header {
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    color: white;
+    min-height: 100px;
+}
+
+.guide-number {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.guide-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-icon .material-icons {
+    font-size: 28px;
+}
+
+.guide-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.badge-time, .badge-type {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-time .material-icons {
+    font-size: 12px;
+}
+
+.badge-type {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+.featured-ribbon {
+    position: absolute;
+    top: 12px;
+    right: -30px;
+    background: var(--nord13);
+    color: var(--nord0);
+    padding: 4px 40px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.featured-ribbon .material-icons {
+    font-size: 12px;
+}
+
+.guide-card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.guide-status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.guide-status .material-icons {
+    font-size: 20px;
+    color: var(--md-on-surface-variant);
+}
+
+.guide-status.started .material-icons {
+    color: var(--md-success);
+}
+
+.guide-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+    padding-right: 30px;
+}
+
+.guide-subtitle {
+    font-size: 0.85rem;
+    color: var(--md-on-surface-variant);
+    margin-bottom: 16px;
+}
+
+/* Guide Features */
+.guide-features {
+    margin-bottom: 16px;
+}
+
+.guide-features.compact {
+    margin-bottom: 12px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.feature-item .material-icons {
+    font-size: 16px;
+    color: var(--md-success);
+}
+
+/* Guide Stats */
+.guide-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+    background: var(--md-background);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--md-primary);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--md-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Guide Actions */
+.guide-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.guide-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+}
+
+.guide-actions .btn .material-icons {
+    font-size: 18px;
+}
+
+/* Video Container */
+.video-container {
+    margin-top: 16px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+    }
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Resource Links */
+.resource-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--md-background);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--md-on-surface);
+    transition: all 0.2s ease;
+}
+
+.resource-link:hover {
+    background: var(--md-outline);
+    transform: translateX(4px);
+}
+
+.resource-link > .material-icons:first-child {
+    color: var(--md-primary);
+    font-size: 24px;
+}
+
+.resource-link div {
+    flex: 1;
+}
+
+.resource-title {
+    display: block;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.resource-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--md-on-surface-variant);
+}
+
+.resource-link .arrow {
+    color: var(--md-on-surface-variant);
+}
+
+/* Coming Soon Card */
+.coming-soon-card {
+    opacity: 0.8;
+}
+
+.coming-soon-card .guide-card-body {
+    position: relative;
+}
+
+.coming-soon-badge {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--nord0) !important;
+}
+
+/* Bottom CTA */
+.bottom-cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bottom-cta .btn .material-icons {
+    font-size: 20px;
+}
+
+/* Progress Overview */
+.progress-overview {
+    background: var(--md-surface);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .guides-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .path-timeline {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+    }
+
+    .step-connector {
+        min-width: 15px;
+    }
 }
 
 @media (max-width: 768px) {
-    .display-3 {
-        font-size: 2.5rem;
+    .guides-hero .display-4 {
+        font-size: 1.8rem;
     }
 
-    .lead {
-        font-size: 1.1rem;
+    .guides-grid {
+        grid-template-columns: 1fr;
     }
 
-    .d-flex.gap-3 {
-        gap: 1rem !important;
+    .path-timeline {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .step-content {
+        display: none;
+    }
+
+    .step-marker {
+        width: 32px;
+        height: 32px;
+    }
+
+    .guide-actions {
+        flex-direction: column;
+    }
+
+    .guide-actions .btn,
+    .guide-actions .btn-group {
+        width: 100%;
     }
 }
 
-@media (max-width: 576px) {
-    .features-list {
-        min-height: auto;
-    }
-
-    .d-flex.justify-content-center {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .d-flex.justify-content-center > a {
-        margin-bottom: 0.5rem;
-        width: 100%;
-        max-width: 300px;
-    }
+/* Hidden state for filtering */
+.guide-card-wrapper.hidden {
+    display: none;
 }
 </style>
+
+<script>
+// Guide progress tracking
+const STORAGE_KEY = 'guides_progress';
+
+function getProgress() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+}
+
+function saveProgress(progress) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+
+function markStarted(guideId) {
+    const progress = getProgress();
+    if (!progress[guideId]) {
+        progress[guideId] = {
+            started: true,
+            startedAt: new Date().toISOString()
+        };
+        saveProgress(progress);
+        updateUI();
+    }
+}
+
+function updateUI() {
+    const progress = getProgress();
+    const guideIds = ['resume', 'job-course', 'leetcode', 'system-design', 'behavioral', 'resources'];
+    let startedCount = 0;
+
+    guideIds.forEach(id => {
+        const statusEl = document.getElementById(`status-${id}`);
+        if (progress[id] && progress[id].started && id !== 'behavioral') {
+            startedCount++;
+            if (statusEl) {
+                statusEl.classList.add('started');
+                statusEl.innerHTML = '<span class="material-icons">check_circle</span>';
+            }
+        }
+    });
+
+    // Update progress bar
+    const progressBar = document.getElementById('progress-bar');
+    const progressBadge = document.getElementById('progress-badge');
+    const percentage = (startedCount / 5) * 100; // 5 available guides (excluding coming soon)
+
+    if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+    }
+    if (progressBadge) {
+        progressBadge.textContent = `${startedCount} / 5 Started`;
+    }
+
+    // Update learning path
+    updateLearningPath(progress);
+}
+
+function updateLearningPath(progress) {
+    const pathOrder = ['resume', 'job-course', 'leetcode', 'system-design', 'behavioral'];
+
+    pathOrder.forEach((id, index) => {
+        const stepEl = document.querySelector(`.path-step[data-step="${index + 1}"]`);
+        if (stepEl && progress[id] && progress[id].started) {
+            const marker = stepEl.querySelector('.step-marker');
+            if (marker) {
+                marker.innerHTML = '<span class="material-icons" style="font-size: 18px;">check</span>';
+                marker.style.background = 'var(--md-success)';
+            }
+        }
+    });
+}
+
+// Video toggle
+function toggleVideo(videoId, button) {
+    const videoContainer = document.getElementById(videoId);
+    const buttonText = button.querySelector('.button-text');
+    const icon = button.querySelector('.material-icons');
+
+    if (videoContainer.style.display === 'none') {
+        // Close other videos in the same card
+        const card = button.closest('.guide-card');
+        const otherVideos = card.querySelectorAll('.video-container');
+        otherVideos.forEach(v => {
+            if (v.id !== videoId) v.style.display = 'none';
+        });
+
+        videoContainer.style.display = 'block';
+        if (buttonText) buttonText.textContent = 'Hide Video';
+        if (icon) icon.textContent = 'expand_less';
+
+        setTimeout(() => {
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        videoContainer.style.display = 'none';
+        if (buttonText) buttonText.textContent = buttonText.textContent.includes('Course') ? 'Watch Full Course' : 'Watch Video';
+        if (icon) icon.textContent = 'play_arrow';
+    }
+}
+
+// Category filtering
+document.querySelectorAll('.nav-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+
+        // Update active state
+        document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter cards
+        document.querySelectorAll('.guide-card-wrapper').forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', updateUI);
+</script>
 {% endblock %}
