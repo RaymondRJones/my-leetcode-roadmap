@@ -17,11 +17,11 @@ class TestAuthenticatedPremiumRoutes:
         response = authenticated_client.get('/complete-list')
         assert response.status_code == 200
 
-    def test_guides_redirects_premium_without_guides_access(self, authenticated_client):
-        """Test that guides page redirects premium users without guides access."""
-        # authenticated_client has premium but not guides access
+    def test_guides_accessible_with_premium(self, authenticated_client):
+        """Test that guides page is accessible with premium access."""
+        # Premium users get guides access automatically
         response = authenticated_client.get('/guides')
-        assert response.status_code == 302
+        assert response.status_code == 200
 
     def test_intermediate_month_2_accessible_with_premium(self, authenticated_client):
         """Test that intermediate Month 2 is accessible with premium."""
