@@ -93,15 +93,44 @@ class ClerkService:
             print(f"Error creating Clerk user {email}: {e}")
             return None
 
-    def update_user_metadata(self, user_id: str, metadata: dict) -> Optional[dict]:
-        """Update Clerk user's private and public metadata."""
+    def update_user_metadata(
+        self,
+        user_id: str,
+        metadata: Optional[dict] = None,
+        *,
+        private_metadata: Optional[dict] = None,
+        public_metadata: Optional[dict] = None
+    ) -> Optional[dict]:
+        """
+        Update Clerk user's metadata.
+
+        Args:
+            user_id: The Clerk user ID
+            metadata: (Deprecated) Sets both private and public metadata to this value
+            private_metadata: Only update private metadata
+            public_metadata: Only update public metadata
+
+        If only `metadata` is provided (legacy behavior), both private and public
+        are set to that value. Use private_metadata/public_metadata for granular control.
+        """
         if not self.is_configured():
             return None
 
-        payload = {
-            'private_metadata': metadata,
-            'public_metadata': metadata
-        }
+        payload = {}
+
+        # Support legacy behavior when only `metadata` is passed
+        if metadata is not None and private_metadata is None and public_metadata is None:
+            payload['private_metadata'] = metadata
+            payload['public_metadata'] = metadata
+        else:
+            if private_metadata is not None:
+                payload['private_metadata'] = private_metadata
+            if public_metadata is not None:
+                payload['public_metadata'] = public_metadata
+
+        if not payload:
+            print(f"No metadata to update for user {user_id}")
+            return None
 
         try:
             resp = requests.patch(

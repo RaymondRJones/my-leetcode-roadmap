@@ -70,10 +70,13 @@ def has_system_design_access(user_data: Optional[dict]) -> bool:
 
 
 def has_guides_access(user_data: Optional[dict]) -> bool:
-    """Check if user has guides access (or is admin)."""
+    """Check if user has guides access (or is admin or has premium)."""
     if not user_data:
         return False
     if _has_admin_flag(user_data):
+        return True
+    # Premium users also get guides access
+    if _get_metadata_value(user_data, 'has_premium', False):
         return True
     return bool(_get_metadata_value(user_data, 'has_guides_access', False))
 

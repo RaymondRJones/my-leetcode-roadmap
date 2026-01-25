@@ -126,12 +126,12 @@ def enroll_challenge():
         'last_activity_date': datetime.now().isoformat()
     }
 
-    # Update Clerk metadata
-    current_meta = user.get('public_metadata', {})
-    current_meta['challenge'] = challenge_data
+    # Update Clerk metadata (only public, preserve private)
+    current_public = user.get('public_metadata', {})
+    current_public['challenge'] = challenge_data
 
     clerk_service = current_app.clerk
-    result = clerk_service.update_user_metadata(user_id, current_meta)
+    result = clerk_service.update_user_metadata(user_id, public_metadata=current_public)
 
     if result:
         return jsonify({'status': 'success', 'challenge': challenge_data})
@@ -207,10 +207,10 @@ def complete_problem():
 
         challenge['last_activity_date'] = datetime.now().isoformat()
 
-        # Save to Clerk
+        # Save to Clerk (only public, preserve private)
         public_meta['challenge'] = challenge
         clerk_service = current_app.clerk
-        clerk_service.update_user_metadata(user_id, public_meta)
+        clerk_service.update_user_metadata(user_id, public_metadata=public_meta)
 
         return jsonify({
             'status': 'success',
@@ -275,7 +275,7 @@ def submit_skool():
 
     public_meta['skool_submissions'] = submissions
     clerk_service = current_app.clerk
-    clerk_service.update_user_metadata(user_id, public_meta)
+    clerk_service.update_user_metadata(user_id, public_metadata=public_meta)
 
     return jsonify({'status': 'success', 'message': 'Submission received'})
 
@@ -339,10 +339,10 @@ def submit_bonus_problem():
     service = current_app.challenge_service
     challenge['points'] = service.calculate_points(challenge)
 
-    # Save to Clerk
+    # Save to Clerk (only public, preserve private)
     public_meta['challenge'] = challenge
     clerk_service = current_app.clerk
-    clerk_service.update_user_metadata(user_id, public_meta)
+    clerk_service.update_user_metadata(user_id, public_metadata=public_meta)
 
     return jsonify({
         'status': 'success',
@@ -418,7 +418,7 @@ def submit_skool_proof():
 
     public_meta['challenge'] = challenge
     clerk_service = current_app.clerk
-    clerk_service.update_user_metadata(user_id, public_meta)
+    clerk_service.update_user_metadata(user_id, public_metadata=public_meta)
 
     return jsonify({'status': 'success', 'message': 'Proof submitted successfully'})
 
@@ -585,9 +585,9 @@ def log_daily_activity():
     challenge['trackers'] = trackers
     challenge['tracker_log'] = tracker_log
 
-    # Update Clerk
+    # Update Clerk (only public, preserve private)
     public_meta['challenge'] = challenge
     clerk_service = current_app.clerk
-    clerk_service.update_user_metadata(user_id, public_meta)
+    clerk_service.update_user_metadata(user_id, public_metadata=public_meta)
 
     return jsonify({'status': 'success', 'trackers': trackers})
