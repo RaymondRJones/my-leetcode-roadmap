@@ -1,0 +1,357 @@
+{% extends 'base_tw.html' %}
+
+{% block title %}System Design - Real Life Problems{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+    <a href="/system-design" class="btn-secondary w-fit">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Roadmap
+    </a>
+    <div>
+        <h1 class="text-3xl font-bold text-foreground">Real Life System Design Problems</h1>
+        <p class="text-foreground-muted mt-1">Practice designing real-world systems within 30-45 minute time constraints</p>
+    </div>
+</div>
+
+<!-- Geography Based Problems -->
+<div class="mb-10">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Geography Based Problems</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card hover:border-primary/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Google Maps</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a mapping service with real-time navigation, traffic data, and location search.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Geospatial Indexing</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Caching</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Real-time Data</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Spatial databases, quadtrees, CDN usage</p>
+        </div>
+        <div class="card hover:border-primary/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Uber</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a ride-sharing platform with real-time matching and location tracking.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Location Matching</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">WebSockets</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Payment Processing</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Real-time communication, matching algorithms, scalability</p>
+        </div>
+        <div class="card hover:border-primary/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Proximity Service</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a service to find nearby points of interest like restaurants and businesses.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Geohashing</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Search Optimization</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Data Partitioning</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Geospatial queries, performance optimization</p>
+        </div>
+        <div class="card hover:border-primary/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Nearby Friends</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a feature to discover friends in your vicinity with privacy controls.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Privacy</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Location Updates</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Social Graph</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Privacy design, efficient location updates</p>
+        </div>
+    </div>
+</div>
+
+<!-- Infrastructure Problems -->
+<div class="mb-10">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-warning/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Infrastructure Problems</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card hover:border-warning/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Top K Spotify Songs</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a system to track and display the most popular songs in real-time.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Stream Processing</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Top-K Algorithm</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Heavy Hitters</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Real-time analytics, approximate algorithms</p>
+        </div>
+        <div class="card hover:border-warning/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Web Crawler</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a distributed web crawler that can index billions of web pages efficiently.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Distributed Systems</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Rate Limiting</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Data Pipeline</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Scalability, politeness policies, deduplication</p>
+        </div>
+        <div class="card hover:border-warning/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Job Scheduler</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a distributed task scheduler like Cron that can handle millions of jobs.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Task Queues</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Load Balancing</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Fault Tolerance</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Reliability, scheduling algorithms, failure handling</p>
+        </div>
+        <div class="card hover:border-warning/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design AWS S3 (Object Storage)</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a highly available and durable object storage service.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Distributed Storage</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Replication</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Consistency</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Data durability, consistency models, partitioning</p>
+        </div>
+        <div class="card hover:border-warning/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Kafka / Message Queue</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a high-throughput distributed messaging system.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Message Queues</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Partitioning</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Pub/Sub</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Throughput, ordering guarantees, durability</p>
+        </div>
+    </div>
+</div>
+
+<!-- Popular Products -->
+<div class="mb-10">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-success/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Popular Products</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Facebook / Twitter</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a social media platform with news feeds, posts, and social interactions.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">News Feed</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Social Graph</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Content Delivery</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Timeline generation, scalability, content ranking</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Youtube</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a video streaming platform with uploads, encoding, and global delivery.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Video Streaming</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">CDN</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Transcoding</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Video processing, global distribution, storage</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Google Drive</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a cloud storage service with file sync, sharing, and collaboration.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">File Sync</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Conflict Resolution</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Sharing Permissions</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Synchronization, versioning, collaborative editing</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Leetcode</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build an online judge system for coding challenges with real-time execution.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Code Execution</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Security</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Contest System</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Sandboxing, performance evaluation, ranking</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design TicketMaster</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create an event ticketing system handling high traffic and preventing overselling.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Inventory Management</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">High Traffic</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Concurrency Control</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Race conditions, queueing, fairness</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Payment System</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Build a secure and reliable payment processing system.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Security</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Transactions</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Fraud Detection</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: ACID properties, security, compliance</p>
+        </div>
+        <div class="card hover:border-success/50 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <h3 class="font-semibold text-foreground">Design Real-Time Leaderboard</h3>
+            </div>
+            <p class="text-foreground-muted text-sm mb-3">Create a gaming leaderboard with real-time updates and rankings.</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Real-time Updates</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Ranking Algorithm</span>
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">Caching</span>
+            </div>
+            <p class="text-foreground-subtle text-xs">Tests: Real-time ranking, performance, consistency</p>
+        </div>
+    </div>
+</div>
+
+<!-- Pro Tips -->
+<div class="card">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Pro Tips for System Design Problems</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span><strong>Start with requirements</strong> - Clarify functional and non-functional requirements</span>
+            </li>
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                <span><strong>High-level design first</strong> - Begin with major components and their interactions</span>
+            </li>
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+                <span><strong>Back-of-envelope calculations</strong> - Estimate scale, storage, and bandwidth</span>
+            </li>
+        </ul>
+        <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                </svg>
+                <span><strong>Database design</strong> - Consider data models, consistency, and partitioning</span>
+            </li>
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+                <span><strong>Scale gradually</strong> - Start simple, then discuss scaling bottlenecks</span>
+            </li>
+            <li class="flex items-start gap-3 text-foreground-muted">
+                <svg class="w-5 h-5 text-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <span><strong>Consider edge cases</strong> - Discuss failure scenarios and monitoring</span>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

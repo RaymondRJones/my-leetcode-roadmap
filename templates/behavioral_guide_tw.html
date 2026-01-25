@@ -1,0 +1,380 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Behavioral Interview Guide - Ray's Roadmap{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground mb-3">Behavioral Interview Guide</h1>
+        <p class="text-foreground-muted text-lg">AI-powered feedback using Amazon's Leadership Principles</p>
+
+        <!-- Pro Tip Alert -->
+        <div class="mt-6 inline-flex items-center gap-2 px-4 py-3 bg-primary/10 border border-primary/20 rounded-lg text-sm">
+            <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+            <span class="text-foreground"><strong>Pro Tip:</strong> Never use "we" in your stories - always use "I" to show personal ownership and impact!</span>
+        </div>
+    </div>
+
+    <!-- STAR Method Framework -->
+    <div class="card mb-8">
+        <div class="bg-gradient-to-r from-primary to-primary/70 rounded-t-xl px-6 py-4">
+            <h5 class="text-white font-semibold flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                STAR Method Framework
+            </h5>
+            <p class="text-white/80 text-sm mt-1">Use this structure for all your behavioral stories</p>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Situation -->
+                <div class="bg-primary/5 border border-primary/20 rounded-xl p-4 text-center hover:scale-[1.02] transition-transform">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h6 class="text-primary font-semibold mb-2">Situation</h6>
+                    <p class="text-foreground-muted text-sm">Set the context and background. Where were you? When did this happen?</p>
+                </div>
+
+                <!-- Task -->
+                <div class="bg-cyan-500/5 border border-cyan-500/20 rounded-xl p-4 text-center hover:scale-[1.02] transition-transform">
+                    <div class="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h6 class="text-cyan-400 font-semibold mb-2">Task</h6>
+                    <p class="text-foreground-muted text-sm">Describe what you needed to accomplish. What was your responsibility?</p>
+                </div>
+
+                <!-- Action -->
+                <div class="bg-success/5 border border-success/20 rounded-xl p-4 text-center hover:scale-[1.02] transition-transform">
+                    <div class="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h6 class="text-success font-semibold mb-2">Action</h6>
+                    <p class="text-foreground-muted text-sm">Explain the specific steps <strong>YOU</strong> took. Use "I" statements, not "we".</p>
+                </div>
+
+                <!-- Result -->
+                <div class="bg-warning/5 border border-warning/20 rounded-xl p-4 text-center hover:scale-[1.02] transition-transform">
+                    <div class="w-12 h-12 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h6 class="text-warning font-semibold mb-2">Result</h6>
+                    <p class="text-foreground-muted text-sm">Share the measurable outcomes. Include metrics and lessons learned.</p>
+                </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="mt-6 bg-background-elevated border-l-4 border-primary rounded-lg p-4">
+                <h6 class="text-primary font-semibold mb-2 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"/>
+                    </svg>
+                    Pro Tips
+                </h6>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-foreground-muted">
+                    <div>
+                        <p><strong class="text-foreground">Be specific:</strong> Use numbers, percentages, timelines</p>
+                        <p class="mt-1"><strong class="text-foreground">Show ownership:</strong> Always use "I" instead of "we"</p>
+                    </div>
+                    <div>
+                        <p><strong class="text-foreground">Focus on impact:</strong> How did your actions benefit the team/company?</p>
+                        <p class="mt-1"><strong class="text-foreground">Include challenges:</strong> What obstacles did you overcome?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="grid lg:grid-cols-5 gap-6">
+        <!-- Questions Panel -->
+        <div class="lg:col-span-2">
+            <div class="card h-full">
+                <div class="bg-gradient-to-r from-primary to-primary/70 rounded-t-xl px-6 py-4">
+                    <h5 class="text-white font-semibold flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Interview Questions
+                    </h5>
+                    <p class="text-white/80 text-sm mt-1">Select a question to practice with</p>
+                </div>
+                <div class="p-4 max-h-[500px] overflow-y-auto">
+                    {% for category, category_questions in questions.items() %}
+                    <div class="mb-6">
+                        <h6 class="text-primary font-semibold mb-3 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            {{ category }}
+                        </h6>
+                        <div class="space-y-2">
+                            {% for question in category_questions %}
+                            <button class="question-btn w-full text-left p-3 rounded-lg border border-border bg-background-secondary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+                                    data-question="{{ question }}">
+                                <span class="text-foreground-muted text-xs block mb-1">{{ loop.index }}</span>
+                                <span class="text-sm">{{ question }}</span>
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Input Panel -->
+        <div class="lg:col-span-3">
+            <div class="card h-full flex flex-col">
+                <div class="bg-gradient-to-r from-success to-success/70 rounded-t-xl px-6 py-4">
+                    <h5 class="text-white font-semibold flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        AI Coach
+                    </h5>
+                    <p class="text-white/80 text-sm mt-1">Get personalized feedback on your behavioral stories</p>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <!-- Selected Question Display -->
+                    <div id="selected-question" class="hidden mb-4 p-4 bg-primary/10 border border-primary/30 rounded-lg">
+                        <span class="text-foreground font-medium">Question:</span>
+                        <span id="question-text" class="text-foreground-muted ml-2"></span>
+                    </div>
+
+                    <!-- Story Input -->
+                    <div class="flex-1">
+                        <label for="story-input" class="block text-foreground font-medium mb-2">Tell your story (use STAR method):</label>
+                        <textarea id="story-input"
+                                  class="w-full h-64 bg-background-secondary border border-border rounded-xl p-4 text-foreground placeholder-foreground-subtle focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-y"
+                                  placeholder="Situation: Describe the context and background...
+
+Task: Explain what you needed to accomplish...
+
+Action: Detail the specific steps YOU took (use 'I', not 'we')...
+
+Result: Share the measurable outcomes and impact..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-4">
+                        <button id="submit-story" class="btn-primary w-full py-3 text-lg flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            </svg>
+                            Get AI Feedback
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="hidden text-center mt-8 mb-8">
+        <div class="inline-flex items-center gap-3">
+            <div class="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+            <span class="text-foreground-muted">AI is analyzing your story...</span>
+        </div>
+    </div>
+
+    <!-- Feedback Display -->
+    <div id="feedback-section" class="hidden mt-8 mb-8">
+        <div class="card">
+            <div class="bg-gradient-to-r from-warning to-warning/70 rounded-t-xl px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h5 class="text-white font-semibold flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            AI Feedback
+                        </h5>
+                        <p class="text-white/80 text-sm mt-1">Personalized analysis based on Amazon's Leadership Principles</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="copy-feedback" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded-lg text-sm flex items-center gap-2 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            Copy
+                        </button>
+                        <button id="clear-feedback" class="px-3 py-1.5 border border-white/30 hover:bg-white/10 text-white rounded-lg text-sm flex items-center gap-2 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <div id="feedback-content" class="max-h-[500px] overflow-y-auto prose prose-invert max-w-none">
+                    <!-- Feedback will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+console.log('Script is loading...');
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing...');
+
+    let selectedQuestion = '';
+
+    // Question selection functionality
+    document.querySelectorAll('.question-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            document.querySelectorAll('.question-btn').forEach(b => {
+                b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                b.classList.add('bg-background-secondary', 'border-border');
+            });
+
+            // Add active class to clicked button
+            this.classList.remove('bg-background-secondary', 'border-border');
+            this.classList.add('bg-primary', 'text-white', 'border-primary');
+
+            // Store selected question
+            selectedQuestion = this.dataset.question;
+
+            // Show selected question
+            document.getElementById('selected-question').classList.remove('hidden');
+            document.getElementById('question-text').textContent = selectedQuestion;
+
+            // Enable submit button if story is also provided
+            checkSubmitButton();
+        });
+    });
+
+    // Story input functionality
+    document.getElementById('story-input').addEventListener('input', function() {
+        checkSubmitButton();
+    });
+
+    function checkSubmitButton() {
+        const storyText = document.getElementById('story-input').value.trim();
+        const submitBtn = document.getElementById('submit-story');
+
+        if (selectedQuestion && storyText.length > 20) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    }
+
+    // Initialize submit button state
+    checkSubmitButton();
+
+    // Submit story for feedback
+    document.getElementById('submit-story').addEventListener('click', async function(e) {
+        e.preventDefault();
+        console.log('Submit button clicked');
+
+        const story = document.getElementById('story-input').value.trim();
+        console.log('Story length:', story.length);
+        console.log('Selected question:', selectedQuestion);
+
+        if (!selectedQuestion || !story) {
+            alert('Please select a question and write your story.');
+            return;
+        }
+
+        // Show loading spinner
+        document.getElementById('loading-spinner').classList.remove('hidden');
+        document.getElementById('feedback-section').classList.add('hidden');
+
+        try {
+            console.log('Sending request to API...');
+
+            const response = await fetch('/api/behavioral-feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    question: selectedQuestion,
+                    story: story
+                })
+            });
+
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (data.status === 'success') {
+                // Format and display feedback
+                const formattedFeedback = data.feedback.replace(/\n/g, '<br>');
+                document.getElementById('feedback-content').innerHTML = `<div class="bg-background-secondary rounded-lg p-4 border-l-4 border-primary whitespace-pre-wrap font-inherit">${formattedFeedback}</div>`;
+                document.getElementById('feedback-section').classList.remove('hidden');
+            } else {
+                alert('Error: ' + data.error);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Network error: ' + error.message);
+        } finally {
+            document.getElementById('loading-spinner').classList.add('hidden');
+        }
+    });
+
+    // Clear feedback and try another
+    document.getElementById('clear-feedback').addEventListener('click', function() {
+        document.getElementById('feedback-section').classList.add('hidden');
+        document.getElementById('story-input').value = '';
+        document.getElementById('selected-question').classList.add('hidden');
+        document.querySelectorAll('.question-btn').forEach(b => {
+            b.classList.remove('bg-primary', 'text-white', 'border-primary');
+            b.classList.add('bg-background-secondary', 'border-border');
+        });
+        selectedQuestion = '';
+        checkSubmitButton();
+    });
+
+    // Copy feedback to clipboard
+    document.getElementById('copy-feedback').addEventListener('click', function() {
+        const feedbackText = document.getElementById('feedback-content').innerText;
+        navigator.clipboard.writeText(feedbackText).then(function() {
+            // Change button text temporarily
+            const btn = document.getElementById('copy-feedback');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+            btn.classList.add('bg-success/50');
+
+            setTimeout(function() {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-success/50');
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Could not copy text: ', err);
+            alert('Could not copy feedback to clipboard');
+        });
+    });
+});
+</script>
+{% endblock %}

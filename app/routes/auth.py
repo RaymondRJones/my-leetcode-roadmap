@@ -1,6 +1,7 @@
 """
 Authentication routes blueprint.
 """
+import os
 from flask import Blueprint, render_template, jsonify, request, redirect, session, current_app
 
 from ..auth.access import (
@@ -14,10 +15,32 @@ from ..auth.access import (
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
+def get_themed_template(base_name):
+    """Return the themed template name based on user preference.
+
+    Args:
+        base_name: Base template name without extension (e.g., 'auth/login')
+
+    Returns:
+        Template filename with appropriate suffix based on theme cookie
+    """
+    theme = request.cookies.get('theme', 'dark')
+
+    if theme == 'dark':
+        tw_template = f'{base_name}_tw.html'
+        # Check if TailwindCSS template exists using absolute path
+        template_path = os.path.join(current_app.root_path, current_app.template_folder, tw_template)
+        if os.path.exists(template_path):
+            return tw_template
+
+    # Fall back to legacy template
+    return f'{base_name}.html'
+
+
 @auth_bp.route('/login')
 def login():
     """Login page - handled by Clerk on frontend."""
-    return render_template('auth/login.html')
+    return render_template(get_themed_template('auth/login'))
 
 
 @auth_bp.route('/callback', methods=['POST'])
@@ -47,7 +70,7 @@ def logout():
 @auth_bp.route('/status')
 def status():
     """Show authentication status page."""
-    return render_template('auth_status.html')
+    return render_template(get_themed_template('auth_status'))
 
 
 @auth_bp.route('/debug')

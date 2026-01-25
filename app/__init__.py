@@ -4,7 +4,7 @@ LeetCode Roadmap Generator Application Factory.
 This module contains the application factory for creating Flask app instances.
 """
 import os
-from flask import Flask
+from flask import Flask, request
 
 from .config import config, get_config
 from .services import ClerkService, StripeService, OpenAIService, RoadmapService
@@ -105,6 +105,12 @@ def _register_context_processor(app: Flask):
     def inject_auth():
         """Inject authentication data into all templates."""
         user = get_current_user()
+
+        # Get theme from cookie, default to 'dark' for new TailwindCSS theme
+        theme_mode = request.cookies.get('theme', 'dark')
+        if theme_mode not in ('dark', 'legacy'):
+            theme_mode = 'dark'
+
         return {
             'current_user': user,
             'is_authenticated': user is not None,
@@ -114,5 +120,6 @@ def _register_context_processor(app: Flask):
             'has_guides_access': has_guides_access(user) if user else False,
             'is_allowed': is_allowed_user(user) if user else False,
             'is_admin': is_admin(user) if user else False,
-            'clerk_publishable_key': app.config.get('CLERK_PUBLISHABLE_KEY')
+            'clerk_publishable_key': app.config.get('CLERK_PUBLISHABLE_KEY'),
+            'theme_mode': theme_mode
         }

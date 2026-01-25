@@ -8,11 +8,35 @@ Provides routes for:
 - Leaderboard
 - Admin dashboard and submission management
 """
+import os
 from datetime import datetime, timedelta
-from flask import Blueprint, render_template, redirect, current_app
+from flask import Blueprint, render_template, redirect, current_app, request
 
 from ..auth.decorators import login_required, admin_required
 from ..auth.access import get_current_user, is_admin
+
+
+def get_themed_template(base_name):
+    """
+    Get the appropriate template based on user's theme preference.
+
+    Args:
+        base_name: Base template name without extension (e.g., 'challenge/index')
+
+    Returns:
+        Template path based on theme ('dark' = *_tw.html, 'legacy' = *.html)
+    """
+    theme = request.cookies.get('theme', 'dark')
+
+    if theme == 'dark':
+        tw_template = f"{base_name}_tw.html"
+        # Check if TailwindCSS template exists using absolute path
+        template_path = os.path.join(current_app.root_path, current_app.template_folder, tw_template)
+        if os.path.exists(template_path):
+            return tw_template
+
+    # Fall back to legacy template
+    return f"{base_name}.html"
 
 challenge_bp = Blueprint('challenge', __name__, url_prefix='/challenge')
 
@@ -115,7 +139,7 @@ def challenge_home():
     point_values = service.get_point_values()
 
     return render_template(
-        'challenge/index.html',
+        get_themed_template('challenge/index'),
         enrolled=enrolled,
         challenge_data=challenge_data,
         achievements_config=achievements_config,
@@ -166,7 +190,7 @@ def challenge_day(day: int):
     achievements_config = service.get_achievements_config()
 
     return render_template(
-        'challenge/day.html',
+        get_themed_template('challenge/day'),
         day=day,
         theme=theme,
         problems=problems,
@@ -240,7 +264,7 @@ def challenge_calendar():
         })
 
     return render_template(
-        'challenge/calendar.html',
+        get_themed_template('challenge/calendar'),
         challenge_data=challenge_data,
         current_day=current_day,
         calendar_days=calendar_days,
@@ -263,7 +287,7 @@ def challenge_leaderboard():
         challenge_data = public_metadata.get('challenge', {})
 
     return render_template(
-        'challenge/leaderboard.html',
+        get_themed_template('challenge/leaderboard'),
         challenge_data=challenge_data,
         is_enrolled=challenge_data.get('enrolled', False)
     )

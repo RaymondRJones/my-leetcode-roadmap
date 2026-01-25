@@ -1,0 +1,163 @@
+{% extends 'base_tw.html' %}
+
+{% block title %}System Design Roadmap{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="text-center mb-12">
+    <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+        </svg>
+    </div>
+    <h1 class="text-4xl font-bold text-foreground mb-4">System Design Roadmap</h1>
+    <p class="text-foreground-muted text-lg max-w-2xl mx-auto">Master system design interviews with this structured approach to high-level architecture and distributed systems</p>
+</div>
+
+<!-- What Is This Section -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">What Is This?</h2>
+    </div>
+    <div class="space-y-4 text-foreground-muted">
+        <p>I failed my first System Design Interview in 2022. It was for LinkedIn and they were offering like $200k/year</p>
+        <p>If I had known System Design, I would have made more. But I never knew how to study</p>
+        <p>I made this to help you guys and myself in the past.</p>
+        <p class="text-foreground-subtle">I work at Walmart in the SF Bay Area now. I've solved 1,293 Leetcode Problems</p>
+        <p class="text-foreground-subtle">I've spent over 100 hours reading and studying System Design Books, like DDIA, Alex Xu's V1 and V2, Hacking System Design.</p>
+    </div>
+</div>
+
+<!-- Why Section -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-warning/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">Why?</h2>
+    </div>
+    <p class="text-foreground-muted mb-4">Higher paying Senior or Mid-level roles will test applicants knowledge</p>
+    <ul class="space-y-3">
+        <li class="flex items-center gap-3 text-foreground-muted">
+            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Requirement if you want to access to $200k/year roles
+        </li>
+        <li class="flex items-center gap-3 text-foreground-muted">
+            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            More responsibility
+        </li>
+        <li class="flex items-center gap-3 text-foreground-muted">
+            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            More control and decision making within the entire organization
+        </li>
+        <li class="flex items-center gap-3 text-foreground-muted">
+            <svg class="w-5 h-5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Access to "Senior" Level roles, paying $500k/year in some cases
+        </li>
+        <li class="flex items-center gap-3 text-warning font-medium">
+            <svg class="w-5 h-5 text-warning flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            What if You Could Learn Something that hands you $100k/year more for the rest of your life?
+        </li>
+    </ul>
+</div>
+
+<!-- How to Use Roadmap Section -->
+<div class="card mb-8">
+    <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-success/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-foreground">How to Use Roadmap</h2>
+    </div>
+    <div class="space-y-4 text-foreground-muted">
+        <p>System Design interviews are composed of three main sections. Real life problems, where you will be given 30 to 45 minutes to complete a working design. Trivia, where an interviewer will ask you to explain a variety of database, server, API, networking, and other topics. And finally, you can be asked "Low level design", which tests your ability to code and use object oriented programming design patterns.</p>
+        <p>In my experience, I've had interviews where they will test knowledge in multiple of these areas. For that reason, if I want to be as prepared as possible, it's a requirement to know each of these main topics. Because of this, I've broken this roadmap into three main pages for each of the topics.</p>
+    </div>
+</div>
+
+<!-- Roadmap Visualization Section -->
+<div class="card mb-8">
+    <div class="text-center mb-6">
+        <div class="flex items-center justify-center gap-3 mb-2">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            <h2 class="text-xl font-semibold text-foreground">Roadmap Visualization</h2>
+        </div>
+        <p class="text-foreground-muted">Click on each phase to dive deeper</p>
+    </div>
+
+    <!-- Phase Cards -->
+    <div class="space-y-4">
+        <!-- Phase 1: Trivia and Knowledge -->
+        <a href="/system-design/trivia" class="block group">
+            <div class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/25">
+                <div class="text-center">
+                    <svg class="w-12 h-12 mx-auto mb-3 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 drop-shadow">Phase 1: Learn Concepts & Trivia</h3>
+                    <p class="text-white/90">Master fundamental concepts like CAP theorem, consistency models, database types, and system architecture patterns</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Phase 2: Real Life Problems -->
+        <a href="/system-design/real-life-problems" class="block group">
+            <div class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-green-500/25">
+                <div class="text-center">
+                    <svg class="w-12 h-12 mx-auto mb-3 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 drop-shadow">Phase 2: Real Life System Design</h3>
+                    <p class="text-white/90">Practice designing real systems like Facebook, Uber, Google Maps within 30-45 minute time constraints</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Phase 3: Low Level Design -->
+        <a href="/system-design/low-level-design" class="block group">
+            <div class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/25">
+                <div class="text-center">
+                    <svg class="w-12 h-12 mx-auto mb-3 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 drop-shadow">Phase 3: Low Level Design & OOP</h3>
+                    <p class="text-white/90">Master object-oriented design patterns and practice coding problems like parking lot and elevator systems</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Phase 4: Mock Interviews -->
+        <div class="relative overflow-hidden rounded-xl p-6 bg-gradient-to-r from-red-500 to-orange-500 text-white opacity-75">
+            <div class="text-center">
+                <svg class="w-12 h-12 mx-auto mb-3 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
+                <h3 class="text-xl font-semibold mb-2 drop-shadow">Phase 4: Mock Interviews</h3>
+                <p class="text-white/90">Practice with real humans to simulate interview conditions and improve communication skills</p>
+                <span class="inline-block mt-2 px-3 py-1 bg-white/20 rounded-full text-sm">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

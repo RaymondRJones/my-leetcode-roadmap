@@ -1351,6 +1351,13 @@
                         <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">logout</span>Sign Out
                     </button>
 
+                    <!-- Theme Toggle -->
+                    <li class="nav-item me-2">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="switchToDarkMode()" title="Switch to Dark Mode">
+                            <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">dark_mode</span>Dark Mode
+                        </button>
+                    </li>
+
                     <li class="nav-item">
                         <button class="btn btn-outline-primary btn-sm" onclick="refreshData()">
                             <span class="material-icons" style="vertical-align: middle; margin-right: 4px; font-size: 16px;">refresh</span>Refresh
@@ -1392,6 +1399,14 @@
                     console.error('Error:', error);
                     alert('Failed to refresh data');
                 });
+        }
+
+        function switchToDarkMode() {
+            // Set theme to dark and store in localStorage and cookie
+            localStorage.setItem('leetcode-roadmap-theme', 'dark');
+            document.cookie = 'theme=dark;path=/;max-age=31536000;SameSite=Lax';
+            // Reload to apply the new theme
+            window.location.reload();
         }
 
         function copyUrl(url) {

@@ -1,0 +1,420 @@
+{% extends "base_tw.html" %}
+
+{% block title %}{{ quiz.metadata.title }} - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <!-- Quiz Container -->
+    <div id="quizContainer">
+        <!-- Progress Section -->
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-foreground-muted text-sm">Question <span id="currentQuestion" class="text-primary font-semibold">1</span> of {{ quiz.metadata.total_questions }}</span>
+                <span class="text-primary font-semibold" id="progressPercent">0%</span>
+            </div>
+            <div class="w-full h-2 bg-background-secondary rounded-full overflow-hidden">
+                <div id="progressFill" class="h-full bg-gradient-to-r from-primary to-success rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="card p-6" id="questionCard">
+            <div class="text-center mb-6">
+                <span id="questionNumber" class="inline-block w-10 h-10 bg-primary text-white rounded-full text-lg font-bold leading-10">1</span>
+            </div>
+            <h4 id="questionText" class="text-xl text-foreground font-medium text-center mb-8"></h4>
+
+            <!-- Answer Options -->
+            <div id="answerOptions" class="space-y-3"></div>
+
+            <!-- Feedback Section -->
+            <div id="feedbackSection" class="hidden mt-6">
+                <div id="feedbackHeader" class="flex items-center gap-2 mb-2">
+                    <svg id="feedbackIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                    <span id="feedbackTitle" class="font-semibold"></span>
+                </div>
+                <p id="feedbackExplanation" class="text-foreground-muted text-sm"></p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between mt-8">
+                <button id="prevBtn" onclick="prevQuestion()" class="hidden btn-secondary">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Previous
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" disabled class="btn-primary ml-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsContainer" class="hidden">
+        <div class="card p-8 text-center">
+            <!-- Score Ring -->
+            <div class="relative w-32 h-32 mx-auto mb-6">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                    <circle class="text-background-secondary" stroke="currentColor" stroke-width="12" fill="none" cx="60" cy="60" r="54"/>
+                    <circle id="scoreRing" class="text-primary transition-all duration-1000 ease-out" stroke="currentColor" stroke-width="12" fill="none" cx="60" cy="60" r="54" stroke-dasharray="339.292" stroke-dashoffset="339.292" stroke-linecap="round"/>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span id="scoreValue" class="text-3xl font-bold text-foreground">0</span>
+                    <span class="text-foreground-muted text-sm">/ {{ quiz.metadata.total_questions }}</span>
+                </div>
+            </div>
+
+            <!-- Result Info -->
+            <div class="mb-8">
+                <div id="resultIcon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                </div>
+                <h2 id="resultTitle" class="text-2xl font-bold text-foreground mb-2"></h2>
+                <p id="resultPercent" class="text-primary text-lg font-semibold mb-2"></p>
+                <p id="resultMessage" class="text-foreground-muted"></p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="showReview()" class="btn-secondary">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                    Review Answers
+                </button>
+                <button onclick="retakeQuiz()" class="btn-primary">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Retake Quiz
+                </button>
+                <a href="/" class="btn-secondary">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Back to Classroom
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Section -->
+    <div id="reviewContainer" class="hidden">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-foreground flex items-center gap-2">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+                Answer Review
+            </h2>
+            <button onclick="hideReview()" class="btn-secondary">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+                Close Review
+            </button>
+        </div>
+        <div id="reviewCards" class="space-y-4"></div>
+    </div>
+</div>
+
+<script>
+    // Quiz data from server
+    const quizData = {{ quiz | tojson | safe }};
+    const questions = quizData.questions;
+    const tiers = quizData.tiers;
+    const totalQuestions = questions.length;
+
+    // Quiz state
+    let currentIndex = 0;
+    let userAnswers = {};
+    let answered = {};
+
+    // Initialize quiz
+    function initQuiz() {
+        renderQuestion(0);
+        updateProgress();
+    }
+
+    // Render a question
+    function renderQuestion(index) {
+        const question = questions[index];
+        const questionCard = document.getElementById('questionCard');
+
+        questionCard.style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('questionNumber').textContent = question.id;
+            document.getElementById('questionText').textContent = question.text;
+
+            // Render answer options
+            const optionsHtml = question.options.map(opt => {
+                const isSelected = userAnswers[index] === opt.key;
+                const wasAnswered = answered[index];
+                const isCorrect = opt.key === question.correct;
+
+                let stateClass = 'bg-background-secondary border-border hover:border-primary hover:bg-primary/5';
+                if (wasAnswered) {
+                    if (isSelected && isCorrect) stateClass = 'bg-success/10 border-success';
+                    else if (isSelected && !isCorrect) stateClass = 'bg-danger/10 border-danger';
+                    else if (isCorrect) stateClass = 'bg-success/10 border-success';
+                }
+                if (isSelected && !wasAnswered) stateClass = 'bg-primary/10 border-primary';
+
+                return `
+                    <div class="answer-card flex items-center gap-4 p-4 rounded-lg border-2 cursor-pointer transition-all ${stateClass}"
+                         data-key="${opt.key}"
+                         onclick="${wasAnswered ? '' : `selectAnswer('${opt.key}')`}">
+                        <div class="w-8 h-8 rounded-full bg-background flex items-center justify-center text-foreground-muted font-semibold text-sm border border-border">
+                            ${opt.key.toUpperCase()}
+                        </div>
+                        <div class="text-foreground">${opt.text}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('answerOptions').innerHTML = optionsHtml;
+
+            // Show/hide feedback
+            const feedbackSection = document.getElementById('feedbackSection');
+            if (answered[index]) {
+                showFeedback(question, userAnswers[index] === question.correct);
+            } else {
+                feedbackSection.classList.add('hidden');
+            }
+
+            updateNavigation();
+            questionCard.style.opacity = '1';
+        }, 150);
+    }
+
+    // Select an answer
+    function selectAnswer(key) {
+        if (answered[currentIndex]) return;
+
+        const question = questions[currentIndex];
+        userAnswers[currentIndex] = key;
+        answered[currentIndex] = true;
+
+        // Re-render to update styles
+        renderQuestion(currentIndex);
+
+        // Show feedback
+        showFeedback(question, key === question.correct);
+
+        // Enable next button
+        document.getElementById('nextBtn').disabled = false;
+        updateProgress();
+    }
+
+    // Show feedback
+    function showFeedback(question, isCorrect) {
+        const feedbackSection = document.getElementById('feedbackSection');
+        const feedbackHeader = document.getElementById('feedbackHeader');
+        const feedbackIcon = document.getElementById('feedbackIcon');
+        const feedbackTitle = document.getElementById('feedbackTitle');
+        const feedbackExplanation = document.getElementById('feedbackExplanation');
+
+        feedbackSection.classList.remove('hidden');
+
+        if (isCorrect) {
+            feedbackHeader.className = 'flex items-center gap-2 mb-2 text-success';
+            feedbackIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+            feedbackTitle.textContent = 'Correct!';
+        } else {
+            feedbackHeader.className = 'flex items-center gap-2 mb-2 text-danger';
+            feedbackIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+            feedbackTitle.textContent = 'Incorrect';
+        }
+        feedbackExplanation.textContent = question.explanation;
+    }
+
+    // Navigate to previous question
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderQuestion(currentIndex);
+            updateProgress();
+        }
+    }
+
+    // Navigate to next question
+    function nextQuestion() {
+        if (currentIndex < totalQuestions - 1) {
+            currentIndex++;
+            renderQuestion(currentIndex);
+            updateProgress();
+        } else {
+            showResults();
+        }
+    }
+
+    // Update navigation buttons
+    function updateNavigation() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        prevBtn.classList.toggle('hidden', currentIndex === 0);
+
+        if (currentIndex === totalQuestions - 1) {
+            nextBtn.innerHTML = `
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Finish
+            `;
+        } else {
+            nextBtn.innerHTML = `
+                Next
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            `;
+        }
+
+        nextBtn.disabled = !answered[currentIndex];
+    }
+
+    // Update progress bar
+    function updateProgress() {
+        const answeredCount = Object.keys(answered).length;
+        const percent = Math.round((answeredCount / totalQuestions) * 100);
+
+        document.getElementById('currentQuestion').textContent = currentIndex + 1;
+        document.getElementById('progressPercent').textContent = percent + '%';
+        document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    // Calculate and show results
+    function showResults() {
+        let score = 0;
+        questions.forEach((q, i) => {
+            if (userAnswers[i] === q.correct) {
+                score++;
+            }
+        });
+
+        const percent = Math.round((score / totalQuestions) * 100);
+
+        // Find tier
+        let tier = tiers[tiers.length - 1];
+        for (const t of tiers) {
+            if (percent >= t.min) {
+                tier = t;
+                break;
+            }
+        }
+
+        // Hide quiz, show results
+        document.getElementById('quizContainer').classList.add('hidden');
+        document.getElementById('resultsContainer').classList.remove('hidden');
+
+        // Update results
+        document.getElementById('scoreValue').textContent = score;
+        document.getElementById('resultTitle').textContent = tier.title;
+        document.getElementById('resultPercent').textContent = percent + '% Score';
+        document.getElementById('resultMessage').textContent = tier.message;
+
+        // Update result icon color and icon
+        const resultIconEl = document.getElementById('resultIcon');
+        resultIconEl.style.backgroundColor = tier.color;
+        resultIconEl.querySelector('svg').innerHTML = getIconPath(tier.icon);
+
+        // Animate score ring
+        const circumference = 2 * Math.PI * 54;
+        const offset = circumference - (percent / 100) * circumference;
+        const ring = document.getElementById('scoreRing');
+        ring.style.stroke = tier.color;
+        setTimeout(() => {
+            ring.style.strokeDashoffset = offset;
+        }, 100);
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function getIconPath(iconName) {
+        const icons = {
+            'emoji_events': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>',
+            'thumb_up': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>',
+            'check_circle': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+            'sentiment_neutral': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+            'trending_up': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>'
+        };
+        return icons[iconName] || icons['check_circle'];
+    }
+
+    // Show review section
+    function showReview() {
+        const reviewCards = document.getElementById('reviewCards');
+
+        let html = '';
+        questions.forEach((q, i) => {
+            const userAnswer = userAnswers[i];
+            const isCorrect = userAnswer === q.correct;
+            const userOption = q.options.find(o => o.key === userAnswer);
+            const correctOption = q.options.find(o => o.key === q.correct);
+
+            html += `
+                <div class="card p-4 border-l-4 ${isCorrect ? 'border-success' : 'border-danger'}">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="w-8 h-8 rounded-full bg-background-secondary flex items-center justify-center text-foreground-muted font-bold">${q.id}</span>
+                        <svg class="w-6 h-6 ${isCorrect ? 'text-success' : 'text-danger'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${isCorrect ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+                        </svg>
+                    </div>
+                    <p class="text-foreground font-medium mb-3">${q.text}</p>
+                    <div class="space-y-2 mb-3">
+                        <div class="p-2 rounded ${isCorrect ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}">
+                            <strong>Your answer:</strong> ${userOption ? userOption.text : 'Not answered'}
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="p-2 rounded bg-success/10 text-success">
+                            <strong>Correct answer:</strong> ${correctOption.text}
+                        </div>
+                        ` : ''}
+                    </div>
+                    <p class="text-foreground-muted text-sm">${q.explanation}</p>
+                </div>
+            `;
+        });
+
+        reviewCards.innerHTML = html;
+
+        document.getElementById('resultsContainer').classList.add('hidden');
+        document.getElementById('reviewContainer').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Hide review section
+    function hideReview() {
+        document.getElementById('reviewContainer').classList.add('hidden');
+        document.getElementById('resultsContainer').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Retake quiz
+    function retakeQuiz() {
+        currentIndex = 0;
+        userAnswers = {};
+        answered = {};
+
+        document.getElementById('resultsContainer').classList.add('hidden');
+        document.getElementById('reviewContainer').classList.add('hidden');
+        document.getElementById('quizContainer').classList.remove('hidden');
+
+        // Reset score ring
+        document.getElementById('scoreRing').style.strokeDashoffset = '339.292';
+
+        initQuiz();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initQuiz);
+</script>
+{% endblock %}

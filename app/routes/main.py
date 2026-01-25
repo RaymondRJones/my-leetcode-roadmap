@@ -1,7 +1,8 @@
 """
 Main routes blueprint for pages.
 """
-from flask import Blueprint, render_template, redirect, current_app
+import os
+from flask import Blueprint, render_template, redirect, current_app, request
 
 from ..auth.access import get_current_user, has_premium_access, is_admin
 from ..auth.decorators import login_required, premium_required, ai_access_required, guides_required
@@ -9,6 +10,30 @@ from ..models.course import get_sorted_courses
 from ..services.assessment_service import AssessmentService
 
 main_bp = Blueprint('main', __name__)
+
+
+def get_themed_template(base_name):
+    """
+    Get the appropriate template based on user's theme preference.
+
+    Args:
+        base_name: Base template name without extension (e.g., 'classroom')
+
+    Returns:
+        Template path based on theme ('dark' = *_tw.html, 'legacy' = *.html)
+    """
+    theme = request.cookies.get('theme', 'dark')
+
+    if theme == 'dark':
+        tw_template = f"{base_name}_tw.html"
+        # Check if TailwindCSS template exists using absolute path
+        # current_app.root_path is the app directory, template_folder is relative to it
+        template_path = os.path.join(current_app.root_path, current_app.template_folder, tw_template)
+        if os.path.exists(template_path):
+            return tw_template
+
+    # Fall back to legacy template
+    return f"{base_name}.html"
 
 
 # Behavioral questions data
@@ -72,7 +97,7 @@ BEHAVIORAL_QUESTIONS = {
 def index():
     """Classroom homepage - Central hub for all courses."""
     courses = get_sorted_courses()
-    return render_template('classroom.html', courses=courses)
+    return render_template(get_themed_template('classroom'), courses=courses)
 
 
 @main_bp.route('/classroom')
@@ -84,14 +109,14 @@ def classroom():
 @main_bp.route('/landing')
 def sales_page():
     """Sales page showing all available premium roadmaps."""
-    return render_template('sales_homepage.html')
+    return render_template(get_themed_template('sales_homepage'))
 
 
 @main_bp.route('/intermediate')
 def intermediate_view():
     """Intermediate roadmap (Fortune500) - Free for all users."""
     roadmap_service = current_app.roadmap
-    return render_template('intermediate.html', roadmap=roadmap_service.get_ordered_intermediate_roadmap_data())
+    return render_template(get_themed_template('intermediate'), roadmap=roadmap_service.get_ordered_intermediate_roadmap_data())
 
 
 @main_bp.route('/advanced')
@@ -99,7 +124,7 @@ def intermediate_view():
 def advanced_view():
     """Advanced roadmap page - Premium content."""
     roadmap_service = current_app.roadmap
-    return render_template('index.html', roadmap=roadmap_service.get_ordered_roadmap_data())
+    return render_template(get_themed_template('index'), roadmap=roadmap_service.get_ordered_roadmap_data())
 
 
 @main_bp.route('/advanced/month/<month_name>')
@@ -109,7 +134,7 @@ def advanced_month_view(month_name):
     roadmap_service = current_app.roadmap
     original_month = roadmap_service.get_original_month_name(month_name)
     month_data = roadmap_service.get_month_data(original_month)
-    return render_template('month.html', month=month_name, days=month_data)
+    return render_template(get_themed_template('month'), month=month_name, days=month_data)
 
 
 @main_bp.route('/month/<month_name>')
@@ -132,14 +157,14 @@ def intermediate_month_view(month_name):
     roadmap_service = current_app.roadmap
     ordered_data = roadmap_service.get_ordered_intermediate_roadmap_data()
     month_data = ordered_data.get(month_name, [])
-    return render_template('month.html', month=f"Intermediate {month_name}", days=month_data, is_intermediate=True)
+    return render_template(get_themed_template('month'), month=f"Intermediate {month_name}", days=month_data, is_intermediate=True)
 
 
 @main_bp.route('/beginner')
 def beginner_view():
     """View for beginner AtCoder problems."""
     roadmap_service = current_app.roadmap
-    return render_template('beginner.html', atcoder_data=roadmap_service.get_atcoder_problems())
+    return render_template(get_themed_template('beginner'), atcoder_data=roadmap_service.get_atcoder_problems())
 
 
 @main_bp.route('/beginner/problem/<int:problem_id>')
@@ -152,7 +177,7 @@ def beginner_problem_editor(problem_id):
         problem = problems[problem_id]
         total_problems = len(problems)
         return render_template(
-            'beginner/problem.html',
+            get_themed_template('beginner/problem'),
             problem=problem,
             problem_id=problem_id,
             total_problems=total_problems,
@@ -171,35 +196,35 @@ def software_roadmap():
 @main_bp.route('/about')
 def about():
     """About Raymond and his journey."""
-    return render_template('about.html')
+    return render_template(get_themed_template('about'))
 
 
 @main_bp.route('/python-assessment')
 def python_assessment():
     """Python programming assessment quiz."""
     quiz_data = AssessmentService.get_python_assessment()
-    return render_template('assessment_quiz.html', quiz=quiz_data)
+    return render_template(get_themed_template('assessment_quiz'), quiz=quiz_data)
 
 
 @main_bp.route('/java-assessment')
 def java_assessment():
     """Java programming assessment quiz."""
     quiz_data = AssessmentService.get_java_assessment()
-    return render_template('assessment_quiz.html', quiz=quiz_data)
+    return render_template(get_themed_template('assessment_quiz'), quiz=quiz_data)
 
 
 @main_bp.route('/guides')
 @guides_required
 def guides():
     """Guides landing page with all available guides."""
-    return render_template('guides.html')
+    return render_template(get_themed_template('guides'))
 
 
 @main_bp.route('/behavioral-guide')
 @ai_access_required
 def behavioral_guide():
     """Behavioral Interview Guide with AI Helper - AI Access Required."""
-    return render_template('behavioral_guide.html', questions=BEHAVIORAL_QUESTIONS)
+    return render_template(get_themed_template('behavioral_guide'), questions=BEHAVIORAL_QUESTIONS)
 
 
 @main_bp.route('/complete-list')
@@ -208,22 +233,22 @@ def complete_list():
     """Complete question list with customizable time sliders."""
     roadmap_service = current_app.roadmap
     all_questions = roadmap_service.get_all_problems()
-    return render_template('complete_list.html', questions_data=all_questions)
+    return render_template(get_themed_template('complete_list'), questions_data=all_questions)
 
 
 @main_bp.route('/privacy')
 def privacy_policy():
     """Privacy Policy page."""
-    return render_template('privacy_policy.html')
+    return render_template(get_themed_template('privacy_policy'))
 
 
 @main_bp.route('/terms')
 def terms_of_service():
     """Terms of Service page."""
-    return render_template('terms_of_service.html')
+    return render_template(get_themed_template('terms_of_service'))
 
 
 @main_bp.route('/coaching')
 def coaching():
     """Coaching page with Skool community and 1-1 coaching offerings."""
-    return render_template('coaching.html')
+    return render_template(get_themed_template('coaching'))

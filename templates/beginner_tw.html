@@ -1,0 +1,588 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Complete Beginner Roadmap - Programming Fundamentals{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="text-center mb-8">
+    <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+    </div>
+    <h1 class="text-4xl font-bold text-foreground mb-4">Complete Beginner Roadmap</h1>
+    <p class="text-foreground-muted text-lg max-w-2xl mx-auto">Master the core programming skills needed for success in college coursework and personal projects</p>
+</div>
+
+<!-- Info Card -->
+<div class="card mb-8">
+    <h3 class="text-xl font-semibold text-foreground text-center mb-4">Programming Fundamentals for College & Side Projects</h3>
+    <p class="text-foreground-muted text-center mb-6">
+        Focus on <strong class="text-foreground">for-loops, arrays, and conditional logic</strong> - the building blocks of all programming.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+            <div class="flex gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-primary font-medium">Practice Environment</h4>
+                    <p class="text-foreground-muted text-sm">Use <strong>LeetCode Playground</strong> or your local IDE to write functions that accept parameters and test your solutions.</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-primary font-medium">Get Help When Stuck</h4>
+                    <p class="text-foreground-muted text-sm">Use an LLM (like ChatGPT/Claude) to help with input parsing if needed, but focus on the core logic.</p>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div class="flex gap-3">
+                <div class="w-10 h-10 rounded-lg bg-success/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-success font-medium">Core Skills Focus</h4>
+                    <p class="text-foreground-muted text-sm"><strong>For-loops, arrays, conditionals</strong> - the most important skills for college and side projects.</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <div class="w-10 h-10 rounded-lg bg-warning/20 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="text-warning font-medium">What Matters Most</h4>
+                    <p class="text-foreground-muted text-sm">Input parsing is less important - focus on problem-solving logic and algorithm thinking.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if atcoder_data and atcoder_data.problems %}
+<!-- Statistics Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="stat-card text-center">
+        <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        </svg>
+        <p class="text-3xl font-bold text-primary mb-1">{{ atcoder_data.problems|length }}</p>
+        <p class="text-foreground-muted font-medium">Fundamental Problems</p>
+    </div>
+    <div class="stat-card text-center">
+        <svg class="w-12 h-12 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+        </svg>
+        <p class="text-3xl font-bold text-primary mb-1">Complete</p>
+        <p class="text-foreground-muted font-medium">Beginner Level</p>
+    </div>
+</div>
+
+<!-- Filter and Sort Controls -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="card">
+        <h4 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+            </svg>
+            Filter by Difficulty
+        </h4>
+        <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium active" onclick="filterByDifficulty('all', this)">All</button>
+            <button class="px-4 py-2 rounded-lg bg-background-secondary text-foreground-muted text-sm font-medium hover:bg-success/20 hover:text-success transition-colors" onclick="filterByDifficulty('1', this)">Level 1-2</button>
+            <button class="px-4 py-2 rounded-lg bg-background-secondary text-foreground-muted text-sm font-medium hover:bg-warning/20 hover:text-warning transition-colors" onclick="filterByDifficulty('3', this)">Level 3</button>
+            <button class="px-4 py-2 rounded-lg bg-background-secondary text-foreground-muted text-sm font-medium hover:bg-danger/20 hover:text-danger transition-colors" onclick="filterByDifficulty('4', this)">Level 4-5</button>
+        </div>
+    </div>
+    <div class="card">
+        <h4 class="font-semibold text-foreground mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+            Key Concepts
+        </h4>
+        <div class="flex flex-wrap gap-2">
+            {% set all_concepts = [] %}
+            {% for problem in atcoder_data.problems %}
+                {% if problem.simplified and problem.simplified.key_concepts %}
+                    {% for concept in problem.simplified.key_concepts %}
+                        {% if concept not in all_concepts %}
+                            {% set _ = all_concepts.append(concept) %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% for concept in all_concepts[:6] %}
+                <span class="px-2 py-1 bg-foreground-subtle/20 text-foreground-muted text-xs rounded">{{ concept }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Problems Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8" id="problemsGrid">
+    {% for problem in atcoder_data.problems %}
+    <div class="problem-item"
+         data-difficulty="{{ problem.simplified.estimated_difficulty if problem.simplified else 3 }}"
+         data-problem-id="{{ loop.index0 }}">
+        <div class="card h-full flex flex-col">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-foreground-muted text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    {{ problem.contest }}
+                </span>
+                {% set diff = problem.simplified.estimated_difficulty if problem.simplified else 3 %}
+                {% if diff <= 2 %}
+                    <span class="badge-easy">Easy</span>
+                {% elif diff == 3 %}
+                    <span class="badge-medium">Medium</span>
+                {% else %}
+                    <span class="badge-hard">Hard</span>
+                {% endif %}
+            </div>
+
+            <h3 class="font-semibold text-foreground mb-3">{{ problem.title }}</h3>
+
+            {% if problem.simplified %}
+            <p class="text-foreground-muted text-sm mb-4 flex-grow">
+                {{ problem.simplified.simplified_explanation }}
+            </p>
+
+            <div class="mb-4">
+                <p class="text-primary text-sm font-medium mb-2">Key Concepts:</p>
+                <div class="flex flex-wrap gap-1">
+                    {% if problem.simplified.key_concepts is string %}
+                        {% set concepts = problem.simplified.key_concepts.split(', ') %}
+                    {% else %}
+                        {% set concepts = problem.simplified.key_concepts %}
+                    {% endif %}
+                    {% for concept in concepts[:3] %}
+                        <span class="px-2 py-1 bg-background-secondary text-foreground-muted text-xs rounded">{{ concept }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="flex gap-2 mt-auto">
+                <a href="/beginner/problem/{{ loop.index0 }}" class="btn-primary flex-1 text-center">
+                    <svg class="w-4 h-4 mr-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Solve
+                </a>
+                <button class="btn-secondary px-3"
+                        onclick="showSimplifiedProblem({{ loop.index0 }})"
+                        title="Quick View">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                </button>
+                <button class="btn-secondary px-3"
+                        onclick="markAsCompleted({{ loop.index0 }})"
+                        id="complete-btn-{{ loop.index0 }}"
+                        title="Mark Complete">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Progress Tracking -->
+<div class="card">
+    <h3 class="font-semibold text-foreground mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+        </svg>
+        Your Learning Progress
+    </h3>
+    <div class="w-full bg-background-secondary rounded-full h-6 mb-6">
+        <div class="bg-primary h-6 rounded-full flex items-center justify-center text-white text-sm font-medium transition-all duration-500"
+             role="progressbar" style="width: 0%" id="overallProgress">
+            <span id="progressText">0 / {{ atcoder_data.problems|length }} completed</span>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div>
+            <p class="text-2xl font-bold text-success" id="easyCount">0</p>
+            <p class="text-foreground-muted text-sm">Easy Completed</p>
+        </div>
+        <div>
+            <p class="text-2xl font-bold text-warning" id="mediumCount">0</p>
+            <p class="text-foreground-muted text-sm">Medium Completed</p>
+        </div>
+        <div>
+            <p class="text-2xl font-bold text-danger" id="hardCount">0</p>
+            <p class="text-foreground-muted text-sm">Hard Completed</p>
+        </div>
+        <div>
+            <p class="text-2xl font-bold text-primary" id="streakCount">0</p>
+            <p class="text-foreground-muted text-sm">Day Streak</p>
+        </div>
+    </div>
+</div>
+
+<!-- Problem Modal -->
+<div id="problemModal" class="fixed inset-0 z-50 hidden" x-data="{ open: false }">
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeProblemModal()"></div>
+    <div class="fixed inset-0 flex items-center justify-center p-4">
+        <div class="bg-background-elevated rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-border">
+            <div class="p-6 border-b border-border flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                    </svg>
+                    <span id="modalTitle">Problem Title</span>
+                </h3>
+                <button onclick="closeProblemModal()" class="text-foreground-muted hover:text-foreground">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <!-- Simplified Problem Statement -->
+                <div class="p-4 bg-primary/10 rounded-lg border border-primary/20 mb-6">
+                    <h4 class="text-primary font-medium mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        Simplified Problem
+                    </h4>
+                    <p id="modalSimplifiedExplanation" class="text-foreground-muted">Problem explanation will appear here...</p>
+                </div>
+
+                <!-- Key Concepts -->
+                <div class="mb-6">
+                    <h4 class="text-foreground font-medium mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                        What You'll Practice
+                    </h4>
+                    <div id="modalKeyConcepts" class="flex flex-wrap gap-2">
+                        <!-- Concept badges will be added here -->
+                    </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="mb-6">
+                    <h4 class="text-foreground font-medium mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-warning" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        Difficulty
+                    </h4>
+                    <div id="modalDifficulty" class="flex items-center gap-2">
+                        <!-- Stars will be added here -->
+                    </div>
+                </div>
+
+                <!-- Sample Cases -->
+                <div class="mb-6" id="modalSampleSection" style="display: none;">
+                    <h4 class="text-foreground font-medium mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Example
+                    </h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-foreground-muted text-sm mb-1"><strong>Input:</strong></p>
+                            <pre class="bg-background-secondary p-3 rounded text-sm overflow-x-auto" id="modalSampleInput"></pre>
+                        </div>
+                        <div>
+                            <p class="text-foreground-muted text-sm mb-1"><strong>Output:</strong></p>
+                            <pre class="bg-background-secondary p-3 rounded text-sm overflow-x-auto" id="modalSampleOutput"></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Encouragement -->
+                <div class="p-4 bg-success/10 rounded-lg border border-success/20">
+                    <h4 class="text-success font-medium mb-2 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Ready to Code?
+                    </h4>
+                    <p class="text-foreground-muted text-sm">Take your time to understand the problem, then click "Solve on LeetCode Playground" to start coding!</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-border flex flex-wrap gap-3 justify-end">
+                <button onclick="closeProblemModal()" class="btn-secondary">
+                    Close
+                </button>
+                <a href="https://leetcode.com/playground/new/empty" target="_blank" class="btn-primary">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Solve on LeetCode
+                </a>
+                <button id="modalCompleteButton" class="btn-success">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Mark Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let completedProblems = new Set();
+let currentFilter = 'all';
+let problemsData = {{ atcoder_data.problems|tojson|safe }};
+let currentModalProblemIndex = null;
+
+// Show simplified problem in modal
+function showSimplifiedProblem(problemIndex) {
+    currentModalProblemIndex = problemIndex;
+    const problem = problemsData[problemIndex];
+    if (!problem) return;
+
+    document.getElementById('modalTitle').textContent = problem.title;
+
+    const explanation = problem.simplified ? problem.simplified.simplified_explanation : 'Problem explanation not available.';
+    document.getElementById('modalSimplifiedExplanation').textContent = explanation;
+
+    const conceptsContainer = document.getElementById('modalKeyConcepts');
+    conceptsContainer.innerHTML = '';
+    if (problem.simplified && problem.simplified.key_concepts) {
+        let concepts = problem.simplified.key_concepts;
+        if (typeof concepts === 'string') {
+            concepts = concepts.split(', ');
+        }
+        concepts.forEach(concept => {
+            const badge = document.createElement('span');
+            badge.className = 'px-2 py-1 bg-primary/20 text-primary text-sm rounded';
+            badge.textContent = concept;
+            conceptsContainer.appendChild(badge);
+        });
+    }
+
+    const difficultyContainer = document.getElementById('modalDifficulty');
+    difficultyContainer.innerHTML = '';
+    const difficulty = problem.simplified ? problem.simplified.estimated_difficulty : 3;
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        star.setAttribute('class', `w-5 h-5 ${i <= difficulty ? 'text-warning' : 'text-foreground-subtle'}`);
+        star.setAttribute('fill', i <= difficulty ? 'currentColor' : 'none');
+        star.setAttribute('stroke', 'currentColor');
+        star.setAttribute('viewBox', '0 0 24 24');
+        star.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>';
+        difficultyContainer.appendChild(star);
+    }
+    const diffText = document.createElement('span');
+    diffText.className = 'text-foreground-muted text-sm ml-2';
+    diffText.textContent = `(${difficulty}/5)`;
+    difficultyContainer.appendChild(diffText);
+
+    const sampleSection = document.getElementById('modalSampleSection');
+    if (problem.sample_cases && problem.sample_cases.length > 0) {
+        const firstSample = problem.sample_cases[0];
+        document.getElementById('modalSampleInput').textContent = firstSample.input || 'No input example';
+        document.getElementById('modalSampleOutput').textContent = firstSample.output || 'No output example';
+        sampleSection.style.display = 'block';
+    } else {
+        sampleSection.style.display = 'none';
+    }
+
+    const completeButton = document.getElementById('modalCompleteButton');
+    completeButton.onclick = () => {
+        markAsCompleted(problemIndex);
+        updateModalCompleteButton(problemIndex);
+    };
+
+    updateModalCompleteButton(problemIndex);
+
+    document.getElementById('problemModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function updateModalCompleteButton(problemIndex) {
+    const completeButton = document.getElementById('modalCompleteButton');
+    if (completedProblems.has(problemIndex)) {
+        completeButton.innerHTML = '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Completed!';
+        completeButton.className = 'btn-secondary';
+    } else {
+        completeButton.innerHTML = '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Mark Complete';
+        completeButton.className = 'btn-success';
+    }
+}
+
+function closeProblemModal() {
+    document.getElementById('problemModal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeProblemModal();
+});
+
+function loadProgress() {
+    const saved = localStorage.getItem('atcoder_progress');
+    if (saved) {
+        completedProblems = new Set(JSON.parse(saved));
+        completedProblems.forEach(problemId => {
+            const btn = document.getElementById(`complete-btn-${problemId}`);
+            if (btn) {
+                btn.classList.add('!bg-success', '!text-white', '!border-success');
+                btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+            }
+        });
+    }
+    updateProgress();
+}
+
+function saveProgress() {
+    localStorage.setItem('atcoder_progress', JSON.stringify([...completedProblems]));
+    localStorage.setItem('atcoder_last_activity', new Date().toDateString());
+}
+
+function markAsCompleted(problemId) {
+    const btn = document.getElementById(`complete-btn-${problemId}`);
+
+    if (completedProblems.has(problemId)) {
+        completedProblems.delete(problemId);
+        btn.classList.remove('!bg-success', '!text-white', '!border-success');
+        btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+    } else {
+        completedProblems.add(problemId);
+        btn.classList.add('!bg-success', '!text-white', '!border-success');
+        btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+        showCelebration();
+    }
+
+    saveProgress();
+    updateProgress();
+}
+
+function showCelebration() {
+    const celebration = document.createElement('div');
+    celebration.innerHTML = 'Great job! Keep it up!';
+    celebration.className = 'fixed top-4 right-4 bg-gradient-to-r from-success to-primary text-white px-6 py-3 rounded-xl font-semibold shadow-lg z-50 animate-pulse';
+    document.body.appendChild(celebration);
+    setTimeout(() => document.body.removeChild(celebration), 3000);
+}
+
+function updateProgress() {
+    const total = {{ atcoder_data.problems|length }};
+    const completed = completedProblems.size;
+    const percentage = (completed / total) * 100;
+
+    const progressBar = document.getElementById('overallProgress');
+    progressBar.style.width = percentage + '%';
+    document.getElementById('progressText').textContent = `${completed} / ${total} completed`;
+
+    let easyCount = 0, mediumCount = 0, hardCount = 0;
+    completedProblems.forEach(id => {
+        const difficulty = parseInt(document.querySelector(`[data-problem-id="${id}"]`)?.dataset.difficulty || '3');
+        if (difficulty <= 2) easyCount++;
+        else if (difficulty === 3) mediumCount++;
+        else hardCount++;
+    });
+
+    document.getElementById('easyCount').textContent = easyCount;
+    document.getElementById('mediumCount').textContent = mediumCount;
+    document.getElementById('hardCount').textContent = hardCount;
+
+    updateStreak();
+}
+
+function updateStreak() {
+    const lastActivity = localStorage.getItem('atcoder_last_activity');
+    const today = new Date().toDateString();
+
+    let streak = parseInt(localStorage.getItem('atcoder_streak') || '0');
+
+    if (lastActivity === today) {
+        // Same day
+    } else if (lastActivity) {
+        const lastDate = new Date(lastActivity);
+        const todayDate = new Date(today);
+        const diffDays = (todayDate - lastDate) / (1000 * 60 * 60 * 24);
+
+        if (diffDays === 1) {
+            streak++;
+            localStorage.setItem('atcoder_streak', streak.toString());
+        } else if (diffDays > 1) {
+            streak = completedProblems.size > 0 ? 1 : 0;
+            localStorage.setItem('atcoder_streak', streak.toString());
+        }
+    }
+
+    document.getElementById('streakCount').textContent = streak;
+}
+
+function filterByDifficulty(level, clickedBtn) {
+    currentFilter = level;
+    const problems = document.querySelectorAll('.problem-item');
+
+    document.querySelectorAll('[onclick^="filterByDifficulty"]').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('bg-background-secondary', 'text-foreground-muted');
+    });
+    clickedBtn.classList.remove('bg-background-secondary', 'text-foreground-muted');
+    clickedBtn.classList.add('bg-primary', 'text-white');
+
+    problems.forEach(problem => {
+        const difficulty = parseInt(problem.dataset.difficulty);
+        let show = false;
+
+        switch(level) {
+            case 'all': show = true; break;
+            case '1': show = difficulty <= 2; break;
+            case '3': show = difficulty === 3; break;
+            case '4': show = difficulty >= 4; break;
+        }
+
+        problem.style.display = show ? 'block' : 'none';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadProgress);
+</script>
+
+{% else %}
+<div class="card text-center py-12">
+    <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <h3 class="text-xl font-semibold text-foreground mb-2">No Beginner Problems Found</h3>
+    <p class="text-foreground-muted mb-4">Run the AtCoder scraper to generate beginner-friendly problems:</p>
+    <code class="bg-background-secondary px-4 py-2 rounded text-foreground-muted">cd scripts && python atcoder_scraper.py</code>
+    <div class="mt-6">
+        <a href="/" class="btn-primary">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back to Advanced Roadmap
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

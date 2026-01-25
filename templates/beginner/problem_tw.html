@@ -1,0 +1,525 @@
+{% extends "base_tw.html" %}
+
+{% block title %}{{ problem.title }} - Beginner Training{% endblock %}
+
+{% block content %}
+<!-- Load Pyodide for Python execution -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+<!-- Load Monaco Editor -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/editor/editor.main.css">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div>
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-foreground-muted mb-2">
+            <a href="/" class="hover:text-primary">Home</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <a href="/beginner" class="hover:text-primary">Beginner Training</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <span class="text-foreground">{{ problem.title }}</span>
+        </nav>
+        <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-bold text-foreground">{{ problem.title }}</h1>
+            <span class="px-2 py-1 bg-primary/20 text-primary text-sm rounded">{{ problem.contest }}</span>
+            <span id="completedBadge" class="px-2 py-1 bg-success/20 text-success text-sm rounded hidden">Completed</span>
+        </div>
+    </div>
+    <div class="flex gap-2">
+        {% if prev_id is not none %}
+        <a href="/beginner/problem/{{ prev_id }}" class="btn-secondary px-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </a>
+        {% endif %}
+        <a href="/beginner" class="btn-secondary">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+            </svg>
+            All Problems
+        </a>
+        {% if next_id is not none %}
+        <a href="/beginner/problem/{{ next_id }}" class="btn-secondary px-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+    <!-- Problem Description Panel -->
+    <div class="lg:col-span-2">
+        <div class="card">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="font-semibold text-foreground">Problem {{ problem_id + 1 }} of {{ total_problems }}</h3>
+                {% set difficulty = problem.simplified.estimated_difficulty if problem.simplified else 2 %}
+                {% if difficulty <= 2 %}
+                    <span class="badge-easy">Easy</span>
+                {% elif difficulty == 3 %}
+                    <span class="badge-medium">Medium</span>
+                {% else %}
+                    <span class="badge-hard">Hard</span>
+                {% endif %}
+            </div>
+
+            <hr class="border-border mb-4">
+
+            <!-- Simplified Explanation -->
+            <div class="p-4 bg-primary/10 rounded-lg border border-primary/20 mb-6">
+                <h4 class="font-medium text-primary mb-2 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    What to do
+                </h4>
+                <p class="text-foreground-muted text-sm">{{ problem.simplified.simplified_explanation if problem.simplified else 'Solve the problem as described.' }}</p>
+            </div>
+
+            <!-- Key Concepts -->
+            <h4 class="font-medium text-foreground mb-3">Key Concepts</h4>
+            <div class="flex flex-wrap gap-2 mb-6">
+                {% set concepts = problem.simplified.key_concepts if problem.simplified else [] %}
+                {% for concept in concepts %}
+                <span class="px-2 py-1 bg-primary/20 text-primary text-sm rounded">{{ concept }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- Example Test Cases -->
+            <h4 class="font-medium text-foreground mb-3">Examples</h4>
+            {% if problem.test_cases %}
+            {% for test_case in problem.test_cases[:2] %}
+            <div class="bg-background-secondary rounded-lg p-4 mb-3">
+                <p class="text-foreground-muted text-sm mb-1">
+                    <strong class="text-foreground">Input:</strong>
+                    <code class="bg-background px-1 rounded">{{ test_case.input }}</code>
+                </p>
+                <p class="text-foreground-muted text-sm">
+                    <strong class="text-foreground">Output:</strong>
+                    <code class="bg-background px-1 rounded">{{ test_case.expected }}</code>
+                </p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="text-foreground-muted text-sm">No examples available yet.</p>
+            {% endif %}
+
+            <!-- External Links -->
+            <div class="flex gap-2 mt-6">
+                <a href="https://leetcode.com/playground/new/empty" target="_blank" class="btn-secondary text-sm">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    LeetCode Playground
+                </a>
+                <a href="{{ problem.url }}" target="_blank" class="btn-secondary text-sm">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                    View on AtCoder
+                </a>
+            </div>
+        </div>
+
+        <!-- Tips Card -->
+        <div class="card mt-6">
+            <h4 class="font-medium text-foreground mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                Tips for Beginners
+            </h4>
+            <ul class="text-foreground-muted text-sm space-y-2">
+                <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Focus on understanding the logic, not memorizing syntax
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Use print statements to debug your code
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Don't worry about input parsing - the function handles that for you
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+                    </svg>
+                    If stuck, try writing out your solution on paper first
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Code Editor Panel -->
+    <div class="lg:col-span-3">
+        <div class="card">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-semibold text-foreground flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                    Python Editor
+                </h3>
+                <div id="pyodideStatus" class="text-foreground-muted text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Loading Python...
+                </div>
+            </div>
+
+            <!-- Code Editor (Monaco) -->
+            <div id="codeEditor" class="mb-4 rounded-lg overflow-hidden border border-border" style="height: 350px;"></div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button id="runBtn" onclick="runCode()" class="btn-primary" disabled>
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                    </svg>
+                    Run Tests
+                </button>
+                <button id="resetBtn" onclick="resetCode()" class="btn-secondary">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Reset
+                </button>
+                <button id="markCompleteBtn" onclick="markAsComplete()" class="btn-success ml-auto">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Mark Complete
+                </button>
+            </div>
+
+            <!-- Test Results -->
+            <div id="testResults" class="hidden">
+                <h4 class="font-medium text-foreground mb-3">Test Results</h4>
+                <div id="testResultsContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Toast -->
+<div id="successToast" class="fixed bottom-4 right-4 bg-success text-white px-6 py-4 rounded-xl shadow-lg z-50 hidden transform transition-transform duration-300">
+    <div class="flex items-center gap-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+            <p class="font-semibold">Problem Solved!</p>
+            <p class="text-sm text-white/80">Great job! You've completed this problem.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+let pyodide = null;
+let editor = null;
+const problemId = {{ problem_id }};
+const starterCode = {{ problem.starter_code | tojson if problem.starter_code else '"# No starter code available\\npass"' }};
+const testCases = {{ problem.test_cases | tojson if problem.test_cases else '[]' }};
+
+const STORAGE_KEY = 'atcoder_progress';
+
+function isCompleted() {
+    try {
+        const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        return progress.includes(problemId);
+    } catch {
+        return false;
+    }
+}
+
+function saveCompletion() {
+    try {
+        let progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (!progress.includes(problemId)) {
+            progress.push(problemId);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        }
+        localStorage.setItem('atcoder_last_activity', new Date().toDateString());
+    } catch (e) {
+        console.error('Failed to save progress:', e);
+    }
+}
+
+function updateCompletedState() {
+    if (isCompleted()) {
+        document.getElementById('completedBadge').classList.remove('hidden');
+        document.getElementById('markCompleteBtn').innerHTML = `
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Completed
+        `;
+        document.getElementById('markCompleteBtn').classList.remove('btn-success');
+        document.getElementById('markCompleteBtn').classList.add('btn-secondary');
+    }
+}
+
+function markAsComplete() {
+    saveCompletion();
+    updateCompletedState();
+    showSuccessToast();
+}
+
+function initMonaco() {
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        // Define dark theme
+        monaco.editor.defineTheme('dark-theme', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: [
+                { token: 'comment', foreground: '6A9955', fontStyle: 'italic' },
+                { token: 'keyword', foreground: '569CD6' },
+                { token: 'string', foreground: 'CE9178' },
+                { token: 'number', foreground: 'B5CEA8' },
+                { token: 'type', foreground: '4EC9B0' },
+                { token: 'function', foreground: 'DCDCAA' },
+            ],
+            colors: {
+                'editor.background': '#111113',
+                'editor.foreground': '#D4D4D4',
+                'editorLineNumber.foreground': '#858585',
+                'editor.selectionBackground': '#264F78',
+                'editor.lineHighlightBackground': '#1A1A1D',
+            }
+        });
+
+        editor = monaco.editor.create(document.getElementById('codeEditor'), {
+            value: starterCode,
+            language: 'python',
+            theme: 'dark-theme',
+            fontSize: 14,
+            lineNumbers: 'on',
+            minimap: { enabled: false },
+            automaticLayout: true,
+            tabSize: 4,
+            insertSpaces: true,
+            wordWrap: 'on',
+            scrollBeyondLastLine: false,
+            renderLineHighlight: 'line',
+            padding: { top: 12, bottom: 12 },
+            fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
+            fontLigatures: true,
+        });
+    });
+}
+
+async function initPyodide() {
+    try {
+        pyodide = await loadPyodide();
+        document.getElementById('runBtn').disabled = false;
+        document.getElementById('pyodideStatus').innerHTML = `
+            <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="text-success">Python Ready</span>
+        `;
+    } catch (error) {
+        console.error('Failed to load Pyodide:', error);
+        document.getElementById('pyodideStatus').innerHTML = `
+            <svg class="w-4 h-4 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="text-danger">Failed to load Python</span>
+        `;
+    }
+}
+
+function normalizeOutput(str) {
+    if (!str) return '';
+    let normalized = String(str).trim();
+    normalized = normalized.replace(/\r/g, '');
+    normalized = normalized.replace(/\[\s*/g, '[').replace(/\s*\]/g, ']');
+    normalized = normalized.replace(/\(\s*/g, '(').replace(/\s*\)/g, ')');
+    normalized = normalized.replace(/,\s*/g, ', ');
+    return normalized;
+}
+
+async function runCode() {
+    if (!pyodide) {
+        alert('Python is still loading. Please wait.');
+        return;
+    }
+
+    if (!editor) {
+        alert('Editor is still loading. Please wait.');
+        return;
+    }
+
+    const userCode = editor.getValue();
+    const resultsDiv = document.getElementById('testResults');
+    const resultsContent = document.getElementById('testResultsContent');
+
+    resultsDiv.classList.remove('hidden');
+
+    if (!testCases || testCases.length === 0) {
+        resultsContent.innerHTML = `
+            <div class="p-4 bg-warning/10 rounded-lg border border-warning/20">
+                <p class="text-warning">No test cases available for this problem yet. You can still mark it complete manually.</p>
+            </div>
+        `;
+        return;
+    }
+
+    resultsContent.innerHTML = '<div class="flex items-center gap-2 text-foreground-muted"><svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Running tests...</div>';
+
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    let allPassed = true;
+    let results = [];
+    let passedCount = 0;
+    let failedCount = 0;
+
+    for (let i = 0; i < testCases.length; i++) {
+        const test = testCases[i];
+        let passed = false;
+        let actual = '';
+
+        try {
+            await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()
+`);
+
+            const fullCode = `${userCode}
+
+result = ${test.function_call}
+print(result)
+`;
+
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error('Test timed out (5 seconds)')), 5000);
+            });
+
+            await Promise.race([
+                pyodide.runPythonAsync(fullCode),
+                timeoutPromise
+            ]);
+
+            actual = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+            actual = String(actual).trim();
+
+            const normalizedActual = normalizeOutput(actual);
+            const normalizedExpected = normalizeOutput(test.expected);
+            passed = normalizedActual === normalizedExpected;
+
+        } catch (error) {
+            actual = `Error: ${error.message}`;
+            passed = false;
+        }
+
+        if (!passed) {
+            allPassed = false;
+            failedCount++;
+        } else {
+            passedCount++;
+        }
+
+        results.push({ test, passed, actual, index: i + 1 });
+        await new Promise(resolve => setTimeout(resolve, 10));
+    }
+
+    let resultsHTML = '';
+
+    if (allPassed) {
+        resultsHTML = `
+            <div class="p-4 bg-success/10 rounded-lg border border-success/20 mb-4">
+                <p class="text-success font-medium flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    All ${testCases.length} test cases passed!
+                </p>
+            </div>
+        `;
+        saveCompletion();
+        updateCompletedState();
+        showSuccessToast();
+    } else {
+        resultsHTML = `
+            <div class="p-4 bg-warning/10 rounded-lg border border-warning/20 mb-4">
+                <p class="text-warning font-medium flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    ${passedCount}/${testCases.length} test cases passed - ${failedCount} failed
+                </p>
+            </div>
+        `;
+
+        const failedTests = results.filter(r => !r.passed);
+        const testsToShow = failedTests.slice(0, 3);
+
+        for (const result of testsToShow) {
+            resultsHTML += `
+                <div class="p-4 bg-danger/10 rounded-lg border border-danger/20 mb-3">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-medium text-foreground">Test ${result.index}</span>
+                        <span class="badge-hard">FAILED</span>
+                    </div>
+                    <div class="text-sm space-y-1">
+                        <p class="text-foreground-muted"><strong class="text-foreground">Input:</strong> <code class="bg-background px-1 rounded">${result.test.input}</code></p>
+                        <p class="text-foreground-muted"><strong class="text-foreground">Expected:</strong> <code class="bg-background px-1 rounded">${result.test.expected}</code></p>
+                        <p class="text-foreground-muted"><strong class="text-foreground">Actual:</strong> <code class="bg-background px-1 rounded">${result.actual}</code></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (failedTests.length > 3) {
+            resultsHTML += `
+                <p class="text-foreground-muted text-sm">
+                    ${failedTests.length - 3} more failed test(s) not shown
+                </p>
+            `;
+        }
+    }
+
+    resultsContent.innerHTML = resultsHTML;
+}
+
+function resetCode() {
+    if (confirm('Reset code to the original starter code?')) {
+        if (editor) {
+            editor.setValue(starterCode);
+        }
+    }
+}
+
+function showSuccessToast() {
+    const toast = document.getElementById('successToast');
+    toast.classList.remove('hidden');
+    toast.classList.add('translate-y-0');
+    setTimeout(() => {
+        toast.classList.add('hidden');
+    }, 3000);
+}
+
+initMonaco();
+initPyodide();
+updateCompletedState();
+</script>
+{% endblock %}

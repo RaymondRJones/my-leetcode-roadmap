@@ -11,3 +11,7 @@ __pycache__/
 # PDF files (not needed on Heroku - data is in JSON files)
 *.pdf
 intermediate_roadmap_pdfs/
+
+# Node.js
+frontend/node_modules/
+frontend/.vite/

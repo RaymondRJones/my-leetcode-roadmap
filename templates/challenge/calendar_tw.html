@@ -1,0 +1,263 @@
+{% extends "base_tw.html" %}
+
+{% block title %}Challenge Calendar - Ray's LeetCode Roadmap{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="flex justify-between items-center mb-8">
+    <div>
+        <h1 class="text-3xl font-bold text-foreground flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            28-Day Challenge
+        </h1>
+        <p class="text-foreground-muted">Track your daily progress through the challenge</p>
+    </div>
+    <a href="/challenge" class="btn-secondary">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Challenge
+    </a>
+</div>
+
+<!-- Stats Summary -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="stat-card">
+        <svg class="w-8 h-8 text-danger mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+        </svg>
+        <span class="stat-value text-2xl">{{ challenge_data.current_streak or 0 }}</span>
+        <span class="stat-label">Current Streak</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-8 h-8 text-warning mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+        </svg>
+        <span class="stat-value text-2xl">{{ challenge_data.best_streak or 0 }}</span>
+        <span class="stat-label">Best Streak</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-8 h-8 text-warning mb-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+        </svg>
+        <span class="stat-value text-2xl">{{ challenge_data.points or 0 }}</span>
+        <span class="stat-label">Total Points</span>
+    </div>
+    <div class="stat-card">
+        <svg class="w-8 h-8 text-success mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span class="stat-value text-2xl">{{ challenge_data.days_completed|length if challenge_data.days_completed else 0 }}/28</span>
+        <span class="stat-label">Days Complete</span>
+    </div>
+</div>
+
+<!-- Calendar -->
+<div class="card mb-8">
+    <!-- Month Header -->
+    <div class="text-center mb-6">
+        <h3 class="text-xl font-semibold text-foreground">{{ calendar_title }}</h3>
+        <p class="text-foreground-muted text-sm">Your 28-Day Challenge</p>
+    </div>
+
+    <!-- Day of Week Headers -->
+    <div class="grid grid-cols-7 gap-2 mb-2">
+        {% for day_name in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] %}
+        <div class="text-center text-xs font-medium text-foreground-muted uppercase tracking-wide py-2">{{ day_name }}</div>
+        {% endfor %}
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="grid grid-cols-7 gap-2">
+        <!-- Empty cells before start date -->
+        {% for i in range(start_weekday) %}
+        <div class="aspect-square"></div>
+        {% endfor %}
+
+        <!-- Calendar Days -->
+        {% for day_info in calendar_days %}
+        {% set is_completed = day_info.is_completed %}
+        {% set is_current = day_info.is_current %}
+        {% set is_locked = day_info.is_locked %}
+
+        {% if is_locked %}
+        <div class="aspect-square flex flex-col items-center justify-center rounded-xl bg-background-secondary/50 text-foreground-subtle/50 cursor-not-allowed p-1">
+            <span class="text-[10px] uppercase tracking-wide">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+            <span class="text-xs font-semibold">Problem {{ day_info.day }}</span>
+        </div>
+        {% elif is_current %}
+        <a href="/challenge/day/{{ day_info.day }}" class="aspect-square flex flex-col items-center justify-center rounded-xl bg-primary/20 border-2 border-primary text-primary hover:bg-primary/30 transition-colors p-1 relative">
+            <span class="text-[10px] uppercase tracking-wide">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+            <span class="text-xs font-semibold">Problem {{ day_info.day }}</span>
+            <span class="absolute bottom-1 w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        </a>
+        {% elif is_completed %}
+        <a href="/challenge/day/{{ day_info.day }}" class="aspect-square flex flex-col items-center justify-center rounded-xl bg-success/20 text-success hover:bg-success/30 transition-colors p-1 relative">
+            <span class="text-[10px] uppercase tracking-wide">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+            <span class="text-xs font-semibold">Problem {{ day_info.day }}</span>
+            <span class="absolute bottom-1 w-2 h-2 rounded-full bg-success"></span>
+        </a>
+        {% else %}
+        <a href="/challenge/day/{{ day_info.day }}" class="aspect-square flex flex-col items-center justify-center rounded-xl bg-background-secondary text-foreground-muted hover:bg-background-hover transition-colors p-1">
+            <span class="text-[10px] uppercase tracking-wide opacity-70">{{ day_info.month_short }} {{ day_info.date_display }}</span>
+            <span class="text-xs font-semibold">Problem {{ day_info.day }}</span>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Legend -->
+<div class="card mb-8">
+    <h6 class="text-sm font-semibold text-foreground mb-4">Legend</h6>
+    <div class="flex flex-wrap gap-6">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-success"></span>
+            <span class="text-sm text-foreground-muted">Completed</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-sm text-foreground-muted">Today's Challenge</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-foreground-subtle"></span>
+            <span class="text-sm text-foreground-muted">Available</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-foreground-subtle/30"></span>
+            <span class="text-sm text-foreground-muted">Locked</span>
+        </div>
+    </div>
+</div>
+
+<!-- Bonus Problems -->
+<div class="card mb-8">
+    <h5 class="font-semibold text-foreground mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Bonus Problems
+    </h5>
+    <p class="text-foreground-muted text-sm mb-4">
+        Solved extra LeetCode problems outside the challenge? Log them here for bonus points!
+        Each bonus problem earns you <strong class="text-foreground">5 points</strong>.
+    </p>
+
+    <!-- Submit Bonus Problem -->
+    <div class="flex gap-2 mb-6">
+        <input type="url" id="bonusProblemUrl" class="input flex-1" placeholder="https://leetcode.com/problems/problem-name/">
+        <button onclick="submitBonusProblem()" class="btn-secondary">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Add Problem
+        </button>
+    </div>
+
+    <!-- Bonus Problems List -->
+    <div id="bonusProblemsContainer">
+        {% set bonus_problems = challenge_data.get('bonus_problems', []) %}
+        {% if bonus_problems %}
+        <h6 class="text-sm font-medium text-foreground-muted mb-3">Your Bonus Problems ({{ bonus_problems|length }})</h6>
+        <div class="space-y-2" id="bonusList">
+            {% for problem in bonus_problems %}
+            <div class="flex items-center justify-between p-3 bg-background-secondary rounded-lg">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <a href="{{ problem.url }}" target="_blank" class="text-foreground hover:text-primary transition-colors">
+                        {{ problem.name or problem.url | replace('https://leetcode.com/problems/', '') | replace('/', '') }}
+                    </a>
+                </div>
+                <span class="badge-warning">+5 pts</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div id="noBonusProblems" class="text-center py-8 text-foreground-muted">
+            <svg class="w-10 h-10 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+            <p class="text-sm">No bonus problems yet. Start adding some!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Achievements -->
+<div class="card">
+    <h5 class="font-semibold text-foreground mb-6 flex items-center gap-2">
+        <svg class="w-5 h-5 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+        </svg>
+        Your Achievements
+    </h5>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {% for achievement_id, achievement in achievements_config.items() %}
+        <div class="flex flex-col items-center p-4 rounded-xl text-center {% if achievement_id in (challenge_data.achievements or []) %}bg-gradient-to-br from-warning/20 to-danger/20 border border-warning/30{% else %}bg-background-secondary{% endif %}">
+            <div class="w-12 h-12 rounded-full {% if achievement_id in (challenge_data.achievements or []) %}bg-warning/20{% else %}bg-background-elevated{% endif %} flex items-center justify-center mb-3">
+                <svg class="w-6 h-6 {% if achievement_id in (challenge_data.achievements or []) %}text-warning{% else %}text-foreground-subtle{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+            </div>
+            <p class="text-sm font-semibold {% if achievement_id in (challenge_data.achievements or []) %}text-foreground{% else %}text-foreground-muted{% endif %}">{{ achievement.name }}</p>
+            <p class="text-xs text-foreground-subtle mt-1">{{ achievement.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+async function submitBonusProblem() {
+    const urlInput = document.getElementById('bonusProblemUrl');
+    const url = urlInput.value.trim();
+
+    if (!url) { alert('Please enter a LeetCode problem URL'); return; }
+    if (!url.includes('leetcode.com/problems/')) {
+        alert('Please enter a valid LeetCode problem URL');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/challenge/bonus-problem', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url })
+        });
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            urlInput.value = '';
+            const problemName = url.replace('https://leetcode.com/problems/', '').replace('/', '').replace(/-/g, ' ');
+            const container = document.getElementById('bonusProblemsContainer');
+            const noBonusDiv = document.getElementById('noBonusProblems');
+
+            if (noBonusDiv) {
+                noBonusDiv.remove();
+                container.innerHTML = `<h6 class="text-sm font-medium text-foreground-muted mb-3">Your Bonus Problems (<span id="bonusCount">1</span>)</h6><div class="space-y-2" id="bonusList"></div>`;
+            }
+
+            const bonusList = document.getElementById('bonusList');
+            const countSpan = document.getElementById('bonusCount');
+            if (countSpan) countSpan.textContent = parseInt(countSpan.textContent) + 1;
+
+            const newItem = document.createElement('div');
+            newItem.className = 'flex items-center justify-between p-3 bg-background-secondary rounded-lg';
+            newItem.innerHTML = `<div class="flex items-center gap-2"><svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><a href="${url}" target="_blank" class="text-foreground hover:text-primary transition-colors">${problemName}</a></div><span class="badge-warning">+5 pts</span>`;
+            bonusList.appendChild(newItem);
+        } else if (data.status === 'already_added') {
+            alert('You have already added this problem.');
+        } else {
+            alert('Failed to add problem: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        alert('Failed to add problem. Please try again.');
+    }
+}
+</script>
+{% endblock %}
