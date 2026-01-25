@@ -31,7 +31,7 @@ COURSES: List[Course] = [
     Course(
         title='Complete Beginner Roadmap',
         description='Master programming fundamentals with 200+ beginner-friendly problems. Perfect for absolute beginners starting from zero.',
-        route='/beginner',
+        route='/beginner/course',
         icon='school',
         label='LEVEL 1',
         image_url='/static/images/course-beginner.jpg',
@@ -45,7 +45,7 @@ COURSES: List[Course] = [
     Course(
         title='Fortune500 Roadmap',
         description='Intermediate preparation for mid-tier companies. Master 3 months of curated problems for mid-level interviews.',
-        route='/intermediate',
+        route='/intermediate/course',
         icon='rocket_launch',
         label='LEVEL 2',
         image_url='/static/images/course-intermediate.jpg',

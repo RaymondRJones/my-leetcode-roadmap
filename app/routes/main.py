@@ -187,6 +187,20 @@ def beginner_problem_editor(problem_id):
     return "Problem not found", 404
 
 
+@main_bp.route('/beginner/course')
+def beginner_course():
+    """Course wrapper page for beginner roadmap with video content."""
+    course_config = current_app.config.get('COURSE_VIDEOS', {}).get('beginner', {})
+    return render_template(get_themed_template('course_wrapper'), course=course_config, course_type='beginner')
+
+
+@main_bp.route('/intermediate/course')
+def intermediate_course():
+    """Course wrapper page for intermediate roadmap with video content."""
+    course_config = current_app.config.get('COURSE_VIDEOS', {}).get('intermediate', {})
+    return render_template(get_themed_template('course_wrapper'), course=course_config, course_type='intermediate')
+
+
 @main_bp.route('/roadmap')
 def software_roadmap():
     """Raymond's Path to Software Engineer at Fortune 1."""

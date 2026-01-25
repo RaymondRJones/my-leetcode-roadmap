@@ -80,6 +80,38 @@ class Config:
     }
     INTERMEDIATE_MONTH_ORDER = ['Month 1', 'Month 2', 'Month 3']
 
+    # Course wrapper video configuration
+    COURSE_VIDEOS = {
+        'beginner': {
+            'title': 'Complete Beginner Roadmap',
+            'description': 'Master programming fundamentals with 50+ beginner-friendly problems',
+            'practice_url': '/beginner',
+            'practice_label': 'Start Practicing',
+            'icon': 'school',
+            'videos': [
+                {'part': 1, 'title': 'Part 1: Introduction', 'loom_id': '6cf2fa695427462eada1d08cc1d4df51'},
+                {'part': 2, 'title': 'Part 2: Getting Started', 'loom_id': '64638a1b088e473e80b6005ab556562d'},
+                {'part': 3, 'title': 'Part 3: Core Concepts', 'loom_id': '31a7f53db88b45c889d1e7aaf04cedbb'},
+                {'part': 4, 'title': 'Part 4: Practice Strategy', 'loom_id': 'e6cab940c3844ff09f45a5f16c64a3f1'},
+                {'part': 5, 'title': 'Part 5: Next Steps', 'loom_id': 'fa8e6612545a4662830219676518b7de'},
+            ]
+        },
+        'intermediate': {
+            'title': 'Fortune 500 Roadmap',
+            'description': 'Intermediate preparation for mid-tier company interviews',
+            'practice_url': '/intermediate',
+            'practice_label': 'Start Practicing',
+            'icon': 'rocket_launch',
+            'videos': [
+                {'part': 1, 'title': 'Part 1: Introduction', 'loom_id': '6cf2fa695427462eada1d08cc1d4df51'},
+                {'part': 2, 'title': 'Part 2: Getting Started', 'loom_id': '64638a1b088e473e80b6005ab556562d'},
+                {'part': 3, 'title': 'Part 3: Core Concepts', 'loom_id': '31a7f53db88b45c889d1e7aaf04cedbb'},
+                {'part': 4, 'title': 'Part 4: Practice Strategy', 'loom_id': 'e6cab940c3844ff09f45a5f16c64a3f1'},
+                {'part': 5, 'title': 'Part 5: Next Steps', 'loom_id': 'fa8e6612545a4662830219676518b7de'},
+            ]
+        }
+    }
+
 
 class DevelopmentConfig(Config):
     """Development configuration."""

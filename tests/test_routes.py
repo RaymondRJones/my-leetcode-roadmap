@@ -69,6 +69,26 @@ class TestPublicRoutes:
         response = client.get('/intermediate/month/Month 1')
         assert response.status_code == 200
 
+    def test_beginner_course_wrapper_returns_200(self, client):
+        """Test that beginner course wrapper page returns 200."""
+        response = client.get('/beginner/course')
+        assert response.status_code == 200
+
+    def test_beginner_course_wrapper_contains_title(self, client):
+        """Test that beginner course wrapper contains course title."""
+        response = client.get('/beginner/course')
+        assert b'Complete Beginner Roadmap' in response.data
+
+    def test_intermediate_course_wrapper_returns_200(self, client):
+        """Test that intermediate course wrapper page returns 200."""
+        response = client.get('/intermediate/course')
+        assert response.status_code == 200
+
+    def test_intermediate_course_wrapper_contains_title(self, client):
+        """Test that intermediate course wrapper contains course title."""
+        response = client.get('/intermediate/course')
+        assert b'Fortune 500 Roadmap' in response.data
+
 
 class TestPremiumRoutes:
     """Tests for premium routes that require authentication."""
