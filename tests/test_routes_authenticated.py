@@ -99,19 +99,35 @@ class TestAllowedUserRoutes:
 class TestGuidesRoutesAuthenticated:
     """Tests for guides routes with authenticated users."""
 
-    def test_guides_accessible_with_guides_access(self, guides_client):
-        """Test that guides page is accessible with guides access."""
+    def test_guides_redirects_to_classroom(self, guides_client):
+        """Test that /guides redirects to classroom (legacy URL redirect)."""
         response = guides_client.get('/guides')
+        assert response.status_code == 302
+        assert '/' == response.location or response.location.endswith('/')
+
+    def test_guides_resume_accessible_with_guides_access(self, guides_client):
+        """Test that guides/resume is accessible with guides access."""
+        response = guides_client.get('/guides/resume')
         assert response.status_code == 200
 
-    def test_guides_accessible_with_full_access(self, full_access_client):
-        """Test that guides page is accessible with full access."""
-        response = full_access_client.get('/guides')
+    def test_guides_job_search_accessible_with_guides_access(self, guides_client):
+        """Test that guides/job-search is accessible with guides access."""
+        response = guides_client.get('/guides/job-search')
         assert response.status_code == 200
 
-    def test_guides_accessible_for_allowed_user(self, allowed_user_client):
-        """Test that allowed users can access guides."""
-        response = allowed_user_client.get('/guides')
+    def test_guides_leetcode_accessible_with_full_access(self, full_access_client):
+        """Test that guides/leetcode is accessible with full access."""
+        response = full_access_client.get('/guides/leetcode')
+        assert response.status_code == 200
+
+    def test_guides_behavioral_accessible_with_ai_access(self, full_access_client):
+        """Test that guides/behavioral is accessible with AI access."""
+        response = full_access_client.get('/guides/behavioral')
+        assert response.status_code == 200
+
+    def test_guides_resume_accessible_for_allowed_user(self, allowed_user_client):
+        """Test that allowed users can access guide wrapper pages."""
+        response = allowed_user_client.get('/guides/resume')
         assert response.status_code == 200
 
 

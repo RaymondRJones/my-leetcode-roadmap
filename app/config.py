@@ -112,6 +112,74 @@ class Config:
         }
     }
 
+    # Guide wrapper configuration for individual guide pages
+    GUIDE_VIDEOS = {
+        'resume': {
+            'title': 'Resume + LinkedIn Guide',
+            'description': 'My exact resume and LinkedIn profile that landed me offers at Fortune 1 companies.',
+            'icon': 'description',
+            'embed_type': 'youtube',
+            'embed_id': 'xX3riyhZEdk',
+            'embed_start': 1171,
+            'external_links': [
+                {
+                    'label': 'View Resume Template',
+                    'url': 'https://docs.google.com/document/d/1pxdEyiefpXsZ2NdIYDQ13W5nt21Gt2La4JL7goEh8SQ/edit',
+                    'icon': 'description'
+                }
+            ],
+            'features': [
+                'My exact resume template',
+                'Video breakdown & analysis',
+                'LinkedIn optimization tips',
+                'ATS-friendly formatting'
+            ]
+        },
+        'job-search': {
+            'title': 'Complete Job Search Guide 2026',
+            'description': 'Everything I learned landing multiple job offers at top tech companies.',
+            'icon': 'work',
+            'embed_type': 'loom',
+            'embed_id': 'afc5bcb3e0e34977ad93ceb17848fcee',
+            'features': [
+                'Job search strategy',
+                'Resume and LinkedIn optimization',
+                'Technical interview prep',
+                'System Design strategies'
+            ]
+        },
+        'leetcode': {
+            'title': '100+ Hours of LeetCode Solutions',
+            'description': 'Live coding sessions solving LeetCode problems before I got my Walmart offer.',
+            'icon': 'code',
+            'embed_type': 'youtube_playlist',
+            'playlist_id': 'PL6Gg1ReZX6gU7tyZPiZF8AlsSpKSumRcK',
+            'features': [
+                'Detailed problem explanations',
+                'Multiple solution approaches',
+                'Time & space complexity analysis'
+            ],
+            'stats': {
+                'videos': '100+',
+                'difficulty': 'All Levels',
+                'style': 'Live Problem Solving'
+            }
+        },
+        'behavioral': {
+            'title': 'Behavioral Interview Guide',
+            'description': 'AI-powered STAR story practice and feedback.',
+            'icon': 'psychology',
+            'embed_type': 'external_app',
+            'app_url': 'https://behavioral-ai.vercel.app/',
+            'features': [
+                '50+ behavioral questions',
+                'AI feedback system',
+                'STAR method framework',
+                'Amazon Leadership Principles'
+            ]
+        }
+    }
+
 
 class DevelopmentConfig(Config):
     """Development configuration."""
