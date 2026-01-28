@@ -12,7 +12,11 @@
 <!-- Course Cards Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for course in courses %}
-    {% set is_locked = course.is_premium and not (has_premium or is_allowed or is_admin) %}
+    {% set is_locked =
+        (course.access_type == 'premium' and not (has_premium or is_allowed or is_admin)) or
+        (course.access_type == 'ai_access' and not (has_ai_access or is_admin)) or
+        (course.access_type == 'system_design' and not (has_system_design_access or is_admin))
+    %}
     <a href="{{ '/landing' if is_locked else course.route }}"
        class="group block"
        aria-label="{{ 'Unlock ' if is_locked else 'Go to ' }}{{ course.title }} course">

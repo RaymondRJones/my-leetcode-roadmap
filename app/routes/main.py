@@ -228,10 +228,41 @@ def java_assessment():
 
 
 @main_bp.route('/guides')
+def guides_redirect():
+    """Redirect legacy /guides URL to classroom homepage."""
+    return redirect('/')
+
+
+@main_bp.route('/guides/resume')
 @guides_required
-def guides():
-    """Guides landing page with all available guides."""
-    return render_template(get_themed_template('guides'))
+def guide_resume():
+    """Resume + LinkedIn guide wrapper page."""
+    guide_config = current_app.config.get('GUIDE_VIDEOS', {}).get('resume', {})
+    return render_template('guide_wrapper.html', guide=guide_config, guide_type='resume')
+
+
+@main_bp.route('/guides/job-search')
+@guides_required
+def guide_job_search():
+    """Complete Job Search guide wrapper page."""
+    guide_config = current_app.config.get('GUIDE_VIDEOS', {}).get('job-search', {})
+    return render_template('guide_wrapper.html', guide=guide_config, guide_type='job-search')
+
+
+@main_bp.route('/guides/leetcode')
+@guides_required
+def guide_leetcode():
+    """LeetCode Solutions guide wrapper page."""
+    guide_config = current_app.config.get('GUIDE_VIDEOS', {}).get('leetcode', {})
+    return render_template('guide_wrapper.html', guide=guide_config, guide_type='leetcode')
+
+
+@main_bp.route('/guides/behavioral')
+@ai_access_required
+def guide_behavioral():
+    """Behavioral Interview guide wrapper page - Requires AI access."""
+    guide_config = current_app.config.get('GUIDE_VIDEOS', {}).get('behavioral', {})
+    return render_template('guide_wrapper.html', guide=guide_config, guide_type='behavioral')
 
 
 @main_bp.route('/behavioral-guide')

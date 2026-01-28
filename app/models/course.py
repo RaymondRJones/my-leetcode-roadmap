@@ -20,6 +20,7 @@ class Course:
     level: str
     order: int
     image_url: str = ''
+    access_type: str = 'free'  # 'free', 'premium', 'ai_access', 'system_design'
 
     def to_dict(self) -> dict:
         """Convert course to dictionary for template rendering."""
@@ -40,7 +41,8 @@ COURSES: List[Course] = [
         duration='4-8 weeks',
         problem_count='50 problems',
         level='Beginner',
-        order=1
+        order=1,
+        access_type='free'
     ),
     Course(
         title='Fortune500 Roadmap',
@@ -54,7 +56,8 @@ COURSES: List[Course] = [
         duration='3 months',
         problem_count='80 problems',
         level='Intermediate',
-        order=2
+        order=2,
+        access_type='free'
     ),
     Course(
         title='The Software Engineering Journey',
@@ -68,7 +71,8 @@ COURSES: List[Course] = [
         duration='6-18 months',
         problem_count='Career guide',
         level='All Levels',
-        order=3
+        order=3,
+        access_type='free'
     ),
     Course(
         title='28-Day LeetCode Challenge',
@@ -82,7 +86,8 @@ COURSES: List[Course] = [
         duration='28 days',
         problem_count='28 problems',
         level='All Levels',
-        order=4
+        order=4,
+        access_type='free'
     ),
     Course(
         title='Python Assessment',
@@ -96,7 +101,8 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
-        order=5
+        order=5,
+        access_type='free'
     ),
     Course(
         title='Java Assessment',
@@ -110,7 +116,8 @@ COURSES: List[Course] = [
         duration='15-20 min',
         problem_count='20 questions',
         level='All Levels',
-        order=6
+        order=6,
+        access_type='free'
     ),
     Course(
         title='FAANG+ Roadmap',
@@ -124,7 +131,8 @@ COURSES: List[Course] = [
         duration='6+ months',
         problem_count='790+ problems',
         level='Advanced',
-        order=7
+        order=7,
+        access_type='premium'
     ),
     Course(
         title='Ray700 Complete List',
@@ -138,21 +146,68 @@ COURSES: List[Course] = [
         duration='Flexible',
         problem_count='700+ problems',
         level='All Levels',
-        order=8
+        order=8,
+        access_type='premium'
     ),
     Course(
         title='Resume + LinkedIn Guide',
         description='My exact resume and LinkedIn profile that landed me offers at Fortune 1 companies. Step-by-step templates and strategies.',
-        route='/guides',
+        route='/guides/resume',
         icon='description',
         label='CAREER DOCS',
         image_url='/static/images/course-resume.jpg',
         is_premium=True,
         course_type='course-premium',
-        duration='2-4 hours',
+        duration='30 min',
         problem_count='Templates',
         level='All Levels',
-        order=9
+        order=9,
+        access_type='premium'
+    ),
+    Course(
+        title='Complete Job Search Guide 2026',
+        description='Everything I learned landing multiple job offers at top tech companies. Job search strategy, resume optimization, and interview prep.',
+        route='/guides/job-search',
+        icon='work',
+        label='JOB SEARCH',
+        image_url='/static/images/course-job-search.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='2 hours',
+        problem_count='Full Course',
+        level='All Levels',
+        order=10,
+        access_type='premium'
+    ),
+    Course(
+        title='100+ Hours of LeetCode Solutions',
+        description='Live coding sessions solving LeetCode problems. Watch my exact thought process before I got my Walmart offer.',
+        route='/guides/leetcode',
+        icon='code',
+        label='VIDEO SOLUTIONS',
+        image_url='/static/images/course-leetcode-solutions.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='100+ hours',
+        problem_count='100+ Videos',
+        level='All Levels',
+        order=11,
+        access_type='premium'
+    ),
+    Course(
+        title='Behavioral Interview Guide',
+        description='AI-powered STAR story practice and feedback. Master behavioral interviews with 50+ common questions and instant AI feedback.',
+        route='/guides/behavioral',
+        icon='psychology',
+        label='AI PRACTICE',
+        image_url='/static/images/course-behavioral.jpg',
+        is_premium=True,
+        course_type='course-premium',
+        duration='5+ hours',
+        problem_count='50+ Questions',
+        level='All Levels',
+        order=12,
+        access_type='ai_access'
     ),
     Course(
         title='System Design Guide',
@@ -166,7 +221,8 @@ COURSES: List[Course] = [
         duration='4-8 weeks',
         problem_count='Design patterns',
         level='Advanced',
-        order=10
+        order=13,
+        access_type='system_design'
     ),
 ]
 

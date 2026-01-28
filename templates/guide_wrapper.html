@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+
+{% block title %}{{ guide.title }} - Ray's Roadmap{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Left Sidebar -->
+    <div class="col-lg-3 col-md-4 mb-4">
+        <div class="md-card position-sticky" style="top: 100px;">
+            <div class="card-body p-0">
+                <!-- Guide Info -->
+                <div class="guide-sidebar-header px-4 py-3 border-bottom">
+                    <span class="material-icons me-2" style="vertical-align: middle; color: var(--md-primary);">{{ guide.icon }}</span>
+                    <span class="fw-medium">{{ guide.title }}</span>
+                </div>
+
+                <!-- Features List -->
+                <div class="px-4 py-3">
+                    <h6 class="text-muted mb-3" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">What's Included</h6>
+                    <ul class="guide-features-list">
+                        {% for feature in guide.features %}
+                        <li>
+                            <span class="material-icons text-success" style="font-size: 16px;">check_circle</span>
+                            <span>{{ feature }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- External Links -->
+                {% if guide.external_links %}
+                <div class="px-4 py-3 border-top">
+                    <h6 class="text-muted mb-3" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Resources</h6>
+                    {% for link in guide.external_links %}
+                    <a href="{{ link.url }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm w-100 mb-2">
+                        <span class="material-icons me-1" style="font-size: 18px;">{{ link.icon }}</span>
+                        {{ link.label }}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Back to Classroom -->
+                <div class="px-4 py-3 border-top">
+                    <a href="/" class="btn btn-outline-secondary btn-sm w-100">
+                        <span class="material-icons me-1" style="font-size: 18px;">arrow_back</span>
+                        Back to Classroom
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Content Area -->
+    <div class="col-lg-9 col-md-8">
+        <!-- Guide Header -->
+        <div class="md-card mb-4">
+            <div class="card-body">
+                <h1 class="mb-2" style="font-weight: 400;">
+                    <span class="material-icons me-2" style="vertical-align: middle; font-size: 2rem; color: var(--md-primary);">{{ guide.icon }}</span>
+                    {{ guide.title }}
+                </h1>
+                <p class="text-muted mb-0">{{ guide.description }}</p>
+            </div>
+        </div>
+
+        <!-- Stats (for LeetCode guide) -->
+        {% if guide.stats %}
+        <div class="md-card mb-4">
+            <div class="card-body">
+                <div class="row text-center">
+                    {% for key, value in guide.stats.items() %}
+                    <div class="col">
+                        <div class="stat-value" style="font-size: 1.5rem; font-weight: 600; color: var(--md-primary);">{{ value }}</div>
+                        <div class="stat-label text-muted" style="font-size: 0.8rem; text-transform: capitalize;">{{ key }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Main Content -->
+        <div class="md-card">
+            <div class="card-body">
+                {% if guide.embed_type == 'youtube' %}
+                <!-- YouTube Single Video Embed -->
+                <div class="video-wrapper mb-4">
+                    <iframe
+                        src="https://www.youtube.com/embed/{{ guide.embed_id }}{% if guide.embed_start %}?start={{ guide.embed_start }}{% endif %}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                {% elif guide.embed_type == 'loom' %}
+                <!-- Loom Video Embed -->
+                <div class="video-wrapper mb-4">
+                    <iframe
+                        src="https://www.loom.com/embed/{{ guide.embed_id }}"
+                        frameborder="0"
+                        webkitallowfullscreen
+                        mozallowfullscreen
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                {% elif guide.embed_type == 'youtube_playlist' %}
+                <!-- YouTube Playlist Link -->
+                <div class="text-center py-5">
+                    <div class="mb-4">
+                        <span class="material-icons" style="font-size: 4rem; color: var(--md-primary);">playlist_play</span>
+                    </div>
+                    <h3 class="mb-3">100+ Hours of Video Content</h3>
+                    <p class="text-muted mb-4">Watch my complete LeetCode problem-solving playlist on YouTube.</p>
+                    <a href="https://www.youtube.com/playlist?list={{ guide.playlist_id }}" target="_blank" rel="noopener" class="btn btn-danger btn-lg">
+                        <span class="material-icons me-2" style="vertical-align: middle;">play_circle</span>
+                        Open YouTube Playlist
+                    </a>
+                </div>
+
+                <!-- Preview: First video from playlist -->
+                <div class="mt-4">
+                    <h5 class="mb-3">Preview: Start Here</h5>
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/videoseries?list={{ guide.playlist_id }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                {% elif guide.embed_type == 'external_app' %}
+                <!-- External App Embed/Link -->
+                <div class="text-center py-4 mb-4">
+                    <div class="mb-4">
+                        <span class="material-icons" style="font-size: 4rem; color: var(--md-primary);">psychology</span>
+                    </div>
+                    <h3 class="mb-3">AI-Powered Behavioral Practice</h3>
+                    <p class="text-muted mb-4">Practice your STAR stories with instant AI feedback.</p>
+                    <a href="{{ guide.app_url }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                        <span class="material-icons me-2" style="vertical-align: middle;">launch</span>
+                        Launch AI Practice App
+                    </a>
+                </div>
+
+                <!-- Embedded iframe for the app -->
+                <div class="app-embed-wrapper">
+                    <iframe
+                        src="{{ guide.app_url }}"
+                        frameborder="0"
+                        style="width: 100%; height: 600px; border-radius: 12px; border: 1px solid var(--md-outline);"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="md-card mt-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="material-icons me-2 text-success" style="vertical-align: middle;">check_circle</span>
+                        <span id="status-text">Mark as complete when you're done</span>
+                    </div>
+                    <button class="btn btn-outline-success btn-sm" id="mark-complete-btn" onclick="markComplete()">
+                        <span class="material-icons me-1" style="font-size: 18px;">done</span>
+                        Mark Complete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Guide Sidebar */
+.guide-sidebar-header {
+    background: var(--md-surface);
+    font-size: 0.95rem;
+}
+
+.guide-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.guide-features-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+
+/* Video Wrapper (16:9 aspect ratio) */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--nord0);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* App Embed */
+.app-embed-wrapper {
+    margin-top: 20px;
+}
+
+/* Completed state */
+.completed #mark-complete-btn {
+    background: var(--md-success);
+    border-color: var(--md-success);
+    color: white;
+}
+
+.completed #mark-complete-btn:hover {
+    background: #8fb380;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .position-sticky {
+        position: static !important;
+    }
+
+    .app-embed-wrapper iframe {
+        height: 400px;
+    }
+}
+</style>
+
+<script>
+const STORAGE_KEY = 'guide_{{ guide_type }}_complete';
+
+function markComplete() {
+    const isComplete = localStorage.getItem(STORAGE_KEY) === 'true';
+
+    if (isComplete) {
+        // Unmark
+        localStorage.removeItem(STORAGE_KEY);
+        document.body.classList.remove('completed');
+        document.getElementById('mark-complete-btn').innerHTML = '<span class="material-icons me-1" style="font-size: 18px;">done</span> Mark Complete';
+        document.getElementById('status-text').textContent = 'Mark as complete when you\'re done';
+    } else {
+        // Mark complete
+        localStorage.setItem(STORAGE_KEY, 'true');
+        document.body.classList.add('completed');
+        document.getElementById('mark-complete-btn').innerHTML = '<span class="material-icons me-1" style="font-size: 18px;">check</span> Completed!';
+        document.getElementById('status-text').textContent = 'You\'ve completed this guide!';
+    }
+}
+
+// Check completion status on load
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem(STORAGE_KEY) === 'true') {
+        document.body.classList.add('completed');
+        document.getElementById('mark-complete-btn').innerHTML = '<span class="material-icons me-1" style="font-size: 18px;">check</span> Completed!';
+        document.getElementById('status-text').textContent = 'You\'ve completed this guide!';
+    }
+});
+</script>
+{% endblock %}

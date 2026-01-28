@@ -105,9 +105,15 @@ class TestPremiumRoutes:
         assert response.status_code == 302
         assert '/landing' in response.location
 
-    def test_guides_redirects_without_auth(self, client):
-        """Test that guides page redirects without authentication."""
+    def test_guides_redirects_to_classroom(self, client):
+        """Test that /guides redirects to classroom (legacy URL redirect)."""
         response = client.get('/guides')
+        assert response.status_code == 302
+        assert '/' == response.location or response.location.endswith('/')
+
+    def test_guides_resume_redirects_without_auth(self, client):
+        """Test that guides/resume redirects without authentication."""
+        response = client.get('/guides/resume')
         assert response.status_code == 302
         assert '/landing' in response.location
 
