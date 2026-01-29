@@ -89,6 +89,11 @@ async function initializeClerk() {
         updateAuthUI();
         updateNavigationAccess();
 
+        // Sync existing signed-in user to Flask session on initial load
+        if (clerk.user) {
+            sendAuthToBackend(clerk.user);
+        }
+
         // Listen for auth state changes
         clerk.addListener(({ user }) => {
             updateAuthUI();
@@ -96,6 +101,10 @@ async function initializeClerk() {
             if (user) {
                 sendAuthToBackend(user);
             } else {
+                // Clear auth sync flag so next sign-in triggers a reload
+                Object.keys(sessionStorage).forEach(key => {
+                    if (key.startsWith('auth_synced_')) sessionStorage.removeItem(key);
+                });
                 fetch('/auth/logout', { method: 'GET' });
             }
         });
@@ -241,7 +250,14 @@ async function sendAuthToBackend(user) {
 
         if (response.ok) {
             console.log('Auth sync successful');
-            // Don't reload - just update UI state
+            // Reload the page once so server-rendered content (course cards,
+            // locked states) reflects the now-authenticated session.
+            // Use sessionStorage to prevent infinite reload loops.
+            const reloadKey = 'auth_synced_' + user.id;
+            if (!sessionStorage.getItem(reloadKey)) {
+                sessionStorage.setItem(reloadKey, 'true');
+                window.location.reload();
+            }
         } else {
             console.error('Auth sync failed');
         }
