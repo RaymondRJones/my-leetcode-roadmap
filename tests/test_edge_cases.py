@@ -85,12 +85,10 @@ class TestApiEdgeCases:
                               content_type='application/json')
         assert response.status_code == 400
 
-    def test_api_refresh_post_works(self, client):
-        """Test that API refresh endpoint works with POST."""
+    def test_api_refresh_requires_admin(self, client):
+        """Test that API refresh endpoint requires admin auth."""
         response = client.post('/api/refresh')
-        assert response.status_code == 200
-        data = response.get_json()
-        assert 'status' in data
+        assert response.status_code == 302
 
 
 class TestRouteEdgeCases:

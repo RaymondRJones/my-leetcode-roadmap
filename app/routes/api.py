@@ -50,8 +50,9 @@ def atcoder():
 
 
 @api_bp.route('/refresh', methods=['POST'])
+@admin_required
 def refresh():
-    """API endpoint to refresh roadmap data."""
+    """API endpoint to refresh roadmap data. Admin only."""
     try:
         roadmap_service = current_app.roadmap
         roadmap_service.refresh_data()

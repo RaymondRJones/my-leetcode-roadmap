@@ -93,7 +93,6 @@ class Config:
                 {'part': 2, 'title': 'Part 2: Getting Started', 'loom_id': '64638a1b088e473e80b6005ab556562d'},
                 {'part': 3, 'title': 'Part 3: Core Concepts', 'loom_id': '31a7f53db88b45c889d1e7aaf04cedbb'},
                 {'part': 4, 'title': 'Part 4: Practice Strategy', 'loom_id': 'e6cab940c3844ff09f45a5f16c64a3f1'},
-                {'part': 5, 'title': 'Part 5: Next Steps', 'loom_id': 'fa8e6612545a4662830219676518b7de'},
             ]
         },
         'intermediate': {
@@ -107,7 +106,6 @@ class Config:
                 {'part': 2, 'title': 'Part 2: Getting Started', 'loom_id': '64638a1b088e473e80b6005ab556562d'},
                 {'part': 3, 'title': 'Part 3: Core Concepts', 'loom_id': '31a7f53db88b45c889d1e7aaf04cedbb'},
                 {'part': 4, 'title': 'Part 4: Practice Strategy', 'loom_id': 'e6cab940c3844ff09f45a5f16c64a3f1'},
-                {'part': 5, 'title': 'Part 5: Next Steps', 'loom_id': 'fa8e6612545a4662830219676518b7de'},
             ]
         }
     }

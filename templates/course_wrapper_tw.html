@@ -34,9 +34,9 @@
                     {{ video.title }}
                 </a>
                 {% endfor %}
-                <div class="border-t border-border mt-2 pt-2">
+                <div class="border-t border-border mt-2 pt-3 px-3 pb-3">
                     <a href="{{ course.practice_url }}"
-                       class="flex items-center gap-3 px-4 py-3 text-sm text-success hover:bg-success/10 transition-all border-l-2 border-transparent">
+                       class="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold text-white bg-success hover:bg-success/90 rounded-lg transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                         </svg>
@@ -113,9 +113,9 @@
                         </svg>
                     </button>
                     {% else %}
-                    <a href="{{ course.practice_url }}" class="btn-success flex items-center gap-2">
+                    <a href="{{ course.practice_url }}" class="btn-success flex items-center gap-2 px-6 py-3 text-base font-semibold">
                         {{ course.practice_label }}
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                         </svg>
                     </a>

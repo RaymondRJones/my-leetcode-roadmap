@@ -222,16 +222,20 @@ class RoadmapService:
         return result
 
     def refresh_data(self):
-        """Refresh data by re-analyzing PDFs."""
+        """Refresh data by re-analyzing PDFs. Refuses to overwrite with empty data."""
         analyzer = LeetCodeRoadmapAnalyzer()
 
         # Regular roadmap
         monthly_problems = analyzer.analyze_all_pdfs()
+        if not monthly_problems:
+            raise ValueError("PDF analysis produced no roadmap data. Aborting to prevent overwriting existing data.")
         roadmap = analyzer.create_daily_roadmap(monthly_problems)
         analyzer.save_roadmap_json(roadmap)
 
         # Intermediate roadmap
         intermediate_problems = analyzer.analyze_intermediate_pdfs()
+        if not intermediate_problems:
+            raise ValueError("PDF analysis produced no intermediate data. Aborting to prevent overwriting existing data.")
         intermediate_roadmap = analyzer.create_daily_roadmap(intermediate_problems)
         analyzer.save_intermediate_roadmap_json(intermediate_roadmap)
 
