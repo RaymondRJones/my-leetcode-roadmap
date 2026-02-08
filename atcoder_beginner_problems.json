@@ -36,7 +36,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a list of numbers and a single number. You need to check if the single number is in the list. If it is, you say 'Yes', and if it isn't, you say 'No'.",
+        "simplified_explanation": "Given a list of integers `arr` and a target integer `x`, check if `x` appears anywhere in `arr`. Return 'Yes' if found, 'No' if not. For example, if arr = [3, 1, 4] and x = 4, return 'Yes' because 4 is in the list.",
         "key_concepts": [
           "if-statements",
           "lists (arrays)",
@@ -49,17 +49,17 @@
       "starter_code": "def contains_element(arr, x):\n    \"\"\"\n    Check if x is in arr.\n    Return 'Yes' if found, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[3, 1, 4, 1, 5], 4",
+          "input": "arr = [3, 1, 4, 1, 5], x = 4",
           "function_call": "contains_element([3, 1, 4, 1, 5], 4)",
           "expected": "Yes"
         },
         {
-          "input": "[100, 100, 100, 100], 100",
+          "input": "arr = [100, 100, 100, 100], x = 100",
           "function_call": "contains_element([100, 100, 100, 100], 100)",
           "expected": "Yes"
         },
         {
-          "input": "[2, 3, 5, 7, 11, 13], 1",
+          "input": "arr = [2, 3, 5, 7, 11, 13], x = 1",
           "function_call": "contains_element([2, 3, 5, 7, 11, 13], 1)",
           "expected": "No"
         }
@@ -94,7 +94,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "Takahashi is streaming from one hour to another. You need to find out how many of his listeners can watch the whole stream without missing any part of it.",
+        "simplified_explanation": "A streamer broadcasts from hour `stream_start` to hour `stream_end`. Each listener has a time window [start, end] they can watch. Count how many listeners can watch the entire stream (their start <= stream_start AND their end >= stream_end).",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -108,17 +108,17 @@
       "starter_code": "def count_full_viewers(stream_start, stream_end, listeners):\n    \"\"\"\n    Count how many listeners can watch the entire stream.\n    A listener can watch if their start <= stream_start and end >= stream_end.\n    \n    Args:\n        stream_start: Hour the stream starts (0-23)\n        stream_end: Hour the stream ends (0-23)\n        listeners: List of [start, end] pairs for each listener\n    \n    Returns:\n        Number of listeners who can watch the full stream\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "19, 22, [[17, 23], [20, 23], [19, 22], [0, 23], [12, 20]]",
+          "input": "stream_start = 19, stream_end = 22, listeners = [[17, 23], [20, 23], [19, 22], [0, 23], [12, 20]]",
           "function_call": "count_full_viewers(19, 22, [[17, 23], [20, 23], [19, 22], [0, 23], [12, 20]])",
           "expected": "3"
         },
         {
-          "input": "12, 13, [[0, 1], [0, 1], [0, 1]]",
+          "input": "stream_start = 12, stream_end = 13, listeners = [[0, 1], [0, 1], [0, 1]]",
           "function_call": "count_full_viewers(12, 13, [[0, 1], [0, 1], [0, 1]])",
           "expected": "0"
         },
         {
-          "input": "8, 14, [[5, 20], [14, 21], [9, 21], [5, 23], [8, 10], [0, 14], [3, 8], [2, 6], [0, 16], [5, 20]]",
+          "input": "stream_start = 8, stream_end = 14, listeners = [[5, 20], [14, 21], [9, 21], [5, 23], [8, 10], [0, 14], [3, 8], [2, 6], [0, 16], [5, 20]]",
           "function_call": "count_full_viewers(8, 14, [[5, 20], [14, 21], [9, 21], [5, 23], [8, 10], [0, 14], [3, 8], [2, 6], [0, 16], [5, 20]])",
           "expected": "5"
         }
@@ -153,7 +153,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "Takahashi has a bag and several items. He wants to know if he can fit all the items in the bag without exceeding its size limit. If the total size of the items is less than or equal to the bag's size, he can fit them all; otherwise, he cannot.",
+        "simplified_explanation": "Given a list of item sizes and a bag's maximum capacity, check if the total size of all items fits in the bag. Return 'Yes' if the sum of items <= bag_size, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "basic math (addition)",
@@ -166,17 +166,17 @@
       "starter_code": "def fits_in_bag(items, bag_size):\n    \"\"\"\n    Check if all items can fit in the bag.\n    Return 'Yes' if sum of items <= bag_size, 'No' otherwise.\n    \n    Args:\n        items: List of item sizes\n        bag_size: Maximum capacity of the bag\n    \n    Returns:\n        'Yes' if all items fit, 'No' otherwise\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[3, 1, 4, 1, 5], 15",
+          "input": "items = [3, 1, 4, 1, 5], bag_size = 15",
           "function_call": "fits_in_bag([3, 1, 4, 1, 5], 15)",
           "expected": "Yes"
         },
         {
-          "input": "[3, 1, 4, 1, 5], 5",
+          "input": "items = [3, 1, 4, 1, 5], bag_size = 5",
           "function_call": "fits_in_bag([3, 1, 4, 1, 5], 5)",
           "expected": "No"
         },
         {
-          "input": "[100], 10000",
+          "input": "items = [100], bag_size = 10000",
           "function_call": "fits_in_bag([100], 10000)",
           "expected": "Yes"
         }
@@ -211,7 +211,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to count how many days Takahashi did more tasks than he planned. For each day, compare the number of tasks he actually completed with his goal and keep track of the days he succeeded.",
+        "simplified_explanation": "Given two lists of equal length — `goals` (planned tasks per day) and `actual` (tasks completed per day) — count how many days Takahashi completed strictly more tasks than his goal. For example, goal=2 and actual=8 counts as exceeded.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -225,17 +225,17 @@
       "starter_code": "def count_exceeded_goals(goals, actual):\n    \"\"\"\n    Count how many days Takahashi completed more tasks than his goal.\n    \n    Args:\n        goals: List of task goals for each day\n        actual: List of tasks actually completed each day\n    \n    Returns:\n        Number of days where actual > goal\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[2, 5, 5, 6], [8, 5, 4, 7]",
+          "input": "goals = [2, 5, 5, 6], actual = [8, 5, 4, 7]",
           "function_call": "count_exceeded_goals([2, 5, 5, 6], [8, 5, 4, 7])",
           "expected": "2"
         },
         {
-          "input": "[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]",
+          "input": "goals = [1, 1, 1, 1, 1], actual = [1, 1, 1, 1, 1]",
           "function_call": "count_exceeded_goals([1, 1, 1, 1, 1], [1, 1, 1, 1, 1])",
           "expected": "0"
         },
         {
-          "input": "[1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]",
+          "input": "goals = [1, 2, 3, 4, 5, 6], actual = [6, 5, 4, 3, 2, 1]",
           "function_call": "count_exceeded_goals([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1])",
           "expected": "3"
         }
@@ -270,7 +270,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a password made of lowercase letters is long enough. The password must be at least a certain number of characters long. If it is long enough, you say 'Yes'; if not, you say 'No'.",
+        "simplified_explanation": "Given a password string and a minimum required length, check if the password has at least that many characters. Return 'Yes' if len(password) >= min_length, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "string length",
@@ -282,17 +282,17 @@
       "starter_code": "def is_password_long_enough(password, min_length):\n    \"\"\"\n    Check if the password is at least min_length characters long.\n    Return 'Yes' if it is, 'No' otherwise.\n\n    Args:\n        password: A string of lowercase letters\n        min_length: The minimum required length\n\n    Returns:\n        'Yes' if len(password) >= min_length, 'No' otherwise\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'chokudai', 5",
+          "input": "password = 'chokudai', min_length = 5",
           "function_call": "is_password_long_enough('chokudai', 5)",
           "expected": "Yes"
         },
         {
-          "input": "'ac', 3",
+          "input": "password = 'ac', min_length = 3",
           "function_call": "is_password_long_enough('ac', 3)",
           "expected": "No"
         },
         {
-          "input": "'atcoder', 7",
+          "input": "password = 'atcoder', min_length = 7",
           "function_call": "is_password_long_enough('atcoder', 7)",
           "expected": "Yes"
         }
@@ -328,7 +328,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a number of horse races, and each race has a maximum age limit. A horse of a specific age can only enter races where the age limit is at least as high as its age. Count how many races the horse can participate in.",
+        "simplified_explanation": "Given a list of age limits for horse races and a horse's age `k`, count how many races the horse can enter. A horse can enter a race if its age is less than or equal to the race's age limit (k <= ages[i]).",
         "key_concepts": [
           "lists",
           "loops",
@@ -341,17 +341,17 @@
       "starter_code": "def count_races_for_horse_age(ages, k):\n    \"\"\"\n    Count how many races a horse of age k can participate in.\n    ages: List of maximum ages allowed for each race.\n    k: Age of the horse.\n    Return the count of races the horse can enter.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[3, 1, 4, 1, 5], 4",
+          "input": "ages = [3, 1, 4, 1, 5], k = 4",
           "function_call": "count_races_for_horse_age([3, 1, 4, 1, 5], 4)",
           "expected": 2
         },
         {
-          "input": "[1], 100",
+          "input": "ages = [1], k = 100",
           "function_call": "count_races_for_horse_age([1], 100)",
           "expected": 0
         },
         {
-          "input": "[18, 89, 31, 2, 15, 93, 64, 78, 58, 19, 79, 59, 24, 50, 30], 38",
+          "input": "ages = [18, 89, 31, 2, 15, 93, 64, 78, 58, 19, 79, 59, 24, 50, 30], k = 38",
           "function_call": "count_races_for_horse_age([18, 89, 31, 2, 15, 93, 64, 78, 58, 19, 79, 59, 24, 50, 30], 38)",
           "expected": 8
         }
@@ -387,7 +387,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a list of items and two friends, Takahashi and Aoki, who each want some of those items. The task is to check if there is at least one item that both friends want.",
+        "simplified_explanation": "Takahashi and Aoki each want certain items. Their preferences are given as strings of 'o' (wants) and 'x' (doesn't want). Check if there's any position where both have 'o' — meaning they both want the same item. Return 'Yes' if a conflict exists, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -400,17 +400,17 @@
       "starter_code": "def check_conflict(T, A):\n    \"\"\"\n    Check if there is at least one item that both Takahashi and Aoki want.\n    Return 'Yes' if such an item exists, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'oxoo', 'xoox'",
+          "input": "T = 'oxoo', A = 'xoox'",
           "function_call": "check_conflict('oxoo', 'xoox')",
           "expected": "Yes"
         },
         {
-          "input": "'xxxxx', 'ooooo'",
+          "input": "T = 'xxxxx', A = 'ooooo'",
           "function_call": "check_conflict('xxxxx', 'ooooo')",
           "expected": "No"
         },
         {
-          "input": "'xoooxoxxxo', 'ooxooooxoo'",
+          "input": "T = 'xoooxoxxxo', A = 'ooxooooxoo'",
           "function_call": "check_conflict('xoooxoxxxo', 'ooxooooxoo')",
           "expected": "Yes"
         }
@@ -446,7 +446,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if the elder of Takahashi Village stays awake after being tapped on the shoulder a certain number of times. If the time between taps exceeds a specific limit, he will fall asleep. Your task is to find out if he stays awake until the last tap.",
+        "simplified_explanation": "An elder starts awake at time 0 and is tapped at times given in `taps`. The elder falls asleep if more than `s` seconds pass between consecutive taps (or from time 0 to the first tap). Return 'Yes' if the elder stays awake through all taps, 'No' if they ever fall asleep.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -459,17 +459,17 @@
       "starter_code": "def is_elder_awake(n, s, taps):\n    \"\"\"\n    Determine if the elder remains awake after being tapped on the shoulder N times.\n    The elder falls asleep if the time since the last tap exceeds S + 0.5 seconds.\n    Return 'Yes' if the elder stays awake, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "5 10\n6 11 21 22 30",
+          "input": "n = 5, s = 10, taps = [6, 11, 21, 22, 30]",
           "function_call": "is_elder_awake(5, 10, [6, 11, 21, 22, 30])",
           "expected": "Yes"
         },
         {
-          "input": "2 100\n1 200",
+          "input": "n = 2, s = 100, taps = [1, 200]",
           "function_call": "is_elder_awake(2, 100, [1, 200])",
           "expected": "No"
         },
         {
-          "input": "10 22\n47 81 82 95 117 146 165 209 212 215",
+          "input": "n = 10, s = 22, taps = [47, 81, 82, 95, 117, 146, 165, 209, 212, 215]",
           "function_call": "is_elder_awake(10, 22, [47, 81, 82, 95, 117, 146, 165, 209, 212, 215])",
           "expected": "No"
         }
@@ -505,7 +505,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given two numbers: a positive number A and a positive odd number B. Your task is to find the whole number that is closest to the value of A divided by B.",
+        "simplified_explanation": "Given two positive integers `a` and `b`, find the integer closest to a / b. For example, 4 / 7 ≈ 0.57, so the closest integer is 1. Use standard rounding (round half away from zero since b is always odd).",
         "key_concepts": [
           "basic math",
           "finding the closest integer",
@@ -517,17 +517,17 @@
       "starter_code": "def closest_integer_division(a, b):\n    \"\"\"\n    Find the integer closest to A divided by B.\n    A is a positive integer and B is a positive odd integer.\n    Return the integer that minimizes the difference from A / B.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "4, 7",
+          "input": "a = 4, b = 7",
           "function_call": "closest_integer_division(4, 7)",
           "expected": 1
         },
         {
-          "input": "407, 29",
+          "input": "a = 407, b = 29",
           "function_call": "closest_integer_division(407, 29)",
           "expected": 14
         },
         {
-          "input": "22, 11",
+          "input": "a = 22, b = 11",
           "function_call": "closest_integer_division(22, 11)",
           "expected": 2
         }
@@ -563,7 +563,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a student submitted their report before a deadline. If the submission time is earlier than the deadline, you should say 'Yes'; otherwise, say 'No'.",
+        "simplified_explanation": "Check if a submission time (C:D) is strictly before a deadline (A:B), where times are in hours and minutes. Return 'Yes' if submitted before the deadline, 'No' otherwise. Compare hours first, then minutes.",
         "key_concepts": [
           "if-statements",
           "comparison",
@@ -576,17 +576,17 @@
       "starter_code": "def is_submission_before_deadline(A, B, C, D):\n    \"\"\"\n    Check if the submission time (C:D) is before the deadline (A:B).\n    Return 'Yes' if submitted before the deadline, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "22 40 22 30",
+          "input": "A = 22, B = 40, C = 22, D = 30",
           "function_call": "is_submission_before_deadline(22, 40, 22, 30)",
           "expected": "Yes"
         },
         {
-          "input": "22 40 22 45",
+          "input": "A = 22, B = 40, C = 22, D = 45",
           "function_call": "is_submission_before_deadline(22, 40, 22, 45)",
           "expected": "No"
         },
         {
-          "input": "12 0 11 30",
+          "input": "A = 12, B = 0, C = 11, D = 30",
           "function_call": "is_submission_before_deadline(12, 0, 11, 30)",
           "expected": "Yes"
         }
@@ -626,7 +626,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a person's rating allows them to participate in a specific division of a contest. If their rating falls within the allowed range for that division, you will answer 'Yes'; otherwise, you will answer 'No'.",
+        "simplified_explanation": "Check if a contestant's rating is 'rated' in a given division. Division 1 is rated for ratings 1600–2999. Division 2 is rated for ratings 1200–2399. Return 'Yes' if the rating falls in the range for the given division, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "comparison operators",
@@ -638,22 +638,22 @@
       "starter_code": "def is_rated_in_division(rating, division):\n    \"\"\"\n    Check if a person with the given rating is rated in the specified division.\n    Return 'Yes' if rated, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "2000 1",
+          "input": "rating = 2000, division = 1",
           "function_call": "is_rated_in_division(2000, 1)",
           "expected": "Yes"
         },
         {
-          "input": "1000 1",
+          "input": "rating = 1000, division = 1",
           "function_call": "is_rated_in_division(1000, 1)",
           "expected": "No"
         },
         {
-          "input": "1500 2",
+          "input": "rating = 1500, division = 2",
           "function_call": "is_rated_in_division(1500, 2)",
           "expected": "Yes"
         },
         {
-          "input": "2800 2",
+          "input": "rating = 2800, division = 2",
           "function_call": "is_rated_in_division(2800, 2)",
           "expected": "No"
         }
@@ -689,7 +689,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a string of lowercase letters. Your task is to find and print one letter that is not in the string.",
+        "simplified_explanation": "Given a string of lowercase English letters, find and return one letter (a-z) that does NOT appear in the string. Any missing letter is a valid answer.",
         "key_concepts": [
           "string manipulation",
           "loops",
@@ -702,17 +702,17 @@
       "starter_code": "def find_missing_letter(s):\n    \"\"\"\n    Find one lowercase English letter that is not in the given string s.\n    Return any letter that is missing.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'a'",
+          "input": "s = 'a'",
           "function_call": "find_missing_letter('a')",
           "expected": "b"
         },
         {
-          "input": "'abcdfhijklmnopqrstuvwxyz'",
+          "input": "s = 'abcdfhijklmnopqrstuvwxyz'",
           "function_call": "find_missing_letter('abcdfhijklmnopqrstuvwxyz')",
           "expected": "e"
         },
         {
-          "input": "'qazplwsxokmedcijnrfvuhbgt'",
+          "input": "s = 'qazplwsxokmedcijnrfvuhbgt'",
           "function_call": "find_missing_letter('qazplwsxokmedcijnrfvuhbgt')",
           "expected": "y"
         }
@@ -748,7 +748,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a list of numbers, and you need to add up the numbers that are in the odd positions, like the 1st, 3rd, 5th, etc. The task is to find the total of these numbers.",
+        "simplified_explanation": "Given a list of integers, calculate the sum of elements at odd positions (1st, 3rd, 5th, etc. using 1-based indexing). For example, in [3, 1, 4, 1, 5], the elements at positions 1, 3, 5 are 3, 4, 5, so the sum is 12.",
         "key_concepts": [
           "lists",
           "loops",
@@ -761,17 +761,17 @@
       "starter_code": "def odd_position_sum(arr):\n    \"\"\"\n    Calculate the sum of elements at odd positions in the list arr.\n    Positions are considered 1-based.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[3, 1, 4, 1, 5, 9, 2]",
+          "input": "arr = [3, 1, 4, 1, 5, 9, 2]",
           "function_call": "odd_position_sum([3, 1, 4, 1, 5, 9, 2])",
           "expected": 14
         },
         {
-          "input": "[100]",
+          "input": "arr = [100]",
           "function_call": "odd_position_sum([100])",
           "expected": 100
         },
         {
-          "input": "[100, 10, 1, 10, 100, 10, 1, 10, 100, 10, 1, 10, 100, 10]",
+          "input": "arr = [100, 10, 1, 10, 100, 10, 1, 10, 100, 10, 1, 10, 100, 10]",
           "function_call": "odd_position_sum([100, 10, 1, 10, 100, 10, 1, 10, 100, 10, 1, 10, 100, 10])",
           "expected": 403
         }
@@ -807,7 +807,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to take a string that contains both uppercase and lowercase letters and create a new string with only the uppercase letters in the same order. For example, from 'HelloWorld', you would get 'HW'.",
+        "simplified_explanation": "Given a string containing both uppercase and lowercase letters, extract only the uppercase letters and return them as a new string in their original order. For example, 'AtCoderBeginnerContest' → 'ACBC'.",
         "key_concepts": [
           "strings",
           "loops",
@@ -820,17 +820,17 @@
       "starter_code": "def extract_uppercase_letters(s):\n    \"\"\"\n    Extract uppercase letters from the given string s.\n    Return a string containing only the uppercase letters in their original order.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'AtCoderBeginnerContest'",
+          "input": "s = 'AtCoderBeginnerContest'",
           "function_call": "extract_uppercase_letters('AtCoderBeginnerContest')",
           "expected": "ACBC"
         },
         {
-          "input": "'PaymentRequired'",
+          "input": "s = 'PaymentRequired'",
           "function_call": "extract_uppercase_letters('PaymentRequired')",
           "expected": "PR"
         },
         {
-          "input": "'program'",
+          "input": "s = 'program'",
           "function_call": "extract_uppercase_letters('program')",
           "expected": ""
         }
@@ -866,7 +866,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You will receive a number between 100 and 999. If this number is between 200 and 299, you should print 'Success'. If it is not, you should print 'Failure'.",
+        "simplified_explanation": "Given an HTTP status code (integer between 100–999), return 'Success' if it's between 200 and 299 (inclusive), or 'Failure' otherwise.",
         "key_concepts": [
           "if-statements",
           "basic input/output",
@@ -878,17 +878,17 @@
       "starter_code": "def check_status_code(s):\n    \"\"\"\n    Check if the status code s is between 200 and 299.\n    Return 'Success' if it is, 'Failure' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "200",
+          "input": "s = 200",
           "function_call": "check_status_code(200)",
           "expected": "Success"
         },
         {
-          "input": "401",
+          "input": "s = 401",
           "function_call": "check_status_code(401)",
           "expected": "Failure"
         },
         {
-          "input": "999",
+          "input": "s = 999",
           "function_call": "check_status_code(999)",
           "expected": "Failure"
         }
@@ -924,7 +924,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to arrange 400 people in a rectangle with a given number of rows (A). Your task is to find out how many columns (B) you can have if each row must be full. If it's not possible to arrange them this way, you should return -1.",
+        "simplified_explanation": "400 people need to sit in a rectangle with `a` rows. Calculate how many columns `b` are needed so that a × b = 400. If 400 is not divisible by a, return -1.",
         "key_concepts": [
           "basic math",
           "if-statements",
@@ -937,17 +937,17 @@
       "starter_code": "def calculate_columns(a):\n    \"\"\"\n    Calculate the number of columns B for a given number of rows A to arrange 400 people.\n    Return the number of columns if possible, otherwise return -1.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "10",
+          "input": "a = 10",
           "function_call": "calculate_columns(10)",
           "expected": "40"
         },
         {
-          "input": "11",
+          "input": "a = 11",
           "function_call": "calculate_columns(11)",
           "expected": "-1"
         },
         {
-          "input": "400",
+          "input": "a = 400",
           "function_call": "calculate_columns(400)",
           "expected": "1"
         }
@@ -987,7 +987,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have two strings of the same length made up of lowercase letters. Your task is to count how many positions in these strings have different letters.",
+        "simplified_explanation": "Given two strings of equal length, count the number of positions where the characters differ. This is called the Hamming distance. For example, 'abcarc' vs 'agcahc' differ at positions 2 and 5, so the distance is 2.",
         "key_concepts": [
           "loops",
           "conditional statements",
@@ -1000,22 +1000,22 @@
       "starter_code": "def hamming_distance(s, t):\n    \"\"\"\n    Calculate the Hamming distance between two strings s and t.\n    Return the count of positions where the characters differ.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'abcarc', 'agcahc'",
+          "input": "s = 'abcarc', t = 'agcahc'",
           "function_call": "hamming_distance('abcarc', 'agcahc')",
           "expected": 2
         },
         {
-          "input": "'atcoder', 'contest'",
+          "input": "s = 'atcoder', t = 'contest'",
           "function_call": "hamming_distance('atcoder', 'contest')",
           "expected": 7
         },
         {
-          "input": "'chokudai', 'chokudai'",
+          "input": "s = 'chokudai', t = 'chokudai'",
           "function_call": "hamming_distance('chokudai', 'chokudai')",
           "expected": 0
         },
         {
-          "input": "'vexknuampx', 'vzxikuamlx'",
+          "input": "s = 'vexknuampx', t = 'vzxikuamlx'",
           "function_call": "hamming_distance('vexknuampx', 'vzxikuamlx')",
           "expected": 4
         }
@@ -1047,7 +1047,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to create a string that is a palindrome (it reads the same forwards and backwards) and is made up of the characters '-' and '='. The string must have either one '=' or two adjacent '=' characters, and it has to be a specific length that you will provide.",
+        "simplified_explanation": "Create a palindrome string of length `n` using only '-' and '=' characters. If n is odd, place exactly one '=' in the center. If n is even, place exactly two '=' in the center. Fill the rest with '-'. For example, n=5 → '--=--', n=4 → '-==-'.",
         "key_concepts": [
           "strings",
           "palindromes",
@@ -1060,37 +1060,37 @@
       "starter_code": "def create_palindrome(n):\n    \"\"\"\n    Create a palindrome string of length n using '-' and '='.\n    The string must contain either one '=' or two adjacent '=' characters.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "4",
+          "input": "n = 4",
           "function_call": "create_palindrome(4)",
           "expected": "-==-"
         },
         {
-          "input": "7",
+          "input": "n = 7",
           "function_call": "create_palindrome(7)",
           "expected": "---=---"
         },
         {
-          "input": "1",
+          "input": "n = 1",
           "function_call": "create_palindrome(1)",
           "expected": "="
         },
         {
-          "input": "2",
+          "input": "n = 2",
           "function_call": "create_palindrome(2)",
           "expected": "=="
         },
         {
-          "input": "3",
+          "input": "n = 3",
           "function_call": "create_palindrome(3)",
           "expected": "-=-"
         },
         {
-          "input": "5",
+          "input": "n = 5",
           "function_call": "create_palindrome(5)",
           "expected": "--=--"
         },
         {
-          "input": "6",
+          "input": "n = 6",
           "function_call": "create_palindrome(6)",
           "expected": "--==--"
         }
@@ -1126,7 +1126,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check a person's body temperature and tell which category it falls into: high fever, fever, or normal. Based on the temperature, you will return a number: 1 for high fever, 2 for fever, and 3 for normal.",
+        "simplified_explanation": "Classify a body temperature: return 1 if temperature >= 38.0 (high fever), 2 if >= 37.5 but < 38.0 (fever), or 3 if < 37.5 (normal).",
         "key_concepts": [
           "if-statements",
           "comparison operators",
@@ -1139,17 +1139,17 @@
       "starter_code": "def classify_temperature(temperature):\n    \"\"\"\n    Classify the body temperature into categories:\n    1 for high fever (>= 38.0), 2 for fever (>= 37.5 and < 38.0), 3 for normal (< 37.5).\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "40.0",
+          "input": "temperature = 40.0",
           "function_call": "classify_temperature(40.0)",
           "expected": 1
         },
         {
-          "input": "37.7",
+          "input": "temperature = 37.7",
           "function_call": "classify_temperature(37.7)",
           "expected": 2
         },
         {
-          "input": "36.6",
+          "input": "temperature = 36.6",
           "function_call": "classify_temperature(36.6)",
           "expected": 3
         }
@@ -1193,7 +1193,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a list of numbers, and you need to check if any number appears three times in a row. If you find such a group of numbers, you should say 'Yes', otherwise say 'No'.",
+        "simplified_explanation": "Given a list of integers, check if any value appears three or more times consecutively (in a row). Return 'Yes' if such a triple exists, 'No' otherwise. For example, [1, 4, 4, 4, 2] → 'Yes' because 4 appears three times in a row.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -1206,27 +1206,27 @@
       "starter_code": "def check_triple_four(arr):\n    \"\"\"\n    Check if any number appears three times in a row in the list arr.\n    Return 'Yes' if found, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[1, 4, 4, 4, 2]",
+          "input": "arr = [1, 4, 4, 4, 2]",
           "function_call": "check_triple_four([1, 4, 4, 4, 2])",
           "expected": "Yes"
         },
         {
-          "input": "[2, 4, 4, 2, 2, 4]",
+          "input": "arr = [2, 4, 4, 2, 2, 4]",
           "function_call": "check_triple_four([2, 4, 4, 2, 2, 4])",
           "expected": "No"
         },
         {
-          "input": "[1, 4, 2, 5, 7, 7, 7, 2]",
+          "input": "arr = [1, 4, 2, 5, 7, 7, 7, 2]",
           "function_call": "check_triple_four([1, 4, 2, 5, 7, 7, 7, 2])",
           "expected": "Yes"
         },
         {
-          "input": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+          "input": "arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
           "function_call": "check_triple_four([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])",
           "expected": "No"
         },
         {
-          "input": "[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
+          "input": "arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]",
           "function_call": "check_triple_four([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])",
           "expected": "Yes"
         }
@@ -1262,7 +1262,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a list of numbers is strictly increasing, which means each number is smaller than the next one. If all numbers follow this rule, print 'Yes'; otherwise, print 'No'.",
+        "simplified_explanation": "Check if a list of integers is strictly increasing — meaning each element is strictly less than the next one. Return 'Yes' if strictly increasing, 'No' otherwise. Note: equal consecutive values (like [1, 1, 2]) are NOT strictly increasing.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -1275,17 +1275,17 @@
       "starter_code": "def is_strictly_increasing(arr):\n    \"\"\"\n    Check if the list arr is strictly increasing.\n    Return 'Yes' if it is, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[1, 2, 5]",
+          "input": "arr = [1, 2, 5]",
           "function_call": "is_strictly_increasing([1, 2, 5])",
           "expected": "Yes"
         },
         {
-          "input": "[3, 9, 5]",
+          "input": "arr = [3, 9, 5]",
           "function_call": "is_strictly_increasing([3, 9, 5])",
           "expected": "No"
         },
         {
-          "input": "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+          "input": "arr = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
           "function_call": "is_strictly_increasing([1, 1, 2, 3, 5, 8, 13, 21, 34, 55])",
           "expected": "No"
         }
@@ -1321,7 +1321,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a string made of numbers. Your task is to keep only the number '2' from the string and remove everything else, then show the new string with only '2's in the same order they appeared.",
+        "simplified_explanation": "Given a string of digits, remove every character that is not '2' and return the remaining string. For example, '20250222' → '22222'.",
         "key_concepts": [
           "string manipulation",
           "loops",
@@ -1333,17 +1333,17 @@
       "starter_code": "def keep_only_twos(s):\n    \"\"\"\n    Remove all characters from the string s except for '2'.\n    Return the new string containing only '2's in the original order.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'20250222'",
+          "input": "s = '20250222'",
           "function_call": "keep_only_twos('20250222')",
           "expected": "22222"
         },
         {
-          "input": "'2'",
+          "input": "s = '2'",
           "function_call": "keep_only_twos('2')",
           "expected": "2"
         },
         {
-          "input": "'22222000111222222'",
+          "input": "s = '22222000111222222'",
           "function_call": "keep_only_twos('22222000111222222')",
           "expected": "22222222222"
         }
@@ -1375,7 +1375,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have four types of oysters, and one of them makes people sick. Two friends tried different oysters, and you need to figure out which type makes someone sick based on whether they felt fine or sick after eating.",
+        "simplified_explanation": "Two people ate different combinations of 4 oyster types. Person 1 ate types 1 and 2. Person 2 ate types 1 and 3. Exactly one type is poisonous. Based on whether each person felt 'sick' or 'fine', determine which oyster type (1, 2, 3, or 4) is poisonous.",
         "key_concepts": [
           "if-statements",
           "conditional logic",
@@ -1387,22 +1387,22 @@
       "starter_code": "def find_poisonous_oyster(s1, s2):\n    \"\"\"\n    Determine which type of oyster causes sickness based on the input strings.\n    Return the number of the poisonous oyster.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'sick fine'",
+          "input": "s1 = 'sick', s2 = 'fine'",
           "function_call": "find_poisonous_oyster('sick', 'fine')",
           "expected": 2
         },
         {
-          "input": "'fine fine'",
+          "input": "s1 = 'fine', s2 = 'fine'",
           "function_call": "find_poisonous_oyster('fine', 'fine')",
           "expected": 4
         },
         {
-          "input": "'fine sick'",
+          "input": "s1 = 'fine', s2 = 'sick'",
           "function_call": "find_poisonous_oyster('fine', 'sick')",
           "expected": 3
         },
         {
-          "input": "'sick sick'",
+          "input": "s1 = 'sick', s2 = 'sick'",
           "function_call": "find_poisonous_oyster('sick', 'sick')",
           "expected": 1
         }
@@ -1434,7 +1434,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have three numbers, and you can rearrange them in any order. Your task is to check if you can multiply two of the numbers together to equal the third number.",
+        "simplified_explanation": "Given three integers a, b, c, check if any arrangement of them satisfies the equation: one number × another number = the third number. Return 'Yes' if possible, 'No' otherwise. For example, (3, 15, 5) → 'Yes' because 3 × 5 = 15.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -1447,17 +1447,17 @@
       "starter_code": "def can_multiply_to_equal_third(a, b, c):\n    \"\"\"\n    Check if any permutation of (a, b, c) can satisfy the equation B1 * B2 = B3.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "3, 15, 5",
+          "input": "a = 3, b = 15, c = 5",
           "function_call": "can_multiply_to_equal_third(3, 15, 5)",
           "expected": "Yes"
         },
         {
-          "input": "5, 3, 2",
+          "input": "a = 5, b = 3, c = 2",
           "function_call": "can_multiply_to_equal_third(5, 3, 2)",
           "expected": "No"
         },
         {
-          "input": "3, 3, 9",
+          "input": "a = 3, b = 3, c = 9",
           "function_call": "can_multiply_to_equal_third(3, 3, 9)",
           "expected": "Yes"
         }
@@ -1489,7 +1489,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You will receive a direction as a letter (like 'N' for North or 'E' for East). Your task is to find and print the opposite direction (for example, if you get 'N', you should print 'S' for South).",
+        "simplified_explanation": "Given a compass direction as a string (like 'N', 'SE', 'NW'), return the opposite direction. Swap N↔S and E↔W. For example, 'SE' → 'NW', 'N' → 'S'.",
         "key_concepts": [
           "if-statements",
           "string manipulation",
@@ -1501,27 +1501,27 @@
       "starter_code": "def find_opposite_direction(direction):\n    \"\"\"\n    Find the opposite direction for the given direction.\n    Return the opposite direction as a string.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'N'",
+          "input": "direction = 'N'",
           "function_call": "find_opposite_direction('N')",
           "expected": "S"
         },
         {
-          "input": "'SE'",
+          "input": "direction = 'SE'",
           "function_call": "find_opposite_direction('SE')",
           "expected": "NW"
         },
         {
-          "input": "'W'",
+          "input": "direction = 'W'",
           "function_call": "find_opposite_direction('W')",
           "expected": "E"
         },
         {
-          "input": "'NW'",
+          "input": "direction = 'NW'",
           "function_call": "find_opposite_direction('NW')",
           "expected": "SE"
         },
         {
-          "input": "'S'",
+          "input": "direction = 'S'",
           "function_call": "find_opposite_direction('S')",
           "expected": "N"
         }
@@ -1561,7 +1561,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a list of five numbers that are mixed up. You need to check if you can sort them in order by swapping just two numbers that are next to each other. If you can do it, say 'Yes'; if not, say 'No'.",
+        "simplified_explanation": "Given a list of 5 integers (a permutation of 1-5), check if you can sort it in ascending order by swapping exactly one pair of adjacent elements. Return 'Yes' if exactly one adjacent swap produces [1,2,3,4,5], 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "arrays/lists",
@@ -1574,22 +1574,22 @@
       "starter_code": "def can_sort_with_one_swap(arr):\n    \"\"\"\n    Check if the array can be sorted in ascending order by swapping exactly one pair of adjacent elements.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[1, 2, 4, 3, 5]",
+          "input": "arr = [1, 2, 4, 3, 5]",
           "function_call": "can_sort_with_one_swap([1, 2, 4, 3, 5])",
           "expected": "Yes"
         },
         {
-          "input": "[5, 3, 2, 4, 1]",
+          "input": "arr = [5, 3, 2, 4, 1]",
           "function_call": "can_sort_with_one_swap([5, 3, 2, 4, 1])",
           "expected": "No"
         },
         {
-          "input": "[1, 2, 3, 4, 5]",
+          "input": "arr = [1, 2, 3, 4, 5]",
           "function_call": "can_sort_with_one_swap([1, 2, 3, 4, 5])",
           "expected": "No"
         },
         {
-          "input": "[2, 1, 3, 4, 5]",
+          "input": "arr = [2, 1, 3, 4, 5]",
           "function_call": "can_sort_with_one_swap([2, 1, 3, 4, 5])",
           "expected": "Yes"
         }
@@ -1621,7 +1621,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a string with three characters. The first and third characters are numbers between 1 and 9, and the middle character is 'x'. Your task is to multiply the two numbers together and print the result.",
+        "simplified_explanation": "Given a string in the format 'AxB' where A and B are single digits (1-9), return their product A × B as an integer. For example, '3x8' → 24.",
         "key_concepts": [
           "string manipulation",
           "basic math",
@@ -1633,12 +1633,12 @@
       "starter_code": "def multiply_from_string(s):\n    \"\"\"\n    Multiply the two numbers in the string s formatted as 'NxM'.\n    Return the product as an integer.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'3x8'",
+          "input": "s = '3x8'",
           "function_call": "multiply_from_string('3x8')",
           "expected": 24
         },
         {
-          "input": "'9x9'",
+          "input": "s = '9x9'",
           "function_call": "multiply_from_string('9x9')",
           "expected": 81
         }
@@ -1670,7 +1670,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to take a word that starts with a capital letter and ends with lowercase letters. Then, combine the first letter of that word with the letters 'UPC' and print the result.",
+        "simplified_explanation": "Take the first character of the input string and append 'UPC' to it. Return the result. For example, 'Kyoto' → 'KUPC'.",
         "key_concepts": [
           "string manipulation",
           "concatenation",
@@ -1682,12 +1682,12 @@
       "starter_code": "def combine_first_letter_with_upc(s):\n    \"\"\"\n    Combine the first letter of the input string s with 'UPC'.\n    Return the concatenated result.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'Kyoto'",
+          "input": "s = 'Kyoto'",
           "function_call": "combine_first_letter_with_upc('Kyoto')",
           "expected": "KUPC"
         },
         {
-          "input": "'Tohoku'",
+          "input": "s = 'Tohoku'",
           "function_call": "combine_first_letter_with_upc('Tohoku')",
           "expected": "TUPC"
         }
@@ -1727,7 +1727,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to take two positive numbers, add them together, and then find the result of that sum multiplied by itself. For example, if you add 2 and 3, you should calculate (2 + 3) * (2 + 3).",
+        "simplified_explanation": "Given two positive integers a and b, calculate (a + b)². Return the result. For example, square_of_sum(20, 25) = (20+25)² = 45² = 2025.",
         "key_concepts": [
           "basic math",
           "input/output",
@@ -1741,22 +1741,22 @@
       "starter_code": "def square_of_sum(a, b):\n    \"\"\"\n    Calculate the square of the sum of two positive integers a and b.\n    Return the result as an integer.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "20, 25",
+          "input": "a = 20, b = 25",
           "function_call": "square_of_sum(20, 25)",
           "expected": 2025
         },
         {
-          "input": "30, 25",
+          "input": "a = 30, b = 25",
           "function_call": "square_of_sum(30, 25)",
           "expected": 3025
         },
         {
-          "input": "45, 11",
+          "input": "a = 45, b = 11",
           "function_call": "square_of_sum(45, 11)",
           "expected": 3136
         },
         {
-          "input": "2025, 1111",
+          "input": "a = 2025, b = 1111",
           "function_call": "square_of_sum(2025, 1111)",
           "expected": 9834496
         }
@@ -1800,7 +1800,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have four cards with numbers on them. Your task is to check if you can add one more card to make a special combination called a Full House, which consists of three cards with one number and two cards with another number.",
+        "simplified_explanation": "Given 4 card values, determine if adding exactly one more card can form a Full House (three of one value + two of another). Return 'Yes' if possible, 'No' otherwise. For example, [7,7,7,1] → 'Yes' (add another 1 to get 7,7,7,1,1).",
         "key_concepts": [
           "if-statements",
           "basic condition checking",
@@ -1813,27 +1813,27 @@
       "starter_code": "def can_form_full_house(cards):\n    \"\"\"\n    Check if adding one card to the given four cards can form a Full House.\n    Return 'Yes' if it can, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[7, 7, 7, 1]",
+          "input": "cards = [7, 7, 7, 1]",
           "function_call": "can_form_full_house([7, 7, 7, 1])",
           "expected": "Yes"
         },
         {
-          "input": "[13, 12, 11, 10]",
+          "input": "cards = [13, 12, 11, 10]",
           "function_call": "can_form_full_house([13, 12, 11, 10])",
           "expected": "No"
         },
         {
-          "input": "[3, 3, 5, 5]",
+          "input": "cards = [3, 3, 5, 5]",
           "function_call": "can_form_full_house([3, 3, 5, 5])",
           "expected": "Yes"
         },
         {
-          "input": "[8, 8, 8, 8]",
+          "input": "cards = [8, 8, 8, 8]",
           "function_call": "can_form_full_house([8, 8, 8, 8])",
           "expected": "No"
         },
         {
-          "input": "[1, 3, 4, 1]",
+          "input": "cards = [1, 3, 4, 1]",
           "function_call": "can_form_full_house([1, 3, 4, 1])",
           "expected": "No"
         }
@@ -1869,7 +1869,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given three numbers. Your task is to find out if you can split these numbers into two or more groups where the sum of each group is the same.",
+        "simplified_explanation": "Given three integers a, b, c, check if they can be split into two or more groups where each group has the same sum. For example, (3, 8, 5) → 'Yes' because {3,5} and {8} both sum to 8.",
         "key_concepts": [
           "if-statements",
           "basic math",
@@ -1881,17 +1881,17 @@
       "starter_code": "def can_split_into_equal_groups(a, b, c):\n    \"\"\"\n    Determine if the numbers a, b, and c can be split into two or more groups with equal sums.\n    Return 'Yes' if possible, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "3, 8, 5",
+          "input": "a = 3, b = 8, c = 5",
           "function_call": "can_split_into_equal_groups(3, 8, 5)",
           "expected": "Yes"
         },
         {
-          "input": "2, 2, 2",
+          "input": "a = 2, b = 2, c = 2",
           "function_call": "can_split_into_equal_groups(2, 2, 2)",
           "expected": "Yes"
         },
         {
-          "input": "1, 2, 4",
+          "input": "a = 1, b = 2, c = 4",
           "function_call": "can_split_into_equal_groups(1, 2, 4)",
           "expected": "No"
         }
@@ -1931,7 +1931,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a word made of small letters. You need to change every letter that is not a specific letter to another specific letter. For example, if you want to keep 'b' and change everything else to 'g', you will replace all letters except 'b' with 'g'.",
+        "simplified_explanation": "Given a string `s`, a character to keep `c1`, and a replacement character `c2`, replace every character in s that is NOT c1 with c2. Return the modified string. For example, s='atcoder', c1='d', c2='a' → 'aaaadaa'.",
         "key_concepts": [
           "string manipulation",
           "loops",
@@ -1943,22 +1943,22 @@
       "starter_code": "def replace_characters(n, c1, c2, s):\n    \"\"\"\n    Replace every character in s that is not c1 with c2.\n    Return the modified string.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "3, 'b', 'g', 'abc'",
+          "input": "n = 3, c1 = 'b', c2 = 'g', s = 'abc'",
           "function_call": "replace_characters(3, 'b', 'g', 'abc')",
           "expected": "gbg"
         },
         {
-          "input": "1, 's', 'h', 's'",
+          "input": "n = 1, c1 = 's', c2 = 'h', s = 's'",
           "function_call": "replace_characters(1, 's', 'h', 's')",
           "expected": "s"
         },
         {
-          "input": "7, 'd', 'a', 'atcoder'",
+          "input": "n = 7, c1 = 'd', c2 = 'a', s = 'atcoder'",
           "function_call": "replace_characters(7, 'd', 'a', 'atcoder')",
           "expected": "aaaadaa"
         },
         {
-          "input": "10, 'b', 'a', 'acaabcabba'",
+          "input": "n = 10, c1 = 'b', c2 = 'a', s = 'acaabcabba'",
           "function_call": "replace_characters(10, 'b', 'a', 'acaabcabba')",
           "expected": "aaaabaabba"
         }
@@ -1994,7 +1994,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a humidifier that starts empty, and you will add water to it several times at different times. Each time you add water, some water will evaporate over time, and you need to find out how much water is left in the humidifier after the last addition.",
+        "simplified_explanation": "A humidifier starts empty. Water is added at specific times (given as (time, volume) pairs). Between additions, water decreases by 1 unit per time unit (but never below 0). Calculate the water remaining after the last addition.",
         "key_concepts": [
           "variables",
           "loops",
@@ -2007,17 +2007,17 @@
       "starter_code": "def remaining_water_in_humidifier(n, additions):\n    \"\"\"\n    Calculate the remaining water in the humidifier after all additions.\n    Each addition is a tuple of (time, volume).\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "4, [(1, 3), (3, 1), (4, 4), (7, 1)]",
+          "input": "n = 4, additions = [(1, 3), (3, 1), (4, 4), (7, 1)]",
           "function_call": "remaining_water_in_humidifier(4, [(1, 3), (3, 1), (4, 4), (7, 1)])",
           "expected": 3
         },
         {
-          "input": "3, [(1, 8), (10, 11), (21, 5)]",
+          "input": "n = 3, additions = [(1, 8), (10, 11), (21, 5)]",
           "function_call": "remaining_water_in_humidifier(3, [(1, 8), (10, 11), (21, 5)])",
           "expected": 5
         },
         {
-          "input": "10, [(2, 1), (22, 10), (26, 17), (29, 2), (45, 20), (47, 32), (72, 12), (75, 1), (81, 31), (97, 7)]",
+          "input": "n = 10, additions = [(2, 1), (22, 10), (26, 17), (29, 2), (45, 20), (47, 32), (72, 12), (75, 1), (81, 31), (97, 7)]",
           "function_call": "remaining_water_in_humidifier(10, [(2, 1), (22, 10), (26, 17), (29, 2), (45, 20), (47, 32), (72, 12), (75, 1), (81, 31), (97, 7)])",
           "expected": 57
         }
@@ -2053,7 +2053,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a row of boxes, some with cookies and some empty. After a certain number of days, you will eat one cookie from a box each day. We want to find out how many boxes will be empty after those days are over.",
+        "simplified_explanation": "Given a string of boxes where '@' = cookie and '.' = empty, Takahashi eats one cookie per day for `d` days. Count how many boxes will be empty after d days. Empty boxes = original empty boxes + d cookies eaten.",
         "key_concepts": [
           "Strings",
           "Loops",
@@ -2066,17 +2066,17 @@
       "starter_code": "def count_empty_boxes_after_days(n, d, s):\n    \"\"\"\n    Count how many boxes will be empty after d days of eating cookies from n boxes.\n    Each box is represented by a string s, where '@' indicates a cookie and '.' indicates an empty box.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "5 2\n.@@.@",
+          "input": "n = 5, d = 2, s = '.@@.@'",
           "function_call": "count_empty_boxes_after_days(5, 2, '.@@.@')",
           "expected": 4
         },
         {
-          "input": "3 3\n@@@",
+          "input": "n = 3, d = 3, s = '@@@'",
           "function_call": "count_empty_boxes_after_days(3, 3, '@@@')",
           "expected": 3
         },
         {
-          "input": "10 4\n@@@.@@.@@.",
+          "input": "n = 10, d = 4, s = '@@@.@@.@@.'",
           "function_call": "count_empty_boxes_after_days(10, 4, '@@@.@@.@@.')",
           "expected": 7
         }
@@ -2116,7 +2116,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a string made of '1', '2', and '/' is an 11/22 string. An 11/22 string has an odd length, starts with '1's, has a '/' in the middle, and ends with '2's. If it follows these rules, print 'Yes'; otherwise, print 'No'.",
+        "simplified_explanation": "Check if a string made of '1', '2', and '/' is an 11/22 string. Rules: odd length, the first half is all '1's, the exact middle character is '/', and the second half is all '2's. Return 'Yes' or 'No'. Example: '11/22' → 'Yes', '/' → 'Yes'.",
         "key_concepts": [
           "if-statements",
           "string manipulation",
@@ -2129,22 +2129,22 @@
       "starter_code": "def is_eleven_twenty_two_string(s):\n    \"\"\"\n    Check if the string s is an 11/22 string.\n    Return 'Yes' if it is, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'11/22'",
+          "input": "s = '11/22'",
           "function_call": "is_eleven_twenty_two_string('11/22')",
           "expected": "Yes"
         },
         {
-          "input": "'/'",
+          "input": "s = '/'",
           "function_call": "is_eleven_twenty_two_string('/')",
           "expected": "Yes"
         },
         {
-          "input": "'1/22'",
+          "input": "s = '1/22'",
           "function_call": "is_eleven_twenty_two_string('1/22')",
           "expected": "No"
         },
         {
-          "input": "'22/11'",
+          "input": "s = '22/11'",
           "function_call": "is_eleven_twenty_two_string('22/11')",
           "expected": "No"
         }
@@ -2184,7 +2184,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a 6-digit number. Check if it has exactly one '1', two '2's, and three '3's in it. If it does, say 'Yes', otherwise say 'No'.",
+        "simplified_explanation": "Check if a 6-digit number contains exactly one '1', exactly two '2's, and exactly three '3's (and no other digits). Return 'Yes' if it does, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "counting characters",
@@ -2197,22 +2197,22 @@
       "starter_code": "def check_digit_conditions(n):\n    \"\"\"\n    Check if the 6-digit number n has exactly one '1', two '2's, and three '3's.\n    Return 'Yes' if it does, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'123233'",
+          "input": "n = 123233",
           "function_call": "check_digit_conditions(123233)",
           "expected": "Yes"
         },
         {
-          "input": "'123234'",
+          "input": "n = 123234",
           "function_call": "check_digit_conditions(123234)",
           "expected": "No"
         },
         {
-          "input": "'323132'",
+          "input": "n = 323132",
           "function_call": "check_digit_conditions(323132)",
           "expected": "Yes"
         },
         {
-          "input": "'500000'",
+          "input": "n = 500000",
           "function_call": "check_digit_conditions(500000)",
           "expected": "No"
         }
@@ -2244,7 +2244,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a three-digit number made of digits from 1 to 9. You need to rearrange the digits in two different ways and print the new numbers you create from those arrangements.",
+        "simplified_explanation": "Given a 3-digit number with digits a, b, c, create two new numbers by cyclically rearranging: bca and cab. Return them as a space-separated string. For example, 379 → '793 937'.",
         "key_concepts": [
           "String manipulation",
           "Indexing",
@@ -2257,27 +2257,27 @@
       "starter_code": "def rearrange_digits(n):\n    \"\"\"\n    Rearrange the digits of a three-digit number n.\n    Return two integers formed by the arrangements bca and cab.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "379",
+          "input": "n = 379",
           "function_call": "rearrange_digits(379)",
           "expected": "793 937"
         },
         {
-          "input": "919",
+          "input": "n = 919",
           "function_call": "rearrange_digits(919)",
           "expected": "199 991"
         },
         {
-          "input": "123",
+          "input": "n = 123",
           "function_call": "rearrange_digits(123)",
           "expected": "231 312"
         },
         {
-          "input": "456",
+          "input": "n = 456",
           "function_call": "rearrange_digits(456)",
           "expected": "564 645"
         },
         {
-          "input": "789",
+          "input": "n = 789",
           "function_call": "rearrange_digits(789)",
           "expected": "897 978"
         }
@@ -2313,7 +2313,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have four balls, each with a color represented by a number. Your goal is to find out how many pairs of balls you can remove if you can only remove two balls of the same color at a time.",
+        "simplified_explanation": "Given a list of 4 ball colors (as integers), find the maximum number of pairs you can form. A pair is two balls of the same color. For example, [2,1,2,1] → 2 pairs (one pair of 1s, one pair of 2s).",
         "key_concepts": [
           "arrays or lists",
           "counting",
@@ -2326,17 +2326,17 @@
       "starter_code": "def max_pairs_of_balls(colors):\n    \"\"\"\n    Calculate the maximum number of pairs of balls that can be removed.\n    Each pair consists of two balls of the same color.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "[2, 1, 2, 1]",
+          "input": "colors = [2, 1, 2, 1]",
           "function_call": "max_pairs_of_balls([2, 1, 2, 1])",
           "expected": 2
         },
         {
-          "input": "[4, 4, 4, 1]",
+          "input": "colors = [4, 4, 4, 1]",
           "function_call": "max_pairs_of_balls([4, 4, 4, 1])",
           "expected": 1
         },
         {
-          "input": "[1, 2, 3, 4]",
+          "input": "colors = [1, 2, 3, 4]",
           "function_call": "max_pairs_of_balls([1, 2, 3, 4])",
           "expected": 0
         }
@@ -2376,7 +2376,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a 3-letter string made of uppercase letters. Your task is to check if you can rearrange these letters to form the word 'ABC'.",
+        "simplified_explanation": "Check if a 3-character string can be rearranged to spell 'ABC'. Return 'Yes' if it contains exactly one A, one B, and one C; 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "string manipulation",
@@ -2388,22 +2388,22 @@
       "starter_code": "def can_rearrange_to_abc(s):\n    \"\"\"\n    Check if the string s can be rearranged to form 'ABC'.\n    Return 'Yes' if it can, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'BAC'",
+          "input": "s = 'BAC'",
           "function_call": "can_rearrange_to_abc('BAC')",
           "expected": "Yes"
         },
         {
-          "input": "'AAC'",
+          "input": "s = 'AAC'",
           "function_call": "can_rearrange_to_abc('AAC')",
           "expected": "No"
         },
         {
-          "input": "'ABC'",
+          "input": "s = 'ABC'",
           "function_call": "can_rearrange_to_abc('ABC')",
           "expected": "Yes"
         },
         {
-          "input": "'ARC'",
+          "input": "s = 'ARC'",
           "function_call": "can_rearrange_to_abc('ARC')",
           "expected": "No"
         }
@@ -2439,7 +2439,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a button that gives you a candy when you press it. However, you can only get a candy if a certain amount of time has passed since you last got one. You will press the button multiple times, and you need to count how many candies you receive.",
+        "simplified_explanation": "A button is pressed at times given in list `t`. A candy is dispensed only if at least `c` seconds have passed since the last candy was given (first press always gives a candy). Count the total candies received.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -2452,17 +2452,17 @@
       "starter_code": "def count_candies_received(n, c, t):\n    \"\"\"\n    Count how many candies can be received based on button presses and time intervals.\n    :param n: Number of times the button is pressed\n    :param c: Minimum time interval required to receive a candy\n    :param t: List of times when the button is pressed\n    :return: Number of candies received\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "6 5\r\n1 3 7 8 10 12",
+          "input": "n = 6, c = 5, t = [1, 3, 7, 8, 10, 12]",
           "function_call": "count_candies_received(6, 5, [1, 3, 7, 8, 10, 12])",
           "expected": 3
         },
         {
-          "input": "3 2\r\n0 2 4",
+          "input": "n = 3, c = 2, t = [0, 2, 4]",
           "function_call": "count_candies_received(3, 2, [0, 2, 4])",
           "expected": 3
         },
         {
-          "input": "10 3\r\n0 3 4 6 9 12 15 17 19 20",
+          "input": "n = 10, c = 3, t = [0, 3, 4, 6, 9, 12, 15, 17, 19, 20]",
           "function_call": "count_candies_received(10, 3, [0, 3, 4, 6, 9, 12, 15, 17, 19, 20])",
           "expected": 7
         }
@@ -2498,7 +2498,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a row of seats that can either be occupied or empty. Your task is to count how many times there is a person sitting in seat i and seat i + 2, with an empty seat in between (seat i + 1).",
+        "simplified_explanation": "Given a string of seats where '#' = occupied and '.' = empty, count how many times the pattern '#.#' appears — a person in seat i, empty seat i+1, and a person in seat i+2.",
         "key_concepts": [
           "if-statements",
           "loops",
@@ -2511,17 +2511,17 @@
       "starter_code": "def count_seat_patterns(n, s):\n    \"\"\"\n    Count the number of times there is a person sitting in seat i and seat i + 2,\n    with an empty seat in between (seat i + 1).\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "6, '#.##.#'",
+          "input": "n = 6, s = '#.##.#'",
           "function_call": "count_seat_patterns(6, '#.##.#')",
           "expected": 2
         },
         {
-          "input": "1, '#'",
+          "input": "n = 1, s = '#'",
           "function_call": "count_seat_patterns(1, '#')",
           "expected": 0
         },
         {
-          "input": "9, '##.#.#.##'",
+          "input": "n = 9, s = '##.#.#.##'",
           "function_call": "count_seat_patterns(9, '##.#.#.##')",
           "expected": 3
         }
@@ -2553,7 +2553,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check if a given word ends with 'san'. If it does, you will print 'Yes'. If it doesn't, you will print 'No'.",
+        "simplified_explanation": "Check if a string (lowercase English letters only) ends with the suffix 'san'. Return 'Yes' if the last 3 characters are 'san', 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "string manipulation",
@@ -2565,27 +2565,27 @@
       "starter_code": "def ends_with_san(s):\n    \"\"\"\n    Check if the string s ends with 'san'.\n    Return 'Yes' if it does, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'takahashisan'",
+          "input": "s = 'takahashisan'",
           "function_call": "ends_with_san('takahashisan')",
           "expected": "Yes"
         },
         {
-          "input": "'aokikun'",
+          "input": "s = 'aokikun'",
           "function_call": "ends_with_san('aokikun')",
           "expected": "No"
         },
         {
-          "input": "'sanjay'",
+          "input": "s = 'sanjay'",
           "function_call": "ends_with_san('sanjay')",
           "expected": "No"
         },
         {
-          "input": "'konnichiwasan'",
+          "input": "s = 'konnichiwasan'",
           "function_call": "ends_with_san('konnichiwasan')",
           "expected": "Yes"
         },
         {
-          "input": "san",
+          "input": "s = 'san'",
           "function_call": "ends_with_san('san')",
           "expected": "Yes"
         }
@@ -2617,7 +2617,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have 12 words, and each word is numbered from 1 to 12. Your task is to count how many words have a length that matches their number (for example, the first word should have 1 letter, the second word should have 2 letters, and so on).",
+        "simplified_explanation": "Given a list of 12 words, count how many have a length equal to their position (1-indexed). The 1st word should have length 1, the 2nd length 2, etc. For example, 'september' at position 9 has length 9, so it counts.",
         "key_concepts": [
           "loops",
           "if-statements",
@@ -2630,12 +2630,12 @@
       "starter_code": "def count_matching_word_lengths(words):\n    \"\"\"\n    Count how many words have a length that matches their position (1 to 12).\n    Return the count as an integer.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'",
+          "input": "words = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']",
           "function_call": "count_matching_word_lengths(['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])",
           "expected": 1
         },
         {
-          "input": "'ve', 'inrtfa', 'npccxva', 'djiq', 'lmbkktngaovl', 'mlfiv', 'fmbvcmuxuwggfq', 'qgmtwxmb', 'jii', 'ts', 'bfxrvs', 'eqvy'",
+          "input": "words = ['ve', 'inrtfa', 'npccxva', 'djiq', 'lmbkktngaovl', 'mlfiv', 'fmbvcmuxuwggfq', 'qgmtwxmb', 'jii', 'ts', 'bfxrvs', 'eqvy']",
           "function_call": "count_matching_word_lengths(['ve', 'inrtfa', 'npccxva', 'djiq', 'lmbkktngaovl', 'mlfiv', 'fmbvcmuxuwggfq', 'qgmtwxmb', 'jii', 'ts', 'bfxrvs', 'eqvy'])",
           "expected": 2
         }
@@ -2671,7 +2671,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You are given a string that includes lowercase letters and the dot character (.). Your task is to create a new string by removing all the dots from the original string.",
+        "simplified_explanation": "Remove all dot characters ('.') from the input string and return the result. Only dots are removed; all other characters stay. For example, '.v.' → 'v'.",
         "key_concepts": [
           "string manipulation",
           "input and output",
@@ -2684,17 +2684,17 @@
       "starter_code": "def remove_dots(s):\n    \"\"\"\n    Remove all dots from the given string s.\n    Return the modified string without any dots.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'.v.'",
+          "input": "s = '.v.'",
           "function_call": "remove_dots('.v.')",
           "expected": "v"
         },
         {
-          "input": "'chokudai'",
+          "input": "s = 'chokudai'",
           "function_call": "remove_dots('chokudai')",
           "expected": "chokudai"
         },
         {
-          "input": "'...'",
+          "input": "s = '...'",
           "function_call": "remove_dots('...')",
           "expected": ""
         }
@@ -2726,7 +2726,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have three brothers named A, B, and C. You know who is older or younger based on three symbols (< or >). Your task is to find out which brother is the second oldest.",
+        "simplified_explanation": "Three brothers A, B, C have their ages compared in 3 pairs: A vs B, A vs C, B vs C. Each comparison is '<' (first is younger) or '>' (first is older). Determine which brother is the second oldest and return 'A', 'B', or 'C'.",
         "key_concepts": [
           "if-statements",
           "comparison operators",
@@ -2738,12 +2738,12 @@
       "starter_code": "def find_second_oldest_brother(relations):\n    \"\"\"\n    Determine the second oldest brother based on the age relations.\n    relations is a string containing three characters ('<', '>') representing the age comparisons.\n    Return the name of the second oldest brother: 'A', 'B', or 'C'.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "'< < <'",
+          "input": "relations = '< < <'",
           "function_call": "find_second_oldest_brother('< < <')",
           "expected": "B"
         },
         {
-          "input": "'< < >'",
+          "input": "relations = '< < >'",
           "function_call": "find_second_oldest_brother('< < >')",
           "expected": "C"
         }
@@ -2775,7 +2775,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You need to check which hand Snuke is raising to decide if he wants to eat takoyaki. If he raises only his left hand, he wants to eat it, and we print 'Yes'. If he raises only his right hand, we print 'No'. If he raises both hands or none, we print 'Invalid'.",
+        "simplified_explanation": "Snuke raises hands to signal: left hand only (L=1, R=0) → 'Yes' (wants takoyaki), right hand only (L=0, R=1) → 'No' (doesn't want it), both or neither → 'Invalid'.",
         "key_concepts": [
           "if-statements",
           "input and output",
@@ -2787,22 +2787,22 @@
       "starter_code": "def check_hand_position(L, R):\n    \"\"\"\n    Determine Snuke's intention based on the hands raised.\n    Return 'Yes' if only left hand is raised,\n    'No' if only right hand is raised,\n    and 'Invalid' if both hands or no hands are raised.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "1, 0",
+          "input": "L = 1, R = 0",
           "function_call": "check_hand_position(1, 0)",
           "expected": "Yes"
         },
         {
-          "input": "0, 1",
+          "input": "L = 0, R = 1",
           "function_call": "check_hand_position(0, 1)",
           "expected": "No"
         },
         {
-          "input": "1, 1",
+          "input": "L = 1, R = 1",
           "function_call": "check_hand_position(1, 1)",
           "expected": "Invalid"
         },
         {
-          "input": "0, 0",
+          "input": "L = 0, R = 0",
           "function_call": "check_hand_position(0, 0)",
           "expected": "Invalid"
         }
@@ -2838,7 +2838,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have two numbers, A and B. You need to find out how many different numbers, x, can be arranged with A and B to form a sequence where the difference between the first and second number is the same as the difference between the second and third number.",
+        "simplified_explanation": "Given two integers a and b, count how many integers x exist such that a, b, and x can be arranged to form an arithmetic sequence (equal spacing between consecutive terms). For example, a=5, b=7 → 3 values: x=3, x=6, or x=9.",
         "key_concepts": [
           "Basic arithmetic",
           "Condition checking",
@@ -2851,17 +2851,17 @@
       "starter_code": "def count_arithmetic_sequence_numbers(a, b):\n    \"\"\"\n    Count how many integers x can be arranged with a and b to form an arithmetic sequence.\n    Return the count of such integers.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "5, 7",
+          "input": "a = 5, b = 7",
           "function_call": "count_arithmetic_sequence_numbers(5, 7)",
           "expected": 3
         },
         {
-          "input": "6, 1",
+          "input": "a = 6, b = 1",
           "function_call": "count_arithmetic_sequence_numbers(6, 1)",
           "expected": 2
         },
         {
-          "input": "3, 3",
+          "input": "a = 3, b = 3",
           "function_call": "count_arithmetic_sequence_numbers(3, 3)",
           "expected": 1
         }
@@ -2893,7 +2893,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "You have a stack of cards with numbers on them. You need to take a certain number of cards from the bottom and place them on top of the stack, then show the new order of the cards from top to bottom.",
+        "simplified_explanation": "Given a list of cards and an integer k, move the bottom k cards to the top of the stack. Return the new order as a space-separated string. For example, cards=[1,2,3,4,5], k=3 → '3 4 5 1 2'.",
         "key_concepts": [
           "arrays/lists",
           "slicing",
@@ -2906,12 +2906,12 @@
       "starter_code": "def cut_cards(n, k, cards):\n    \"\"\"\n    Rearrange the stack of cards by moving the bottom k cards to the top.\n    Return the new order of cards from top to bottom as a space-separated string.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "5 3\r\n1 2 3 4 5",
+          "input": "n = 5, k = 3, cards = [1, 2, 3, 4, 5]",
           "function_call": "cut_cards(5, 3, [1, 2, 3, 4, 5])",
           "expected": "3 4 5 1 2"
         },
         {
-          "input": "6 2\r\n1 2 1 2 1 2",
+          "input": "n = 6, k = 2, cards = [1, 2, 1, 2, 1, 2]",
           "function_call": "cut_cards(6, 2, [1, 2, 1, 2, 1, 2])",
           "expected": "1 2 1 2 1 2"
         }
@@ -2947,7 +2947,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "Takahashi has to shout his love for takoyaki at a specific time each day. He goes to sleep and wakes up at certain times, and we need to check if he is awake at the time he needs to shout.",
+        "simplified_explanation": "Takahashi sleeps from hour `a` to hour `b` (may wrap past midnight). Determine if he is awake at hour `c`. Return 'Yes' if awake (not during sleep hours), 'No' if asleep.",
         "key_concepts": [
           "if-statements",
           "basic comparisons",
@@ -2959,17 +2959,17 @@
       "starter_code": "def can_shout_love_for_takoyaki(a, b, c):\n    \"\"\"\n    Determine if Takahashi can shout his love for takoyaki at a o'clock given his sleep schedule.\n    Return 'Yes' if he can shout, 'No' otherwise.\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "21 8 14",
+          "input": "a = 21, b = 8, c = 14",
           "function_call": "can_shout_love_for_takoyaki(21, 8, 14)",
           "expected": "Yes"
         },
         {
-          "input": "0 21 7",
+          "input": "a = 0, b = 21, c = 7",
           "function_call": "can_shout_love_for_takoyaki(0, 21, 7)",
           "expected": "No"
         },
         {
-          "input": "10 7 17",
+          "input": "a = 10, b = 7, c = 17",
           "function_call": "can_shout_love_for_takoyaki(10, 7, 17)",
           "expected": "No"
         }
@@ -3005,7 +3005,7 @@
         "Loops"
       ],
       "simplified": {
-        "simplified_explanation": "In a city election between two candidates, Takahashi and Aoki, some votes have been counted. You need to determine if the result is already certain — meaning one candidate has enough votes that the other cannot win even if they receive all remaining votes.",
+        "simplified_explanation": "In an election with `n` total voters, Takahashi has `t` votes and Aoki has `a` votes so far. Determine if the winner is already certain — meaning even if all remaining votes (n - t - a) go to the losing candidate, they still can't catch up. Return 'Yes' if decided, 'No' otherwise.",
         "key_concepts": [
           "if-statements",
           "basic math",
@@ -3018,17 +3018,17 @@
       "starter_code": "def is_election_decided(n, t, a):\n    \"\"\"\n    Determine if the election outcome is already decided.\n    Return 'Yes' if either candidate's victory is certain\n    (the leading candidate cannot be overtaken even if all\n    remaining votes go to the other), 'No' otherwise.\n\n    Args:\n        n: Total number of voters\n        t: Takahashi's current votes\n        a: Aoki's current votes\n\n    Returns:\n        'Yes' if the outcome is decided, 'No' otherwise\n    \"\"\"\n    # Your code here\n    pass",
       "test_cases": [
         {
-          "input": "7, 4, 2",
+          "input": "n = 7, t = 4, a = 2",
           "function_call": "is_election_decided(7, 4, 2)",
           "expected": "Yes"
         },
         {
-          "input": "99, 12, 48",
+          "input": "n = 99, t = 12, a = 48",
           "function_call": "is_election_decided(99, 12, 48)",
           "expected": "No"
         },
         {
-          "input": "1, 0, 0",
+          "input": "n = 1, t = 0, a = 0",
           "function_call": "is_election_decided(1, 0, 0)",
           "expected": "No"
         }
