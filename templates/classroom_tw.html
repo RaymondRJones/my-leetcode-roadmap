@@ -20,14 +20,14 @@
     <a href="{{ '/landing' if is_locked else course.route }}"
        class="group block"
        aria-label="{{ 'Unlock ' if is_locked else 'Go to ' }}{{ course.title }} course">
-        <div class="card h-full relative overflow-hidden transition-all duration-300 hover:shadow-glow {% if is_locked %}opacity-75{% endif %}"
+        <div class="card h-full relative overflow-hidden transition-all duration-300 hover:shadow-glow"
              style="animation-delay: {{ loop.index0 * 0.05 }}s;">
 
             {% if is_locked %}
-            <!-- Lock Overlay -->
-            <div class="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex items-center justify-center">
-                <div class="w-16 h-16 rounded-full bg-background-elevated border border-border flex items-center justify-center">
-                    <svg class="w-8 h-8 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Lock Icon (top-left) -->
+            <div class="absolute top-3 left-3 z-10">
+                <div class="w-10 h-10 rounded-full bg-background-elevated/85 border border-border flex items-center justify-center shadow-md">
+                    <svg class="w-5 h-5 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
                 </div>
